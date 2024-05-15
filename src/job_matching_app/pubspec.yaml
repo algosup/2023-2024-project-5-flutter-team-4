@@ -7,6 +7,9 @@ environment:
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies:
+  adaptive_theme: ^3.6.0
+  shared_preferences: ^2.0.0
+
   flutter:
     sdk: flutter
   flutter_card_swiper: ^7.0.1
