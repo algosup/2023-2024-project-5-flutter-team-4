@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
       ), // Dark Theme Options
       initial: AdaptiveThemeMode.light, // Inital theme when app starts
       builder: (theme, darkTheme) => MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Adaptive Theme Learn',
         theme: theme,
         darkTheme: darkTheme,
@@ -63,17 +64,7 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Root Page'),
-        backgroundColor: Colors.blue,
-      ),
       body: pages[currentPage],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('Floating Action Button is pressed');
-        },
-        child: const Icon(Icons.add),
-      ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
