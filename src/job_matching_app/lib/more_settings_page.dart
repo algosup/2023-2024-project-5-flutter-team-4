@@ -19,18 +19,25 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         automaticallyImplyLeading: true,
         foregroundColor: Theme.of(context).colorScheme.tertiary,
-        title: Text(
-          "More Settings",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
-          )
-        ),
+        title: Text("More Settings",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+            )),
       ),
       body: Center(
         child: Switch(
           activeColor: Theme.of(context).colorScheme.primary,
           activeTrackColor: Theme.of(context).colorScheme.secondary,
           inactiveThumbColor: Theme.of(context).colorScheme.secondary,
+          thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+            (Set<MaterialState> states) {
+              if (isDarkMode) {
+                return const Icon(Icons.nightlight);
+              } else {
+                return const Icon(Icons.sunny);
+              }
+            },
+          ),
           value: isDarkMode,
           onChanged: (bool value) {
             setState(() {
