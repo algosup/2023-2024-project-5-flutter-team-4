@@ -36,9 +36,9 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
               thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
                 (Set<MaterialState> states) {
                   if (isDarkMode) {
-                    return const Icon(Icons.nightlight);
+                    return const Icon(Icons.nightlight, color: Colors.black);
                   } else {
-                    return const Icon(Icons.sunny);
+                    return const Icon(Icons.sunny, color: Colors.black);
                   }
                 },
               ),

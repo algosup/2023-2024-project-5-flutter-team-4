@@ -1,5 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:job_matching_app/more_settings_page.dart';
 
