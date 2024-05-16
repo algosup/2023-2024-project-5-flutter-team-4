@@ -1,0 +1,44 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:job_matching_app/more_settings_page.dart';
+
+class ProfileSettingsPage extends StatefulWidget {
+  const ProfileSettingsPage({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _ProfileSettingState createState() => _ProfileSettingState();
+}
+
+class _ProfileSettingState extends State<ProfileSettingsPage> {
+  bool isDarkMode = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.secondary),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const MoreSettingsPage(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.settings_suggest_rounded, color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

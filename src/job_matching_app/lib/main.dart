@@ -2,8 +2,9 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:job_matching_app/home_page.dart';
 import 'package:job_matching_app/match_page.dart';
-import 'package:job_matching_app/settings_page.dart';
+import 'package:job_matching_app/profile_settings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,15 +16,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SharedPreferences.setMockInitialValues({});
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
 
     return AdaptiveTheme(
       light: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 4, 82, 103),
-          background: const Color.fromARGB(255, 7, 154, 180),
-          primary: const Color.fromARGB(255, 164, 71, 0),
-          secondary: const Color.fromARGB(255, 50, 13, 160),
+          seedColor: const Color.fromARGB(255, 0, 0, 0),
+          background: const Color.fromARGB(255, 213, 206, 195),
+          primary: const Color.fromARGB(255, 248, 249, 251),
+          secondary: const Color.fromARGB(255, 211, 169, 157),
+          tertiary: const Color.fromARGB(255, 0, 0, 0),
         ),
       ), // Light Theme Options
       dark: ThemeData(
@@ -31,13 +34,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 4, 82, 103),
           background: const Color.fromARGB(255, 50, 58, 59),
-          primary: const Color.fromARGB(255, 188, 92, 148),
-          secondary: const Color.fromARGB(255, 219, 205, 9),
+          primary: const Color.fromARGB(255, 248, 249, 252),
+          secondary: const Color.fromARGB(255, 243, 203, 131),
+          tertiary: const Color.fromARGB(255, 255, 255, 255),
         ),
       ), // Dark Theme Options
       initial: AdaptiveThemeMode.light, // Inital theme when app starts
       builder: (theme, darkTheme) => MaterialApp(
-      debugShowCheckedModeBanner: false,
+        
+        debugShowCheckedModeBanner: false,
         title: 'Adaptive Theme Learn',
         theme: theme,
         darkTheme: darkTheme,
@@ -59,13 +64,16 @@ class _RootPageState extends State<RootPage> {
   List<Widget> pages = [
     const HomePage(),
     const MatchPage(),
-    SettingsPage(),
+    const ProfileSettingsPage(),
   ];
   @override
   Widget build(BuildContext context) {
+    // final style = Theme.of(context).colorScheme.onSecondary;
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        indicatorColor: Theme.of(context).colorScheme.secondary,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home),
