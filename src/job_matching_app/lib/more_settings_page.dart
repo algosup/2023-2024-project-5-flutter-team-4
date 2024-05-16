@@ -24,30 +24,35 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
               color: Theme.of(context).colorScheme.tertiary,
             )),
       ),
-      body: Center(
-        child: Switch(
-          activeColor: Theme.of(context).colorScheme.primary,
-          activeTrackColor: Theme.of(context).colorScheme.secondary,
-          inactiveThumbColor: Theme.of(context).colorScheme.secondary,
-          thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
-            (Set<MaterialState> states) {
-              if (isDarkMode) {
-                return const Icon(Icons.nightlight);
-              } else {
-                return const Icon(Icons.sunny);
-              }
-            },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Switch(
+              activeColor: Theme.of(context).colorScheme.primary,
+              activeTrackColor: Theme.of(context).colorScheme.secondary,
+              inactiveThumbColor: Theme.of(context).colorScheme.secondary,
+              value: isDarkMode,
+              thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
+                (Set<WidgetState> states) {
+                  if (isDarkMode) {
+                    return const Icon(Icons.nightlight);
+                  } else {
+                    return const Icon(Icons.sunny);
+                  }
+                },
+              ),
+              onChanged: (bool value) {
+                setState(() {
+                  isDarkMode = !isDarkMode;
+                  isDarkMode == false
+                      ? AdaptiveTheme.of(context).setLight()
+                      : AdaptiveTheme.of(context).setDark();
+                });
+              },
+            ),
           ),
-          value: isDarkMode,
-          onChanged: (bool value) {
-            setState(() {
-              isDarkMode = !isDarkMode;
-              isDarkMode == false
-                  ? AdaptiveTheme.of(context).setLight()
-                  : AdaptiveTheme.of(context).setDark();
-            });
-          },
-        ),
+        ],
       ),
     );
   }

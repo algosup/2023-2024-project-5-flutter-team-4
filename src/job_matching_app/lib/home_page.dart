@@ -7,7 +7,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Home Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              image: AssetImage('lib/assets/images/flutter_logo.png'),
+              width: 200,
+              height: 200,
+            ),
+          ],
+        ),
       ),
     );
   }
