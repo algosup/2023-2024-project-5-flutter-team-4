@@ -6,16 +6,23 @@ import 'package:flutter/services.dart';
 
 //------------------------- USER PARSER -------------------------
 Future<void> loadUser() async {
-  final String jsonString = await rootBundle.loadString('assets/user.json');
+  final String jsonString =
+      await rootBundle.loadString('lib/assets/json/user.json');
   var data = jsonDecode(jsonString);
-
   // Parse user data
   var userJson = data['user'];
+  // Get the softskills list
+  List<dynamic> softSkillsJson = userJson['softSkills'];
+  List<List<int>> softSkills = softSkillsJson.map<List<int>>((skills) {
+    return List<int>.from(skills);
+  }).toList();
+
+  // Initialize the User instance
   User.initialize(
     firstname: userJson['firstname'] ?? '',
     lastName: userJson['lastname'] ?? '',
     email: userJson['email'] ?? '',
-    softSkills: userJson['softSkills'] ?? '',
+    softSkills: softSkills,
   );
 }
 
@@ -23,7 +30,7 @@ class User {
   final String firstname;
   final String lastName;
   final String email;
-  final List<int> softSkills;
+  final List<List<int>> softSkills;
 
   static User? _instance;
 
@@ -44,7 +51,7 @@ class User {
     required String firstname,
     required String lastName,
     required String email,
-    required List<int> softSkills,
+    required List<List<int>> softSkills,
   }) {
     if (_instance != null) {
       throw Exception("User already initialized.");

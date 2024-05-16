@@ -1,6 +1,10 @@
 {
-    "FirstName": "Laurent",
-    "LastName": "Bouquin",
-    "email":"laurent.Bouquin@testemail.com",
-    "SoftSkills":[[]]
+    "user": {
+        "firstname": "Laurent",
+        "lastname": "Bouquin",
+        "email": "laurent.Bouquin@testemail.com",
+        "softSkills": [
+            []
+        ]
+    }
 }
