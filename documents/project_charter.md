@@ -55,7 +55,7 @@ The team is composed of the following members:
 
 | Role | Name | Image | Contact |
 | ------ | ---------------- | ---------------- | ---------------- |
-| Project Manager | Victor LEROY | victor.leroy@algosup.com | ![Victor](/pictures/victor.png) |
+| Project Manager | Victor LEROY | victor.leroy@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/victor.png" width="100" height="100" /> |
 | Program Manager | Mathis KAKAL | mathis.kakal@algosup.com | ![Mathis](/pictures/mathis.png) |
 | Technical Leader | Grégory PAGNOUX | gregory.pagnoux@algosup.com | ![Gregory](/pictures/gregory.png) |
 | Software Engineer | Laurent BOUQUIN | laurent.bouquin@algosup.com | ![Laurent](/pictures/laurent.png) |
@@ -63,6 +63,7 @@ The team is composed of the following members:
 | Techincal Writer | Benoît de Keyn | benoit.dekeyn@algosup.com | ![Benoît](/pictures/benoit.png) |
 
 
+TODO : SWAP PICTURES AND CONTACT 
 
 
 
