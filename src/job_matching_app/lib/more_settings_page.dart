@@ -33,8 +33,8 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
               activeTrackColor: Theme.of(context).colorScheme.secondary,
               inactiveThumbColor: Theme.of(context).colorScheme.secondary,
               value: isDarkMode,
-              thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
-                (Set<WidgetState> states) {
+              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                (Set<MaterialState> states) {
                   if (isDarkMode) {
                     return const Icon(Icons.nightlight);
                   } else {
