@@ -11,7 +11,7 @@ class MatchPage extends StatelessWidget {
         alignment: Alignment.center,
         color: Colors.blue,
         child: const Image(
-          image: AssetImage('lib/assets/images/flutter_logo.png'),
+          image: AssetImage('lib/assets/images/flutte_logo.png'),
         ),
       ),
       Container(
