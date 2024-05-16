@@ -8,6 +8,12 @@
   - [Project purpose](#project-purpose)
   - [Project scope](#project-scope)
   - [Project milestones](#project-milestones)
+  - [Project team](#project-team)
+  - [Project stakeholders](#project-stakeholders)
+  - [Reponsabilities](#reponsabilities)
+  - [Risks and mitigation strategies](#risks-and-mitigation-strategies)
+  - [Constraints](#constraints)
+  - [Overall plan](#overall-plan)
   
 </details>
 
@@ -39,16 +45,6 @@ The project milestones are as follows:
 | Code | 06/14/2024 |
 | User Manual | 06/14/2024 |
 
-### Project stakeholders
-
-The project stakeholders are as follows:
-
-
-| Name | Role | Contact |
-| ------ | ---------------- | ---------------- |
-| We Are Evolution | Client |  communication@we-are-evolution.com |
-| ALGOSUP Team 4 | Development team | mathis.kakal@algosup.com |
-
 ### Project team
 
 The team is composed of the following members:
@@ -62,16 +58,45 @@ The team is composed of the following members:
 | Quality Assurance | Aurélien FERNANDEZ | aurelien.fernandez@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/aurelien.png" width="100" height="100" /> |
 | Techincal Writer | Benoît de Keyn | benoit.dekeyn@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/benoit.png" width="100" height="100" /> |
 
+### Project stakeholders
 
-TODO : SWAP PICTURES AND CONTACT 
-
-
-
+The project stakeholders are as follows:
 
 
+| Name | Role | Contact |
+| ------ | ---------------- | ---------------- |
+| We Are Evolution | Client |  communication@we-are-evolution.com |
+| ALGOSUP Team 4 | Development team | mathis.kakal@algosup.com |
 
+### Reponsabilities
 
+You fill find the RACI matrix [here]().
 
+### Risks and mitigation strategies
+
+You will find the risk management plan [here]().
+
+### Constraints
+
+We got a few constraints for this project:
+
+- The project must be completed by 06/14/2024.
+- The project must be developed using Flutter.
+- The application must be compatible with phones, tablets and computers.
+
+### Overall plan
+
+In order to get a successful project, we will follow the plan below:
+
+1. We will start by defining the functional specifications of the application and the needs of the client. We will also brainstorm on the features that the application should have.
+
+2. We will then define the technical specifications of the application and the architecture of the application.
+
+3. The team will develop the application, create the tests and write the user manual.
+
+4. The code will be reviewed by the technical leader and the quality assurance engineer.
+
+5. The application will be delivered to the client.
 
 
 
