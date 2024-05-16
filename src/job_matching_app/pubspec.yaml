@@ -25,3 +25,4 @@ flutter:
     - lib/assets/images/flutter_logo.png
     - lib/assets/images/dart_logo.png
     - lib/assets/images/d_logo.png
+    - lib/assets/json/user.json
