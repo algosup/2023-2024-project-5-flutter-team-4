@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const ChartPage(title: 'My Radar Chart'),
+                    builder: (BuildContext context) => const ChartPage(),
                   ),
                 );
               },
