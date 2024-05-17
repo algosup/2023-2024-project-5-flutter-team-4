@@ -2,7 +2,13 @@
 
 <details>
 
-<summary> <b> 📖 Table of contents </b> </summary>
+<summary> 
+<b> 
+
+### 📖 Table of contents 
+
+</b> 
+</summary>
 
 - [Project overview](#project-overview)
   - [Project purpose](#project-purpose)
