@@ -1,12 +1,14 @@
 # Team 4 Project Charter
 
+<p align="center">
+Created by: Victor LEROY <br> Creation Date: 05/15/2024 <br> Last update: 05/16/2024
+</p>
+
 <details>
 
 <summary> 
 <b> 
-
-### 📖 Table of contents 
-
+📖 Table of contents 
 </b> 
 </summary>
 

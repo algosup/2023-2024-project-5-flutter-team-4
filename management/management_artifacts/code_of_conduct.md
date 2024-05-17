@@ -1,5 +1,9 @@
 # Team 4 Code of conduct
 
+<p align="center">
+Created by: Victor LEROY <br> Creation Date: 05/15/2024 <br> Last update: 05/15/2024
+</p>
+
 ## Purpose
 
 The purpose of this code of conduct is to establish a set of guidelines for our team to follow. These guidelines will help us to work together effectively and respectfully.
