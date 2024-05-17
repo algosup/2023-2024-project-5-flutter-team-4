@@ -11,6 +11,8 @@ dependencies:
   shared_preferences: ^2.0.0
   flutter_radar_chart: ^0.2.1
 
+
+
   flutter:
     sdk: flutter
   flutter_card_swiper: ^7.0.1

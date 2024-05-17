@@ -1,13 +1,17 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:job_matching_app/connection_page.dart';
+import 'package:job_matching_app/connection_pages/connection_page.dart';
 import 'package:job_matching_app/home_page.dart';
 import 'package:job_matching_app/match_page.dart';
 import 'package:job_matching_app/profile_settings_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top]).then(
+    (_) => runApp(const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,8 +21,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SharedPreferences.setMockInitialValues({});
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+    SystemChrome.setSystemUIChangeCallback((systemOverlaysAreVisible) async {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+            overlays: [SystemUiOverlay.top]);
+      });
+    });
+    // SharedPreferences.setMockInitialValues({}); // May be important ???????????
+
     return AdaptiveTheme(
       light: ThemeData(
         useMaterial3: true,
@@ -71,29 +81,31 @@ class _RootPageState extends State<RootPage> {
     // final style = Theme.of(context).colorScheme.onSecondary;
     return Scaffold(
       body: pages[currentPage],
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        indicatorColor: Theme.of(context).colorScheme.secondary,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.people),
-            label: 'Match',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        selectedIndex: currentPage,
+      bottomNavigationBar: SafeArea(
+        child: NavigationBar(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          indicatorColor: Theme.of(context).colorScheme.secondary,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.people),
+              label: 'Match',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPage = index;
+            });
+          },
+          selectedIndex: currentPage,
+        ),
       ),
     );
   }

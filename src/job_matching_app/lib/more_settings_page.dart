@@ -1,6 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MoreSettingsPage extends StatefulWidget {
   const MoreSettingsPage({super.key});
@@ -14,6 +13,8 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    AdaptiveThemeMode adaptiveThemeMode = AdaptiveTheme.of(context).mode;
+    isDarkMode = adaptiveThemeMode == AdaptiveThemeMode.dark ? true : false;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
