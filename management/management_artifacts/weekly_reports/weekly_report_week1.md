@@ -4,6 +4,22 @@
 Created by: Victor LEROY <br> Creation Date: 05/17/2024 <br> Last update: 05/17/2024
 </p>
 
+<details>
+<summary>
+<b> 📖 Table of contents </b>
+</summary>
+
+- [1. Quick summary](#1-quick-summary)
+- [2. Milestones](#2-milestones)
+- [3. Schedule status](#3-schedule-status)
+- [4. Scope status](#4-scope-status)
+- [5. Work completed](#5-work-completed)
+- [6. Next steps](#6-next-steps)
+- [7. Anticipated roadblocks](#7-anticipated-roadblocks)
+- [8. Team feedback](#8-team-feedback)
+
+</details>
+
 ### 1. Quick summary
 
 #### 05/13/2024 - 05/17/2024
