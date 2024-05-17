@@ -9,7 +9,7 @@ environment:
 dependencies:
   adaptive_theme: ^3.6.0
   shared_preferences: ^2.0.0
-  fl_chart: ^0.65.0
+  fl_chart: ^0.68.0
 
   flutter:
     sdk: flutter
@@ -26,4 +26,4 @@ flutter:
     - lib/assets/images/flutte_logo.png
     - lib/assets/images/dart_logo.png
     - lib/assets/images/d_logo.png
-    - lib/assets/json/user.json
+    - lib/assets/json/users.json
