@@ -162,12 +162,12 @@ The application's programming language is [Flutter](https://docs.flutter.dev)[^1
 
 |  | PERSON | ROLE | MAIL | GITHUB |
 | :-: | :-: | :-: | :-: | :-: |
-| ![Victor LEROY](https://ca.slack-edge.com/T0732GL230A-U072N05JEP9-gf6c08fa64b0-20) | Victor LEROY | Project Manager | [victor.leroy@algosup.com](mailto:victor.leroy@algosup.com) | [Victor's GitHub](https://github.com/Victor-Leroy) |
-| ![Mathis KAKAL](https://ca.slack-edge.com/T019N8PRR7W-U0434UXA63Y-g9ecd879a69a-20) | Mathis KAKAL | Program Manager | [mathis.kakal@algosup.com](mailto:mathis.kakal@algosup.com) | [Mathis's GitHub](https://github.com/mathiskakal) |
-| ![Grégory PAGNOUX](https://ca.slack-edge.com/T0732GL230A-U072PJ16B7H-cf66694d1906-20) | Grégory PAGNOUX | Technical Leader | [gregory.pagnoux@algosup.com](mailto:gregory.pagnoux@algosup.com) | [Grégory's GitHub](https://github.com/Gregory-Pagnoux) |
-| ![Benoît DE KEYN](https://ca.slack-edge.com/T0732GL230A-U072PJ1DK0X-g1c2a6de3de3-20) | Benoît DE KEYN | Technical Writer | [benoit.dekeyn@algosup.com](mailto:benoit.dekeyn@algosup.com) | [Benoît's GitHub](https://github.com/benoitdekeyn-algosup) |
-| ![Laurent BOUQUIN](https://ca.slack-edge.com/T0732GL230A-U072XFVNQMC-ge6ea4153c87-20) | Laurent BOUQUIN | Software Engineer | [laurent.bouquin@algosup.com](mailto:laurent.bouquin@algosup.com) | [Laurent's GitHub](https://github.com/laurentbouquin) |
-| ![Aurélien FERNANDEZ](https://ca.slack-edge.com/T0732GL230A-U07341NVA6P-g4a7908c1162-20) | Aurélien FERNANDEZ | Quality Assurance | [aurelien.fernandez@algosup.com](mailto:aurelien.fernandez@algosup.com) | [Aurélien's GitHub](https://github.com/aurelienfernandez) |
+| ![Victor LEROY](https://ca.slack-edge.com/T0732GL230A-U072N05JEP9-gf6c08fa64b0-50) | Victor LEROY | Project Manager | [victor.leroy@algosup.com](mailto:victor.leroy@algosup.com) | [Victor's GitHub](https://github.com/Victor-Leroy) |
+| ![Mathis KAKAL](https://ca.slack-edge.com/T019N8PRR7W-U0434UXA63Y-g9ecd879a69a-50) | Mathis KAKAL | Program Manager | [mathis.kakal@algosup.com](mailto:mathis.kakal@algosup.com) | [Mathis's GitHub](https://github.com/mathiskakal) |
+| ![Grégory PAGNOUX](https://ca.slack-edge.com/T0732GL230A-U072PJ16B7H-cf66694d1906-50) | Grégory PAGNOUX | Technical Leader | [gregory.pagnoux@algosup.com](mailto:gregory.pagnoux@algosup.com) | [Grégory's GitHub](https://github.com/Gregory-Pagnoux) |
+| ![Benoît DE KEYN](https://ca.slack-edge.com/T0732GL230A-U072PJ1DK0X-g1c2a6de3de3-50) | Benoît DE KEYN | Technical Writer | [benoit.dekeyn@algosup.com](mailto:benoit.dekeyn@algosup.com) | [Benoît's GitHub](https://github.com/benoitdekeyn-algosup) |
+| ![Laurent BOUQUIN](https://ca.slack-edge.com/T0732GL230A-U072XFVNQMC-ge6ea4153c87-50) | Laurent BOUQUIN | Software Engineer | [laurent.bouquin@algosup.com](mailto:laurent.bouquin@algosup.com) | [Laurent's GitHub](https://github.com/laurentbouquin) |
+| ![Aurélien FERNANDEZ](https://ca.slack-edge.com/T0732GL230A-U07341NVA6P-g4a7908c1162-50) | Aurélien FERNANDEZ | Quality Assurance | [aurelien.fernandez@algosup.com](mailto:aurelien.fernandez@algosup.com) | [Aurélien's GitHub](https://github.com/aurelienfernandez) |
 
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
 
