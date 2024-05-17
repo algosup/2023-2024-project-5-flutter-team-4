@@ -51,6 +51,7 @@ class _CandidateFormState extends State<CandidateFormPage> {
             SizedBox(
               width: mediaQuery.width * 0.7,
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 onTap: () {
                   error = false;

@@ -51,6 +51,7 @@ class _RecruiterFormState extends State<RecruiterFormPage> {
             SizedBox(
               width: mediaQuery.width * 0.7,
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 onTap: () {
                   error = false;
