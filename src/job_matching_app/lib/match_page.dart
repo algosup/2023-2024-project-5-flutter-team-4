@@ -71,7 +71,7 @@ class _MatchPageState extends State<MatchPage> {
       ),
       Container(
         alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.tertiary,
+        color: Theme.of(context).colorScheme.primary,
         child: darkMode
             ? RadarChart.dark(
                 ticks: ticks,
@@ -109,28 +109,29 @@ class _MatchPageState extends State<MatchPage> {
       )
     ];
     return Scaffold(
-        body: CardSwiper(
-          cardsCount: cards.length,
-          allowedSwipeDirection: const AllowedSwipeDirection.only(
-            left: true,
-            up: false,
-            right: true,
-            down: false,
-          ),
-          cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
-              cards[index],
+      body: CardSwiper(
+        cardsCount: cards.length,
+        allowedSwipeDirection: const AllowedSwipeDirection.only(
+          left: true,
+          up: false,
+          right: true,
+          down: false,
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.secondary,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => const DetailsPage(),
-              ),
-            );
-          },
-          child: const Icon(Icons.zoom_out_map_rounded, color: Colors.black),
-        ));
+        cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
+            cards[index],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => const DetailsPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.zoom_out_map_rounded, color: Colors.black),
+      ),
+    );
   }
 }
