@@ -13,6 +13,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  final bool debug = true;
+
   @override
   Widget build(BuildContext context) {
     SharedPreferences.setMockInitialValues({});
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
         title: 'Adaptive Theme Learn',
         theme: theme,
         darkTheme: darkTheme,
-        home: const RootPage(),
+        home: !debug ? const ConnectionPage() : const RootPage(),
       ),
     );
   }
