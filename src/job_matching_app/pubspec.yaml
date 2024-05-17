@@ -27,3 +27,4 @@ flutter:
     - lib/assets/images/dart_logo.png
     - lib/assets/images/d_logo.png
     - lib/assets/json/users.json
+    - lib/assets/json/recruiters.json

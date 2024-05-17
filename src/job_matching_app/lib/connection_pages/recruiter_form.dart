@@ -1,18 +1,16 @@
-//-------------------------- FLUTTER --------------------------
 import 'package:flutter/material.dart';
 import 'package:job_matching_app/main.dart';
-import 'package:job_matching_app/user_loader.dart';
+import 'package:job_matching_app/parsers/recruiter_loader.dart';
 
-//---------------------- CONNECTION PAGE ----------------------
-class ConnectionPage extends StatefulWidget {
-  const ConnectionPage({super.key});
-
+class RecruiterFormPage extends StatefulWidget {
   @override
-  State<ConnectionPage> createState() => _ConnectionPageState();
+  State<RecruiterFormPage> createState() => _RecruiterFormState();
 }
 
 //---------------------- CONNECTION STATE ---------------------
-class _ConnectionPageState extends State<ConnectionPage> {
+class _RecruiterFormState extends State<RecruiterFormPage> {
+  _RecruiterFormState();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool error = false;
@@ -106,7 +104,7 @@ class _ConnectionPageState extends State<ConnectionPage> {
                     passwordColor = Colors.red;
                   });
                 } else {
-                  int result = await getUser(
+                  int result = await getRecruiter(
                       emailController.text, passwordController.text);
 
                   if (result == 0) {

@@ -1,0 +1,20 @@
+{
+    "recruiters": [
+        {
+            "email": "recruiter@hr.com",
+            "password":"recruit",
+            "softSkills": [
+                []
+            ],
+            "chart": []
+        },
+        {
+            "email": "secondaccound@hotmail.fr",
+            "password": "password",
+            "softSkills": [
+                []
+            ],
+            "chart": []
+        }
+    ]
+}
