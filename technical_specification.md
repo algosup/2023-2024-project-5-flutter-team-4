@@ -1,4 +1,4 @@
-# 2023-2024 - PROJECT 5 - WE ARE EVOLUTION APPLICATION - TEAM 4
+# 2023-2024 - PROJECT 5 - "ADOPTE UN CANDIDAT" APPLICATION - TEAM 4
 
 ## Technical Specifications
 
@@ -7,7 +7,7 @@
 <details>
 <summary>📖 Table of content</summary>
 
-- [2023-2024 - PROJECT 5 - WE ARE EVOLUTION APPLICATION - TEAM 4](#2023-2024---project-5---we-are-evolution-application---team-4)
+- [2023-2024 - PROJECT 5 - "ADOPTE UN CANDIDAT" APPLICATION - TEAM 4](#2023-2024---project-5---adopte-un-candidat-application---team-4)
   - [Technical Specifications](#technical-specifications)
     - [I. Introduction of the project](#i-introduction-of-the-project)
       - [A. Client](#a-client)
@@ -19,10 +19,11 @@
         - [1.](#1)
       - [D. Contraints](#d-contraints)
       - [E. Risks and assumptions](#e-risks-and-assumptions)
-    - [III. Software part](#iii-software-part)
-      - [A. Writing convention](#a-writing-convention)
-      - [B. File architecture](#b-file-architecture)
-      - [C. Implementation](#c-implementation)
+    - [III. Technical Specifications](#iii-technical-specifications)
+      - [A. Graphic convention](#a-graphic-convention)
+      - [B. Writing convention](#b-writing-convention)
+      - [C. File architecture](#c-file-architecture)
+      - [D. Implementation](#d-implementation)
     - [IV Program architecture diagram](#iv-program-architecture-diagram)
     - [V. Further considerations](#v-further-considerations)
       - [A. Cost estimation](#a-cost-estimation)
@@ -43,7 +44,7 @@
 | Author(s) | Grégory PAGNOUX |
 | Reviewer(s) |  |
 | Created on | 05/15/2024 |
-| Last updated | 05/15/2024 |
+| Last updated | 05/16/2024 |
 |  |  |
 
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
@@ -70,7 +71,7 @@
 
 #### C. Features
 
-##### 1.
+##### 1. 
 
 . <!-- TODO -->
 
@@ -82,36 +83,43 @@
 
 . <!-- TODO -->
 
-### III. Software part
+### III. Technical Specifications
 
-#### A. Writing convention
-
-<!-- TODO -->
-
-| Notation | How | Usage | Example |
-| :-: | :-: | :-: | :-: |
-| Pascal Casing | we attach each word and capitalize it to know where the next word starts | naming Classes |  |
-| Camel Casing | prefix them | naming Functions |  |
-|  | prefix `s_` | naming Arguments |  |
-| Snake Casing |  | naming folders and files |  |
-| comment = // | start each line with two slashes and an uppercase letter and finish the comment by a period. | give more information of the code | <pre>```// The following declaration creates a query. It does not run the query.```</pre> |
-
-#### B. File architecture
+#### A. Graphic convention
 
 . <!-- TODO -->
 
-#### C. Implementation
+#### B. Writing convention
+
+The application's programming language is [Flutter](https://docs.flutter.dev)[^1]. This language has certain conventions that must be respected, which are detailed below:
+
+| NOTATION NAME | DESCRIPTION | USAGE | EXAMPLE |
+| :-: | :-: | :-: | - |
+| Pascal Casing | we attach each word and capitalize each first letter of words to know where the next word starts | naming Classes | PascalCase |
+|  |  | naming Widgets |  |
+|  |  | naming Types |  |
+|  |  | naming Extensions |  |
+| Camel Casing | we attach each word and capitalize each first letter of words except the first one to know where the next word starts | naming Functions | camelCase |
+|  |  | naming Variables |  |
+|  |  | naming Arguments |  |
+| Snake Casing | use the underscore between words written in lower case | naming folders and files | snake_case |
+|  |  | naming imports |  |
+| Comments | start each line with two slashes and an uppercase letter and finish the comment by a period. | give more information of the code | <pre>```// The following declaration creates a query. It does not run the query.```</pre> |
+
+*sources: [Dart](https://dart.dev/effective-dart/style)*
+
+#### C. File architecture
+
+. <!-- TODO -->
+
+#### D. Implementation
 
 **1. main.dart file**
 
-<!-- TODO -->
+*description* <!-- TODO -->
 
-*description*
+```flutter
 
-```cs
-using System;
-using System.Collections;
-using System.Threading.Tasks;
 ```
 
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
@@ -120,7 +128,7 @@ using System.Threading.Tasks;
 
 ### IV Program architecture diagram
 
-![Program Architechture Diagram](img/Architecture_diagram.png)
+![Program Architecture Diagram](img/)
 
 ### V. Further considerations
 
@@ -152,17 +160,19 @@ using System.Threading.Tasks;
 
 ### Project role distribution
 
-|  | PERSON | ROLE | MAIL |
-| - | - | - | - |
-| ![Victor LEROY]() | Victor LEROY | Project Manager | [victor.leroy@algosup.com](mailto:victor.leroy@algosup.com) |
-| ![Mathis KAKAL]() | Mathis KAKAL | Program Manager | [mathis.kakal@algosup.com](mailto:mathis.kakal@algosup.com) |
-| ![Grégory PAGNOUX]() | Grégory PAGNOUX | Technical Leader | [gregory.pagnoux@algosup.com](mailto:gregory.pagnoux@algosup.com) |
-| ![Benoît DE KEYN]() | Benoît DE KEYN | Technical Writer | [benoit.dekeyn@algosup.com](mailto:benoit.dekeyn@algosup.com) |
-| ![Laurent BOUQUIN]() | Laurent BOUQUIN | Software Engineer | [laurent.bouquin@algosup.com](mailto:laurent.bouquin@algosup.com) |
-| ![Aurélien FERNANDEZ]() | Aurélien FERNANDEZ | Quality Assurance | [aurelien.fernandez@algosup.com](mailto:aurelien.fernandez@algosup.com) |
+|  | PERSON | ROLE | MAIL | GITHUB |
+| :-: | :-: | :-: | :-: | :-: |
+| ![Victor LEROY](https://ca.slack-edge.com/T0732GL230A-U072N05JEP9-gf6c08fa64b0-512) | Victor LEROY | Project Manager | [victor.leroy@algosup.com](mailto:victor.leroy@algosup.com) | [Victor's GitHub](https://github.com/Victor-Leroy) |
+| ![Mathis KAKAL](https://ca.slack-edge.com/T019N8PRR7W-U0434UXA63Y-g9ecd879a69a-512) | Mathis KAKAL | Program Manager | [mathis.kakal@algosup.com](mailto:mathis.kakal@algosup.com) | [Mathis's GitHub](https://github.com/mathiskakal) |
+| ![Grégory PAGNOUX](https://ca.slack-edge.com/T0732GL230A-U072PJ16B7H-cf66694d1906-512) | Grégory PAGNOUX | Technical Leader | [gregory.pagnoux@algosup.com](mailto:gregory.pagnoux@algosup.com) | [Grégory's GitHub](https://github.com/Gregory-Pagnoux) |
+| ![Benoît DE KEYN](https://ca.slack-edge.com/T0732GL230A-U072PJ1DK0X-g1c2a6de3de3-512) | Benoît DE KEYN | Technical Writer | [benoit.dekeyn@algosup.com](mailto:benoit.dekeyn@algosup.com) | [Benoît's GitHub](https://github.com/benoitdekeyn-algosup) |
+| ![Laurent BOUQUIN](https://ca.slack-edge.com/T0732GL230A-U072XFVNQMC-ge6ea4153c87-512) | Laurent BOUQUIN | Software Engineer | [laurent.bouquin@algosup.com](mailto:laurent.bouquin@algosup.com) | [Laurent's GitHub](https://github.com/laurentbouquin) |
+| ![Aurélien FERNANDEZ](https://ca.slack-edge.com/T0732GL230A-U07341NVA6P-g4a7908c1162-512) | Aurélien FERNANDEZ | Quality Assurance | [aurelien.fernandez@algosup.com](mailto:aurelien.fernandez@algosup.com) | [Aurélien's GitHub](https://github.com/aurelienfernandez) |
 
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
 
 ### Glossary
 
-
+[^1]: Flutter
+Flutter is an open source software development kit launched in May 2017 by Google. It is used to develop applications for Android, iOS, Linux, MacOS, Windows, Google Fuchsia and the web. The latest stable version is 3.19.6.
+*source: [AMAZON](https://aws.amazon.com/fr/what-is/flutter/) / [Wikipedia](https://fr.wikipedia.org/wiki/Flutter_(logiciel))*
