@@ -31,6 +31,10 @@ The main goal of this test plan is to ensure that the application is working as 
 
 ## 1. Testing strategy
 
+For this project, the main strategy regarding testing will be manual testing, as this project is mainly graphical. 
+
+The first tests will include Unit testing to make sure crucial functions such as the multiple parsers, graphs or more. 
+
 ## 2. Scopes 
 
 ### 2.1 In scope
@@ -48,3 +52,5 @@ The main goal of this test plan is to ensure that the application is working as 
 ## 5. Test cases
 
 ## 6. Test reports
+
+
