@@ -57,17 +57,26 @@
 
 #### B. Goal of the project
 
-. <!-- TODO -->
+Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way.
+The concept is to promote fair recruitment by anonymizing candidates and companies, promoting soft skills, emphasizing the human aspect of the process and facilitating connections between candidates and companies via a dedicated app.
 
 ### II. Solution
 
 #### A. Descritpion
 
-. <!-- TODO -->
+The key points of the Adopte un Candidat concept are as follows:
+
+- To avoid discrimination in hiring, candidates and companies are anonymized on the platform. This allows us to focus on candidates' skills and potential, rather than their origin, gender, age, etc.
+- Instead of focusing solely on diplomas and professional experience, the concept emphasizes  soft  skills,  i.e.  the  behavioral  and  relational  skills  of  candidates.  This  makes it possible  to  recognize  and  evaluate skills such as communication, teamwork, creativity, problem-solving, etc.
+- The concept emphasizes the human aspect of recruitment, recognizing that each candidate has unique talents and skills to offer. It seeks to give each individual the opportunity to showcase his or her skills, regardless of background or academic credentials.
+- Matching between candidates and companies: The "matching" process enables candidates and companies to connect and find an ideal match. Candidates can express their preferences in terms of companies and positions, and companies can search for candidates who match their cultural and organizational needs.
+- The entire recruitment process takes place on a dedicated application. This facilitates interaction between candidates and companies, offering features such as messaging, personalized profiles, etc.
+- In our approach, we don't have tests, quizzes, or games. Instead, candidates will have the opportunity to select their soft skills from a provided list, while recruiters will choose the desired skills from the same list. The "match" will occur when there is a 50% overlap of soft skills between the candidate and the company. Our concept is inspired by the functionality of the "Tinder" application for recruitment. There is no document or defined skills matrix.
 
 #### B. Operating environment
 
-. <!-- TODO -->
+The application is developed on Windows and Macintosh and it must be compatible with Android, iOS, Windows, Macintosh, tablet, etc.
+The development language used is [Flutter](https://docs.flutter.dev)[^1].
 
 #### C. Features
 
@@ -91,7 +100,7 @@
 
 #### B. Writing convention
 
-The application's programming language is [Flutter](https://docs.flutter.dev)[^1]. This language has certain conventions that must be respected, which are detailed below:
+The Flutter language has certain conventions that must be respected, which are detailed below:
 
 | NOTATION NAME | DESCRIPTION | USAGE | EXAMPLE |
 | :-: | :-: | :-: | - |
@@ -110,7 +119,29 @@ The application's programming language is [Flutter](https://docs.flutter.dev)[^1
 
 #### C. File architecture
 
-. <!-- TODO -->
+- Documents
+- src
+   └──job_matching_app
+        ├──android
+            └──...
+        ├──ios
+            └──...
+        ├──lib
+            ├──<!-- TODO -->
+            └──
+        ├──linux
+            └──...
+        ├──macos
+            └──...
+        ├──web
+            └──...
+        ├──windows
+            └──...
+        ├──.gitignore
+        ├──.metadata
+        ├──README.md
+        ├─analysis_options.yaml
+        └──pubspec.yaml
 
 #### D. Implementation
 
