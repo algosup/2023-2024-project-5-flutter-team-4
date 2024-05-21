@@ -37,10 +37,22 @@ The first tests will include Unit testing to make sure crucial functions such as
 
 ## 2. Scopes 
 
+The project contains multiple tests that can be performed but to permit our team to focus on the most important tasks, some tests will be classified as "out of scope". The features contained in the "out of scope" sections are one of the following types of features:
+
+- Features that have not been requested by the client,
+- Features that do not interfere with the user's experience,
+- Anything related to the backed but the parsers
+
 ### 2.1 In scope
 
+| Name          | Objective                                                                 |
+| ------------- | ------------------------------------------------------------------------- |
+| Start the app | The user should be able to start the application when tapping on the icon |
+
+This table may change during the lifetime of the project within ALGOSUP.
 ### 2.2 Out of scope
 
+This table may change during the lifetime of the project within ALGOSUP.
 ## 3. Smoke testing
 
 ## 4. Testing tools
