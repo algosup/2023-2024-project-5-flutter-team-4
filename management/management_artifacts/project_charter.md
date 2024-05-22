@@ -48,7 +48,7 @@ The project milestones are as follows:
 | Milestone | Due date |
 | ------ | ---------------- |
 | Functional Specifications | 05/24/2024 |
-| Techincal Specifications | 06/07/2024 |
+| Technical Specifications | 06/07/2024 |
 | Test Plan | 06/07/2024 |
 | Code | 06/14/2024 |
 | User Manual | 06/14/2024 |
