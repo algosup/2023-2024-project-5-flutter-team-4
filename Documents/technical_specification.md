@@ -41,8 +41,8 @@
 
 | | |
 | - | - |
-| Author(s) | Grégory PAGNOUX |
-| Reviewer(s) |  |
+| Author(s) | Grégory PAGNOUX (Technical Leader) |
+| Reviewer(s) | Victor LEROY (Project Manager) |
 | Created on | 05/15/2024 |
 | Last updated | 05/16/2024 |
 |  |  |
@@ -53,12 +53,12 @@
 
 #### A. Client
 
-. <!-- TODO -->
+[We Are Evolution](https://www.we-are-evolution.com) is a company specialized in the management and business advices since 2019. They help companies to recruit with original tools to meet the challenges of Human Resources.
 
 #### B. Goal of the project
 
 Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way.
-The concept is to promote fair recruitment by anonymizing candidates and companies, promoting soft skills, emphasizing the human aspect of the process and facilitating connections between candidates and companies via a dedicated app.
+The concept is to promote fair recruitment by anonymizing candidates and companies, promoting soft skills[^1], emphasizing the human aspect of the process and facilitating connections between candidates and companies via a dedicated application.
 
 ### II. Solution
 
@@ -67,16 +67,16 @@ The concept is to promote fair recruitment by anonymizing candidates and compani
 The key points of the Adopte un Candidat concept are as follows:
 
 - To avoid discrimination in hiring, candidates and companies are anonymized on the platform. This allows us to focus on candidates' skills and potential, rather than their origin, gender, age, etc.
-- Instead of focusing solely on diplomas and professional experience, the concept emphasizes  soft  skills,  i.e.  the  behavioral  and  relational  skills  of  candidates.  This  makes it possible  to  recognize  and  evaluate skills such as communication, teamwork, creativity, problem-solving, etc.
+- Instead of focusing only on diplomas and professional experience, the concept emphasizes  soft  skills,  i.e.  the  behavioral  and  relational  skills  of  candidates.  This  makes it possible  to  recognize  and  evaluate skills such as communication, teamwork, creativity, problem-solving[^2], etc.
 - The concept emphasizes the human aspect of recruitment, recognizing that each candidate has unique talents and skills to offer. It seeks to give each individual the opportunity to showcase his or her skills, regardless of background or academic credentials.
-- Matching between candidates and companies: The "matching" process enables candidates and companies to connect and find an ideal match. Candidates can express their preferences in terms of companies and positions, and companies can search for candidates who match their cultural and organizational needs.
+- The "matching" process enables candidates and companies to connect and find an ideal match. Candidates can express their preferences in terms of companies and positions, and companies can search for candidates who match their cultural and organizational needs.
 - The entire recruitment process takes place on a dedicated application. This facilitates interaction between candidates and companies, offering features such as messaging, personalized profiles, etc.
 - In our approach, we don't have tests, quizzes, or games. Instead, candidates will have the opportunity to select their soft skills from a provided list, while recruiters will choose the desired skills from the same list. The "match" will occur when there is a 50% overlap of soft skills between the candidate and the company. Our concept is inspired by the functionality of the "Tinder" application for recruitment. There is no document or defined skills matrix.
 
 #### B. Operating environment
 
 The application is developed on Windows and Macintosh and it must be compatible with Android, iOS, Windows, Macintosh, tablet, etc.
-The development language used is [Flutter](https://docs.flutter.dev)[^1].
+The development language used is [Flutter](https://docs.flutter.dev)[^3].
 
 #### C. Features
 
@@ -119,6 +119,7 @@ The Flutter language has certain conventions that must be respected, which are d
 
 #### C. File architecture
 
+```md
 - Documents
 - src
    └──job_matching_app
@@ -142,6 +143,7 @@ The Flutter language has certain conventions that must be respected, which are d
         ├──README.md
         ├─analysis_options.yaml
         └──pubspec.yaml
+```
 
 #### D. Implementation
 
@@ -149,7 +151,7 @@ The Flutter language has certain conventions that must be respected, which are d
 
 *description* <!-- TODO -->
 
-```flutter
+```dart
 
 ```
 
@@ -204,6 +206,14 @@ The Flutter language has certain conventions that must be respected, which are d
 
 ### Glossary
 
-[^1]: Flutter
+[^1]: Soft skills
+Soft skills are character traits and interpersonal skills that characterize a person's ability to interact effectively with others. In the workplace, soft skills are considered to be a complement to hard skills, which refer to a person's knowledge and occupational skills.
+*source: [Investopedia](https://www.investopedia.com/terms/s/soft-skills.asp)*
+
+[^2]: Problem-solving
+Problem solving is the act of defining a problem; determining the cause of the problem; identifying, prioritizing, and selecting alternatives for a solution; and implementing a solution.
+*source: [ASQ](https://asq.org/quality-resources/problem-solving)*
+
+[^3]: Flutter
 Flutter is an open source software development kit launched in May 2017 by Google. It is used to develop applications for Android, iOS, Linux, MacOS, Windows, Google Fuchsia and the web. The latest stable version is 3.19.6.
 *source: [AMAZON](https://aws.amazon.com/fr/what-is/flutter/) / [Wikipedia](https://fr.wikipedia.org/wiki/Flutter_(logiciel))*
