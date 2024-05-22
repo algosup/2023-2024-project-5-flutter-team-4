@@ -7,18 +7,15 @@ Created by: Aurélien FERNANDEZ <br> Creation Date: 21/05/2024 <br> Last update:
 
 ___
 
-The following document describes what is going to be tested during the project, along with the ways to test the project.
-
-The main goal of this test plan is to ensure that the application is working as expected according to the client's vision.
-
 <details>
 
 <summary>Table of content</summary>
 
-- [1. Testing strategy](#1-testing-strategy)
-- [2. Scopes](#2-scopes)
-  - [2.1 In scope](#21-in-scope)
-  - [2.2 Out of scope](#22-out-of-scope)
+- [1. Product analysis](#1-product-analysis)
+  - [1.1 Overview](#11-overview)
+- [2 Strategy](#2-strategy)
+  - [2.1 Scopes](#21-scopes)
+    - [2.1.1 In scope](#211-in-scope)
 - [3. Smoke testing](#3-smoke-testing)
 - [4. Testing tools](#4-testing-tools)
   - [4.1 Hardware](#41-hardware)
@@ -29,30 +26,32 @@ The main goal of this test plan is to ensure that the application is working as 
 
 </details>
 
-## 1. Testing strategy
+## 1. Product analysis
+
+### 1.1 Overview
+
+
+This project, given by Wevolution, aims to create a job dating platform inspired by popular apps similar to Tinder to permit people searching for a job to get a job interview in a short time with low effort. 
+
+To avoid any form of discrimination, all candidates shall remain anonymous. Candidate profiles will only include soft skills and additional information provided by the candidates, encouraging recruiters to focus on these aspects. Hard skills will not be displayed, as the app is designed for temporary or low-requirement jobs.
+
+## 2 Strategy
 
 For this project, the main strategy regarding testing will be manual testing, as this project is mainly graphical. 
 
 The first tests will include Unit testing to make sure crucial functions such as the multiple parsers, graphs or more. 
 
-## 2. Scopes 
+### 2.1 Scopes 
 
-The project contains multiple tests that can be performed but to permit our team to focus on the most important tasks, some tests will be classified as "out of scope". The features contained in the "out of scope" sections are one of the following types of features:
+The tests performed during this project will be focused on the graphical interface and the multiple functions needed for the app to function properly. However, features such as a working backend are not going to be heavily tested as it isn't a scope of the project.
 
-- Features that have not been requested by the client,
-- Features that do not interfere with the user's experience,
-- Anything related to the backed but the parsers
+#### 2.1.1 In scope
 
-### 2.1 In scope
+- Program
+  - No major bug impacting the user experience
+  - Features requested by the client are present
+  - A user interface accepted by the client
 
-| Name          | Objective                                                                 |
-| ------------- | ------------------------------------------------------------------------- |
-| Start the app | The user should be able to start the application when tapping on the icon |
-
-This table may change during the lifetime of the project within ALGOSUP.
-### 2.2 Out of scope
-
-This table may change during the lifetime of the project within ALGOSUP.
 ## 3. Smoke testing
 
 ## 4. Testing tools
