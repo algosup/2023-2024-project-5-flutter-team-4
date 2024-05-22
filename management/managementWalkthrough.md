@@ -29,12 +29,28 @@ We use GitHub as a common platform for our project, we decided to use it for man
 
 ### 2.1. Project Charter
 
-[Project Charter](management_artifacts/project_charter.md): This document provides an overview of the project, including the project purpose, scope, milestones, team, stakeholders, responsibilities, risks, constraints, and overall plan. You should read this document first to get a high-level understanding of what the project is about.
+The first document you should read is the [Project Charter](management_artifacts/project_charter.md). This document provides an overview of the project, including the project purpose, scope, milestones, team, stakeholders, responsibilities, risks, constraints, and overall plan. You will get a good understanding of the project by reading this document.
 
 ### 2.2. Gantt Chart
+
+[Gantt Chart](https://github.com/orgs/algosup/projects/34/views/4): This document provides a visual representation of the project timeline, including the start and end dates of each task. You should read this document after the Project Charter to get a detailed view of the project schedule.
 
 ### 2.3. Milestones
 
 We will use GitHub Issues milestones to track the progress of the project. We grouped the milestones by category, for example Documentation. You can find the milestones [here](https://github.com/algosup/2023-2024-project-5-flutter-team-4/milestones).
 
+### 2.4. KPIs
 
+Key Performance Indicators (KPIs) are metrics that help us measure the success of the project. You can find the KPIs [here](https://docs.google.com/spreadsheets/d/1nz-Y2kKFS27_df2ZR5rkcQQ4xzIw789UHDA-D6zhS4g/edit?usp=sharing).
+
+### 2.5. RACI Matrix
+
+The RACI Matrix is a tool used to define roles and responsibilities for each task in the project. You can find the RACI Matrix [here](management_artifacts/RACI_Matrix.pdf).
+
+### 2.6. Risk Management
+
+Now that you are aware of the responsibilities of each team member, you should read the [Risk Management]() document. This document outlines the risks associated with the project and the mitigation strategies that have been put in place to address them.
+
+### 2.7. Weekly Reports
+
+Every week, the team will create a Weekly Report to summarize the work done during the week, accompanied with a feedback of the team about the current feeling about the project. You can find the Weekly Reports [here](management_artifacts/weekly_reports).
