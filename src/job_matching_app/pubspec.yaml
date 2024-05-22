@@ -10,6 +10,8 @@ dependencies:
   adaptive_theme: ^3.6.0
   shared_preferences: ^2.0.0
   flutter_radar_chart: ^0.2.1
+  timeline_tile: ^2.0.0
+  dotted_border: ^2.1.0
 
 
 

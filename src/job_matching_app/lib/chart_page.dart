@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class ChartPage extends StatefulWidget {
   const ChartPage({super.key});
