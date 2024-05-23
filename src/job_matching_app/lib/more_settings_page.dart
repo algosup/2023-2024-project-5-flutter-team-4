@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MoreSettingsPage extends StatefulWidget {
   const MoreSettingsPage({super.key});
@@ -10,6 +11,17 @@ class MoreSettingsPage extends StatefulWidget {
 
 class _MoreSettingsPageState extends State<MoreSettingsPage> {
   bool isDarkMode = false;
+  bool isCompanyView = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getSharedPreferences('isCompanyView').then((value) {
+      setState(() {
+        isCompanyView = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +65,48 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
               },
             ),
           ),
+          Center(
+            child: Switch(
+              activeColor: Theme.of(context).colorScheme.primary,
+              activeTrackColor: Theme.of(context).colorScheme.secondary,
+              inactiveThumbColor: Theme.of(context).colorScheme.secondary,
+              value: isCompanyView,
+              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                (Set<MaterialState> states) {
+                  if (isCompanyView) {
+                    return const Icon(Icons.house, color: Color.fromARGB(255, 164, 138, 138));
+                  } else {
+                    return const Icon(Icons.person, color: Colors.black);
+                  }
+                },
+              ),
+              onChanged: (bool value) {
+                setState(() {
+                  isCompanyView = !isCompanyView;
+                  if (isCompanyView) {
+                    _setSharedPreferences('isCompanyView', isCompanyView);
+                  } else {
+                    _setSharedPreferences('isCompanyView', isCompanyView);
+                  }
+                });
+              },
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+
+
+Future<bool> getSharedPreferences(String key) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool value = prefs.getBool(key) ?? false;
+  return value;
+}
+
+Future<void> _setSharedPreferences(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool(key, value);
 }

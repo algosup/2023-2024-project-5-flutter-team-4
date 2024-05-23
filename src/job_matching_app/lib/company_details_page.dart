@@ -4,14 +4,14 @@ import 'package:job_matching_app/details_timeline_page.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+class CompanyDetailsPage extends StatefulWidget {
+  const CompanyDetailsPage({super.key});
 
   @override
-  State<DetailsPage> createState() => _DetailsPageState();
+  State<CompanyDetailsPage> createState() => _CompanyDetailsPageState();
 }
 
-class _DetailsPageState extends State<DetailsPage> {
+class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
   late bool darkMode;
 
   final List<int> ticks = [
@@ -42,6 +42,7 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        title: const Text('Company Details'),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
         foregroundColor: Theme.of(context).colorScheme.secondary,
