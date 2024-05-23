@@ -74,7 +74,7 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
               thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
                 (Set<MaterialState> states) {
                   if (isCompanyView) {
-                    return const Icon(Icons.house, color: Color.fromARGB(255, 164, 138, 138));
+                    return const Icon(Icons.house, color: Colors.black);
                   } else {
                     return const Icon(Icons.person, color: Colors.black);
                   }

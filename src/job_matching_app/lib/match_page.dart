@@ -137,7 +137,7 @@ class _MatchPageState extends State<MatchPage> {
           Navigator.push(
             context,
             MaterialPageRoute<void>(
-              builder: isCompanyView ? (BuildContext context) => const CompanyDetailsPage() : (BuildContext context) => const CandidateDetailsPage(),
+              builder: isCompanyView ? (BuildContext context) => const CandidateDetailsPage() : (BuildContext context) => const CompanyDetailsPage(),
             ),
           );
         },
