@@ -1,0 +1,34 @@
+name: Document report Form
+description: Create a report to help improve our documents
+title: "[DOC] Document_name"
+labels: 
+  - documentation
+
+assignees: aurelienfernandez
+body:
+      
+  - type: textarea
+    id: typo
+    attributes:
+      label: typographical mistake
+      placeholder: Provide the line(s) of the typo(s) and highlight it.
+    validations:
+      required: true
+      
+  
+      
+  - type: textarea
+    id: typo-fix
+    attributes:
+      label: typo fix
+      placeholder: Modify the line(s) of the typo(s) to fix them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: suggestion
+      placeholder: If you want to do so, you can suggest improvements.
+    validations:
+      required: false

@@ -1,7 +1,8 @@
 name: Bug report Form
 description: Create a report to help improve the product
 title: "[BUG] describe the bug in less than 50 characters"
-labels: bug
+labels:
+- bug
 assignees: aurelienfernandez
 body:
       
