@@ -206,9 +206,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ),
                 Container(
-                  constraints: const BoxConstraints(maxHeight: 120),
-                  child: TapRegion(
-                    onTapInside: (event) => Navigator.push(
+                  constraints: const BoxConstraints(maxHeight: 124),
+                  child: TextButton(
+                    onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
