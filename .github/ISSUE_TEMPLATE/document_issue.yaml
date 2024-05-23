@@ -1,6 +1,6 @@
 name: Document report Form
 description: Create a report to help improve our documents
-title: "[DOC] Document_name"
+title: "[DOC] Document's name"
 labels: 
   - documentation
 

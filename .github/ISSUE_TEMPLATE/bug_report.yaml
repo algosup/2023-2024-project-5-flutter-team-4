@@ -53,7 +53,7 @@ body:
     id: test-environment
     attributes:
       label: Test Environment
-      placeholder: On which device the bug occured ":"\n2 -MacOS/Windows/Linux":" Version Number \n3 - Phone OS (IOS/Android/etc)
+      placeholder: On which device the bug occured ":"\n -MacOS/Windows/Linux":" Version Number \n - Phone OS (IOS/Android/etc)
       
 
     validations:
