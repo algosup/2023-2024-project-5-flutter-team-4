@@ -162,7 +162,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   child: TextField(
                     readOnly: true,
                     keyboardType: TextInputType.multiline,
-                    maxLines: 5,
+                    maxLines: null,
                     style: const TextStyle(color: Colors.blue, fontSize: 16),
                     controller: TextEditingController(
                         text:
@@ -175,7 +175,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Vision",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -186,7 +186,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   child: TextField(
                     readOnly: true,
                     keyboardType: TextInputType.multiline,
-                    maxLines: 5,
+                    maxLines: null,
                     style: const TextStyle(color: Colors.blue, fontSize: 16),
                     controller: TextEditingController(
                         text:
@@ -199,7 +199,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Dates clés de l'entreprise",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -208,13 +208,13 @@ class _DetailsPageState extends State<DetailsPage> {
                 Container(
                   constraints: const BoxConstraints(maxHeight: 120),
                   child: TapRegion(
-                    onTapInside: (event) => 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => const DetailsTimeLinePage(),
-                        ),
+                    onTapInside: (event) => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const DetailsTimeLinePage(),
                       ),
+                    ),
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -443,7 +443,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Postes actuellement vacants",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -538,93 +538,111 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Environnement de travail et culture interne",
                     style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Inclusive and Diverse Workplace",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "12 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Inclusive and Diverse Workplace",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "12 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Employee Development and Growth",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "9 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Employee Development and Growth",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "9 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Team-Oriented Atmosphere",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "8 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Team-Oriented Atmosphere",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "8 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Customer-Centric Approach",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "7 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Customer-Centric Approach",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "7 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Recognition and Rewards",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "3 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Recognition and Rewards",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "3 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Flexibility and Work-Life Balance",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
-                    ),
-                    Text(
-                      "1 vote(s)",
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Flexibility and Work-Life Balance",
+                        style: TextStyle(color: Colors.blue, fontSize: 15),
+                      ),
+                      Text(
+                        "1 vote(s)",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Opportunités d'évolution et de carrière",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -632,7 +650,15 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
+                  child: const Text(
+                    "Store Manager",
+                    style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Avantages",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -640,7 +666,42 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
+                  child: const Text(
+                    "Competitive Pay",
+                    style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  margin: const EdgeInsets.only(left: 30, top: 5),
+                  child: const Text(
+                    "Health and Wellness Benefits",
+                    style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  margin: const EdgeInsets.only(left: 30, top: 5),
+                  child: const Text(
+                    "Retirement and Savings Plans",
+                    style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  margin: const EdgeInsets.only(left: 30, top: 5),
+                  child: const Text(
+                    "...",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Localisation de l'entreprise",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -648,7 +709,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Initiatives RSE",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -656,7 +717,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "Sustainable sourcing",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -664,7 +725,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "Packaging and Recycling",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -672,7 +733,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "Climate Action",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -680,7 +741,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "Support for Families",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -688,7 +749,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Témoignages A1C",
                     style: TextStyle(color: Colors.black, fontSize: 20),
@@ -696,7 +757,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "\"I love mc Donald's !\"",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -704,7 +765,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "\"I love mc Donald's !\"",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -712,7 +773,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "\"Paycheck is good\"",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -720,7 +781,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 30),
+                  margin: const EdgeInsets.only(left: 30, top: 5),
                   child: const Text(
                     "\"I love mc Donald's !\"",
                     style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -728,7 +789,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  margin: const EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Rate this company",
                     style: TextStyle(color: Colors.black, fontSize: 20),
