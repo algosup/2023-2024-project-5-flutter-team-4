@@ -1,8 +1,12 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:job_matching_app/details_timeline_page.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CandidateDetailsPage extends StatefulWidget {
   const CandidateDetailsPage({super.key});
@@ -37,6 +41,8 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.sizeOf(context);
+    LatLng position = LatLng(47.239576305730104, 2.0919235518778003);
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -75,7 +81,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           Radius.circular(30),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.width,
+                      height: mediaQuery.width,
                       alignment: Alignment.center,
                       child: darkMode
                           ? RadarChart.dark(
@@ -242,14 +248,12 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           isFirst: true,
                           startChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                           ),
                           endChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                             child: const Column(
                               children: [
@@ -286,14 +290,12 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           ),
                           startChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                           ),
                           endChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                             child: const Column(
                               children: [
@@ -330,14 +332,12 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           ),
                           startChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                           ),
                           endChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                             child: const Column(
                               children: [
@@ -374,14 +374,12 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           ),
                           startChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                           ),
                           endChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                             child: const Column(
                               children: [
@@ -415,14 +413,12 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           ),
                           startChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                           ),
                           endChild: Container(
                             constraints: BoxConstraints(
-                              minWidth:
-                                  MediaQuery.of(context).size.width * 0.25,
+                              minWidth: mediaQuery.width * 0.25,
                             ),
                             child: const Column(
                               children: [
@@ -451,9 +447,8 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.width * 0.03),
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.only(top: mediaQuery.width * 0.03),
+                  width: mediaQuery.width * 0.9,
                   alignment: Alignment.bottomLeft,
                   child: DottedBorder(
                     color: Colors.blue,
@@ -480,9 +475,8 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.width * 0.03),
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.only(top: mediaQuery.width * 0.03),
+                  width: mediaQuery.width * 0.9,
                   alignment: Alignment.bottomLeft,
                   child: DottedBorder(
                     color: Colors.blue,
@@ -509,9 +503,8 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.width * 0.03),
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.only(top: mediaQuery.width * 0.03),
+                  width: mediaQuery.width * 0.9,
                   alignment: Alignment.bottomLeft,
                   child: DottedBorder(
                     color: Colors.blue,
@@ -706,6 +699,55 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   child: const Text(
                     "Localisation de l'entreprise",
                     style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  height: mediaQuery.height * 0.3,
+                  width: mediaQuery.width * 0.95,
+                  child: IgnorePointer(
+                    child: FlutterMap(
+                      options: MapOptions(
+                        interactionOptions: const InteractionOptions(
+                            flags:
+                                InteractiveFlag.all & ~InteractiveFlag.rotate,
+                            enableMultiFingerGestureRace: false,
+                            enableScrollWheel: false),
+                        initialZoom: 15,
+                        initialCenter: position,
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          userAgentPackageName: 'com.example.app',
+                        ),
+                        RichAttributionWidget(
+                          attributions: [
+                            TextSourceAttribution(
+                              'OpenStreetMap contributors',
+                              onTap: () => launchUrl(Uri.parse(
+                                  'https://openstreetmap.org/copyright')),
+                            ),
+                          ],
+                        ),
+                        MarkerLayer(
+                          markers: [
+                            Marker(
+                              point: position,
+                              child: RotationTransition(
+                                turns: const AlwaysStoppedAnimation(10 / 360),
+                                child: Icon(
+                                  size: mediaQuery.width * 0.08,
+                                  Icons.push_pin,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
