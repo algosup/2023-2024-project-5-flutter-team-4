@@ -16,8 +16,9 @@ ___
 - [2 Strategy](#2-strategy)
   - [2.1 Scopes](#21-scopes)
     - [2.1.1 In scope](#211-in-scope)
-- [3. Smoke testing](#3-smoke-testing)
-- [4. Testing tools](#4-testing-tools)
+    - [2.1.1 Out of scope](#211-out-of-scope)
+  - [2.2 Unit Tests](#22-unit-tests)
+  - [2.3 Testing structure](#23-testing-structure)
   - [4.1 Hardware](#41-hardware)
   - [4.2 Software](#42-software)
 - [5. Test cases](#5-test-cases)
@@ -51,10 +52,32 @@ The tests performed during this project will be focused on the graphical interfa
   - No major bug impacting the user experience
   - Features requested by the client are present
   - A user interface accepted by the client
+- Documents
+  - The documents should not contain any typographical or grammatical errors
+  - The documents should be accurate according to the current project
 
-## 3. Smoke testing
+#### 2.1.1 Out of scope
 
-## 4. Testing tools
+- Features not requested by the client
+- Backend
+
+### 2.2 Unit Tests
+
+Unit tests are one of the most important types of tests. They are created preferably before their related functions or at the same time. 
+
+The multiple unit tests are written in flutter similarly to the rest of the project.
+
+The aim of these unit tests is to:
+ - Ensure code quality: To create an environment where maintainability and readability are not a problem for future developers
+ - Code effectiveness: To make sure that each function is working as expected
+
+### 2.3 Testing structure
+
+Each test contains multiple components:
+
+| Test ID | Name                 | Expected result                   | passed or failed                                |
+| ------- | -------------------- | --------------------------------- | ----------------------------------------------- |
+| 00      | The name of the test | A description of what is expected | 🟢 if the test succeeds <br> 🔴 if the test fails |
 
 ### 4.1 Hardware
 
