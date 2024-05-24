@@ -2,12 +2,7 @@
  Functional Specifications
 </h1>
 
-<details>
-<summary>
-
-<em><ins>Click here to expand the table of content...</ins></em>
-
-</summary>
+<details><summary><em><ins>Click here to expand the table of content...</ins></em></summary>
 
 - [A) Document Control](#a-document-control)
   - [1) Document Information](#1-document-information)
@@ -86,7 +81,7 @@
 
 | Role | Name | Signature | Date |
 |---|---|---|---|
-| Project Manager | Victor LEROY | | 05/24/2024 |
+| Project Manager | Victor LEROY | ✅ | 05/24/2024 |
 | Program Manager | Mathis KAKAL | | 05/04/2024 |
 | Tech Lead | Grégory PAGNOUX | | 05/04/2024 |
 | Software Developer | Laurent BOUQUIN | | 05/04/2024 |
@@ -122,19 +117,19 @@ The exact brief for the project is:
 
 > *Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way. The app will need to be available on phone, tablet and computer.*
 
-The goal is therefore to create an app that deviates from the conventional Job matching apps. Those pure players that dominate the industry usually take the shape of job listing boards sometimes with advanced research features. ^^(see Benchmark)^^ 
+The goal is therefore to create an app that deviates from the conventional Job matching apps. Those pure players that dominate the industry usually take the shape of job listing boards sometimes with advanced research features. (see Benchmark) 
 
 The project brief mentions that one of the main points that we should tackle with this project is to give the candidates the ability to express themselves in an authentic manner, without revealing any personally identifiable information (PII), to avoid discrimination based on their gender, age, origin etc. 
 
-All in all, the customer has remained vague on may implementation details which gives us a lot of creative freedom, you can however, review the entire project brief following ^^this link^^ 
+All in all, the customer has remained vague on may implementation details which gives us a lot of creative freedom, you can however, review the entire project brief following this link 
 
-Finally, the technology to meet the multi-device requirement has already been chosen by the project overseer, Franck JEANNIN. It is going to be developed in ^^Flutter^^, which is a framework maintained by google that allows fast paced multi-device devlopment with a single codebase. 
+Finally, the technology to meet the multi-device requirement has already been chosen by the project overseer, Franck JEANNIN. It is going to be developed in Flutter, which is a framework maintained by google that allows fast paced multi-device devlopment with a single codebase. 
 
 ### c) Scope
 
 | In Scope |
 |---|
-| Delivering a single codebase multi-platorm ^^MVP^^ |
+| Delivering a single codebase multi-platorm MVP |
 | Focusing on exploration of novel features |
 | Anonymisation of candidates |
 | Matching Candidates with companies |
@@ -175,17 +170,17 @@ The job recruitment market has been around since the 1990s, where forums and Bul
 
 The 2000s saw the rise of web-based technologies, which created new ways to connect recruiters and candidates, while more niche platform emerged as well, such as Stack Overflow for developers and Behance for creative professionals. 
 
-The following years, up until the 2010s saw platforms integrating more sophisticated technologies such as AI, matching algorithms, and machine learning, while Linkedin famously rolled out its skills and endorsements feature, which paved the way for ^^third-party (peer to peer) verification^^. 
+The following years, up until the 2010s saw platforms integrating more sophisticated technologies such as AI, matching algorithms, and machine learning, while Linkedin famously rolled out its skills and endorsements feature, which paved the way for third-party (peer to peer) verification. 
 
 In the early 2010s, the proliferation of smartphones led to the development of mobile apps for job searching, making job hunting more accessible and immediate. In the meantime, Glassdoor famously allowed employees to review companies, providing transparency and helping job seekers assess potential employers' work environments and cultures. 
 
-In the late 2010s, the focus shifted to ^^employer branding^^ to attract top talent. Social media like Facebook, Twitter and Instagram were often used to showcase company culture and values. At that point, Glassdoor reviews and social media presence became crucial for recruitment. 
+In the late 2010s, the focus shifted to employer branding to attract top talent. Social media like Facebook, Twitter and Instagram were often used to showcase company culture and values. At that point, Glassdoor reviews and social media presence became crucial for recruitment. 
 
-In the Late 2010s ^^the gig economy^^ grew rapidly, which led to the rising popularity of platforms like Upwork, Malt and Fiverr, which became popular for freelance and contract work. 
+In the Late 2010s the gig economy grew rapidly, which led to the rising popularity of platforms like Upwork, Malt and Fiverr, which became popular for freelance and contract work. 
 
 In 2020, the Covid-19 event accelerated the adoption of remote work and demand for flexibility in job roles. Platforms adapted by highlighting remote opportunities. 
 
-This was followed by a phenomenon called ^^the great resignation^^ which spread worldwide, and which saw a significant shift in job seekers' priorities, with increased emphasis on work-life balance, mental health and job satisfaction. 
+This was followed by a phenomenon called the great resignation which spread worldwide, and which saw a significant shift in job seekers' priorities, with increased emphasis on work-life balance, mental health and job satisfaction. 
 
 Today, as AI and machine learning continue to evolve, with recruitment platforms offering more personalised and efficient job matching. Employer branding remains crucial, with a strong focus on diversity, equity, and inclusion. Job seekers value career development, continuous learning, and a positive company culture more than ever. 
 
@@ -198,9 +193,9 @@ Sources:
 
 ### b) Benchmark
 
-The Job Recruitment platform market is a very competitive market with many actors ranging from ^^pure players^^ to more niche ones. 
+The Job Recruitment platform market is a very competitive market with many actors ranging from pure players to more niche ones. 
 
-In order to come up with feature ideas for the product and try to understand which feature belongs to which usage/type of user, we will have to conduct a simple ^^benchmark^^ of existing solutions, from a UX perspective (we are interested in features more so than key business indicators). 
+In order to come up with feature ideas for the product and try to understand which feature belongs to which usage/type of user, we will have to conduct a simple benchmark of existing solutions, from a UX perspective (we are interested in features more so than key business indicators). 
 
 #### 1) Traditional Solutions
 
@@ -219,7 +214,7 @@ In terms of demographics, we can see that there are patterns for each category, 
 From this information we can already make the hypothesis that our app should probably be closer to a job board than to the other categories in terms of feature set, if it were to go global and reach most age ranges. 
 
 > [!NOTE]
-> While many sources declare that soft skills are the future of employment and that they might as well be more important than ^^"hard skills"^^, it is hard to find competitors that capitalise completely on soft skills, the way the customer expects us to do so.
+> While many sources declare that soft skills are the future of employment and that they might as well be more important than "hard skills", it is hard to find competitors that capitalise completely on soft skills, the way the customer expects us to do so.
 
 Sources: 
 - https://www.adecco.lu/en-gb/job-seeker-tips/soft-skills
@@ -236,7 +231,7 @@ Technology limitations, as gathering reliable data on soft skills is challenging
 
 However, this doesn't mean that a solution that fulfils our criteria doesn't exist. 
 
-Indeed, some platforms actually combine novel mechanisms, such as artificial intelligence, neuroscience and ^^gamification^^ to evaluate candidates. 
+Indeed, some platforms actually combine novel mechanisms, such as artificial intelligence, neuroscience and gamification to evaluate candidates. 
 
 Here is a list of observed companies: <THE LINK> 
 
@@ -294,7 +289,7 @@ Zety and Resume Worded use that.
 
 | Assets | Drawbacks |
 |---|---|
-| Ensures resumes are tailored to job descriptions and ^^ATS^^-friendly, increasing the chances of passing initial screenings | May produce too generic resumes if over-relied upon |
+| Ensures resumes are tailored to job descriptions and ATS-friendly, increasing the chances of passing initial screenings | May produce too generic resumes if over-relied upon |
 | Saves time for job seekers by providing templates and optimization suggestions | Can reduce the personal touch and uniqueness of a resume |
 | Helps highlight relevant skills and experiences effectively | May require a learning curve to use effectively |
 | Provides insights on how to improve resume content and format | AI algorithms may not always accurately interpret context or industry-specific terms |
@@ -727,6 +722,7 @@ The following outlines the strategies used to collect insights about the perform
 The F-Score is a measure of predictive performance in statistical analysis of binary information. The F1 score is usually used as a way to combine both metrics of precision and recall. Here is how to calculate it:
 
 Source: https://en.wikipedia.org/wiki/F-score
+
 **Precision:** Measures the proportion of relevant matches among the total matches suggested by the algorithm.
 
 $$
@@ -749,40 +745,42 @@ Here is the iterative protocol to use the F-Score to ameliorate the matching alg
 
 - Step 1: **Define the Baseline**
 
-Run the current version of the algorithm on a test dataset to establish baseline precision, recall, and F1 Score.
+	- Run the current version of the algorithm on a test dataset to establish baseline precision, recall, and F1 Score.
 
-Record the initial F1 Score, precision, and recall to compare against future iterations.
+	- Record the initial F1 Score, precision, and recall to compare against future iterations.
 
-Step 2: **Identify Areas for Improvement**
+- Step 2: **Identify Areas for Improvement**
 
-Examine false positives and false negatives to understand where the algorithm is failing. This can provide insights into which aspects of the algorithm need improvement.
+	- Examine false positives and false negatives to understand where the algorithm is failing. This can provide insights into which aspects of the algorithm need improvement.
 
-Consider adding, removing, or modifying features based on error analysis to improve the algorithm's performance.
+	- Consider adding, removing, or modifying features based on error analysis to improve the algorithm's performance.
 
-Step 3:  **Modify the Algorithm**
+- Step 3:  **Modify the Algorithm**
 
-Make changes to the algorithm based on the identified areas for improvement.
-Choose the most relevant features that contribute positively to the precision and recall of the algorithm.
+	- Make changes to the algorithm based on the identified areas for improvement.
+ 
+	- Choose the most relevant features that contribute positively to the precision and recall of the algorithm.
 
-Step 4:  **Train and Test**
+- Step 4:  **Train and Test**
 
-Train the modified algorithm on the training dataset.
-Evaluate the modified algorithm on a separate test dataset to measure its performance.
+	- Train the modified algorithm on the training dataset.
+  
+	- Evaluate the modified algorithm on a separate test dataset to measure its performance.
 
-Step 5:  **Evaluate Using F1 Score**
+- Step 5:  **Evaluate Using F1 Score**
 
-Compute the precision, recall, and F1 Score for the modified algorithm.
+	- Compute the precision, recall, and F1 Score for the modified algorithm.
 
-Step 6:  **Compare Against Baseline**
+- Step 6:  **Compare Against Baseline**
 
-Compare the new F1 Score with the baseline F1 Score.
-If the F1 Score has improved, the changes are likely beneficial.
-If the F1 Score has declined, further investigation is needed to understand why the changes did not work.
+	- Compare the new F1 Score with the baseline F1 Score.
+	- If the F1 Score has improved, the changes are likely beneficial.
+	- If the F1 Score has declined, further investigation is needed to understand why the changes did not work.
 
-Step 7:  **Iterate**
+- Step 7:  **Iterate**
 
-Repeat the Process Based on the results, either accept the changes if they improve the F1 Score or revert to the previous version and try different modifications.
-This iterative process continues, with each iteration aimed at gradually improving the F1 Score and, consequently, the algorithm's performance.
+	- Repeat the Process Based on the results, either accept the changes if they improve the F1 Score or revert to the previous version and try different modifications.
+	- This iterative process continues, with each iteration aimed at gradually improving the F1 Score and, consequently, the algorithm's performance.
 
 ### b) Accuracy
 
