@@ -83,7 +83,7 @@
 | Program Manager | Mathis KAKAL | ✅ | 05/04/2024 |
 | Tech Lead | Grégory PAGNOUX |✅ | 05/04/2024 |
 | Software Developer | Laurent BOUQUIN |✅ | 05/04/2024 |
-| Technical Writer | Benoît DE KEYN | | 05/04/2024 |
+| Technical Writer | Benoît DE KEYN |✅ | 05/04/2024 |
 | Quality Assurance | Aurélien FERNANDEZ |✅ | 05/04/2024 |
 
 # B) Introduction
