@@ -1,4 +1,4 @@
-name: Pull Request Form
+name: Pull Request Template
 description: Create a pull request to merge your changes into the main branch
 title: "[DOC] Document's name"
 labels: 
@@ -6,7 +6,7 @@ labels:
 
 assignees: aurelienfernandez
 body:
-      
+
   - type: textarea
     id: description
     attributes:
