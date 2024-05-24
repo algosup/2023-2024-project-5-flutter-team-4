@@ -13,8 +13,6 @@
     - [a) Vision](#a-vision)
     - [b) Objectives](#b-objectives)
     - [c) Scope](#c-scope)
-      - [In Scope](#in-scope)
-      - [Out of Scope](#out-of-scope)
     - [d) Milestones](#d-milestones)
 - [C) Functional Requirements](#c-functional-requirements)
   - [1) What are Job Dating apps?](#1-what-are-job-dating-apps)
@@ -50,7 +48,7 @@
 - [E) Non-Functional Requirements](#e-non-functional-requirements)
   - [1) Usability](#1-usability)
   - [2) Accuracy](#2-accuracy)
-    - [a) Precision and Recall](#a-precision-and-recall)
+    - [a)  Precision and Recall](#a--precision-and-recall)
     - [b) Accuracy](#b-accuracy)
   - [3) Transparency](#3-transparency)
   - [4) Accessibility](#4-accessibility)
@@ -84,9 +82,9 @@
 | Project Manager | Victor LEROY | ✅ | 05/24/2024 |
 | Program Manager | Mathis KAKAL | | 05/04/2024 |
 | Tech Lead | Grégory PAGNOUX | | 05/04/2024 |
-| Software Developer | Laurent BOUQUIN | | 05/04/2024 |
+| Software Developer | Laurent BOUQUIN |✅ | 05/04/2024 |
 | Technical Writer | Benoît DE KEYN | | 05/04/2024 |
-| Quality Assurance | Aurélien FERNANDEZ | | 05/04/2024 |
+| Quality Assurance | Aurélien FERNANDEZ |✅ | 05/04/2024 |
 
 # B) Introduction
 ## 1) Project Overview
