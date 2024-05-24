@@ -1,0 +1,24 @@
+name: Pull Request Form
+description: Create a pull request to merge your changes into the main branch
+title: "[DOC] Document's name"
+labels: 
+  - pull request
+
+assignees: aurelienfernandez
+body:
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: description
+      placeholder: describe the content of your pull request
+    validations:
+      required: true
+
+  - type: textarea
+    id: Approvals
+    attributes:
+      label: Approvals
+      placeholder: write name of the people who approved your pull request and their validation
+    validations:
+      required: true
