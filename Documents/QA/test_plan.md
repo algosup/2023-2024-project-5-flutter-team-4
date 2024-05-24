@@ -19,9 +19,9 @@ ___
     - [2.1.1 Out of scope](#211-out-of-scope)
   - [2.2 Unit Tests](#22-unit-tests)
   - [2.3 Testing structure](#23-testing-structure)
-  - [4.1 Hardware](#41-hardware)
-  - [4.2 Software](#42-software)
-- [5. Test cases](#5-test-cases)
+  - [2.4 Tests](#24-tests)
+    - [2.4.1 Basic functions](#241-basic-functions)
+    - [2.4.2 Candidate features](#242-candidate-features)
 - [6. Test reports](#6-test-reports)
 
 
@@ -72,18 +72,32 @@ The aim of these unit tests is to:
  - Code effectiveness: To make sure that each function is working as expected
 
 ### 2.3 Testing structure
-
-Each test contains multiple components:
+Each test contains multiple components presented as these:
 
 | Test ID | Name                 | Expected result                   | passed or failed                                |
 | ------- | -------------------- | --------------------------------- | ----------------------------------------------- |
 | 00      | The name of the test | A description of what is expected | 🟢 if the test succeeds <br> 🔴 if the test fails |
 
-### 4.1 Hardware
+### 2.4 Tests
 
-### 4.2 Software
+#### 2.4.1 Basic functions
 
-## 5. Test cases
+| Function          | Expected result                                                                                      | Importance |
+| ----------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
+| Open the app      | The app should open when tapping on the icon                                                         | High       |
+| Create an account | A user should be able to create ab account and configure it.<br>Either as a candidate or a recruiter | High       |
+| authenticate      | A user should be able to authenticate.<br>Either as a candidate or a recruiter                       | High       |
+| Change screen     | The app should change the content displayed when navigating with the navigation bar                  | High       |
+| Modify settings   | A user should be able to modify the app's settings and keep the changes after closing the app        | Low        |
+
+#### 2.4.2 Candidate features
+
+| Function     | Expected result                                                                   | Importance |
+| ------------ | --------------------------------------------------------------------------------- | ---------- |
+| Filtering    | A candidate should be able to filter companies.<br>Either by locations, name, etc | Medium     |
+| Match        | A candidate should be able to see match with a company                            | High       |
+| See details  | A candidate should be able to see at companies' details                           | High       |
+| See profiles | A candidate should be able to see at companies' details                           | High       |
 
 ## 6. Test reports
 
