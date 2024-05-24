@@ -702,6 +702,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(top: mediaQuery.width * 0.03),
                   alignment: Alignment.center,
                   height: mediaQuery.height * 0.3,
                   width: mediaQuery.width * 0.95,
@@ -721,15 +722,6 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           urlTemplate:
                               'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                           userAgentPackageName: 'com.example.app',
-                        ),
-                        RichAttributionWidget(
-                          attributions: [
-                            TextSourceAttribution(
-                              'OpenStreetMap contributors',
-                              onTap: () => launchUrl(Uri.parse(
-                                  'https://openstreetmap.org/copyright')),
-                            ),
-                          ],
                         ),
                         MarkerLayer(
                           markers: [

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:job_matching_app/details_timeline_page.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 class CompanyDetailsPage extends StatefulWidget {
   const CompanyDetailsPage({super.key});
@@ -38,6 +39,8 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
+    var mediaQuery = MediaQuery.sizeOf(context);
+    LatLng position = LatLng(47.239576305730104, 2.0919235518778003);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: true,
@@ -56,46 +59,60 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                 Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(35),
-                      margin: const EdgeInsets.only(right: 5, left: 5, top: 5),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                        color: Theme.of(context).colorScheme.background,
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
+                      margin: EdgeInsets.only(top: mediaQuery.width * 0.03),
+                      alignment: Alignment.center,
+                      height: mediaQuery.height * 0.3,
+                      width: mediaQuery.width * 0.95,
+                      child: ClipRRect(
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(30),
+                          Radius.circular(12),
+                        ),
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: IgnorePointer(
+                            child: FlutterMap(
+                              options: MapOptions(
+                                interactionOptions: const InteractionOptions(
+                                    flags: InteractiveFlag.all &
+                                        ~InteractiveFlag.rotate,
+                                    enableMultiFingerGestureRace: false,
+                                    enableScrollWheel: false),
+                                initialZoom: 15,
+                                initialCenter: position,
+                              ),
+                              children: [
+                                TileLayer(
+                                  urlTemplate:
+                                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                  userAgentPackageName: 'com.example.app',
+                                ),
+                                MarkerLayer(
+                                  markers: [
+                                    Marker(
+                                      point: position,
+                                      child: RotationTransition(
+                                        turns: const AlwaysStoppedAnimation(
+                                            10 / 360),
+                                        child: Icon(
+                                          size: mediaQuery.width * 0.08,
+                                          Icons.push_pin,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.width,
-                      alignment: Alignment.center,
-                      child: darkMode
-                          ? RadarChart.dark(
-                              ticks: ticks,
-                              features: features,
-                              data: data,
-                              useSides: true,
-                            )
-                          : RadarChart.light(
-                              ticks: ticks,
-                              features: features,
-                              data: data,
-                              useSides: true,
-                            ),
                     ),
                   ],
                 ),
                 Positioned(
-                  left: 20,
-                  top: 375,
+                  left: 5,
+                  top: 235,
                   child: Container(
                     width: 84,
                     decoration: const BoxDecoration(
@@ -119,9 +136,9 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 11),
+              margin: const EdgeInsets.only(top: 11, left: 110),
               child: Text(
-                "Edouard Vaillant",
+                "Préparateur de commande en sous-sol",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.tertiary,
                     fontSize: 24),
@@ -132,21 +149,25 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.sizeOf(context).width * 0.28),
-                      child: const Text(
-                        "Habite à Vierzon",
-                        style: TextStyle(color: Colors.blue, fontSize: 18),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.sizeOf(context).width * 0.25),
-                      child: const Text(
-                        "3Km",
-                        style: TextStyle(color: Colors.blue, fontSize: 18),
-                      ),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: MediaQuery.sizeOf(context).width * 0.28),
+                          child: const Text(
+                            "Mc Donald's Vierzon",
+                            style: TextStyle(color: Colors.blue, fontSize: 18),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: MediaQuery.sizeOf(context).width * 0.88),
+                          child: const Text(
+                            "3Km",
+                            style: TextStyle(color: Colors.blue, fontSize: 18),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
