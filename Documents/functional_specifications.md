@@ -745,40 +745,42 @@ Here is the iterative protocol to use the F-Score to ameliorate the matching alg
 
 - Step 1: **Define the Baseline**
 
-Run the current version of the algorithm on a test dataset to establish baseline precision, recall, and F1 Score.
+	- Run the current version of the algorithm on a test dataset to establish baseline precision, recall, and F1 Score.
 
-Record the initial F1 Score, precision, and recall to compare against future iterations.
+	- Record the initial F1 Score, precision, and recall to compare against future iterations.
 
-Step 2: **Identify Areas for Improvement**
+- Step 2: **Identify Areas for Improvement**
 
-Examine false positives and false negatives to understand where the algorithm is failing. This can provide insights into which aspects of the algorithm need improvement.
+	- Examine false positives and false negatives to understand where the algorithm is failing. This can provide insights into which aspects of the algorithm need improvement.
 
-Consider adding, removing, or modifying features based on error analysis to improve the algorithm's performance.
+	- Consider adding, removing, or modifying features based on error analysis to improve the algorithm's performance.
 
-Step 3:  **Modify the Algorithm**
+- Step 3:  **Modify the Algorithm**
 
-Make changes to the algorithm based on the identified areas for improvement.
-Choose the most relevant features that contribute positively to the precision and recall of the algorithm.
+	- Make changes to the algorithm based on the identified areas for improvement.
+ 
+	- Choose the most relevant features that contribute positively to the precision and recall of the algorithm.
 
-Step 4:  **Train and Test**
+- Step 4:  **Train and Test**
 
-Train the modified algorithm on the training dataset.
-Evaluate the modified algorithm on a separate test dataset to measure its performance.
+	- Train the modified algorithm on the training dataset.
+  
+	- Evaluate the modified algorithm on a separate test dataset to measure its performance.
 
-Step 5:  **Evaluate Using F1 Score**
+- Step 5:  **Evaluate Using F1 Score**
 
-Compute the precision, recall, and F1 Score for the modified algorithm.
+	- Compute the precision, recall, and F1 Score for the modified algorithm.
 
-Step 6:  **Compare Against Baseline**
+- Step 6:  **Compare Against Baseline**
 
-Compare the new F1 Score with the baseline F1 Score.
-If the F1 Score has improved, the changes are likely beneficial.
-If the F1 Score has declined, further investigation is needed to understand why the changes did not work.
+	- Compare the new F1 Score with the baseline F1 Score.
+	- If the F1 Score has improved, the changes are likely beneficial.
+	- If the F1 Score has declined, further investigation is needed to understand why the changes did not work.
 
-Step 7:  **Iterate**
+- Step 7:  **Iterate**
 
-Repeat the Process Based on the results, either accept the changes if they improve the F1 Score or revert to the previous version and try different modifications.
-This iterative process continues, with each iteration aimed at gradually improving the F1 Score and, consequently, the algorithm's performance.
+	- Repeat the Process Based on the results, either accept the changes if they improve the F1 Score or revert to the previous version and try different modifications.
+	- This iterative process continues, with each iteration aimed at gradually improving the F1 Score and, consequently, the algorithm's performance.
 
 ### b) Accuracy
 
