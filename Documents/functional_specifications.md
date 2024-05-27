@@ -140,7 +140,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 
 | In Scope |
 |---|
-| Delivering a single codebase multi-platorm MVP |
+| Delivering a single codebase multi-platorm (iOS, Android, Web) MVP |
 | Focusing on exploration of novel features |
 | Anonymisation of candidates |
 | Matching Candidates with companies |
@@ -150,6 +150,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 | Focus the app on matching the soft skills both required by the company and soft-skills entered by candidates |
 | Create/Ideate a platform that has to potential to reach a global market |
 | Conducting UX research on analysing trends and competition. |
+
 
 | Out of Scope |
 |---|
@@ -174,7 +175,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ## 1) What are Job Dating apps?
 
 >[!NOTE]
->This section is important to justify the decisions that were made, but you may skip to  <LINK TO PERSONAE> if you are only interested about the implementation.
+>This section is important to justify the decisions that were made, but you may skip the story to [Personae](#2-personae), or to [Minimum Viable Product](#4-minimum-viable-product) if you are only interested about the implementation.
 
 ### a) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
@@ -474,6 +475,8 @@ The last column of the table is a score column, giving a sense of the impact the
 
 #### 1) Jobseekers' problems 
 
+<details><summary><em><ins>Click here to expand the matrix...</ins></em></summary>
+
 | | Difficulty being noticed by employers | Lack of clarity on what employers are looking for | Finding roles that offer growth opportunities | Finding roles that match their experience level | Balancing current job responsibilities with job searching | Staying competitive in the job market | Limited availability of high-level roles | Maintaining professional reputation | Negotiating executive compensation packages | **Score** |
 |---|---|---|---|---|---|---|---|---|---|---|
 | AI-Powered Resume Builder and Templates | X | | | X | | X | | | | 3 |
@@ -492,7 +495,11 @@ The last column of the table is a score column, giving a sense of the impact the
 | Confidential Job Search Tools | X | | | X | | X | | | | 3 |
 | Compensation Benchmarking Tools | | | X | | | X | | X | X | 4 |
 
+</details>
+
 #### 2) Recruiters' problems 
+
+<details><summary><em><ins>Click here to expand the matrix...</ins></em></summary>
 
 | | High volume of applicants | Ensuring good cultural fit | Maintaining a strong employer brand | Efficient candidate communication | Managing multiple client needs | Tracking numerous candidates | Quickly finding qualified candidates | Keeping track of candidate interactions | Finding and attracting top-tier executive talent | Maintaining confidentiality | Managing long and complex search processes | Negotiating complex compensation packages | Maintaining Diversity | **Score** |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -513,6 +520,8 @@ The last column of the table is a score column, giving a sense of the impact the
 | Networking and Referral Systems | | X | X | | | | | | X | | | | | 3 |
 | Compensation Benchmarking Tools | | | | | | | | | | | X | X | | 2 |
 | Inclusive Language Checkers | | X | | | | | | | | | | | X | 2 |
+
+</details>
 
 ### b) Retained Features
 #### 1) Most impactful Jobseeker features
@@ -554,74 +563,26 @@ We have plotted all the previous mentioned features—on an admittedly hard-to-r
 Our capacities correspond to any feature ranging from low to medium effort, with the desire to have low to high impact features to create a successful MVP.
 
 > [!IMPORTANT]
-> The effort estimations have been done by an artificial intelligence, considering a team of 3 full-time developers, which has been validated by the customer.
+> The effort estimations have been done by an artificial intelligence, considering a team of 3 full-time developers, including an machine learning engineer and two full-stack devs, which has been validated by the customer.
 
 This leaves us with the following features:
 
-- **Professional Development Resources**
-	- Impact: 7
-	- Effort: Medium
-	- Time: 8 weeks
+| Feature                             | Impact | Effort | Time     |
+|-------------------------------------|--------|--------|----------|
+| Professional Development Resources  | 7      | Medium | 8 weeks  |
+| Job Alerts and Notifications        | 7      | Medium | 6 weeks  |
+| Exclusive Job Boards                | 7      | Medium | 8 weeks  |
+| Company Insights and Leadership     | 6      | Medium | 8 weeks  |
+| AI-Powered Resume Builder and Templates | 3  | Medium | 6 weeks  |
+| AI-Powered Job Description Generator| 4      | Medium | 6 weeks  |
+| Skill-based Job Matching            | 3      | Medium | 8 weeks  |
+| Candidate Persona Development       | 3      | Medium | 8 weeks  |
+| Executive Search Tools              | 3      | Medium | 8 weeks  |
+| Networking and Referral Systems     | 3      | Medium | 8 weeks  |
+| Compensation Benchmarking Tools     | 4      | Low    | 4 weeks  |
+| Job Posting Distribution Tools      | 3      | Low    | 4 weeks  |
+| Confidential Candidate Management   | 3      | Low    | 4 weeks  |
 
-- **Job Alerts and Notifications**
-	- Impact: 7
-	- Effort: Medium
-	- Time: 6 weeks
-
-- **Exclusive Job Boards**
-	- Impact: 7
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **Company Insights and Leadership**
-	- Impact: 6
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **AI-Powered Resume Builder and Templates**
-	- Impact: 3
-	- Effort: Medium
-	- Time: 6 weeks
-
-- **AI-Powered Job Description Generator**
-	- Impact: 4
-	- Effort: Medium
-	- Time: 6 weeks
-
-- **Skill-based job matching**
-	- Impact: 3
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **Candidate Persona Development**
-	- Impact: 3
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **Executive Search Tools**
-	- Impact: 3
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **Networking and Referral Systems**
-	- Impact: 3
-	- Effort: Medium
-	- Time: 8 weeks
-
-- **Compensation Benchmarking Tools**
-	- Impact: 4
-	- Effort: Low
-	- Time: 4 weeks
-
-- **Job Posting Distribution Tools**
-	- Impact: 3
-	- Effort: Low
-	- Time: 4 weeks
-
-- **Confidential Candidate Management**
-	- Impact: 3
-	- Effort: Low
-	- Time: 4 weeks
 
 #### 4) Minimum Viable Product
 
@@ -710,6 +671,8 @@ There are three of them:
 ### a) Candidate
 #### 1) Login Procedure
 
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
+
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
 | 10 | Indicate User Type | Indicate which type of user they are | User | None | User selects their user type from options provided | User type is stored in the system | User type selection is confirmed | Ensure clear options are available for user types |
@@ -723,8 +686,12 @@ There are three of them:
 | 18 | Notification Permission | Asked if can get notifications | System | User is on the confirmation page | System prompts user to allow notifications | User's notification preference is stored | User accepts or declines notifications |  |
 | 19 | Onboarding Page | Candidate is brought to the onboarding page | User | User has completed email confirmation | User is redirected to the onboarding page | User begins onboarding process | Onboarding page is displayed |  |
 
+</details>
+
 #### 2) Onboarding Procedure
 ##### a) User Profile Onboarding
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -739,7 +706,11 @@ There are three of them:
 | 208 | Display Soft Skills Generation | Candidate is shown that soft skills are generated based on that score | System | User is on the onboarding page | System displays how soft skills are generated based on candidate's input | Candidate understands soft skills generation process | User acknowledges the feature | Ensure explanation is clear and accurate |
 | 209 | Share for Endorsements | Candidate is shown the share button to get endorsements | System | User is on the onboarding page | System displays the share button for endorsements to the candidate | Candidate understands they can share their profile for endorsements | User acknowledges the feature |  |
 
+</details>
+
 ##### b) Match Arena Onboarding
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -752,12 +723,16 @@ There are three of them:
 | 216 | View Company Profile and Rate | Candidate is shown that they can click on the company's profile for further information and that they can even rate it if they want to express their preferences | System | User is viewing a job offer page | System displays options to view company profile and rate the company | Candidate clicks to view profile and/or rates the company | Company profile is viewed, rating is submitted | Ensure profile and rating features are accessible and functional |
 | 217 | Return to Profile | Candidate is brought back to their profile saying "Thank you for following this introduction, now it is time for you to tell us more about you!" | System | User has completed the job offer exploration | System redirects candidate back to their profile with a thank you message | Candidate is returned to their profile page | Candidate is ready to provide more personal information | Ensure the transition back to the profile page is smooth and the message is encouraging |
 
+</details>
+
 #### 3) Personal Profile
 
 ##### a) Profile Creation
 
 >[!NOTE]
 >Please pay attention to the use cases numbers, longer numbers indicate sub (nested) use cases.
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -784,7 +759,11 @@ There are three of them:
 | 3012 | Watch Professional Resources | Candidate presses the "Watch professional resources" button | User | User is on the profile creation page | User presses the "Watch professional resources" button | User is redirected to resources tab | Resources are viewed | Ensure resources are informative and valuable |
 | 3013 | View Score Information | Candidate clicks on their score to have more information on how scores are calculated | User | User is on the profile creation page | User clicks on their score | Score calculation information is displayed | User understands score calculation | Ensure information is clear and detailed |
 
+</details>
+
 ##### b) View Profile
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -792,7 +771,11 @@ There are three of them:
 | 311 | View Video Story | User views their own video story | User | User is on their profile page | User clicks on the video story section | Video story starts playing | Video story is viewed | Ensure video plays smoothly and is of good quality (720p min) |
 | 312 | Share Profile | User clicks on "share my profile" | User | User is on their profile page | User clicks on the "share my profile" button | Sharing options are displayed | Profile sharing process is initiated | Ensure sharing options are clear and functional |
 
+</details>
+
 #### 4) Matching
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -801,7 +784,11 @@ There are three of them:
 | 42 | Swipe Offer Left | Candidate swipes an offer left | User | User is on the matching page viewing a job offer | User swipes the job offer card to the left | Offer is rejected | User proceeds to the next job offer | Ensure swipe left interaction is smooth and responsive |
 | 43 | Get Offer Details | Candidate clicks on an offer to get more details | User | User is on the matching page viewing a job offer | User clicks on the job offer card | Detailed job offer page is opened | User views detailed information about the job offer | Ensure transition to detailed view is smooth and detailed information is accurate |
 
+</details>
+
 #### 5) Professional Ressources
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -810,7 +797,11 @@ There are three of them:
 | 52 | Get Recommendations | Candidate can also let the app recommend based on their previous matches to either capitalize on their existing soft skills or fill up their gaps in lacking ones | System | User is on the professional resources page | System provides recommendations based on previous matches | Recommended resources are displayed to the user | User views recommended resources | Ensure recommendations are relevant and personalized |
 | 53 | Watch Resource Video | Candidate can click on a resource (for now only videos) and can watch them for additional points. The video experience is the same as any video experience except it doesn't allow to fast forward in the video to prevent cheating | User | User is on the professional resources page and has selected a video | User clicks on a video resource | Video player opens and plays the video without fast-forwarding | User watches the video and earns additional points | Ensure video playback is smooth and fast-forwarding is disabled |
 
+</details>
+
 #### 6) Chat & Interviews
+
+<details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
 | Use Case Number | Name | Description | Actor(s) | Pre-Conditions | Flow of Events | Post-Conditions | Exit Criteria | Notes and Issues |
 |---|---|---|---|---|---|---|---|---|
@@ -821,6 +812,8 @@ There are three of them:
 | 630 | Rate Exchange | Candidate can rate the exchange | User | User has completed or closed a discussion | User rates the exchange experience | Rating is submitted and stored | Exchange is rated | Ensure rating system is easy to use |
 | 631 | Report Exchange | Candidate can report the exchange | User | User has completed or closed a discussion | User reports the exchange for issues | Report is submitted and logged | Exchange is reported | Ensure reporting system is clear and responsive |
 | 64 | Accept Interview Proposition | Candidate can accept a proposition from a company to move from candidate status to Interviewee, indicating that they will be interviewed | User | User has received an interview proposition | User accepts the interview proposition | Status is updated to Interviewee | Interview is scheduled and confirmed | Ensure status update is clear and confirmation is sent |
+
+</details>
 
 ### b) Recruiter
 
@@ -834,7 +827,8 @@ There are three of them:
 
 ## 2) Functional Analysis
 
-...
+>[!NOTE]
+>Work in Progress
 
 # E) Non-Functional Requirements
 
