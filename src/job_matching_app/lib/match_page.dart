@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:job_matching_app/candidate_details_page.dart';
 import 'package:job_matching_app/company_details_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class MatchPage extends StatefulWidget {
   const MatchPage({super.key});
@@ -16,6 +18,12 @@ class MatchPage extends StatefulWidget {
 class _MatchPageState extends State<MatchPage> {
   late bool darkMode;
   bool isCompanyView = false;
+  int length = 3;
+  List<List<num>> data = [];
+  List<int> ticks = [];
+  List<String> features = [];
+  bool useSides = true;
+  int ID = 0;
 
   @override
   void initState() {
@@ -23,18 +31,17 @@ class _MatchPageState extends State<MatchPage> {
     getSharedPreferences('isCompanyView').then((value) {
       isCompanyView = value;
     });
-  }
+    Firebase.initializeApp();
+    var db = FirebaseFirestore.instance;
 
-  @override
-  Widget build(BuildContext context) {
-    final List<int> ticks = [
+    ticks = [
       0,
       10,
       20,
       30,
     ];
 
-    final List<String> features = [
+    features = [
       "AA",
       "BB",
       "CC",
@@ -45,87 +52,71 @@ class _MatchPageState extends State<MatchPage> {
       "HH",
     ];
 
-    final List<List<double>> data1 = [
-      [10.0, 20, 28, 5, 16, 15, 17, 6],
+    data = [
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
     ];
 
-    final List<List<double>> data2 = [
-      [15, 25, 20, 10, 15, 10, 5, 10],
-    ];
+    final  docRef = db.collection("Users");
+    docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
+      debugPrint("legnth: ${querySnapshot.docs.length}");
+      data.clear();
+      for (int i = 0; i < querySnapshot.docs.length; i++) {
+        data.add([0, 0, 0, 0, 0, 0, 0, 0]);
+        length = i + 1;
+      }
+      for (int j = 0; j < querySnapshot.docs.length; j++) {
+        debugPrint("data: ${querySnapshot.docs[j].data()}");
+        for (int i = 0; i < 8; i++) {
+          data[j][i] = querySnapshot.docs[j].data()['Graph'][i];
+        }
+      }
+      debugPrint("data length: $length");
+      debugPrint("data content: $data");
+    }).then((value) => setState(() {}));
+  }
 
-    final List<List<double>> data3 = [
-      [20, 10, 15, 25, 10, 5, 20, 15],
-    ];
-
-    bool useSides = true;
-
+  @override
+  Widget build(BuildContext context) {
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
-    List<Container> cards = [
-      Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.primary,
-        child: darkMode
-            ? RadarChart.dark(
-                ticks: ticks,
-                features: features,
-                data: data1,
-                reverseAxis: true,
-                useSides: useSides,
-              )
-            : RadarChart.light(
-                ticks: ticks,
-                features: features,
-                data: data1,
-                reverseAxis: true,
-                useSides: useSides,
-              ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.primary,
-        child: darkMode
-            ? RadarChart.dark(
-                ticks: ticks,
-                features: features,
-                data: data2,
-                reverseAxis: true,
-                useSides: useSides,
-              )
-            : RadarChart.light(
-                ticks: ticks,
-                features: features,
-                data: data2,
-                reverseAxis: true,
-                useSides: useSides,
-              ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.primary,
-        child: darkMode
-            ? RadarChart.dark(
-                ticks: ticks,
-                features: features,
-                data: data3,
-                reverseAxis: true,
-                useSides: useSides,
-              )
-            : RadarChart.light(
-                ticks: ticks,
-                features: features,
-                data: data3,
-                reverseAxis: true,
-                useSides: useSides,
-              ),
-      )
-    ];
+    List<Container> cards = [];
+
+    for (int i = 0; i < length; i++) {
+      cards.add(
+        Container(
+          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.025),
+          height: MediaQuery.of(context).size.height * 0.8,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          alignment: Alignment.center,
+          child: darkMode
+              ? RadarChart.dark(
+                  ticks: ticks,
+                  features: features,
+                  data: [data[i]],
+                  reverseAxis: true,
+                  useSides: useSides,
+                )
+              : RadarChart.light(
+                  ticks: ticks,
+                  features: features,
+                  data: [data[i]],
+                  reverseAxis: false,
+                  useSides: useSides,
+                ),
+        ),
+      );
+    }
     return Scaffold(
       body: CardSwiper(
         cardsCount: cards.length,
         allowedSwipeDirection: const AllowedSwipeDirection.only(
+          right: true,
           left: true,
           up: false,
-          right: true,
           down: false,
         ),
         cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
@@ -137,7 +128,9 @@ class _MatchPageState extends State<MatchPage> {
           Navigator.push(
             context,
             MaterialPageRoute<void>(
-              builder: isCompanyView ? (BuildContext context) => const CandidateDetailsPage() : (BuildContext context) => const CompanyDetailsPage(),
+              builder: isCompanyView
+                  ? (BuildContext context) => const CandidateDetailsPage()
+                  : (BuildContext context) => CompanyDetailsPage(ID),
             ),
           );
         },

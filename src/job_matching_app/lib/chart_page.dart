@@ -1,7 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:timeline_tile/timeline_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChartPage extends StatefulWidget {
   const ChartPage({super.key});
@@ -19,21 +20,31 @@ class _ChartPageState extends State<ChartPage> {
 
   @override
   Widget build(BuildContext context) {
-    darkMode =
-        AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark ? true : false;
+    Firebase.initializeApp();
+    var db = FirebaseFirestore.instance;
     const ticks = [7, 14, 21, 28, 35]; // Graduation of the axis
     var features = ["AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH"]; // labels
-    var data = [
-      [10.0, 20, 28, 5, 16, 15, 17, 6], // data 1
-      // [15, 25, 20, 10, 15, 10, 5, 10], // data 2
-      // [20, 10, 15, 25, 10, 5, 20, 15], // data 3
+    var graph = [
+      [0, 0, 0, 0, 0, 0, 0, 0],
     ];
+    final docRef = db.collection("Users").doc("0");
+    docRef.snapshots().listen(
+      (event) {
+        debugPrint("data: ${event.data()}");
+        for (int i = 0; i < 8; i++){
+          graph[0][i] = event.data()!['Graph'][i];
+        }
+      },
+      onError: (error) => debugPrint("Listen failed: $error"),
+    );
+
+    darkMode =
+        AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark ? true : false;
 
     features = features.sublist(0, numberOfFeatures.floor());
-    data = data
+    graph = graph
         .map((graph) => graph.sublist(0, numberOfFeatures.floor()))
         .toList();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Radar Chart Example'),
@@ -95,15 +106,15 @@ class _ChartPageState extends State<ChartPage> {
                   ? RadarChart.dark(
                       ticks: ticks,
                       features: features,
-                      data: data,
-                      reverseAxis: true,
+                      data: graph,
+                      reverseAxis: false,
                       useSides: useSides,
                     )
                   : RadarChart.light(
                       ticks: ticks,
                       features: features,
-                      data: data,
-                      reverseAxis: true,
+                      data: graph,
+                      reverseAxis: false,
                       useSides: useSides,
                     ),
             ),

@@ -6,7 +6,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class CompanyDetailsPage extends StatefulWidget {
-  const CompanyDetailsPage({super.key});
+  const CompanyDetailsPage(int id, {super.key});
 
   @override
   State<CompanyDetailsPage> createState() => _CompanyDetailsPageState();
@@ -95,7 +95,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                                             10 / 360),
                                         child: Icon(
                                           size: mediaQuery.width * 0.08,
-                                          Icons.push_pin,
+                                          Icons.location_on,
                                           color: Colors.red,
                                         ),
                                       ),

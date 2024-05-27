@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:job_matching_app/details_timeline_page.dart';
@@ -6,7 +5,6 @@ import 'package:timeline_tile/timeline_tile.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CandidateDetailsPage extends StatefulWidget {
   const CandidateDetailsPage({super.key});
