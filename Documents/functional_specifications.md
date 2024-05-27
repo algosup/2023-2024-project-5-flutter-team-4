@@ -175,7 +175,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ## 1) What are Job Dating apps?
 
 >[!NOTE]
->This section is important to justify the decisions that were made, but you may skip to  <LINK TO PERSONAE> if you are only interested about the implementation.
+>This section is important to justify the decisions that were made, but you may skip the story to [Personae](#2-personae), or to [Minimum Viable Product](#4-minimum-viable-product) if you are only interested about the implementation.
 
 ### a) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
@@ -827,7 +827,8 @@ There are three of them:
 
 ## 2) Functional Analysis
 
-...
+>[!NOTE]
+>Work in Progress
 
 # E) Non-Functional Requirements
 
