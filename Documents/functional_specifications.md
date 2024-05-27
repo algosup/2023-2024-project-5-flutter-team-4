@@ -139,7 +139,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ### c) Scope
 
 | In Scope |
-|---|
+|----------------------------------------------------------------------------------------------------------------------------|
 | Delivering a single codebase multi-platorm (iOS, Android, Web) MVP |
 | Focusing on exploration of novel features |
 | Anonymisation of candidates |
@@ -152,7 +152,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 | Conducting UX research on analysing trends and competition. |
 
 | Out of Scope |
-|---|
+|----------------------------------------------------------------------------------------------------------------------------|
 | Delivering a production-ready product |
 | Making another "Pure Player" Job board |
 | Including Personally Identifiable Information (PII) of Candidates in the app. |
