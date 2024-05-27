@@ -557,7 +557,7 @@ Same methodology, applying a simple Pareto principle to focus on the features th
 
 We have plotted all the previous mentioned features—on an admittedly hard-to-read graph—in a impact/time/effort matrix.
 
-![Impact/Effort Matrix](/img/impactMatrix.png.png)
+![Impact/Effort Matrix](../../Documents/img/impactMatrix.png)
 
 Our capacities correspond to any feature ranging from low to medium effort, with the desire to have low to high impact features to create a successful MVP.
 
