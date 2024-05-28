@@ -128,7 +128,7 @@ The exact brief for the project is:
 
 > *Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way. The app will need to be available on phone, tablet and computer.*
 
-The goal is therefore to create an app that deviates from the conventional job matching apps. Those pure players that dominate the industry usually take the shape of a job listing board, sometimes with advanced research features. [See benchmark](#1-benchmark-of-traditional-recruitment-platforms)
+The goal is therefore to create an app that deviates from the conventional job matching apps. Those pure players that dominate the industry usually take the shape of a job listing board, sometimes with advanced research features. [See benchmark](#61-benchmark-of-traditional-recruitment-platforms)
 
 The project brief mentions that one of the main points that we should tackle with this project is to give the candidates the ability to express themselves in an authentic manner, without revealing any personally identifiable information (PII), to avoid discrimination based on their gender, age, origin etc. 
 
@@ -175,7 +175,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ## 3.1) What are Job Dating apps?
 
 >[!NOTE]
->This section is important to justify the decisions that were made, but you may skip the story to [Personae](#2-personae), or to [Minimum Viable Product](#4-minimum-viable-product) if you are only interested about the implementation.
+>This section is important to justify the decisions that were made, but you may skip the story to [Personae](#32-personae), or to [Minimum Viable Product](#3324-minimum-viable-product) if you are only interested about the implementation.
 
 ### 3.1.1) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
@@ -211,7 +211,7 @@ In order to come up with feature ideas for the product and try to understand whi
 
 #### 3.1.2.1) Traditional Solutions
 
-Here is a list of all the observed companies: [click here](#1-benchmark-of-traditional-recruitment-platforms)
+Here is a list of all the observed companies: [click here](#61-benchmark-of-traditional-recruitment-platforms)
 
 What can be drawn from this research is that the market is segmented in three main categories: 
 
@@ -246,7 +246,7 @@ However, this doesn't mean that a solution that fulfils our criteria doesn't exi
 
 Indeed, some platforms actually combine novel mechanisms, such as artificial intelligence, neuroscience and gamification to evaluate candidates. 
 
-Here is a list of observed companies: [Click Here](#2-benchmark-of-novel-recruitment-platforms)
+Here is a list of observed companies: [Click Here](#62-benchmark-of-novel-recruitment-platforms)
 
 The novel features from those modern-day platforms can be split into two categories: 
 
@@ -396,7 +396,7 @@ The personae will be split into two categories:
 
 #### 3.2.1.1) Entry-level Job Seekers
 
-| **Persona** | ![Image of an entry-level job seeker](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/entryLevelJobSeeker.jpg) |
+| **Persona** | ![Image of an entry-level job seeker](/Documents/img/entryLevelJobSeeker.jpg) |
 |---|---|
 | **Demographics** | Recent graduates, interns, or individuals with 0-2 years of work experience. |
 | **Goals** | Securing their first job or internship, gaining experience, building a professional network, and learning industry skills. |
@@ -408,7 +408,8 @@ The personae will be split into two categories:
 
 #### 3.2.1.2) Mid-Career Professionals
 
-| **Persona** | ![Image of a mid-career professional](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/midCareerPro.jpg) |
+| **Persona** | ![Image of a mid-career professional](/Documents/img/midCareerPro.jpg) |
+
 |---|---|
 | **Demographics** | Individuals with 3-10 years of work experience looking to advance or pivot their careers. |
 | **Goals** | Seeking career advancement, higher salaries, better work-life balance, or transitioning to a new industry or role. |
@@ -420,7 +421,8 @@ The personae will be split into two categories:
 
 #### 3.2.1.3) Senior-level and executive job seekers
 
-| **Persona** | ![Image of a senior-level candidate](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/executiveJobCandidate.jpg) |
+| **Persona** | ![Image of a senior-level candidate](/Documents/img/executiveJobCandidate.jpg) |
+
 |---|---|
 | **Demographics** | Individuals with over 10 years of experience, including managers, directors, executives, and seasoned professionals. |
 | **Goals** | Seeking leadership positions, career fulfillment, strategic roles, or consulting opportunities. |
@@ -433,7 +435,8 @@ The personae will be split into two categories:
 ### 3.2.2) Recruiters
 #### 3.2.2.1) In-house recruiters
 
-| **Persona** | ![Image of a team of in-house recruiters](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/inhouseRecruiter.jpg) |
+| **Persona** | ![Image of a team of in-house recruiters](/Documents/img/inhouseRecruiter.jpg) |
+
 |---|---|
 | **Demographics** | Recruiters working within a company's HR department, focused on internal hiring. |
 | **Goals** | Finding the best talent for the company, maintaining employer branding, managing the recruitment process. |
@@ -445,7 +448,8 @@ The personae will be split into two categories:
 
 #### 3.2.2.2) Agency Recruiters
 
-| **Persona** | ![Image of an agency recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/agencyRecruiters.jpg) |
+| **Persona** | ![Image of an agency recruiter](/Documents/img/agencyRecruiters.jpg) |
+
 |---|---|
 | **Demographics** | Recruiters working for staffing agencies or recruitment firms, serving multiple clients. |
 | **Goals** | Filling positions for various clients, matching candidates to roles, managing multiple job openings. |
@@ -457,7 +461,8 @@ The personae will be split into two categories:
 
 #### 3.2.2.3) Executive Recruiters
 
-| Persona | ![Image of an executive recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/002f1fa568e6f434e53f5d5264e35156461cedee/Documents/img/executivesRecruiter.jpg) |
+| Persona | ![Image of an executive recruiter](/Documents/img/executivesRecruiter.jpg) |
+
 |---|---|
 | **Demographics** | Specialized recruiters focused on filling high-level executive positions, often on a retained search basis. |
 | **Goals** | Identifying and attracting top executive talent, conducting thorough vetting, managing discreet and high-stakes searches. |
@@ -848,7 +853,7 @@ However, some steps have been and will be taken to mitigate this potential usabi
 - Making the design consistent through the use of design systems
 - Preventing frustration by optimising loading times.
 - Minimalistic design, using whitespace to improve readability and to help focus on essential features and functions
-- Accessibility, as described [here](#4-accessibility).
+- Accessibility, as described [here](#54-accessibility).
 - Onboarding tutorials, to make sure every user is on the same page
 - Clear online documentation, thanks to the user manual.
 
@@ -1061,3 +1066,5 @@ The product will have to include French and English languages for the minimum vi
 | Thymometrics | United Kingdom | Employee Engagement Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2013 |
 | Clearfit | Canada | Predictive Analytics Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2006 |
 | Vervoe | Australia | AI-based Skills Assessment Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2016 |
+
+<div align="right"><a href="#-functional-specifications"><img src="/Documents/img/back.png" width="75px"></a></div>
