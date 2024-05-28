@@ -409,6 +409,7 @@ The personae will be split into two categories:
 #### 3.2.1.2) Mid-Career Professionals
 
 | **Persona** | ![Image of a mid-career professional](/Documents/img/midCareerPro.jpg) |
+
 |---|---|
 | **Demographics** | Individuals with 3-10 years of work experience looking to advance or pivot their careers. |
 | **Goals** | Seeking career advancement, higher salaries, better work-life balance, or transitioning to a new industry or role. |
@@ -421,6 +422,7 @@ The personae will be split into two categories:
 #### 3.2.1.3) Senior-level and executive job seekers
 
 | **Persona** | ![Image of a senior-level candidate](/Documents/img/executiveJobCandidate.jpg) |
+
 |---|---|
 | **Demographics** | Individuals with over 10 years of experience, including managers, directors, executives, and seasoned professionals. |
 | **Goals** | Seeking leadership positions, career fulfillment, strategic roles, or consulting opportunities. |
@@ -434,6 +436,7 @@ The personae will be split into two categories:
 #### 3.2.2.1) In-house recruiters
 
 | **Persona** | ![Image of a team of in-house recruiters](/Documents/img/inhouseRecruiter.jpg) |
+
 |---|---|
 | **Demographics** | Recruiters working within a company's HR department, focused on internal hiring. |
 | **Goals** | Finding the best talent for the company, maintaining employer branding, managing the recruitment process. |
@@ -446,6 +449,7 @@ The personae will be split into two categories:
 #### 3.2.2.2) Agency Recruiters
 
 | **Persona** | ![Image of an agency recruiter](/Documents/img/agencyRecruiters.jpg) |
+
 |---|---|
 | **Demographics** | Recruiters working for staffing agencies or recruitment firms, serving multiple clients. |
 | **Goals** | Filling positions for various clients, matching candidates to roles, managing multiple job openings. |
@@ -458,6 +462,7 @@ The personae will be split into two categories:
 #### 3.2.2.3) Executive Recruiters
 
 | Persona | ![Image of an executive recruiter](/Documents/img/executivesRecruiter.jpg) |
+
 |---|---|
 | **Demographics** | Specialized recruiters focused on filling high-level executive positions, often on a retained search basis. |
 | **Goals** | Identifying and attracting top executive talent, conducting thorough vetting, managing discreet and high-stakes searches. |
@@ -559,7 +564,7 @@ Same methodology, applying a simple Pareto principle to focus on the features th
 
 We have plotted all the previous mentioned features—on an admittedly hard-to-read graph—in a impact/time/effort matrix.
 
-![Impact/Effort Matrix](../../Documents/img/impactMatrix.png)
+![Impact/Effort Matrix](/Documents/img/impactMatrix.png)
 
 Our capacities correspond to any feature ranging from low to medium effort, with the desire to have low to high impact features to create a successful MVP.
 
