@@ -396,7 +396,7 @@ The personae will be split into two categories:
 
 #### 3.2.1.1) Entry-level Job Seekers
 
-| **Persona** | ![Image of an entry-level job seeker](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/entryLevelJobSeeker.jpeg) |
+| **Persona** | ![Image of an entry-level job seeker](/Documents/img/entryLevelJobSeeker.jpg) |
 |---|---|
 | **Demographics** | Recent graduates, interns, or individuals with 0-2 years of work experience. |
 | **Goals** | Securing their first job or internship, gaining experience, building a professional network, and learning industry skills. |
@@ -408,7 +408,7 @@ The personae will be split into two categories:
 
 #### 3.2.1.2) Mid-Career Professionals
 
-| **Persona** | ![Image of a mid-career professional](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/midCareerPro.jpeg) |
+| **Persona** | ![Image of a mid-career professional](/Documents/img/midCareerPro.jpg) |
 |---|---|
 | **Demographics** | Individuals with 3-10 years of work experience looking to advance or pivot their careers. |
 | **Goals** | Seeking career advancement, higher salaries, better work-life balance, or transitioning to a new industry or role. |
@@ -420,7 +420,7 @@ The personae will be split into two categories:
 
 #### 3.2.1.3) Senior-level and executive job seekers
 
-| **Persona** | ![Image of a senior-level candidate](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executiveJobCandidate.jpeg) |
+| **Persona** | ![Image of a senior-level candidate](/Documents/img/executiveJobCandidate.jpg) |
 |---|---|
 | **Demographics** | Individuals with over 10 years of experience, including managers, directors, executives, and seasoned professionals. |
 | **Goals** | Seeking leadership positions, career fulfillment, strategic roles, or consulting opportunities. |
@@ -433,7 +433,7 @@ The personae will be split into two categories:
 ### 3.2.2) Recruiters
 #### 3.2.2.1) In-house recruiters
 
-| **Persona** | ![Image of a team of in-house recruiters](../img/inhouseRecruiter.jpg) |
+| **Persona** | ![Image of a team of in-house recruiters](/Documents/img/inhouseRecruiter.jpg) |
 |---|---|
 | **Demographics** | Recruiters working within a company's HR department, focused on internal hiring. |
 | **Goals** | Finding the best talent for the company, maintaining employer branding, managing the recruitment process. |
@@ -445,7 +445,7 @@ The personae will be split into two categories:
 
 #### 3.2.2.2) Agency Recruiters
 
-| **Persona** | ![Image of an agency recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/agencyRecruiters.jpeg) |
+| **Persona** | ![Image of an agency recruiter](/Documents/img/agencyRecruiters.jpg) |
 |---|---|
 | **Demographics** | Recruiters working for staffing agencies or recruitment firms, serving multiple clients. |
 | **Goals** | Filling positions for various clients, matching candidates to roles, managing multiple job openings. |
@@ -457,7 +457,7 @@ The personae will be split into two categories:
 
 #### 3.2.2.3) Executive Recruiters
 
-| Persona | ![Image of an executive recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executivesRecruiter.jpeg) |
+| Persona | ![Image of an executive recruiter](/Documents/img/executivesRecruiter.jpg) |
 |---|---|
 | **Demographics** | Specialized recruiters focused on filling high-level executive positions, often on a retained search basis. |
 | **Goals** | Identifying and attracting top executive talent, conducting thorough vetting, managing discreet and high-stakes searches. |
