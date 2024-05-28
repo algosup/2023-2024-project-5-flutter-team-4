@@ -4,91 +4,91 @@
 
 <details><summary><em><ins>Click here to expand the table of content...</ins></em></summary>
 
-- [A) Document Control](#a-document-control)
-  - [1) Document Information](#1-document-information)
-  - [2) Document Approval](#2-document-approval)
-- [B) Introduction](#b-introduction)
-  - [1) Project Overview](#1-project-overview)
-  - [2) Project Definition](#2-project-definition)
-    - [a) Vision](#a-vision)
-    - [b) Objectives](#b-objectives)
-    - [c) Scope](#c-scope)
-    - [d) Milestones](#d-milestones)
-- [C) Functional Requirements](#c-functional-requirements)
-  - [1) What are Job Dating apps?](#1-what-are-job-dating-apps)
-    - [a) History/Context](#a-historycontext)
-    - [b) Benchmark](#b-benchmark)
-      - [1) Traditional Solutions](#1-traditional-solutions)
-      - [2) Emerging Solutions](#2-emerging-solutions)
+- [1) Document Control](#1-document-control)
+  - [1.1) Document Information](#11-document-information)
+  - [1.2) Document Approval](#12-document-approval)
+- [2) Introduction](#2-introduction)
+  - [2.1) Project Overview](#21-project-overview)
+  - [2.2) Project Definition](#22-project-definition)
+    - [2.2.1) Vision](#221-vision)
+    - [2.2.2) Objectives](#222-objectives)
+    - [2.2.3) Scope](#223-scope)
+    - [2.2.4) Milestones](#224-milestones)
+- [3) Functional Requirements](#3-functional-requirements)
+  - [3.1) What are Job Dating apps?](#31-what-are-job-dating-apps)
+    - [3.1.1) History/Context](#311-historycontext)
+    - [3.1.2) Benchmark](#312-benchmark)
+      - [3.1.2.1) Traditional Solutions](#3121-traditional-solutions)
+      - [3.1.2.2) Emerging Solutions](#3122-emerging-solutions)
         - [Candidate features](#candidate-features)
         - [Recruiter features](#recruiter-features)
-  - [2) Personae](#2-personae)
-    - [a) The Jobseeker](#a-the-jobseeker)
-      - [1) Entry-level Job Seekers](#1-entry-level-job-seekers)
-      - [2) Mid-Career Professionals](#2-mid-career-professionals)
-      - [3) Senior-level and executive job seekers](#3-senior-level-and-executive-job-seekers)
-    - [b) Recruiters](#b-recruiters)
-      - [1) In-house recruiters](#1-in-house-recruiters)
-      - [2) Agency Recruiters](#2-agency-recruiters)
-      - [3) Executive Recruiters](#3-executive-recruiters)
-  - [3) Feature Sets](#3-feature-sets)
-    - [a) Feature to problem matrices](#a-feature-to-problem-matrices)
-      - [1) Jobseekers' problems](#1-jobseekers-problems)
-      - [2) Recruiters' problems](#2-recruiters-problems)
-    - [b) Retained Features](#b-retained-features)
-      - [1) Most impactful Jobseeker features](#1-most-impactful-jobseeker-features)
-      - [2) Most impactful Recruiter features](#2-most-impactful-recruiter-features)
-      - [3) Filtering out hard tasks](#3-filtering-out-hard-tasks)
-      - [4) Minimum Viable Product](#4-minimum-viable-product)
-      - [5) Conclusion](#5-conclusion)
-  - [4) Measuring Success](#4-measuring-success)
-- [D) Functional Specifications](#d-functional-specifications)
-  - [1) Use Cases Analysis](#1-use-cases-analysis)
-    - [a) Candidate](#a-candidate)
-      - [1) Login Procedure](#1-login-procedure)
-      - [2) Onboarding Procedure](#2-onboarding-procedure)
-        - [a) User Profile Onboarding](#a-user-profile-onboarding)
-        - [b) Match Arena Onboarding](#b-match-arena-onboarding)
-      - [3) Personal Profile](#3-personal-profile)
-        - [a) Profile Creation](#a-profile-creation)
-        - [b) View Profile](#b-view-profile)
-      - [4) Matching](#4-matching)
-      - [5) Professional Ressources](#5-professional-ressources)
-      - [6) Chat & Interviews](#6-chat--interviews)
-    - [b) Recruiter](#b-recruiter)
-    - [c) Endorser](#c-endorser)
-  - [2) Functional Analysis](#2-functional-analysis)
-- [E) Non-Functional Requirements](#e-non-functional-requirements)
-  - [1) Usability](#1-usability)
-  - [2) Accuracy](#2-accuracy)
-    - [a) Precision and Recall](#a-precision-and-recall)
-    - [b) Accuracy](#b-accuracy)
-  - [3) Transparency](#3-transparency)
-  - [4) Accessibility](#4-accessibility)
-  - [5) Compliance](#5-compliance)
-    - [a) Personal Data Protection](#a-personal-data-protection)
-    - [b) Transparency](#b-transparency)
-    - [c) Non-Discrimination](#c-non-discrimination)
-    - [d) Fair Access to Employment](#d-fair-access-to-employment)
-    - [e) Consent and Right to be Forgotten](#e-consent-and-right-to-be-forgotten)
-    - [f) Data Security](#f-data-security)
-    - [g) Contractual Obligations](#g-contractual-obligations)
-  - [6) Localization and Internationalization](#6-localization-and-internationalization)
-- [F) Appendix](#f-appendix)
-  - [1) Benchmark of traditional recruitment platforms](#1-benchmark-of-traditional-recruitment-platforms)
-  - [2) Benchmark of novel recruitment platforms](#2-benchmark-of-novel-recruitment-platforms)
+  - [3.2) Personae](#32-personae)
+    - [3.2.1) The Jobseeker](#321-the-jobseeker)
+      - [3.2.1.1) Entry-level Job Seekers](#3211-entry-level-job-seekers)
+      - [3.2.1.2) Mid-Career Professionals](#3212-mid-career-professionals)
+      - [3.2.1.3) Senior-level and executive job seekers](#3213-senior-level-and-executive-job-seekers)
+    - [3.2.2) Recruiters](#322-recruiters)
+      - [3.2.2.1) In-house recruiters](#3221-in-house-recruiters)
+      - [3.2.2.2) Agency Recruiters](#3222-agency-recruiters)
+      - [3.2.2.3) Executive Recruiters](#3223-executive-recruiters)
+  - [3.3) Feature Sets](#33-feature-sets)
+    - [3.3.1) Feature to problem matrices](#331-feature-to-problem-matrices)
+      - [3.3.1.1) Jobseekers' problems](#3311-jobseekers-problems)
+      - [3.3.1.2) Recruiters' problems](#3312-recruiters-problems)
+    - [3.3.2) Retained Features](#332-retained-features)
+      - [3.3.2.1) Most impactful Jobseeker features](#3321-most-impactful-jobseeker-features)
+      - [3.3.2.2) Most impactful Recruiter features](#3322-most-impactful-recruiter-features)
+      - [3.3.2.3) Filtering out hard tasks](#3323-filtering-out-hard-tasks)
+      - [3.3.2.4) Minimum Viable Product](#3324-minimum-viable-product)
+      - [3.3.2.5) Conclusion](#3325-conclusion)
+  - [3.4) Measuring Success](#34-measuring-success)
+- [4) Functional Specifications](#4-functional-specifications)
+  - [4.1) Use Cases Analysis](#41-use-cases-analysis)
+    - [4.1.1) Candidate](#411-candidate)
+      - [4.1.1.1) Login Procedure](#4111-login-procedure)
+      - [4.1.1.2) Onboarding Procedure](#4112-onboarding-procedure)
+        - [User Profile Onboarding](#user-profile-onboarding)
+        - [Match Arena Onboarding](#match-arena-onboarding)
+      - [4.1.1.3) Personal Profile](#4113-personal-profile)
+        - [Profile Creation](#profile-creation)
+        - [View Profile](#view-profile)
+      - [4.1.1.4) Matching](#4114-matching)
+      - [4.1.1.5) Professional Ressources](#4115-professional-ressources)
+      - [4.1.1.6) Chat & Interviews](#4116-chat--interviews)
+    - [4.1.2) Recruiter](#412-recruiter)
+    - [4.1.3) Endorser](#413-endorser)
+  - [4.2) Functional Analysis](#42-functional-analysis)
+- [5) Non-Functional Requirements](#5-non-functional-requirements)
+  - [5.1) Usability](#51-usability)
+  - [5.2) Accuracy](#52-accuracy)
+    - [5.2.1) Precision and Recall](#521-precision-and-recall)
+    - [5.2.2) Accuracy](#522-accuracy)
+  - [5.3) Transparency](#53-transparency)
+  - [5.4) Accessibility](#54-accessibility)
+  - [5.5) Compliance](#55-compliance)
+    - [5.5.1) Personal Data Protection](#551-personal-data-protection)
+    - [5.5.2) Transparency](#552-transparency)
+    - [5.5.3) Non-Discrimination](#553-non-discrimination)
+    - [5.5.4) Fair Access to Employment](#554-fair-access-to-employment)
+    - [5.5.5) Consent and Right to be Forgotten](#555-consent-and-right-to-be-forgotten)
+    - [5.5.6) Data Security](#556-data-security)
+    - [5.5.7) Contractual Obligations](#557-contractual-obligations)
+    - [5.5.8) Localization and Internationalization](#558-localization-and-internationalization)
+- [6) Appendix](#6-appendix)
+  - [6.1) Benchmark of traditional recruitment platforms](#61-benchmark-of-traditional-recruitment-platforms)
+  - [6.2) Benchmark of novel recruitment platforms](#62-benchmark-of-novel-recruitment-platforms)
 
 </details>
 
-# A) Document Control
-## 1) Document Information
+# 1) Document Control
+## 1.1) Document Information
 
 | Document Owner | Mathis KAKAL |
 |---|---|
 | Issue date | Friday, May 24th 2024 5pm |
 | Document Name | Functional Specifications |
 
-## 2) Document Approval
+## 1.2) Document Approval
 
 | Role | Name | Signature | Date |
 |---|---|---|---|
@@ -99,8 +99,8 @@
 | Technical Writer | Benoît DE KEYN |✅ | 05/04/2024 |
 | Quality Assurance | Aurélien FERNANDEZ |✅ | 05/04/2024 |
 
-# B) Introduction
-## 1) Project Overview
+# 2) Introduction
+## 2.1) Project Overview
 
 This document aims to document and highlight the preliminary work undertaken for the "Adopte un Candidat" project in ALGOSUP, in partnership with MEMEDIA and WE ARE EVOLUTION[^1], which are company branding agencies based in Chateauroux whom also feature other locations in France. 
 
@@ -112,8 +112,8 @@ Indeed, the client has expressed their wish for us to spend more time on conduct
 
 Conducting thorough research in a framework that leaves a less than two weeks for it versus the implementation time which is four weeks is a challenging but exciting task that we will tackle with strategic planning, and collaborative effort. 
 
-## 2) Project Definition
-### a) Vision
+## 2.2) Project Definition
+### 2.2.1) Vision
 
 As mentioned earlier, this project differs from our classic software development project as the customer is more interested in the research and ideation phases than in the development of it, which they know will ultimately take more than 6 weeks to achieve. 
 
@@ -123,7 +123,7 @@ More thought will be put into interactions and user experience, rather than on t
 
 Finally, the customer expressed their will for us to come up with an entire brand identity for this new product. 
 
-### b) Objectives
+### 2.2.2) Objectives
 The exact brief for the project is: 
 
 > *Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way. The app will need to be available on phone, tablet and computer.*
@@ -136,7 +136,7 @@ All in all, the customer has remained vague on many implementation details which
 
 Finally, the technology to meet the multi-device requirement has already been chosen by the project overseer, Franck JEANNIN. It is going to be developed in Flutter, which is a framework maintained by Google that allows fast paced multi-device development with a single codebase. 
 
-### c) Scope
+### 2.2.3) Scope
 
 | In Scope |
 |---|
@@ -161,7 +161,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 | Creating a full-fledged employee/applicant/talent tracking/application system |
 | Conducting actual user research to discover features, as the client advised us not to. |
 
-### d) Milestones
+### 2.2.4) Milestones
 
 | Milestone | Deadline |
 |---|---|
@@ -171,13 +171,13 @@ Finally, the technology to meet the multi-device requirement has already been ch
 | MVP | Friday, June 14th 2024 5pm |
 | User Manual | Friday, June 14th 2024 5pm |
 
-# C) Functional Requirements
-## 1) What are Job Dating apps?
+# 3) Functional Requirements
+## 3.1) What are Job Dating apps?
 
 >[!NOTE]
 >This section is important to justify the decisions that were made, but you may skip the story to [Personae](#2-personae), or to [Minimum Viable Product](#4-minimum-viable-product) if you are only interested about the implementation.
 
-### a) History/Context
+### 3.1.1) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
 
 The 2000s saw the rise of web-based technologies, which created new ways to connect recruiters and candidates, while more niche platforms emerged as well, such as Stack Overflow for developers and Behance for creative professionals. 
@@ -203,13 +203,13 @@ Sources:
 - https://www.ft.com/content/f2bc1a8c-4fd9-4a70-9fd3-03571ced18f7
 - https://www.propellum.com/blog/job-boards-tracing-the-history-and-evolution/
 
-### b) Benchmark
+### 3.1.2) Benchmark
 
 The Job Recruitment platforms market is a very competitive market with many actors ranging from pure players to more niche ones. 
 
 In order to come up with feature ideas for the product and try to understand which feature belongs to which usage/type of user, we will have to conduct a simple benchmark of existing solutions, from a UX perspective (we are interested in features more so than key business indicators). 
 
-#### 1) Traditional Solutions
+#### 3.1.2.1) Traditional Solutions
 
 Here is a list of all the observed companies: [click here](#1-benchmark-of-traditional-recruitment-platforms)
 
@@ -240,7 +240,7 @@ There could be multiple reasons for this, such as:
 
 - Technology limitations, as gathering reliable data on soft skills is challenging. Interviews, references, and behavioural assessments are not easily quantifiable in the same way as hard skills.
 
-#### 2) Emerging Solutions
+#### 3.1.2.2) Emerging Solutions
 
 However, this doesn't mean that a solution that fulfils our criteria doesn't exist. 
 
@@ -256,7 +256,7 @@ The novel features from those modern-day platforms can be split into two categor
 
 Let's review some of those.
 
-##### Candidate features
+##### ➭ <ins>Candidate features</ins>
 
 **Video introductions and interviews**  
 
@@ -310,7 +310,7 @@ Zety and Resume Worded use that.
 
 As well as some other features such as career coaching and advice and job application tracking, but that belong to segments that deviate from our goals.
 
-##### Recruiter Features
+##### ➭ <ins>Recruiter Features</ins>
 
 While the previous features can also be considered as "Recruiter features" the following described features are more focused on the recruiter point of view. 
 
@@ -378,7 +378,7 @@ Finally, it might be interesting to mention that the use of complete anonymisati
 
 Those *seem* to be the only tools that allow for qualitative profiles to remain anonymous.
 
-## 2) Personae
+## 3.2) Personae
 
 The customer has explicitly mentioned that their target was the global market, which is similar to pure players such as Linkedin, Monster.com, Indeed and Glassdoor.
 
@@ -392,9 +392,9 @@ The personae will be split into two categories:
 > [!IMPORTANT]
 > Current employees looking for opportunities or just browsing the catalog have been mixed up with "Job seekers" for the sake of simplicity.
 
-### a) The Jobseeker
+### 3.2.1) The Jobseeker
 
-#### 1) Entry-level Job Seekers
+#### 3.2.1.1) Entry-level Job Seekers
 
 | **Persona** | ![Image of an entry-level job seeker](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/entryLevelJobSeeker.jpeg) |
 |---|---|
@@ -406,7 +406,7 @@ The personae will be split into two categories:
 | **Key features used** | Job search filters for entry-level positions, resume building tools, company reviews, and career advice articles. |
 | **Pain Points** | Difficulty in getting noticed by employers, lack of clarity on what employers are looking for, and finding roles that offer growth opportunities. |
 
-#### 2) Mid-Career Professionals
+#### 3.2.1.2) Mid-Career Professionals
 
 | **Persona** | ![Image of a mid-career professional](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/midCareerPro.jpeg) |
 |---|---|
@@ -418,7 +418,7 @@ The personae will be split into two categories:
 | **Key features used** | Advanced job search filters, company research tools, salary comparison tools, and professional development resources. |
 | **Pain Points** | Identifying opportunities that align with their career goals, negotiating salary and benefits, and managing the transition between roles or industries. |
 
-#### 3) Senior-level and executive job seekers
+#### 3.2.1.3) Senior-level and executive job seekers
 
 | **Persona** | ![Image of a senior-level candidate](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executiveJobCandidate.jpeg) |
 |---|---|
@@ -430,8 +430,8 @@ The personae will be split into two categories:
 | **Key features used** | Executive job search tools, company and executive team insights, networking and headhunter connections, and compensation benchmarking tools. |
 | **Pain Points** | Finding roles that offer the right level of responsibility and compensation, discreetly exploring opportunities while employed, and negotiating complex compensation and benefits packages. |
 
-### b) Recruiters
-#### 1) In-house recruiters
+### 3.2.2) Recruiters
+#### 3.2.2.1) In-house recruiters
 
 | **Persona** | ![Image of a team of in-house recruiters](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/inhouseRecruiter.jpg) |
 |---|---|
@@ -443,7 +443,7 @@ The personae will be split into two categories:
 | **Key Features Utilized** | ATS integration, company branding tools, job posting management, candidate communication tools. |
 | **Pain Points** | High volume of applicants, ensuring good cultural fit, maintaining a strong employer brand. |
 
-#### 2) Agency Recruiters
+#### 3.2.2.2) Agency Recruiters
 
 | **Persona** | ![Image of an agency recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/agencyRecruiters.jpeg) |
 |---|---|
@@ -455,7 +455,7 @@ The personae will be split into two categories:
 | **Key Features Utilized** | Advanced search and filtering tools, client management tools, CRM features, job posting distribution tools. |
 | **Pain Points** | Managing multiple client needs, tracking numerous candidates, quickly finding qualified candidates for diverse roles. |
 
-#### 3) Executive Recruiters
+#### 3.2.2.3) Executive Recruiters
 
 | Persona | ![Image of an executive recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executivesRecruiter.jpeg) |
 |---|---|
@@ -467,14 +467,14 @@ The personae will be split into two categories:
 | **Key Features Utilized** | Executive search tools, confidential candidate management, networking and referral systems, compensation benchmarking tools. |
 | **Pain Points** | Finding and attracting top-tier executive talent, maintaining confidentiality, managing long and complex search processes. |
 
-## 3) Feature Sets
-### a) Feature to problem matrices
+## 3.3) Feature Sets
+### 3.3.1) Feature to problem matrices
 
 The following matrices pair the novel features we have found to existing pain points, and will help us prioritising which features we should implement in the time given.
 
 The last column of the table is a score column, giving a sense of the impact the feature has on the end users.
 
-#### 1) Jobseekers' problems 
+#### 3.3.1.1) Jobseekers' problems 
 
 <details><summary><em><ins>Click here to expand the matrix...</ins></em></summary>
 
@@ -498,7 +498,7 @@ The last column of the table is a score column, giving a sense of the impact the
 
 </details>
 
-#### 2) Recruiters' problems 
+#### 3.3.1.2) Recruiters' problems 
 
 <details><summary><em><ins>Click here to expand the matrix...</ins></em></summary>
 
@@ -524,8 +524,8 @@ The last column of the table is a score column, giving a sense of the impact the
 
 </details>
 
-### b) Retained Features
-#### 1) Most impactful Jobseeker features
+### 3.3.2) Retained Features
+#### 3.3.2.1) Most impactful Jobseeker features
 
 If we apply a simple Pareto principle to focus on the features that account for 80% of the impact, we get the most important features for the Jobseeker's point of view: *Ranked from most to least important*
 
@@ -539,7 +539,7 @@ If we apply a simple Pareto principle to focus on the features that account for 
 - Compensation Benchmarking Tools (4)
 - AI-Powered Resume Builder and Templates (3)
 
-#### 2) Most impactful Recruiter features
+#### 3.3.2.2) Most impactful Recruiter features
 
 Same methodology, applying a simple Pareto principle to focus on the features that account for 80% of the impact, yields the most important features for the recruiter's point of view: *Ranked from most to least important*
 
@@ -555,7 +555,7 @@ Same methodology, applying a simple Pareto principle to focus on the features th
 - Confidential Candidate Management (3)
 - Networking and Referral Systems (3)
 
-#### 3) Filtering out hard tasks
+#### 3.3.2.3) Filtering out hard tasks
 
 We have plotted all the previous mentioned features—on an admittedly hard-to-read graph—in a impact/time/effort matrix.
 
@@ -585,7 +585,7 @@ This leaves us with the following features:
 | Confidential Candidate Management   | 3      | Low    | 4 weeks  |
 
 
-#### 4) Minimum Viable Product
+#### 3.3.2.4) Minimum Viable Product
 
 We finally have enough information to set a goal for the minimum viable product (MVP).
 
@@ -632,14 +632,14 @@ The MoSCoW analysis below summarises how we prioritised each feature. The "Must"
 | Compensation Benchmarking Tools | 4 | Low | 4 weeks |
 | Job Posting Distribution Tools | 3 | Low | 4 weeks |
 
-#### 5) Conclusion
+#### 3.3.2.5) Conclusion
 
 > [!TIP]
 > We made a gross estimation that the MVP would take approximately 4 months to develop by 3 developers.
 
 Now that we have our feature list, we will take a look at how the different features break down in terms of use cases, and even further, in terms of functions, in the following section.
 
-## 4) Measuring Success
+## 3.4) Measuring Success
 
 In order to evaluate the performance of the app and its features and to make it evolve, several metrics can be monitored. Here are some that might be interesting to consider in the future:
 
@@ -655,8 +655,8 @@ In order to evaluate the performance of the app and its features and to make it 
 - **Candidate-to-Interview Ratio**: The number of candidates needed to secure an interview.
 - **Interview-to-Hire Ratio**: The number of interviews needed to make a hire.
 
-# D) Functional Specifications
-## 1) Use Cases Analysis
+# 4) Functional Specifications
+## 4.1) Use Cases Analysis
 
 In order to list all the features of the final product, it is important to first identify all the actors that will be using it.
 
@@ -669,8 +669,8 @@ There are three of them:
 >[!NOTE]
 > We were explicitly instructed not to focus on the admin side of the app, so it will be excluded from our work.
 
-### a) Candidate
-#### 1) Login Procedure
+### 4.1.1) Candidate
+#### 4.1.1.1) Login Procedure
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -689,8 +689,8 @@ There are three of them:
 
 </details>
 
-#### 2) Onboarding Procedure
-##### a) User Profile Onboarding
+#### 4.1.1.2) Onboarding Procedure
+##### ➭ <ins>User Profile Onboarding</ins>
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -709,7 +709,7 @@ There are three of them:
 
 </details>
 
-##### b) Match Arena Onboarding
+##### ➭ <ins>Match Arena Onboarding</ins>
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -726,9 +726,9 @@ There are three of them:
 
 </details>
 
-#### 3) Personal Profile
+#### 4.1.1.3) Personal Profile
 
-##### a) Profile Creation
+##### ➭ <ins>Profile Creation</ins>
 
 >[!NOTE]
 >Please pay attention to the use cases numbers, longer numbers indicate sub (nested) use cases.
@@ -762,7 +762,7 @@ There are three of them:
 
 </details>
 
-##### b) View Profile
+##### ➭ <ins>View Profile</ins>
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -774,7 +774,7 @@ There are three of them:
 
 </details>
 
-#### 4) Matching
+#### 4.1.1.4) Matching
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -787,7 +787,7 @@ There are three of them:
 
 </details>
 
-#### 5) Professional Ressources
+#### 4.1.1.5) Professional Ressources
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -800,7 +800,7 @@ There are three of them:
 
 </details>
 
-#### 6) Chat & Interviews
+#### 4.1.1.6) Chat & Interviews
 
 <details><summary><em><ins>Click here to expand the use case analysis...</ins></em></summary>
 
@@ -816,27 +816,27 @@ There are three of them:
 
 </details>
 
-### b) Recruiter
+### 4.1.2) Recruiter
 
 >[!NOTE]
 >Work in Progress
 
-### c) Endorser
+### 4.1.3) Endorser
 
 >[!NOTE]
 >Work in Progress
 
-## 2) Functional Analysis
+## 4.2) Functional Analysis
 
 >[!NOTE]
 >Work in Progress
 
-# E) Non-Functional Requirements
+# 5) Non-Functional Requirements
 
 > [!NOTE]
 > Many traditional non-functional requirements such as cost, availability, scalability etc. have not been included as they are out of scope for this project.
 
-## 1) Usability
+## 5.1) Usability
 
 As the product targets a global market with wide demographics ranges, we must ensure that the product is usable.
 
@@ -852,12 +852,12 @@ However, some steps have been and will be taken to mitigate this potential usabi
 - Onboarding tutorials, to make sure every user is on the same page
 - Clear online documentation, thanks to the user manual.
 
-## 2) Accuracy
+## 5.2) Accuracy
 
 Accuracy of the matching algorithm will be crucial for the success of the product.
 The following outlines the strategies used to collect insights about the performance of the algorithm and to iterate on it.
 
-### a)  Precision and Recall
+### 5.2.1)  Precision and Recall
 
 The F-Score is a measure of predictive performance in statistical analysis of binary information. The F1 score is usually used as a way to combine both metrics of precision and recall. Here is how to calculate it:
 
@@ -922,7 +922,7 @@ Here is the iterative protocol to use the F-Score to ameliorate the matching alg
 	- Repeat the Process Based on the results, either accept the changes if they improve the F1 Score or revert to the previous version and try different modifications.
 	- This iterative process continues, with each iteration aimed at gradually improving the F1 Score and, consequently, the algorithm's performance.
 
-### b) Accuracy
+### 5.2.2) Accuracy
 
 Another simple metric that can be used during the iteration on the matching algorithm is accuracy, which can be calculated this way:
 
@@ -930,13 +930,13 @@ $$
 \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Number of Matches}}
 $$
 
-## 3) Transparency
+## 5.3) Transparency
 
 Lack of transparency can lead to mistrust among candidates and recruiters, especially when "black box" AI models are used. It might be interesting to leverage explainable AI features (XAI) from the get-go to mitigate those issues.
 
 Source: https://www.ibm.com/topics/explainable-ai
 
-## 4) Accessibility
+## 5.4) Accessibility
 
 As of now, only color-blindness and visual impairment have been taken into consideration, but eventually it would be commendable to follow the WCAG guidelines. 
 [Link to guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)
@@ -945,57 +945,57 @@ This former has been mitigated by using an app named Daltonize Me to simulate al
 
 The latter consisted of using the `alt` properties of images to enable text to speech to describe them with more ease.
 
-## 5) Compliance
+## 5.5) Compliance
 
 Adherence to laws, regulations, and standards must be taken into consideration. Focusing on European and French regulations is usually a good start since they are more strict than other regulations.
 
 Here are the regulations that will apply to this product:
 
-### a) Personal Data Protection
+### 5.5.1) Personal Data Protection
 
 - **GDPR (General Data Protection Regulation)**: Any application collecting personal data must comply with the GDPR, which imposes strict rules on the collection, processing, storage, and protection of personal data. 
 [Link to guidelines](https://gdpr.eu/checklist/)
 
 - **CNIL (Commission Nationale de l'Informatique et des Libertés)**: The customer must declare the data processing activities to the CNIL and adhere to its recommendations. It is crucial to ensure users' rights (right of access, rectification, deletion, etc.). [Link to guidelines](https://www.cnil.fr/fr/les-outils-de-la-conformite)
 
-### b) Transparency
+### 5.5.2) Transparency
 
 - **Obligation to Inform**: Users will be clearly and transparently informed about how their data will be used, who will have access to it, and for what purposes. This includes having an accessible and understandable privacy policy.
 - **Cookies and Trackers**: Cookies will be used to understand how the app is used by the users and to collect insights that will help to improve the product. A cookie consent/manager will be included with the product.
 
-### c) Non-Discrimination
+### 5.5.3) Non-Discrimination
 
 - **Labor Code**: It prohibits any form of discrimination in hiring based on criteria such as age, sex, origin, religion, sexual orientation, disability, etc. Explainable AI and thoughtful iteration and design helped mitigate this issue.
 - **Law for the Freedom to Choose One's Professional Future**: It reinforces employers' obligations to combat discrimination and promote professional equality. https://travail-emploi.gouv.fr/IMG/pdf/loi_pour_la_liberte_de_choisir_son_avenir_professionnel-2.pdf
 - **Diversity Charter**: Although not legally binding, adhering to this charter can demonstrate your commitment to promoting diversity. 
 https://www.charte-diversite.com/
 
-### d) Fair Access to Employment
+### 5.5.4) Fair Access to Employment
 
 - **Law for Confidence in the Digital Economy**: It imposes obligations of fairness and transparency in digital services, including recruitment platforms. https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000801164
 - **Anti-Discrimination Law**: We must ensure that your algorithm and platform do not indirectly discriminate against certain groups of candidates. For example, it is prohibited to filter applications based on discriminatory criteria. https://www.legifrance.gouv.fr/loda/id/JORFTEXT000018877783
 
-### e) Consent and Right to be Forgotten
+### 5.5.5) Consent and Right to be Forgotten
 
 - **Explicit Consent**: Users must give explicit consent for the processing of their data, especially if it involves sensitive data.
 - **Right to be Forgotten**: Users must be able to request the deletion of their personal data, and you must be able to comply with this request within the specified time frames.
 
-### f) Data Security
+### 5.5.6) Data Security
 
 - **Security Measures**: In the future, we plan to implement technical and organisational measures to ensure the security of personal data, such as encryption, access controls, etc. A good rule of thumb is to always respecting the CIA principles https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA
 
-### g) Contractual Obligations
+### 5.5.7) Contractual Obligations
 
 - **Terms and Conditions (T&Cs)**: These must be clear and accepted by users, defining the rights and obligations of each party.
 - **Contracts with Recruiters**: Contracts should stipulate responsibilities regarding data processing and compliance with anti-discrimination laws.
 
-## 6) Localization and Internationalization
+## 5.5.8) Localization and Internationalization
 
 The product has been thought for the global market, but focuses on the French market for now.
 The product will have to include French and English languages for the minimum viable product.
 
-# F) Appendix
-## 1) Benchmark of traditional recruitment platforms
+# 6) Appendix
+## 6.1) Benchmark of traditional recruitment platforms
 
 | Platform Name | Country of origin | Platform type | Type of recruitment | Targeted audience age | Is company still active? | Founded in? |
 |---|---|---|---|---|---|---|
@@ -1042,7 +1042,7 @@ The product will have to include French and English languages for the minimum vi
 | Dribble | United States | Job Board for Designers | Full-time, part-time, freelance | Primarily 18-45 | Yes | 2009 |
 | Behance | United States | Creative Portfolio Platform | Full-time, part-time, freelance | Primarily 18-45 | Yes | 2005 |
 
-## 2) Benchmark of novel recruitment platforms
+## 6.2) Benchmark of novel recruitment platforms
 
 | Platform | Country of Origin | Platform Type | Type of Recruitment | Targeted Audience Age | Is Company Still Active? | Founded |
 |---|---|---|---|---|---|---|
