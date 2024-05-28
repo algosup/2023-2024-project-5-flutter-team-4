@@ -106,7 +106,7 @@ This document aims to document and highlight the preliminary work undertaken for
 
 Company branding agencies such as MEMEDIA and WE ARE EVOLUTION seek to help companies develop a more attractive brand identity in the eyes of the public. 
 
-However, in the context of this project, our goal, as discussed with the customer[^1], will be to focus mainly on explorating new and innovative means to match HRs/Recruiters and Job seekers/Candidates from a fresh new perspective. 
+However, in the context of this project, our goal, as discussed with the customer[^1], will be to focus mainly on explorating new and innovative means to match HRs/Recruiters and Job seekers/Candidates through a desktop and mobile application along with their underlying User Experience/User Journey. 
 
 Indeed, the client has expressed their wish for us to spend more time on conducting thoughtful research and design, rather than implementing a non-innovative solution. 
 
@@ -119,7 +119,7 @@ As mentioned earlier, this project differs from our classic software development
 
 That is why we plan to focus mainly on the front-end development of the app, to maximise the amount of novel features we can showcase, leveraging local storage and hardcoded content, rather than setting up the app to work on a production-ready server (which we don't exclude doing if we are ahead of schedule). 
 
-More thought will be put in interactions and user experience, rather than on traditional non-functional requirements such as availability, security, scalability and so on. 
+More thought will be put into interactions and user experience, rather than on traditional non-functional requirements such as availability, security, scalability and so on. 
 
 Finally, the customer expressed their will for us to come up with an entire brand identity for this new product. 
 
@@ -128,27 +128,27 @@ The exact brief for the project is:
 
 > *Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way. The app will need to be available on phone, tablet and computer.*
 
-The goal is therefore to create an app that deviates from the conventional Job matching apps. Those pure players that dominate the industry usually take the shape of job listing boards sometimes with advanced research features. (see Benchmark) 
+The goal is therefore to create an app that deviates from the conventional job matching apps. Those pure players that dominate the industry usually take the shape of a job listing board, sometimes with advanced research features. [See benchmark](#1-benchmark-of-traditional-recruitment-platforms)
 
 The project brief mentions that one of the main points that we should tackle with this project is to give the candidates the ability to express themselves in an authentic manner, without revealing any personally identifiable information (PII), to avoid discrimination based on their gender, age, origin etc. 
 
-All in all, the customer has remained vague on may implementation details which gives us a lot of creative freedom, you can however, review the entire project brief following this link 
+All in all, the customer has remained vague on many implementation details which gives us a lot of creative freedom. You may, however, review the entire project brief following this link [this link](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/Documents/img/2023-2024%20Project%205%20Adopt%20a%20Candidate.pdf).
 
-Finally, the technology to meet the multi-device requirement has already been chosen by the project overseer, Franck JEANNIN. It is going to be developed in Flutter, which is a framework maintained by google that allows fast paced multi-device devlopment with a single codebase. 
+Finally, the technology to meet the multi-device requirement has already been chosen by the project overseer, Franck JEANNIN. It is going to be developed in Flutter, which is a framework maintained by Google that allows fast paced multi-device development with a single codebase. 
 
 ### c) Scope
 
 | In Scope |
 |---|
 | Delivering a single codebase multi-platorm (iOS, Android, Web) MVP |
-| Focusing on exploration of novel features |
+| Focusing on the exploration of novel features |
 | Anonymisation of candidates |
-| Matching Candidates with companies |
-| Allowing both candidates and companies express themselves with elaborate profiles and user generated content |
+| Matching candidates with companies |
+| Allowing both candidates and companies to express themselves with elaborate profiles and user generated content |
 | Delivering the project with a custom-made brand identity |
 | Support different recruitment scenarios: some recruitment can be done through messaging, some needs an actual appointment to proceed |
 | Focus the app on matching the soft skills both required by the company and soft-skills entered by candidates |
-| Create/Ideate a platform that has to potential to reach a global market |
+| Create/Ideate a platform that has the potential to reach a global market |
 | Conducting UX research on analysing trends and competition. |
 
 
@@ -156,8 +156,8 @@ Finally, the technology to meet the multi-device requirement has already been ch
 |---|
 | Delivering a production-ready product |
 | Making another "Pure Player" Job board |
-| Including Personally Identifiable Information (PII) of Candidates in the app. |
-| Focusing on Diplomas and Professional Experience |
+| Including Personally Identifiable Information (PII) of candidates in the app. |
+| Focusing on diplomas and professional experience |
 | Creating a full-fledged employee/applicant/talent tracking/application system |
 | Conducting actual user research to discover features, as the client advised us not to. |
 
@@ -180,7 +180,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ### a) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
 
-The 2000s saw the rise of web-based technologies, which created new ways to connect recruiters and candidates, while more niche platform emerged as well, such as Stack Overflow for developers and Behance for creative professionals. 
+The 2000s saw the rise of web-based technologies, which created new ways to connect recruiters and candidates, while more niche platforms emerged as well, such as Stack Overflow for developers and Behance for creative professionals. 
 
 The following years, up until the 2010s saw platforms integrating more sophisticated technologies such as AI, matching algorithms, and machine learning, while Linkedin famously rolled out its skills and endorsements feature, which paved the way for third-party (peer to peer) verification. 
 
@@ -194,7 +194,7 @@ In 2020, the Covid-19 event accelerated the adoption of remote work and demand f
 
 This was followed by a phenomenon called the great resignation which spread worldwide, and which saw a significant shift in job seekers' priorities, with increased emphasis on work-life balance, mental health and job satisfaction. 
 
-Today, as AI and machine learning continue to evolve, with recruitment platforms offering more personalised and efficient job matching. Employer branding remains crucial, with a strong focus on diversity, equity, and inclusion. Job seekers value career development, continuous learning, and a positive company culture more than ever. 
+Today, AI and machine learning continue to evolve, with recruitment platforms offering more personalised and efficient job matching. Employer branding remains crucial, with a strong focus on diversity, equity, and inclusion. Job seekers value career development, continuous learning, and a positive company culture more than ever. 
 
 It is exactly in the continuity of this history that "Adopte un Candidat" aims to find its place. 
 
@@ -205,13 +205,13 @@ Sources:
 
 ### b) Benchmark
 
-The Job Recruitment platform market is a very competitive market with many actors ranging from pure players to more niche ones. 
+The Job Recruitment platforms market is a very competitive market with many actors ranging from pure players to more niche ones. 
 
 In order to come up with feature ideas for the product and try to understand which feature belongs to which usage/type of user, we will have to conduct a simple benchmark of existing solutions, from a UX perspective (we are interested in features more so than key business indicators). 
 
 #### 1) Traditional Solutions
 
-Here is a list of all the observed companies:  <THE LINK>
+Here is a list of all the observed companies: [click here](#1-benchmark-of-traditional-recruitment-platforms)
 
 What can be drawn from this research is that the market is segmented in three main categories: 
 
@@ -219,25 +219,26 @@ What can be drawn from this research is that the market is segmented in three ma
 
 - Professional Networking Sites, which are platforms that focus on building professional relationships and networks, often including job listings and career development tools.
 
-- Niche Job Sites, which specialised job platforms catering to specific industries, job types, or demographics, offering tailored job listings and industry-specific resources.
+- Niche Job Sites, which are specialised job platforms catering to specific industries, job types, or demographics, offering tailored job listings and industry-specific resources.
 
 In terms of demographics, we can see that there are patterns for each category, such as job boards being the most all-encompassing platforms in terms of age, professional networking sites often targeting mid-career professionals and niche sites, depending, well... on the niche. 
 
 From this information we can already make the hypothesis that our app should probably be closer to a job board than to the other categories in terms of feature set, if it were to go global and reach most age ranges. 
 
 > [!NOTE]
-> While many sources declare that soft skills are the future of employment and that they might as well be more important than "hard skills", it is hard to find competitors that capitalise completely on soft skills, the way the customer expects us to do so.
+> While many sources declare that soft skills are the future of employment and that they might as well be more important than "hard skills", it is hard to find global competitors that capitalise completely on soft skills, the way the customer expects us to do so.
 
 Sources: 
 - https://www.adecco.lu/en-gb/job-seeker-tips/soft-skills
 - https://blog.openclassrooms.com/en/2019/01/31/showing-off-your-soft-skills-the-modern-way-to-land-a-job/
 - https://blog.hunteed.com/en/soft-skills-recruitment
 
-There are multiple reasons for this, such as: 
+There could be multiple reasons for this, such as: 
 - Historical focus on "hard skills", as recruitment has focused on qualifications, experience, and hard skills because these are easier to quantify and standardise.
 
 - Ease of quantification, as "hard skills" are easier to measure and verify. For example, programming languages, certifications, and degrees have clear benchmarks.
-Technology limitations, as gathering reliable data on soft skills is challenging. Interviews, references, and behavioural assessments are not easily quantifiable in the same way as hard skills.
+
+- Technology limitations, as gathering reliable data on soft skills is challenging. Interviews, references, and behavioural assessments are not easily quantifiable in the same way as hard skills.
 
 #### 2) Emerging Solutions
 
@@ -245,7 +246,7 @@ However, this doesn't mean that a solution that fulfils our criteria doesn't exi
 
 Indeed, some platforms actually combine novel mechanisms, such as artificial intelligence, neuroscience and gamification to evaluate candidates. 
 
-Here is a list of observed companies: <THE LINK> 
+Here is a list of observed companies: [Click Here](#2-benchmark-of-novel-recruitment-platforms)
 
 The novel features from those modern-day platforms can be split into two categories: 
 
@@ -375,7 +376,7 @@ We can also add other features that revolve around the aggregation of a lot of r
 
 Finally, it might be interesting to mention that the use of complete anonymisation of candidates has been found in several—but few, roughly 4% of all observed—platforms either through interviews analysed by AI, or by psychometric/game profiles. 
 
-Those *seem* to be the only tools that allow for quality profiles to be anonymous.
+Those *seem* to be the only tools that allow for qualitative profiles to remain anonymous.
 
 ## 2) Personae
 
@@ -395,7 +396,7 @@ The personae will be split into two categories:
 
 #### 1) Entry-level Job Seekers
 
-| **Persona** | <INSERT PHOTO HERE> |
+| **Persona** | ![Image of an entry-level job seeker](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/entryLevelJobSeeker.jpeg) |
 |---|---|
 | **Demographics** | Recent graduates, interns, or individuals with 0-2 years of work experience. |
 | **Goals** | Securing their first job or internship, gaining experience, building a professional network, and learning industry skills. |
@@ -407,7 +408,7 @@ The personae will be split into two categories:
 
 #### 2) Mid-Career Professionals
 
-| **Persona** | <INSERT IMAGE HERE> |
+| **Persona** | ![Image of a mid-career professional](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/midCareerPro.jpeg) |
 |---|---|
 | **Demographics** | Individuals with 3-10 years of work experience looking to advance or pivot their careers. |
 | **Goals** | Seeking career advancement, higher salaries, better work-life balance, or transitioning to a new industry or role. |
@@ -419,7 +420,7 @@ The personae will be split into two categories:
 
 #### 3) Senior-level and executive job seekers
 
-| **Persona** | <INSERT IMAGE HERE> |
+| **Persona** | ![Image of a senior-level candidate](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executiveJobCandidate.jpeg) |
 |---|---|
 | **Demographics** | Individuals with over 10 years of experience, including managers, directors, executives, and seasoned professionals. |
 | **Goals** | Seeking leadership positions, career fulfillment, strategic roles, or consulting opportunities. |
@@ -432,7 +433,7 @@ The personae will be split into two categories:
 ### b) Recruiters
 #### 1) In-house recruiters
 
-| **Persona** | <INSERT IMAGE HERE> |
+| **Persona** | ![Image of a team of in-house recruiters](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/inhouseRecruiter.jpg) |
 |---|---|
 | **Demographics** | Recruiters working within a company's HR department, focused on internal hiring. |
 | **Goals** | Finding the best talent for the company, maintaining employer branding, managing the recruitment process. |
@@ -444,7 +445,7 @@ The personae will be split into two categories:
 
 #### 2) Agency Recruiters
 
-| **Persona** | <INSERT IMAGE HERE> |
+| **Persona** | ![Image of an agency recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/agencyRecruiters.jpeg) |
 |---|---|
 | **Demographics** | Recruiters working for staffing agencies or recruitment firms, serving multiple clients. |
 | **Goals** | Filling positions for various clients, matching candidates to roles, managing multiple job openings. |
@@ -456,7 +457,7 @@ The personae will be split into two categories:
 
 #### 3) Executive Recruiters
 
-| Persona | <INSERT IMAGE HERE> |
+| Persona | ![Image of an executive recruiter](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/executivesRecruiter.jpeg) |
 |---|---|
 | **Demographics** | Specialized recruiters focused on filling high-level executive positions, often on a retained search basis. |
 | **Goals** | Identifying and attracting top executive talent, conducting thorough vetting, managing discreet and high-stakes searches. |
@@ -563,7 +564,7 @@ We have plotted all the previous mentioned features—on an admittedly hard-to-r
 Our capacities correspond to any feature ranging from low to medium effort, with the desire to have low to high impact features to create a successful MVP.
 
 > [!IMPORTANT]
-> The effort estimations have been done by an artificial intelligence, considering a team of 3 full-time developers, including an machine learning engineer and two full-stack devs, which has been validated by the customer.
+> The effort estimations have been done by an artificial intelligence, considering a team of 3 full-time developers, including a machine learning engineer and two full-stack devs, which has been validated by the customer.
 
 This leaves us with the following features:
 
@@ -839,7 +840,7 @@ There are three of them:
 
 As the product targets a global market with wide demographics ranges, we must ensure that the product is usable.
 
-Unfortunately the customer didn't approve our request to develop the product with its existing users, making user-centered design a bit more complicated in our time frame.
+Unfortunately the customer didn't approve our request to develop the product with their existing users, making user-centered design a bit more complicated in our time frame.
 
 However, some steps have been and will be taken to mitigate this potential usability issue:
 
@@ -847,14 +848,14 @@ However, some steps have been and will be taken to mitigate this potential usabi
 - Making the design consistent through the use of design systems
 - Preventing frustration by optimising loading times.
 - Minimalistic design, using whitespace to improve readability and to help focus on essential features and functions
-- Accessibility, described in <LINK TO ACCESSIBILITY>
+- Accessibility, as described [here](#4-accessibility).
 - Onboarding tutorials, to make sure every user is on the same page
 - Clear online documentation, thanks to the user manual.
 
 ## 2) Accuracy
 
 Accuracy of the matching algorithm will be crucial for the success of the product.
-The following outlines the strategies used to collect insights about the performance of the algorithm and iterate on it.
+The following outlines the strategies used to collect insights about the performance of the algorithm and to iterate on it.
 
 ### a)  Precision and Recall
 
@@ -942,7 +943,7 @@ As of now, only color-blindness and visual impairment have been taken into consi
 
 This former has been mitigated by using an app named Daltonize Me to simulate all the variations of color-blindness and ensure that no element of the design depended purely on color perception.
 
-The latter consisted of using the alt properties of images to enable text to speech to describe them with more ease.
+The latter consisted of using the `alt` properties of images to enable text to speech to describe them with more ease.
 
 ## 5) Compliance
 
