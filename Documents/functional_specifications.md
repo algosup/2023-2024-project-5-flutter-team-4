@@ -1061,3 +1061,5 @@ The product will have to include French and English languages for the minimum vi
 | Thymometrics | United Kingdom | Employee Engagement Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2013 |
 | Clearfit | Canada | Predictive Analytics Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2006 |
 | Vervoe | Australia | AI-based Skills Assessment Platform | Full-time, part-time, contract-based | Primarily 25-54 | Yes | 2016 |
+
+<div align="right"><a href="#-functional-specifications"><img src="/Documents/img/back.png" width="75px"></a></div>
