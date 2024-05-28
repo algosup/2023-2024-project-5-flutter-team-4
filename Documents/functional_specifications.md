@@ -128,7 +128,7 @@ The exact brief for the project is:
 
 > *Adopte Un Candidat is a « Tinder style » recruitment application that matches companies with jobseekers in a different way. The app will need to be available on phone, tablet and computer.*
 
-The goal is therefore to create an app that deviates from the conventional job matching apps. Those pure players that dominate the industry usually take the shape of a job listing board, sometimes with advanced research features. [See benchmark](#1-benchmark-of-traditional-recruitment-platforms)
+The goal is therefore to create an app that deviates from the conventional job matching apps. Those pure players that dominate the industry usually take the shape of a job listing board, sometimes with advanced research features. [See benchmark](#61-benchmark-of-traditional-recruitment-platforms)
 
 The project brief mentions that one of the main points that we should tackle with this project is to give the candidates the ability to express themselves in an authentic manner, without revealing any personally identifiable information (PII), to avoid discrimination based on their gender, age, origin etc. 
 
@@ -175,7 +175,7 @@ Finally, the technology to meet the multi-device requirement has already been ch
 ## 3.1) What are Job Dating apps?
 
 >[!NOTE]
->This section is important to justify the decisions that were made, but you may skip the story to [Personae](#2-personae), or to [Minimum Viable Product](#4-minimum-viable-product) if you are only interested about the implementation.
+>This section is important to justify the decisions that were made, but you may skip the story to [Personae](#32-personae), or to [Minimum Viable Product](#3324-minimum-viable-product) if you are only interested about the implementation.
 
 ### 3.1.1) History/Context
 The job recruitment market has been around since the 1990s, where forums and Bulletin Board Systems (BBS) saw the emergence of many job offers, most notably for IT positions. In 1994/1995, Monster.com and CareerBuilder emerged, pioneering many of the base concepts that would build the basis of online job listings. 
@@ -211,7 +211,7 @@ In order to come up with feature ideas for the product and try to understand whi
 
 #### 3.1.2.1) Traditional Solutions
 
-Here is a list of all the observed companies: [click here](#1-benchmark-of-traditional-recruitment-platforms)
+Here is a list of all the observed companies: [click here](#61-benchmark-of-traditional-recruitment-platforms)
 
 What can be drawn from this research is that the market is segmented in three main categories: 
 
@@ -246,7 +246,7 @@ However, this doesn't mean that a solution that fulfils our criteria doesn't exi
 
 Indeed, some platforms actually combine novel mechanisms, such as artificial intelligence, neuroscience and gamification to evaluate candidates. 
 
-Here is a list of observed companies: [Click Here](#2-benchmark-of-novel-recruitment-platforms)
+Here is a list of observed companies: [Click Here](#62-benchmark-of-novel-recruitment-platforms)
 
 The novel features from those modern-day platforms can be split into two categories: 
 
@@ -848,7 +848,7 @@ However, some steps have been and will be taken to mitigate this potential usabi
 - Making the design consistent through the use of design systems
 - Preventing frustration by optimising loading times.
 - Minimalistic design, using whitespace to improve readability and to help focus on essential features and functions
-- Accessibility, as described [here](#4-accessibility).
+- Accessibility, as described [here](#54-accessibility).
 - Onboarding tutorials, to make sure every user is on the same page
 - Clear online documentation, thanks to the user manual.
 
