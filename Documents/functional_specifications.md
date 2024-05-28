@@ -433,7 +433,7 @@ The personae will be split into two categories:
 ### 3.2.2) Recruiters
 #### 3.2.2.1) In-house recruiters
 
-| **Persona** | ![Image of a team of in-house recruiters](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/87b890af7a550bd163bde8fae7523363b667dde1/Documents/img/inhouseRecruiter.jpg) |
+| **Persona** | ![Image of a team of in-house recruiters](../img/inhouseRecruiter.jpg) |
 |---|---|
 | **Demographics** | Recruiters working within a company's HR department, focused on internal hiring. |
 | **Goals** | Finding the best talent for the company, maintaining employer branding, managing the recruitment process. |
