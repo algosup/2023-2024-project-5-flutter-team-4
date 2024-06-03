@@ -19,10 +19,10 @@ ___
     - [2.1.1 Out of scope](#211-out-of-scope)
   - [2.2 Unit Tests](#22-unit-tests)
   - [2.3 Testing structure](#23-testing-structure)
-  - [2.4 Tests](#24-tests)
-    - [2.4.1 Basic functions](#241-basic-functions)
-    - [2.4.2 Candidate features](#242-candidate-features)
-- [6. Test reports](#6-test-reports)
+  - [2.4 Test list](#24-test-list)
+    - [2.4.1 Must features](#241-must-features)
+    - [2.4.2 Should features](#242-should-features)
+  - [2.5 Test sessions](#25-test-sessions)
 
 
 </details>
@@ -78,27 +78,36 @@ Each test contains multiple components presented as these:
 | ------- | -------------------- | --------------------------------- | ----------------------------------------------- |
 | 00      | The name of the test | A description of what is expected | 🟢 if the test succeeds <br> 🔴 if the test fails |
 
-### 2.4 Tests
+### 2.4 Test list
 
-#### 2.4.1 Basic functions
+Multiple features are desired for the accomplishment of this project. The following features are considered as the features to be tested at the highest priority after each modification of the application.
 
-| Function          | Expected result                                                                                      | Importance |
-| ----------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
-| Open the app      | The app should open when tapping on the icon                                                         | High       |
-| Create an account | A user should be able to create ab account and configure it.<br>Either as a candidate or a recruiter | High       |
-| authenticate      | A user should be able to authenticate.<br>Either as a candidate or a recruiter                       | High       |
-| Change screen     | The app should change the content displayed when navigating with the navigation bar                  | High       |
-| Modify settings   | A user should be able to modify the app's settings and keep the changes after closing the app        | Low        |
+#### 2.4.1 Must features
 
-#### 2.4.2 Candidate features
+| Function                           | Expected result                                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Open the app                       | The app must open when tapping on the icon                                                                             |
+| Create an account                  | A user must be able to create an account and configure it.<br>Either as a candidate or a recruiter                     |
+| Authenticate                       | A user must be able to authenticate.<br>Either as a candidate or a recruiter                                           |
+| Notifications                      | Candidates and recruiters must be able to receive notifications from new job offers or matches                         |
+| Modify settings                    | A user must be able to modify the app's settings and keep the changes after closing the app                            |
+| Filtering                          | A recruiter/candidate must be able to filter candidates/companies.<br>Either by locations, name, etc                   |
+| Match                              | A recruiter/candidate must be able to match with a candidate/company by swiping to the right                           |
+| Refuse                             | A recruiter/candidate must be able to  match refuse a candidate/job offer by swiping to the left                       |
+| See details                        | A recruiter/candidate must be able to see a candidate's/recruiter's details                                            |
+| Company/candidate insights         | A recruiter or candidate must be able to create their own personalized description to attract new candidates/companies |
+| Professional development resources | Courses can be watched by candidate to improve their score                                                             |
+| Video stories                      | A candidate must be able to explain who they are in a short audio for recruiters to listen to                          |
+| Anonymous                          | All candidates must remain anonymous.                                                                                  |
 
-| Function     | Expected result                                                                   | Importance |
-| ------------ | --------------------------------------------------------------------------------- | ---------- |
-| Filtering    | A candidate should be able to filter companies.<br>Either by locations, name, etc | Medium     |
-| Match        | A candidate should be able to see match with a company                            | High       |
-| See details  | A candidate should be able to see at companies' details                           | High       |
-| See profiles | A candidate should be able to see at companies' details                           | High       |
+#### 2.4.2 Should features
+| Function                         | Expected result                                                                                                                                       |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Candidate Persona Development    | A candidate may be able to add their evolution in their professional life (e.g: started as a customer service employee to developer with given dates) |
+| AI-powered description generator | An AI may be usable by users  to generate their description                                                                                           |
 
-## 6. Test reports
+### 2.5 Test sessions
+
+Due to the project's goal to create a mockup application automated tests are not suited for it.  
 
 
