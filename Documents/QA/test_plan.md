@@ -23,6 +23,8 @@ ___
     - [2.4.1 Must features](#241-must-features)
     - [2.4.2 Should features](#242-should-features)
   - [2.5 Test sessions](#25-test-sessions)
+    - [2.5.1 Smoke testing](#251-smoke-testing)
+    - [2.5.2 Beta testing](#252-beta-testing)
 
 
 </details>
@@ -108,6 +110,54 @@ Multiple features are desired for the accomplishment of this project. The follow
 
 ### 2.5 Test sessions
 
-Due to the project's goal to create a mockup application automated tests are not suited for it.  
+Due to the project's goal to create a mockup application, automated tests are not suited for this project. Therefore manual tests are the most suited tests. Moreover, to ensure a high-quality and user-friendly product, both [smoke testing](#251-smoke-testing) and [beta testing](#251-beta-testing) will be performed.
 
+Apart from unit tests, which will be created alongside the code, and documentation review, tests will be performed after each push into the main or release.
+
+#### 2.5.1 Smoke testing
+
+A session of smoke testing will be composed of a tester, who is in most cases the QA of the team, a computer, either a MacOS or a Lenovo computer provided by ALGOSUP and at least one mobile phone, either Android or IOS.
+
+<h5>Scopes</h5>
+
+The scopes of smoke testing are the following:
+
+- **App launch**: Ensure the app can launch without critical errors or crashes.
+- **Login**: Ensure the user can log in either as a candidate or recruiter and redirect to the corresponding pages.
+- **Interactions**: Ensure the user can interact with the app, by navigating through the different pages or modifying content, visual or audio feedback is expected for each interaction.
+- **Matching system**: Ensure the matching system is correctly working and allows the candidate and the recruiter to chat/set up a date for an interview.
+- **Account management**: Ensure users can manage their account: create, edit, log in/out, delete or even ask for logs.
+
+<h5>Procedure</h5>
+
+The smoke testing sessions will follow these precise steps:
+
+- **Download**: Download the latest release or main version.
+- **Test**: Test cases defined in the "[Test cases]()" document. Tests that have already been tested shall be tested again to ensure no errors break the previously working part of the code.
+- **Report**: Report the results of the multiple tests in this [Google sheet]() and create an issue for each bug found during the tests.
+
+#### 2.5.2 Beta testing
+
+A session of beta testing will be composed of a user, picked either from or outside of ALGOSUP, and the QA of the team. The device used for testing the project will be chosen by the user, regardless of the team members' devices used until this moment.
+
+<h5>Scopes</h5>
+
+Along with the previous scopes mentioned in [smoke testing](), the scopes of the beta testing are the following:
+
+- **User interface**: Ensure the interface is simple enough to be understood without external help.
+- **Feedback**: Retrieve feedback from end users.
+
+<h5>Procedure</h5>
+
+The beta testing sessions will follow these precise steps:
+
+- **User**: Find a user, either picked randomly on the spot or selected previously, with their consent. The project must be explained to the user as to: what is the project, its goal and in what circumstance the app is planned to be used.
+- **Choose a device**: Ask the user which device they would prefer using, it can be a mobile phone (Android or IOS) or a computer.
+- **Download**: Download the application either from Github, the Apple App Store or Google Play, depending on the chosen device and the current availability of the application.
+- **Test**: Let the user create an account or log in to a test account and use the app. The user should use the app without advice or instructions given by the QA.
+- **Report**: Report the multiple data that can be retrieved from the test in this [Google sheet]():
+  - The duration of the test,
+  - The user journey,
+  - The multiple feedback throughout the whole test.
+- **Issue reports**: If necessary create an issue about a bug encountered during the test.
 
