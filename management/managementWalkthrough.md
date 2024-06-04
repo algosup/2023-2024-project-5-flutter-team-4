@@ -49,7 +49,7 @@ The RACI Matrix is a tool used to define roles and responsibilities for each tas
 
 ### 2.6. Risk Management
 
-Now that you are aware of the responsibilities of each team member, you should read the [Risk Management]() document. This document outlines the risks associated with the project and the mitigation strategies that have been put in place to address them.
+Now that you are aware of the responsibilities of each team member, you should read the [Risk Management](https://docs.google.com/spreadsheets/d/13ppuQtH63KG5h03xVnGx2j9pGNSQNAlM/edit?usp=sharing&ouid=117083838720275060736&rtpof=true&sd=true) document. This document outlines the risks associated with the project and the mitigation strategies that have been put in place to address them.
 
 ### 2.7. Weekly Reports
 
