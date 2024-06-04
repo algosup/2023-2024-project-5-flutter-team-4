@@ -13,6 +13,8 @@ dependencies:
   timeline_tile: ^2.0.0
   dotted_border: ^2.1.0
 
+  dash_chat_2: ^0.0.18
+  chat_gpt_sdk: ^2.2.5
 
 
   flutter:
