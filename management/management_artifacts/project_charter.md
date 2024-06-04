@@ -78,7 +78,7 @@ The project stakeholders are as follows:
 
 ### Reponsabilities
 
-You fill find the RACI matrix [here](management/management_artifacts/RACI_Matrix.pdf).
+You fill find the RACI matrix [here](https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/management/management_artifacts/RACI_Matrix.pdf).
 
 ### Risks and mitigation strategies
 
