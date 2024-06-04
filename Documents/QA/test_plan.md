@@ -25,6 +25,9 @@ ___
   - [2.5 Test sessions](#25-test-sessions)
     - [2.5.1 Smoke testing](#251-smoke-testing)
     - [2.5.2 Beta testing](#252-beta-testing)
+  - [2.6 Tools](#26-tools)
+    - [2.6.1 Github issues](#261-github-issues)
+    - [2.6.2 Google sheet](#262-google-sheet)
 
 
 </details>
@@ -97,7 +100,7 @@ Multiple features are desired for the accomplishment of this project. The follow
 | Match                              | A recruiter/candidate must be able to match with a candidate/company by swiping to the right                           |
 | Refuse                             | A recruiter/candidate must be able to  match refuse a candidate/job offer by swiping to the left                       |
 | See details                        | A recruiter/candidate must be able to see a candidate's/recruiter's details                                            |
-| Company/candidate insights         | A recruiter or candidate must be able to create their own personalized description to attract new candidates/companies |
+| Company/candidate insights         | A recruiter or candidate must be able to create their own personalised description to attract new candidates/companies |
 | Professional development resources | Courses can be watched by candidate to improve their score                                                             |
 | Video stories                      | A candidate must be able to explain who they are in a short audio for recruiters to listen to                          |
 | Anonymous                          | All candidates must remain anonymous.                                                                                  |
@@ -161,3 +164,124 @@ The beta testing sessions will follow these precise steps:
   - The multiple feedback throughout the whole test.
 - **Issue reports**: If necessary create an issue about a bug encountered during the test.
 
+As previously mentioned, user consent is of utmost importance during this test. Users may decline to participate or withdraw at any time if they choose to do so.
+
+### 2.6 Tools
+
+#### 2.6.1 Github issues
+
+As we are using GitHub to work on the current project we can use it to archive the multiple bug reports and access them freely to read or update them at any given point. 
+
+One of the features we can use with the GitHub issues is the use of templates. This feature allows us to standardise the flow of information. Finally, each issue is assigned to the person responsible for fixing the issue.
+
+Here are the two different templates for this project:
+
+A template when bugs are found:
+
+![bug template](../img/bug_template.png)
+
+A template if a document has a typographical error, or cannot be understood correctly:
+
+![document template](../img/document_template.png)
+
+
+<h3>Examples</h3>
+
+<h4>Bugs issues's template</h4>
+
+<h5>Expected behavior</h5>
+
+  ``` 
+  When the icon of the application is tapped, it should open the application.
+  ```
+<h5>Current behavior</h5>
+
+  ``` 
+  When the icon of the application is tapped, only a white screen appears and the application closes itself approximatively 5 seconds after the start.
+  ```
+<h5>Steps to reproduce</h5>
+
+  ``` 
+  - Download the application on an Android phone.
+  - When installed, try opening the app by tapping on the icon.
+  - Wait a few seconds
+  ```
+<h5>Screenshot</h5>
+
+  *To add an image, just drag & drop the image on the input field*
+  ``` 
+  None
+  ```
+<h5>Test environment</h5>
+
+  ``` 
+  Android phone v14.0
+  ```
+<h5>Additional context/description</h5>
+
+  ``` 
+  None
+  ```
+<h5>Possible implementation</h5>
+
+  ``` 
+  None
+  ```
+
+<h4>Documents issues' template</h4>
+
+
+Documents' issues have to be written in this specific way:
+
+  <h5>Typographical mistakes</h5>
+
+  ``` 
+  - line 00: there is a typographical **mistak**
+  ```
+
+  <h5>Corrections</h5>
+
+  ``` 
+  -[] line 00: there is a typographical **mistake**
+  ```
+  <h5>Suggestions</h5>
+
+  ```
+  - line 10: the sentence is strangely worded
+  ```
+
+Here is an example of how document templates should be written:
+
+![document example](../img/document_template_example.png)
+
+Here is a preview of the example:
+
+![document preview](../img/document_template_preview.png)
+
+<h3>Tags</h3>
+
+The issues also come with tags, tags are used to sort and quickly identify in what category a bug is contained, we currently have two major tags:
+
+- Documents
+- Bugs
+
+The bugs contain a second set of tags which determine the priority:
+- High
+- Medium
+- Low
+
+#### 2.6.2 Google sheet
+ 
+The [test cases]() and [test report]() are pages of a Google sheet allowing the QA of the team to archive every test case performed in previous sessions.
+
+<h4>test cases</h4>
+
+**Structure**
+
+- ID: A unique number starting from 00.
+- Name: The name of each test case.
+- Description: A short description of the test case.
+- Steps to proceed: Steps to proceed with the test.
+- Expected behavior: The behavior expected.
+- Test result: The resulting behavior.
+- Status: The current status of the test is either Not tested, Failed or Success.
