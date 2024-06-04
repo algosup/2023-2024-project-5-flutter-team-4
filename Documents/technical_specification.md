@@ -194,7 +194,7 @@ The development language used is [Flutter](https://docs.flutter.dev)[^3].
 
 #### D. Contraints
 
-The first constraints that we have on this project is total creative freedom. It's really complexe to work on an ideadefine by the client without base/visual of what they expected with precision.
+The first constraints that we have on this project is total creative freedom. It's really complexe to work on an idea define by the client without base/visual of what they expected with precision.
 
 #### E. Risks and assumptions
 
@@ -286,7 +286,8 @@ The Flutter language has certain conventions that must be respected, which are d
 
 #### A. Cost estimate
 
-We have defined an hourly working time of 59.5 hours. This forecast does not include overtime.
+We have defined an hourly working time of 59.5 hours. This forecast doesn't include overtime.
+For the manufacture of the product, it's important to take into account the cost of the host to put the application online and the cloud to back up the data.
 
 #### B. Performance
 
