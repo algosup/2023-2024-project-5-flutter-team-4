@@ -59,12 +59,12 @@ The team is composed of the following members:
 
 | Role | Name | Image | Contact |
 | ------ | ---------------- | ---------------- | ---------------- |
-| Project Manager | Victor LEROY | victor.leroy@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/victor.png" width="100" height="100" /> |
-| Program Manager | Mathis KAKAL | mathis.kakal@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/mathis.png" width="100" height="100" />
-| Technical Leader | Grégory PAGNOUX | gregory.pagnoux@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/gregory.png" width="100" height="100" /> |
-| Software Engineer | Laurent BOUQUIN | laurent.bouquin@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/laurent.png" width="100" height="100" /> |
-| Quality Assurance | Aurélien FERNANDEZ | aurelien.fernandez@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/aurelien.png" width="100" height="100" /> |
-| Techincal Writer | Benoît de Keyn | benoit.dekeyn@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/Management/pictures/benoit.png" width="100" height="100" /> |
+| Project Manager | Victor LEROY | victor.leroy@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/victor.png" width="100" height="100" /> |
+| Program Manager | Mathis KAKAL | mathis.kakal@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/mathis.png" width="100" height="100" />
+| Technical Leader | Grégory PAGNOUX | gregory.pagnoux@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/gregory.png" width="100" height="100" /> |
+| Software Engineer | Laurent BOUQUIN | laurent.bouquin@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/laurent.png" width="100" height="100" /> |
+| Quality Assurance | Aurélien FERNANDEZ | aurelien.fernandez@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/aurelien.png" width="100" height="100" /> |
+| Techincal Writer | Benoît de Keyn | benoit.dekeyn@algosup.com | <img src="https://github.com/algosup/2023-2024-project-5-flutter-team-4/blob/main/pictures/benoit.png" width="100" height="100" /> |
 
 ### Project stakeholders
 
