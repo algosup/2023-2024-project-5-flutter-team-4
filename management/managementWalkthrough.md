@@ -23,7 +23,7 @@ This document is a walkthrough of the management artifacts of the project. It wi
 
 ## 1. GitHub Management
 
-We use GitHub as a common platform for our project, we decided to use it for management documents as well. [GitHub Issues]() will be used to track tasks and bugs, [GitHub Projects]() will be used to manage the project and see the tasks timeline.
+We use GitHub as a common platform for our project, we decided to use it for management documents as well. [GitHub Issues](https://github.com/algosup/2023-2024-project-5-flutter-team-4/issues) will be used to track tasks and bugs, [GitHub Projects](https://github.com/orgs/algosup/projects/34/views/1) will be used to manage the project and see the tasks timeline.
 
 ## 2. Recommended order to read the documents
 
