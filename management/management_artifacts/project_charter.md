@@ -1,7 +1,7 @@
 # Team 4 Project Charter
 
 <p align="center">
-Created by: Victor LEROY <br> Creation Date: 05/15/2024 <br> Last update: 05/16/2024
+Created by: Victor LEROY <br> Creation Date: 05/15/2024 <br> Last update: 06/04/2024
 </p>
 
 <details>
@@ -78,11 +78,11 @@ The project stakeholders are as follows:
 
 ### Reponsabilities
 
-You fill find the RACI matrix [here]().
+You fill find the RACI matrix [here](management/management_artifacts/RACI_Matrix.pdf).
 
 ### Risks and mitigation strategies
 
-You will find the risk management plan [here]().
+You will find the risk management plan [here](https://docs.google.com/spreadsheets/d/13ppuQtH63KG5h03xVnGx2j9pGNSQNAlM/edit#gid=275150101).
 
 ### Constraints
 
