@@ -27,16 +27,16 @@ class _ChartPageState extends State<ChartPage> {
     var graph = [
       [0, 0, 0, 0, 0, 0, 0, 0],
     ];
-    final docRef = db.collection("Users").doc("0");
-    docRef.snapshots().listen(
-      (event) {
-        debugPrint("data: ${event.data()}");
-        for (int i = 0; i < 8; i++){
-          graph[0][i] = event.data()!['Graph'][i];
-        }
-      },
-      onError: (error) => debugPrint("Listen failed: $error"),
-    );
+    // final docRef = db.collection("Users").doc("0");
+    // docRef.snapshots().listen(
+    //   (event) {
+    //     debugPrint("data: ${event.data()}");
+    //     for (int i = 0; i < 8; i++){
+    //       graph[0][i] = event.data()!['Graph'][i];
+    //     }
+    //   },
+    //   onError: (error) => debugPrint("Listen failed: $error"),
+    // );
 
     darkMode =
         AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark ? true : false;

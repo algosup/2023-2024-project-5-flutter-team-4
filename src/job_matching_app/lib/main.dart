@@ -1,3 +1,5 @@
+
+
 // Main imports native from flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,14 +9,13 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 
 // Firebase imports
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'home/firebase_options.dart';
 
 // Pages imports
 import 'package:job_matching_app/connection_pages/connection_page.dart';
-import 'package:job_matching_app/home_page.dart';
-import 'package:job_matching_app/match_page.dart';
-import 'package:job_matching_app/profile_settings_page.dart';
-
+import 'package:job_matching_app/home/home_page.dart';
+import 'package:job_matching_app/match/match_page.dart';
+import 'package:job_matching_app/settings/profile_settings_page.dart';
 
 // Debug variable
 const bool DEBUG = true;
@@ -46,6 +47,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  
   @override
   // Main build function
   Widget build(BuildContext context) {
@@ -104,7 +106,23 @@ class RootPage extends StatefulWidget {
   State<RootPage> createState() => _RootPageState();
 }
 
+
+
+bool isCompanyView = false;
+
+
+
 class _RootPageState extends State<RootPage> {
+
+  
+@override
+  void initState() {
+    super.initState();
+    getSharedPreferences('isCompanyView').then((value) {
+      isCompanyView = value;
+    }).then((value) => setState(() {}));
+  }
+
 
   // Variables
   int currentPage = 0;

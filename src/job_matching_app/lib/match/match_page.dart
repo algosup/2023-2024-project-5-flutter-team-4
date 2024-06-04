@@ -3,8 +3,8 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:job_matching_app/candidate_details_page.dart';
-import 'package:job_matching_app/company_details_page.dart';
+import 'package:job_matching_app/match/candidate_details_page.dart';
+import 'package:job_matching_app/match/company_details_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,7 +23,8 @@ class _MatchPageState extends State<MatchPage> {
   List<int> ticks = [];
   List<String> features = [];
   bool useSides = true;
-  int ID = 0;
+  int indexOfIds = 0;
+  List<int> idList = [];
 
   @override
   void initState() {
@@ -35,7 +36,6 @@ class _MatchPageState extends State<MatchPage> {
     var db = FirebaseFirestore.instance;
 
     ticks = [
-      0,
       10,
       20,
       30,
@@ -49,31 +49,33 @@ class _MatchPageState extends State<MatchPage> {
       "EE",
       "FF",
       "GG",
-      "HH",
     ];
 
     data = [
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
     ];
+
+
 
     final  docRef = db.collection("Users");
     docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
-      debugPrint("legnth: ${querySnapshot.docs.length}");
+      // debugPrint("legnth: ${querySnapshot.docs.length}");
       data.clear();
       for (int i = 0; i < querySnapshot.docs.length; i++) {
-        data.add([0, 0, 0, 0, 0, 0, 0, 0]);
+        data.add([0, 0, 0, 0, 0, 0, 0]);
+        idList.add(querySnapshot.docs[i].data()['ID']);
         length = i + 1;
       }
       for (int j = 0; j < querySnapshot.docs.length; j++) {
-        debugPrint("data: ${querySnapshot.docs[j].data()}");
-        for (int i = 0; i < 8; i++) {
+        // debugPrint("data: ${querySnapshot.docs[j].data()}");
+        for (int i = 0; i < 7; i++) {
           data[j][i] = querySnapshot.docs[j].data()['Graph'][i];
         }
       }
-      debugPrint("data length: $length");
-      debugPrint("data content: $data");
+      // debugPrint("data length: $length");
+      // debugPrint("data content: $data");
     }).then((value) => setState(() {}));
   }
 
@@ -121,16 +123,20 @@ class _MatchPageState extends State<MatchPage> {
         ),
         cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
             cards[index],
+        onSwipe:(previousIndex, currentIndex, direction) {
+          indexOfIds = currentIndex!;
+          return true;
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute<void>(
+            MaterialPageRoute(
               builder: isCompanyView
-                  ? (BuildContext context) => const CandidateDetailsPage()
-                  : (BuildContext context) => CompanyDetailsPage(ID),
+                  ? (BuildContext context) => CandidateDetailsPage(id: idList[indexOfIds])
+                  : (BuildContext context) => CompanyDetailsPage(id: idList[indexOfIds]),
             ),
           );
         },

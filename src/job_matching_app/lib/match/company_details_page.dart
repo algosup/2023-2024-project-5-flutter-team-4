@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:job_matching_app/details_timeline_page.dart';
+import 'package:job_matching_app/match/details_timeline_page.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class CompanyDetailsPage extends StatefulWidget {
-  const CompanyDetailsPage(int id, {super.key});
+  const CompanyDetailsPage({super.key, required this.id});
+
+  final int id;
 
   @override
   State<CompanyDetailsPage> createState() => _CompanyDetailsPageState();
@@ -14,30 +16,11 @@ class CompanyDetailsPage extends StatefulWidget {
 
 class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
   late bool darkMode;
-
-  final List<int> ticks = [
-    25,
-    50,
-    75,
-    100,
-  ];
-
-  final List<String> features = [
-    "Similar \nExperiences",
-    "Senority",
-    "Required \nSkills",
-    "Education",
-    "Retention",
-    "Personalized \nCriteria",
-    "Industries",
-  ];
-
-  final List<List<double>> data = [
-    [100, 95, 98, 15, 75, 72, 60],
-  ];
+  var id;
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("CompanyDetailsPage");
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
     var mediaQuery = MediaQuery.sizeOf(context);
     LatLng position = LatLng(47.239576305730104, 2.0919235518778003);
@@ -45,10 +28,10 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Company Details'),
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
-        foregroundColor: Theme.of(context).colorScheme.secondary,
+        foregroundColor: Theme.of(context).colorScheme.tertiary,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -234,7 +217,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const DetailsTimeLinePage(),
+                            DetailsTimeLinePage(id: id),
                       ),
                     ),
                     child: ListView(
