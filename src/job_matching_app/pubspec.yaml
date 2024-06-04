@@ -38,3 +38,8 @@ flutter:
     - lib/assets/images/d_logo.png
     - lib/assets/json/users.json
     - lib/assets/json/recruiters.json
+    - lib/assets/images/one.png
+    - lib/assets/images/two.png
+    - lib/assets/images/three.png
+    - lib/assets/images/four.png
+    - lib/assets/images/five.png
