@@ -130,7 +130,7 @@ The scopes of smoke[^12] testing are the following:
 The smoke testing[^12] sessions will follow these precise steps:
 
 - **Download**: Download the latest release, main or dev version.
-- **Test**: Test the cases defined in the "[Test cases](https://docs.google.com/spreadsheets/d/120rxgt8Hd9536cIEwhTwKL6HWTVtzE1JTABL5F2K55A/edit?usp=sharing)" sheet. Tests that have already been tested shall be tested again to ensure no errors break the previously working part of the code.
+- **Test**: Test the cases defined in the "[Test cases](https://docs.google.com/spreadsheets/d/120rxgt8Hd9536cIEwhTwKL6HWTVtzE1JTABL5F2K55A/edit?usp=sharing)" sheet. Tests that have already been tested shall be tested again to ensure no errors break the previously working part of the code. Once a feature has been tested more than one time, only the date and the status of the last test shall be modified to avoid repetitive lines in the table.
 - **Report**: Report the results of the multiple tests in this [Google sheet](https://docs.google.com/spreadsheets/d/120rxgt8Hd9536cIEwhTwKL6HWTVtzE1JTABL5F2K55A/edit?hl=fr#gid=1501642177&range=B:B) and create an issue for each bug[^15] found during the tests.
 
 #### 2.4.2 Beta testing
@@ -286,7 +286,12 @@ The [test cases](https://docs.google.com/spreadsheets/d/120rxgt8Hd9536cIEwhTwKL6
 
 <h4>Reports</h4>
 
+
+**Test cases links**
+
 Each status, if failed or successful, can redirect to the corresponding test report which is on the second page, "test reports".
+
+![link example](../img/test_case_link.png)
 
 **Structure**
 
