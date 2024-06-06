@@ -272,7 +272,7 @@ The [test cases](https://docs.google.com/spreadsheets/d/120rxgt8Hd9536cIEwhTwKL6
 
 **Structure**
 
-- ID: A unique number starting from 0.
+- ID: A unique number starting from 1.
 - Name: The name of each test case.
 - Description: A short description of the test case.
 - Steps: Steps to proceed with the test.
@@ -290,7 +290,7 @@ Each status, if failed or successful, can redirect to the corresponding test rep
 
 **Structure**
 
-- ID: An ID starting from 0.
+- ID: An ID starting from 1.
 - Participants: The number of participants and their roles
 - Device: Specify the device used, including the model and operating system version. If the specific model and version are unknown, provide the operating system.
 - Description: A short description of the test.
