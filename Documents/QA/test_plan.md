@@ -298,6 +298,7 @@ Each status, if failed or successful, can redirect to the corresponding test rep
 - Expected result: the result that is expected at the end of the test.
 - Test result: The result at the end of the test.
 - Status: A status which is either: Failed or Successful.
+- Date: The date on which the test was performed, written in this format DD/MM//YYYY.
 
 **Example**
 
