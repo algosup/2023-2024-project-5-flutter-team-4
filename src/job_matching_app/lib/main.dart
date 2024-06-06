@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
 
       // Set the light and dark theme options
       light: ThemeData(
+        fontFamily: 'Raleway',
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 0, 0, 0),
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
         ),
       ), // Light Theme Options
       dark: ThemeData(
+        fontFamily: 'Raleway',
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 4, 82, 103),
@@ -143,6 +145,7 @@ class _RootPageState extends State<RootPage> {
       // Bottom navigation bar
       bottomNavigationBar: SafeArea(
         child: NavigationBar(
+
 
           // Set Colors
           backgroundColor: Theme.of(context).colorScheme.primary,

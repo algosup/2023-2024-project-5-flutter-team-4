@@ -148,6 +148,8 @@ class _MatchPageState extends State<MatchPage> {
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontSize: MediaQuery.of(context).size.width * 0.05,
+                          fontFamily: 'Shanti',
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

@@ -32,10 +32,20 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         automaticallyImplyLeading: true,
         foregroundColor: Theme.of(context).colorScheme.tertiary,
-        title: Text("More Settings",
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.tertiary,
-            )),
+        title: Center(
+          child: Container(
+            margin: const EdgeInsets.only(right: 50),
+            child: Text(
+              "More Settings",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.tertiary,
+                fontFamily: 'Shanti',
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -97,8 +107,6 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
     );
   }
 }
-
-
 
 Future<bool> getSharedPreferences(String key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();

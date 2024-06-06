@@ -24,6 +24,7 @@ dependencies:
   firebase_core: ^2.31.1
   cloud_firestore: ^4.17.4
   marquee: ^2.2.3
+  fluttericon: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -43,3 +44,22 @@ flutter:
     - lib/assets/images/three.png
     - lib/assets/images/four.png
     - lib/assets/images/five.png
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Italic.ttf
+          style: italic
+        - asset: fonts/Raleway-Bold.ttf
+    - family: Oxygen
+      fonts:
+        - asset: fonts/Oxygen-Regular.ttf
+        - asset: fonts/Oxygen-Light.ttf
+    - family: Shanti
+      fonts:
+        - asset: fonts/Shanti-Regular.ttf
+    - family: MontserratAlternates
+      fonts:
+        - asset: fonts/MontserratAlternates-Regular.ttf
+        - asset: fonts/MontserratAlternates-Italic.ttf
+          style: italic

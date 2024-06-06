@@ -343,6 +343,8 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                     color: Theme.of(context)
                         .colorScheme
                         .tertiary, // Color of the text
+                    fontFamily: 'Shanti',
+                    fontWeight: FontWeight.bold,
                     fontSize: 24), // Font size of the text
               ),
             ),
@@ -370,6 +372,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                                   : "Localisation non renseignée",
                               style: const TextStyle(
                                   color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 18), // Style of the text
                               blankSpace: 50.0, // Blank space of the text
                               velocity: 50.0 // Velocity of the text
@@ -411,7 +414,10 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   child: const Text(
                     "Profession actuelle",
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20), // Style of the text
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20), // Style of the text
                   ),
                 ),
 
@@ -454,7 +460,10 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   child: const Text(
                     "Description du candidat",
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20), // Style of the text
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20), // Style of the text
                   ),
                 ),
 
@@ -492,7 +501,10 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   child: const Text(
                     "Dates clés du candidat",
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20), // Style of the text
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20), // Style of the text
                   ),
                 ),
 
@@ -607,7 +619,10 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   child: const Text(
                     "Expériences professionnelles similaires",
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20), // Style of the text
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20), // Style of the text
                   ),
                 ),
 
@@ -666,7 +681,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Livres et films préférés",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
 
@@ -680,7 +699,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           margin: const EdgeInsets.only(left: 10, top: 20),
                           child: const Text(
                             "Livres",
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Oxygen',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                         if (books.isNotEmpty)
@@ -699,7 +722,9 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                           Container(
                             width: mediaQuery.width * 0.4,
                             margin: EdgeInsets.only(
-                                left: mediaQuery.width * 0.025, top: 20, right: mediaQuery.width * 0.025),
+                                left: mediaQuery.width * 0.025,
+                                top: 20,
+                                right: mediaQuery.width * 0.025),
                             child: const Text(
                               textAlign: TextAlign.center,
                               "Aucun livre n'a encore été ajouté.",
@@ -714,11 +739,16 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                       children: [
                         Container(
                           width: mediaQuery.width * 0.4,
-                          margin: EdgeInsets.only(left: mediaQuery.width * 0.025, top: 20),
+                          margin: EdgeInsets.only(
+                              left: mediaQuery.width * 0.025, top: 20),
                           child: const Text(
-                              textAlign: TextAlign.center,
+                            textAlign: TextAlign.center,
                             "Films",
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Oxygen',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                         if (movies.isNotEmpty)
@@ -733,13 +763,18 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                             )
                         else
                           Container(
-                              width: mediaQuery.width * 0.4,
-                              margin: EdgeInsets.only(left: mediaQuery.width * 0.05, top: 20, right: mediaQuery.width * 0.025),
-                              child: const Text(
+                            width: mediaQuery.width * 0.4,
+                            margin: EdgeInsets.only(
+                                left: mediaQuery.width * 0.05,
+                                top: 20,
+                                right: mediaQuery.width * 0.025),
+                            child: const Text(
                               textAlign: TextAlign.center,
-                            "Aucun film n'a encore été ajouté.",
-                            style: TextStyle(color: Colors.blue, fontSize: 15),
-                          ),),
+                              "Aucun film n'a encore été ajouté.",
+                              style:
+                                  TextStyle(color: Colors.blue, fontSize: 15),
+                            ),
+                          ),
                       ],
                     ),
                   ],
@@ -752,7 +787,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Certifications Obtenues",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
 
@@ -784,7 +823,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Avantages",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
                 Container(
@@ -830,7 +873,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Localisation de l'entreprise",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
                 Container(
@@ -879,7 +926,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: Text(
                     "Hobbies de $name",
-                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
 
@@ -911,7 +962,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: const Text(
                     "Témoignages D'entreprises",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
 
@@ -943,7 +998,11 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                   margin: const EdgeInsets.only(left: 10, top: 20),
                   child: Text(
                     "Note de $name",
-                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Oxygen',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
                 Row(
