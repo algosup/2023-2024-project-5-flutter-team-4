@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:job_matching_app/settings/more_settings_page.dart';
 
 import 'package:job_matching_app/settings/timeline_settings_page.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:flutter_geocoder/geocoder.dart';
 
 class ProfileSettingsPage extends StatefulWidget {
   const ProfileSettingsPage({super.key});
@@ -38,6 +41,7 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
             if (result.data()["Name"] != null) {
               name = result.data()["Name"];
             }
+            docName = result.id;
             break;
           }
         }
@@ -50,13 +54,14 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
         foregroundColor: Theme.of(context).colorScheme.tertiary,
         title: const Text("Your Profile",
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'Shanti',
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),
@@ -89,50 +94,116 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: TextFieldTapRegion(
-                onTapOutside: (PointerDownEvent) {
-                  FocusScope.of(context).unfocus();
-                },
-                child: TextField(
-                  controller: TextEditingController(
-                    text: name.isEmpty ? "" : name,
-                  ),
-                  onChanged: (value) => name = value,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Name',
-                    hintText: 'Enter your name',
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 169, 38, 135),
+                Color.fromARGB(255, 215, 0, 123),
+              ],
+            )),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: TextFieldTapRegion(
+                  onTapOutside: (PointerDownEvent) {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    controller: TextEditingController(
+                      text: name.isEmpty ? "" : name,
+                    ),
+                    onChanged: (value) => name = value,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Enter your name',
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(45.0),
-              ),
-              child: IconButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                        TimelineSettingsPage(id: ID),
-                  ),
+              Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.05),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(45.0),
                 ),
-                icon: const Icon(Icons.timeline_sharp),
+                child: IconButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) =>
+                          TimelineSettingsPage(id: ID),
+                    ),
+                  ),
+                  icon: const Icon(Icons.timeline_sharp),
+                ),
               ),
-            ),
-          ],
+              Row(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.05,
+                        left: MediaQuery.of(context).size.width * 0.1),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
+                    ),
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      controller:
+                          TextEditingController(text: 'To Be Implemented'),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Location',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        if (docName.isNotEmpty) {
+                          getCoordinatesFromCity('Vierzon').then(
+                            (value) =>
+                                db.collection('Companies').doc(docName).update({
+                              "Location":
+                                  GeoPoint(value.latitude!, value.longitude!),
+                            }),
+                          );
+                          // .then((value) => getCityFromCoordinates(value)).then((value) => debugPrint(value));
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.check_rounded,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -163,4 +234,20 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
       ),
     );
   }
+}
+
+Future<Coordinates> getCoordinatesFromCity(String key) async {
+  // From a query
+  final query = key;
+  var addresses = await Geocoder.local.findAddressesFromQuery(query);
+  var first = addresses.first;
+  return first.coordinates;
+}
+
+Future<String> getCityFromCoordinates(Coordinates coordinates) async {
+  // From coordinates
+  var addresses =
+      await Geocoder.local.findAddressesFromCoordinates(coordinates);
+  var first = addresses.first;
+  return first.locality!;
 }

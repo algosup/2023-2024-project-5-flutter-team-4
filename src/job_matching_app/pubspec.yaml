@@ -12,6 +12,8 @@ dependencies:
   flutter_radar_chart: ^0.2.1
   timeline_tile: ^2.0.0
   dotted_border: ^2.1.0
+  location_picker_flutter_map: ^3.0.1
+  flutter_geocoder: ^0.2.2-nullsafety
 
 
 
@@ -34,16 +36,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets: 
-    - lib/assets/images/flutte_logo.png
-    - lib/assets/images/dart_logo.png
-    - lib/assets/images/d_logo.png
-    - lib/assets/json/users.json
-    - lib/assets/json/recruiters.json
-    - lib/assets/images/one.png
-    - lib/assets/images/two.png
-    - lib/assets/images/three.png
-    - lib/assets/images/four.png
-    - lib/assets/images/five.png
+    - lib/assets/images/logo.png
   fonts:
     - family: Raleway
       fonts:

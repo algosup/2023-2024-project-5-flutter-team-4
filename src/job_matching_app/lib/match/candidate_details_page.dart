@@ -202,7 +202,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
     var mediaQuery = MediaQuery.sizeOf(context);
 
     // Position of the center of the map
-    LatLng position = LatLng(47.239576305730104, 2.0919235518778003);
+    LatLng position = const LatLng(47.239576305730104, 2.0919235518778003);
 
     // Check if the dark mode is triggered
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
@@ -326,7 +326,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                       scale: 0.8, // Scale of the profile picture is set to 0.8
                       child: ClipRRect(
                         child: Image.asset(
-                            "lib/assets/images/dart_logo.png"), // Image's link of the profile picture
+                            "lib/assets/images/logo.png"), // Image's link of the profile picture
                       ),
                     ),
                   ),
@@ -389,7 +389,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                     ),
 
                     // Distance of the candidate
-                    Container(
+                    SizedBox(
                       width: mediaQuery.width *
                           0.22, // Width of the container is set to 20% of the screen
                       child: const Text(

@@ -1,5 +1,6 @@
 
 
+
 // Main imports native from flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 
 // Firebase imports
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'home/firebase_options.dart';
 
 // Pages imports
@@ -17,12 +19,16 @@ import 'package:job_matching_app/home/home_page.dart';
 import 'package:job_matching_app/match/match_page.dart';
 import 'package:job_matching_app/settings/profile_settings_page.dart';
 
+// import 'package:fluttericon/mfg_labs_icons.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:fluttericon/octicons_icons.dart';
+
 // Debug variable
 const bool DEBUG = true;
 
 // Main function
 Future<void> main() async {
-
   // Wait for the system to be initialized
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -47,33 +53,38 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   // Main build function
   Widget build(BuildContext context) {
-
     // Set the system UI mode to manual and hide the status bar after 500ms
     SystemChrome.setSystemUIChangeCallback((systemOverlaysAreVisible) async {
       Future.delayed(const Duration(milliseconds: 500), () {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
             overlays: [SystemUiOverlay.top]);
-      });
+        
+      }).then((value) => SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      )));
     });
     // SharedPreferences.setMockInitialValues({}); // May be important ???????????
 
     // Return the AdaptiveTheme widget
     return AdaptiveTheme(
-
       // Set the light and dark theme options
       light: ThemeData(
         fontFamily: 'Raleway',
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 0, 0, 0),
-          background: const Color.fromARGB(255, 213, 206, 195),
+          // background: const Color.fromARGB(255, 213, 206, 195),
+          background: Colors.white,
           primary: const Color.fromARGB(255, 248, 249, 251),
-          secondary: const Color.fromARGB(255, 211, 169, 157),
-          tertiary: const Color.fromARGB(255, 0, 0, 0),
+          secondary: const Color.fromARGB(255, 255, 255, 255),
+          // secondary: const Color.fromARGB(255, 211, 169, 157),
+          tertiary: const Color.fromARGB(255, 255, 255, 255),
+          onBackground: const Color.fromARGB(255, 0, 0, 0),
         ),
       ), // Light Theme Options
       dark: ThemeData(
@@ -85,6 +96,7 @@ class MyApp extends StatelessWidget {
           primary: const Color.fromARGB(255, 248, 249, 252),
           secondary: const Color.fromARGB(255, 243, 203, 131),
           tertiary: const Color.fromARGB(255, 255, 255, 255),
+          onBackground: const Color.fromARGB(255, 255, 255, 255),
         ),
       ), // Dark Theme Options
       initial: AdaptiveThemeMode.light, // Inital theme when app starts
@@ -108,16 +120,10 @@ class RootPage extends StatefulWidget {
   State<RootPage> createState() => _RootPageState();
 }
 
-
-
 bool isCompanyView = false;
 
-
-
 class _RootPageState extends State<RootPage> {
-
-  
-@override
+  @override
   void initState() {
     super.initState();
     getSharedPreferences('isCompanyView').then((value) {
@@ -125,11 +131,11 @@ class _RootPageState extends State<RootPage> {
     }).then((value) => setState(() {}));
   }
 
-
   // Variables
   int currentPage = 0;
   List<Widget> pages = [
-    const HomePage(),
+    const MatchPage(),
+    const MatchPage(),
     const MatchPage(),
     const ProfileSettingsPage(),
   ];
@@ -138,53 +144,127 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // Body is the current page
       body: pages[currentPage],
 
       // Bottom navigation bar
       bottomNavigationBar: SafeArea(
         child: NavigationBar(
-
-
           // Set Colors
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          indicatorColor: Theme.of(context).colorScheme.secondary,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          indicatorColor: Colors.transparent,
 
           // Only show the label of the selected page
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
 
           // Destinations
           destinations: [
-
             // Home page
             NavigationDestination(
               icon: currentPage == 0
-                  ? Icon(Icons.home, size: MediaQuery.of(context).size.width * 0.075)
-                  : Icon(Icons.home, size: MediaQuery.of(context).size.width * 0.1),
+              ? ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (Rect bounds) => const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.25, 0.5],
+                  colors: [
+                    Color.fromARGB(255, 169, 38, 135),
+                    Color.fromARGB(255, 215, 0, 123),
+                  ],
+                ).createShader(bounds),
+                child: Icon(
+                  RpgAwesome.supersonic_arrow,
+                  size: MediaQuery.of(context).size.width * 0.1,
+                ),
+              )
+              : Icon(RpgAwesome.supersonic_arrow,
+                  size: MediaQuery.of(context).size.width * 0.1,
+                  color: Colors.black),
               label: 'Home',
-            ),
-
-            // Match page
-            NavigationDestination(
-              icon: currentPage == 1
-                  ? Icon(Icons.people, size: MediaQuery.of(context).size.width * 0.075)
-                  : Icon(Icons.people, size: MediaQuery.of(context).size.width * 0.1),
-              label: 'Match',
             ),
 
             // Settings page
             NavigationDestination(
+              icon: currentPage == 1
+              ? ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (Rect bounds) => const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.25, 0.5],
+                  colors: [
+                    Color.fromARGB(255, 169, 38, 135),
+                    Color.fromARGB(255, 215, 0, 123),
+                  ],
+                  tileMode: TileMode.clamp,
+                ).createShader(bounds),
+                child: Icon(
+                  FontAwesome.chat,
+                  size: MediaQuery.of(context).size.width * 0.12,
+                ),
+              )
+              : Icon(FontAwesome.chat,
+                  size: MediaQuery.of(context).size.width * 0.12,
+                  color: Colors.black),
+              label: 'Chat',
+            ),
+
+            // Match page
+            NavigationDestination(
               icon: currentPage == 2
-                  ? Icon(Icons.settings, size: MediaQuery.of(context).size.width * 0.075)
-                  : Icon(Icons.settings, size: MediaQuery.of(context).size.width * 0.1),
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) => const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                        stops: [0.25, 0.5],
+                        colors: [
+                          Color.fromARGB(255, 169, 38, 135),
+                          Color.fromARGB(255, 215, 0, 123),
+                        ],
+                      ).createShader(bounds),
+                      child: Icon(
+                        FontAwesome5.book_reader,
+                        size: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                    )
+                  : Icon(FontAwesome5.book_reader,
+                      size: MediaQuery.of(context).size.width * 0.1,
+                      color: Colors.grey),
+              label: 'Match',
+              enabled: false,
+            ),
+
+            // Settings page
+            NavigationDestination(
+              icon: currentPage == 3
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) => const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                        stops: [0.25, 0.5],
+                        colors: [
+                          Color.fromARGB(255, 169, 38, 135),
+                          Color.fromARGB(255, 215, 0, 123),
+                        ],
+                      ).createShader(bounds),
+                      child: Icon(
+                        Octicons.person,
+                        size: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                    )
+                  : Icon(Octicons.person,
+                      size: MediaQuery.of(context).size.width * 0.1,
+                      color: Colors.black),
               label: 'Settings',
             ),
           ],
 
           // Change the current page when a destination is selected
           onDestinationSelected: (int index) {
-
             // Set the current page to the index
             setState(() {
               currentPage = index;
