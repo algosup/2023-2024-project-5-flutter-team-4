@@ -15,17 +15,16 @@ import 'home/firebase_options.dart';
 
 // Pages imports
 import 'package:job_matching_app/connection_pages/connection_page.dart';
-import 'package:job_matching_app/home/home_page.dart';
+import 'package:job_matching_app/messages/messages_page.dart';
 import 'package:job_matching_app/match/match_page.dart';
 import 'package:job_matching_app/settings/profile_settings_page.dart';
+import 'splash_screen.dart';
 
 // import 'package:fluttericon/mfg_labs_icons.dart';
 import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/octicons_icons.dart';
 
-// Debug variable
-const bool DEBUG = true;
 
 // Main function
 Future<void> main() async {
@@ -107,7 +106,7 @@ class MyApp extends StatelessWidget {
         darkTheme: darkTheme,
 
         // Home page is the connection page if debug is false, else it is the root page
-        home: !DEBUG ? const ConnectionPage() : const RootPage(),
+        home: const SplashScreen(),
       ),
     );
   }
@@ -135,7 +134,7 @@ class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> pages = [
     const MatchPage(),
-    const MatchPage(),
+    const MessagesPage(id: 0,),
     const MatchPage(),
     const ProfileSettingsPage(),
   ];

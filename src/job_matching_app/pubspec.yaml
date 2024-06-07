@@ -37,6 +37,7 @@ flutter:
   uses-material-design: true
   assets: 
     - lib/assets/images/logo.png
+    - lib/assets/images/Splash.png
   fonts:
     - family: Raleway
       fonts:
