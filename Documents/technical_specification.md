@@ -16,28 +16,24 @@
       - [A. Descritpion](#a-descritpion)
       - [B. Operating environment](#b-operating-environment)
       - [C. Features](#c-features)
-        - [1. Jobseeker](#1-jobseeker)
-          - [a. Career Coaching](#a-career-coaching)
-          - [b. Professional Development Resources](#b-professional-development-resources)
-          - [c. Job Alerts and Notifications](#c-job-alerts-and-notifications)
-          - [d. Exclusive Job Boards](#d-exclusive-job-boards)
-          - [e. Network Enhancement Tools](#e-network-enhancement-tools)
-          - [f. Company Insights and Leadership](#f-company-insights-and-leadership)
-          - [g. Advanced Search Filters](#g-advanced-search-filters)
-          - [h. Compensation Benchmarking Tools](#h-compensation-benchmarking-tools)
-          - [i. AI-Powered Resume Builder and Templates](#i-ai-powered-resume-builder-and-templates)
-        - [2. Recruiter](#2-recruiter)
-          - [a. AI-Powered Job Description Generator](#a-ai-powered-job-description-generator)
-          - [b. Automated Screening Tools](#b-automated-screening-tools)
-          - [c. Advanced Search and Filtering Tools](#c-advanced-search-and-filtering-tools)
-          - [d. Candidate Relationship Management (CRM) System](#d-candidate-relationship-management-crm-system)
-          - [e. Skill-based job matching](#e-skill-based-job-matching)
-          - [f. Candidate Persona Development](#f-candidate-persona-development)
-          - [g. Multi-Client Management Dashboard](#g-multi-client-management-dashboard)
-          - [h. Job Posting Distribution Tools](#h-job-posting-distribution-tools)
-          - [i. Executive Search Tools](#i-executive-search-tools)
-          - [j. Confidential Candidate Management](#j-confidential-candidate-management)
-          - [k. Networking and Referral Systems](#k-networking-and-referral-systems)
+        - [1. General](#1-general)
+          - [a. Swipe-based gesture](#a-swipe-based-gesture)
+          - [b. Skill-based job matching](#b-skill-based-job-matching)
+        - [2. Jobseeker](#2-jobseeker)
+          - [a. Professional Development Resources](#a-professional-development-resources)
+          - [b. Job Alerts and Notifications](#b-job-alerts-and-notifications)
+          - [c. Company Insights and Leadership](#c-company-insights-and-leadership)
+          - [d. Interview by AI](#d-interview-by-ai)
+          - [e. Exclusive Job Boards](#e-exclusive-job-boards)
+          - [f. AI-Powered Resume Builder and Templates](#f-ai-powered-resume-builder-and-templates)
+          - [g. Compensation Benchmarking Tools](#g-compensation-benchmarking-tools)
+        - [3. Recruiter](#3-recruiter)
+          - [a. Confidential Candidate Management](#a-confidential-candidate-management)
+          - [b. AI-Powered Job Description Generator](#b-ai-powered-job-description-generator)
+          - [c. Candidate Persona Development](#c-candidate-persona-development)
+          - [d. Executive Search Tools](#d-executive-search-tools)
+          - [e. Networking and Referral Systems](#e-networking-and-referral-systems)
+          - [f. Job Posting Distribution Tools](#f-job-posting-distribution-tools)
       - [D. Contraints](#d-contraints)
       - [E. Risks and assumptions](#e-risks-and-assumptions)
     - [III. Technical Specifications](#iii-technical-specifications)
@@ -45,8 +41,7 @@
       - [B. Writing convention](#b-writing-convention)
       - [C. File architecture](#c-file-architecture)
       - [D. Implementation](#d-implementation)
-    - [IV Program architecture diagram](#iv-program-architecture-diagram)
-    - [V. Further considerations](#v-further-considerations)
+    - [IV. Further considerations](#iv-further-considerations)
       - [A. Cost estimate](#a-cost-estimate)
       - [B. Performance](#b-performance)
       - [C. Security](#c-security)
@@ -59,7 +54,7 @@
         - [7. Contractual Obligations](#7-contractual-obligations)
         - [8. Localization and Internationalization](#8-localization-and-internationalization)
       - [D. Accessibility](#d-accessibility)
-    - [VI. Success evaluation](#vi-success-evaluation)
+    - [V. Success evaluation](#v-success-evaluation)
     - [Project role distribution](#project-role-distribution)
     - [Glossary](#glossary)
 
@@ -108,87 +103,72 @@ The development language used is [Flutter](https://docs.flutter.dev)[^3].
 
 #### C. Features
 
-##### 1. Jobseeker
+##### 1. General
 
-###### a. Career Coaching
+###### a. Swipe-based gesture
 
-. <!-- TODO -->
+The swipe system we're implementing will be the most interactive and attractive for users, thanks to the colours (green, red, etc.), animations (left, right, etc.), speed and sensations that users can experience when they swipe.
 
-###### b. Professional Development Resources
+###### b. Skill-based job matching
 
-. <!-- TODO -->
+Our artificial intelligence will retrieve the soft skills of the candidate as well as those of the job offers and will carry out a comparison of the soft skills in order to calculate a percentage of compatibility between the two parties.
 
-###### c. Job Alerts and Notifications
+##### 2. Jobseeker
 
-. <!-- TODO -->
+###### a. Professional Development Resources
 
-###### d. Exclusive Job Boards
+We'll give candidates quick access to selected videos to help them improve their profile and skills, or learn new skills.
+To do this, we'll be integrating videos specially produced by professionals just for the application. The videos will be hosted on the server with the application, which avoids any opening to the "outside world" and therefore reduces the risk of information leaks.
 
-. <!-- TODO -->
+###### b. Job Alerts and Notifications
 
-###### e. Network Enhancement Tools
+If the candidate activates the option, they will receive a notification bubble on their home screen of the reciprocal matches that have taken place with an employer in order to proceed with the next stage of the meeting. The employer will be able to activate time slots for receiving the stored notifications at one or more times during the working day, so as not to interfere with their tasks.
 
-. <!-- TODO -->
+###### c. Company Insights and Leadership
 
-###### f. Company Insights and Leadership
+The company has the possibility of carrying out an EVP[^4] in order to precisely define the candidate desired for the position and thus obtain candidates with a maximum match.
 
-. <!-- TODO -->
+###### d. Interview by AI
 
-###### g. Advanced Search Filters
+Candidates can conduct an interview with an employer using artificial intelligence.
+In other words, the employer must activate the option and it will be able to send a list of questions to the candidate. The candidate will receive notification of the interview with the artificial intelligence and will begin an oral discussion in which he or she will be asked questions and will have to respond orally to the questions. They will receive a transcript of their answers, which they will be able to correct in the event of an error, and the interview will be sent once the candidate has validated their answers. The employer will then receive the answers dictated by the artificial intelligence.
 
-. <!-- TODO -->
-
-###### h. Compensation Benchmarking Tools
-
-. <!-- TODO -->
-
-###### i. AI-Powered Resume Builder and Templates
+###### e. Exclusive Job Boards
 
 . <!-- TODO -->
 
-##### 2. Recruiter
+###### f. AI-Powered Resume Builder and Templates
 
-###### a. AI-Powered Job Description Generator
+The application will contain an artificial intelligence system that will help applicants to create their CVs by checking that the data is anonymous.
 
-. <!-- TODO -->
-
-###### b. Automated Screening Tools
+###### g. Compensation Benchmarking Tools
 
 . <!-- TODO -->
 
-###### c. Advanced Search and Filtering Tools
+##### 3. Recruiter
+
+###### a. Confidential Candidate Management
+
+On our application, everything about the candidate is anonymised (profile photos, names, pronouns, etc.).
+To do this, we will generate an animal from a list of one hundred pre-defined animals and a random three-digit number for the name (making 100,000 possibilities) associated with the corresponding animal. The special feature of this system is that it will be based on the employer's side, meaning that an employer will have a different profile name for each candidate only after matching. This means that candidates will have several profile names depending on the ad they match.
+
+###### b. AI-Powered Job Description Generator
+
+The application contains artificial intelligence that helps the employer generate a complete description and details of the soft skills required for the vacant position using a simple sentence.
+
+###### c. Candidate Persona Development
 
 . <!-- TODO -->
 
-###### d. Candidate Relationship Management (CRM) System
+###### d. Executive Search Tools
 
 . <!-- TODO -->
 
-###### e. Skill-based job matching
+###### e. Networking and Referral Systems
 
 . <!-- TODO -->
 
-###### f. Candidate Persona Development
-
-. <!-- TODO -->
-
-###### g. Multi-Client Management Dashboard
-
-. <!-- TODO -->
-
-###### h. Job Posting Distribution Tools
-
-. <!-- TODO -->
-
-###### i. Executive Search Tools
-
-. <!-- TODO -->
-
-###### j. Confidential Candidate Management
-
-. <!-- TODO -->
-
-###### k. Networking and Referral Systems
+###### f. Job Posting Distribution Tools
 
 . <!-- TODO -->
 
@@ -200,12 +180,99 @@ The first constraints that we have on this project is total creative freedom. It
 
 With the amount of functionality defined and the limited time given, the first risk of our project is that it will be too ambitious. To do this, we have defined an order of importance for the features, allowing a reduced selection between what needs to be present for V1 and what needs to be improved for V2.
 As the customer is not clear about what he wants and leaves us full creative freedom, we run the risk of not being in the customer's final preferences. For this reason, we produce several mock-ups in order to offer a wide choice that will please the customer.
+Another important risk to consider is the security of the site in order to preserve the integrity of the data held on candidates and employers.
 
 ### III. Technical Specifications
 
 #### A. Graphic convention
 
-. <!-- TODO -->
+The design of your interface is modern and attractive with a soft and warm color accompanied by rounded shapes.
+
+- background color
+
+```dart
+decoration: BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color.fromARGB(255, 169, 38, 135),
+      Color.fromARGB(255, 215, 0, 123),
+    ],
+  ),
+),
+```
+
+- Logo
+
+```dart
+return const Image(image: AssetImage('lib/assets/logo.png'));
+```
+
+- Name
+
+```dart
+new Container(
+  color: Colors.white,
+  child: new Center(
+    child: new Text("Adopt 1\nCandidat", style: "MontserratAlternates"),
+  ),
+),
+```
+
+- boxes
+
+```dart
+new Container(
+  height: 200.0,
+  color: Colors.transparent,
+  child: new Container(
+    decoration: new BoxDecoration(
+    color: Colors.white,
+      borderRadius: new BorderRadius.only(
+        topLeft: const Radius.circular(40.0),
+        topRight: const Radius.circular(40.0),
+        bottomLeft: const Radius.circular(40.0),
+        bottemRight: const Radius.circular(40.0),
+      ),
+    ),
+    child: new Center(
+      child: new Text("Connexion with Apple", style: "Raleway"),
+    ),
+  ),
+),
+```
+
+<center>
+
+<img src="img/background.png" alt="Background" style="width:180px;height:350px;">
+<center>
+
+*the dotted lines demarcate the gradient area and the two-way arrow indicates the two colors used.*
+
+- Title
+
+```dart
+child: new Text("Title", style: "Shanti", fontSize: 25),
+```
+
+- Subtitle
+
+```dart
+child: new Text("Subtitle", style: "Oxygen"),
+```
+
+- Body of text
+
+```dart
+child: new Text("Body of text", style: "Raleway"),
+```
+
+- Text entry
+
+```dart
+child: new Text("Text entry", style: "OxygenMono"),
+```
 
 #### B. Writing convention
 
@@ -238,16 +305,31 @@ The Flutter language has certain conventions that must be respected, which are d
             └──...
         ├──lib
             ├──assets
-                └──...
+                ├──images
+                    └──...
+                └──json
+                    ├──candidate.dart
+                    └──recruiter.dart
             ├──connection_page
+                ├──candidate_form.dart
                 ├──login.dart
-                └──logout.dart
+                └──recruiter_form.dart
             ├──home
-                └──homepage.dart
+                ├──firebase_options.dart
+                └──home_page.dart
             ├──match
-                └──match.dart
+                ├──candidate_details_page.dart
+                ├──company_details_page.dart
+                ├──details_timeline_page.dart
+                └──match_page.dart
+            ├──parsers
+                ├──candidate.dart
+                └──recruiter.dart
             ├──settings
-                └──settings.dart
+                ├──more_settings_page.dart
+                ├──profile_settings_page.dart
+                └──timeline_settings_page.dart
+            ├──firebase_option.dart
             └──main.dart
         ├──linux
             └──...
@@ -266,23 +348,119 @@ The Flutter language has certain conventions that must be respected, which are d
 
 #### D. Implementation
 
-**1. main.dart file**
+**1. Connection**
 
-*description* <!-- TODO -->
+You can connect to your account while being candidate or recruiter thanks two different pages as defined on the connection_page.dart
+
+```dart
+class _ConnectionPageState extends State<ConnectionPage> {
+  List<Widget> pages = [
+    CandidateFormPage(),
+    RecruiterFormPage(),
+  ];
+  ... // continuation of the program
+}
+```
+
+![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
+**2. Firebase**
+
+Here is how we initialise the database in the main.dart
+
+```dart
+import 'package:firebase_core/firebase_core.dart';
+import 'home/firebase_options.dart';
+
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+```
+
+*On the firebase_options.dart file is mainly to define the project on the database (the platform where we use the app, identifiers, keys, etc).*
+
+Here is how we call the database in other files to store data.
+
+```dart
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+...
+  var db = FirebaseFirestore.instance;
+  db.collection('Users').get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] == id && result.data()["hasGraph"] == true) {
+          name = result.data()["Name"]; // Get the name of the candidate
+          location =
+              result.data()["Location"]; // Get the location of the candidate
+          job = result.data()["Job"]; // Get the job of the candidate
+
+          if (result.data()["Description"] != null) {
+            descr = result.data()[
+                "Description"]; // Get the description of the candidate
+          } else {
+            descr = "";
+          }
+          ... // add the data we want to get from the database.
+        }
+      }
+    }
+  )
+```
+
+*This example is on the candidate_details_page.dart file.*
+
+![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
+**3. Swipe system**
+
+Here is the card swiping system (left to refuse and right to match) in the match_page.dart file.
+
+```dart
+body: CardSwiper(
+  cardsCount: cards.length,
+  allowedSwipeDirection: const AllowedSwipeDirection.only(
+    right: true,
+    left: true,
+    up: false,
+    down: false,
+  ),
+  cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
+      cards[index],
+  onSwipe: (previousIndex, currentIndex, direction) {
+    indexOfIds = currentIndex!;
+    return true;
+  },
+),
+floatingActionButton: FloatingActionButton(
+  backgroundColor: Theme.of(context).colorScheme.secondary,
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: isCompanyView
+            ? (BuildContext context) =>
+                CandidateDetailsPage(id: idList[indexOfIds])
+            : (BuildContext context) =>
+                CompanyDetailsPage(id: idList[indexOfIds]),
+      ),
+    );
+  },
+  child: const Icon(Icons.zoom_out_map_rounded, color: Colors.black),
+),
+```
+
+![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
+**4. **
+
+
 
 ```dart
 
 ```
 
-![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
-
-
-
-### IV Program architecture diagram
-
-![Program Architecture Diagram](img/)
-
-### V. Further considerations
+### IV. Further considerations
 
 #### A. Cost estimate
 
@@ -335,7 +513,7 @@ Here are the regulations that will apply to this product:
 
 ##### 6. Data Security
 
-- **Security Measures**: In the future, we plan to implement technical and organisational measures to ensure the security of personal data, such as encryption, access controls, etc. A good rule of thumb is to always respecting the CIA principles[^4]
+- **Security Measures**: In the future, we plan to implement technical and organisational measures to ensure the security of personal data, such as encryption, access controls, etc. A good rule of thumb is to always respecting the CIA principles[^5]
 
 ##### 7. Contractual Obligations
 
@@ -355,7 +533,7 @@ This former has been mitigated by using an app named Daltonize Me to simulate al
 
 The latter consisted of using the `alt` properties of images to enable text to speech to describe them with more ease.
 
-### VI. Success evaluation
+### V. Success evaluation
 
 In order to evaluate the performance of the app and its features and to make it evolve, several metrics can be monitored. Here are some that might be interesting to consider in the future:
 
@@ -400,6 +578,10 @@ Problem solving is the act of defining a problem; determining the cause of the p
 Flutter is an open source software development kit launched in May 2017 by Google. It is used to develop applications for Android, iOS, Linux, MacOS, Windows, Google Fuchsia and the web. The latest stable version is 3.19.6.
 *source: [AMAZON](https://aws.amazon.com/fr/what-is/flutter/) / [Wikipedia](https://fr.wikipedia.org/wiki/Flutter_(logiciel))*
 
-[^4]: CIA principles
+[^4]: EVP
+The Employer Value Proposition is a sentence that summarizes the value offer that your employees benefit from by working for you. This brings together both the advantages offered and the values ​​defended. For the employee, this is what makes you a unique company that they would want to work for.
+*source: [JobCampagne](https://jobcampaign.ch/marque-employeur-pourquoi-comment-definir-votre-employer-value-proposition/#)
+
+[^5]: CIA principles
 Confidentiality, Integrity and Availability, describing a model designed to guide policies for information security within an organization.
 *source: [TechTarget](https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA)*
