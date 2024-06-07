@@ -36,7 +36,7 @@ ___
 
 ### 1.1 Overview
 
-This project, given by we are evolution[^1], aims to create a job dating platform inspired by popular apps similar to Tinder to permit people searching for a job to get a job interview in a short time with low effort. 
+This project, given by WE ARE EVOLUTION[^1], aims to create a job dating platform inspired by popular apps similar to Tinder to permit people searching for a job to get a job interview in a short time with low effort. 
 
 To avoid any form of discrimination, all candidates shall remain anonymous[^2]. Candidate profiles will only include soft skills[^3] and additional information provided by the candidates, encouraging recruiters to focus on these aspects. Hard skills will not be displayed, as the app is designed for temporary or low-requirement jobs.
    
