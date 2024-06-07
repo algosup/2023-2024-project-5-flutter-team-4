@@ -19,21 +19,20 @@
         - [1. General](#1-general)
           - [a. Swipe-based gesture](#a-swipe-based-gesture)
           - [b. Skill-based job matching](#b-skill-based-job-matching)
+          - [c. Interview by AI](#c-interview-by-ai)
+          - [d. Job Alerts and Notifications](#d-job-alerts-and-notifications)
+          - [e. Job Posting Distribution Tools](#e-job-posting-distribution-tools)
         - [2. Jobseeker](#2-jobseeker)
-          - [a. Professional Development Resources](#a-professional-development-resources)
-          - [b. Job Alerts and Notifications](#b-job-alerts-and-notifications)
-          - [c. Company Insights and Leadership](#c-company-insights-and-leadership)
-          - [d. Interview by AI](#d-interview-by-ai)
-          - [e. Exclusive Job Boards](#e-exclusive-job-boards)
-          - [f. AI-Powered Resume Builder and Templates](#f-ai-powered-resume-builder-and-templates)
-          - [g. Compensation Benchmarking Tools](#g-compensation-benchmarking-tools)
-        - [3. Recruiter](#3-recruiter)
           - [a. Confidential Candidate Management](#a-confidential-candidate-management)
+          - [b. Professional Development Resources](#b-professional-development-resources)
+          - [c. Exclusive Job Boards](#c-exclusive-job-boards)
+          - [d. Networking and Referral Systems](#d-networking-and-referral-systems)
+          - [e. AI-Powered Resume Builder and Templates](#e-ai-powered-resume-builder-and-templates)
+        - [3. Recruiter](#3-recruiter)
+          - [a. Company Insights and Leadership](#a-company-insights-and-leadership)
           - [b. AI-Powered Job Description Generator](#b-ai-powered-job-description-generator)
           - [c. Candidate Persona Development](#c-candidate-persona-development)
           - [d. Executive Search Tools](#d-executive-search-tools)
-          - [e. Networking and Referral Systems](#e-networking-and-referral-systems)
-          - [f. Job Posting Distribution Tools](#f-job-posting-distribution-tools)
       - [D. Contraints](#d-contraints)
       - [E. Risks and assumptions](#e-risks-and-assumptions)
     - [III. Technical Specifications](#iii-technical-specifications)
@@ -113,44 +112,49 @@ The swipe system we're implementing will be the most interactive and attractive 
 
 Our artificial intelligence will retrieve the soft skills of the candidate as well as those of the job offers and will carry out a comparison of the soft skills in order to calculate a percentage of compatibility between the two parties.
 
-##### 2. Jobseeker
-
-###### a. Professional Development Resources
-
-We'll give candidates quick access to selected videos to help them improve their profile and skills, or learn new skills.
-To do this, we'll be integrating videos specially produced by professionals just for the application. The videos will be hosted on the server with the application, which avoids any opening to the "outside world" and therefore reduces the risk of information leaks.
-
-###### b. Job Alerts and Notifications
-
-If the candidate activates the option, they will receive a notification bubble on their home screen of the reciprocal matches that have taken place with an employer in order to proceed with the next stage of the meeting. The employer will be able to activate time slots for receiving the stored notifications at one or more times during the working day, so as not to interfere with their tasks.
-
-###### c. Company Insights and Leadership
-
-The company has the possibility of carrying out an EVP[^4] in order to precisely define the candidate desired for the position and thus obtain candidates with a maximum match.
-
-###### d. Interview by AI
+###### c. Interview by AI
 
 Candidates can conduct an interview with an employer using artificial intelligence.
 In other words, the employer must activate the option and it will be able to send a list of questions to the candidate. The candidate will receive notification of the interview with the artificial intelligence and will begin an oral discussion in which he or she will be asked questions and will have to respond orally to the questions. They will receive a transcript of their answers, which they will be able to correct in the event of an error, and the interview will be sent once the candidate has validated their answers. The employer will then receive the answers dictated by the artificial intelligence.
 
-###### e. Exclusive Job Boards
+###### d. Job Alerts and Notifications
 
-. <!-- TODO -->
+If the candidate activates the option, they will receive a notification bubble on their home screen of the reciprocal matches that have taken place with an employer in order to proceed with the next stage of the meeting. The employer will be able to activate time slots for receiving the stored notifications at one or more times during the working day, so as not to interfere with their tasks.
 
-###### f. AI-Powered Resume Builder and Templates
+###### e. Job Posting Distribution Tools
 
-The application will contain an artificial intelligence system that will help applicants to create their CVs by checking that the data is anonymous.
+Artificial intelligence will be a major tool in the search for a position that corresponds as closely as possible to the soft skills you have acquired. It will compare and offer a maximum of positions that may interest the candidate with a minimum compatibility rate of 50%.
 
-###### g. Compensation Benchmarking Tools
-
-. <!-- TODO -->
-
-##### 3. Recruiter
+##### 2. Jobseeker
 
 ###### a. Confidential Candidate Management
 
 On our application, everything about the candidate is anonymised (profile photos, names, pronouns, etc.).
 To do this, we will generate an animal from a list of one hundred pre-defined animals and a random three-digit number for the name (making 100,000 possibilities) associated with the corresponding animal. The special feature of this system is that it will be based on the employer's side, meaning that an employer will have a different profile name for each candidate only after matching. This means that candidates will have several profile names depending on the ad they match.
+
+###### b. Professional Development Resources
+
+We'll give candidates quick access to selected videos to help them improve their profile and skills, or learn new skills.
+To do this, we'll be integrating videos specially produced by professionals just for the application. The videos will be hosted on the server with the application, which avoids any opening to the "outside world" and therefore reduces the risk of information leaks.
+
+###### c. Exclusive Job Boards
+
+The application selects the most relevant job offers based on soft skills matches (50% minimum).
+
+###### d. Networking and Referral Systems
+
+The candidate can use personal recommendations to ensure that soft skills are accurately represented and valued in the recruitment process.
+The candidate can contact former companies or ask relatives to validate certain soft skills in order to gain credibility in the application.
+
+###### e. AI-Powered Resume Builder and Templates
+
+The application will contain an artificial intelligence system that will help applicants to create their CVs by checking that the data is anonymous.
+
+##### 3. Recruiter
+
+###### a. Company Insights and Leadership
+
+The company has the possibility of carrying out an EVP[^4] in order to precisely define the candidate desired for the position and thus obtain candidates with a maximum match.
 
 ###### b. AI-Powered Job Description Generator
 
@@ -158,19 +162,14 @@ The application contains artificial intelligence that helps the employer generat
 
 ###### c. Candidate Persona Development
 
-. <!-- TODO -->
+the application allows a very detailed profile of each candidate in order to help recruiters find the profile that best suits them.
+For this, we have a list of around thirty soft skills divided into three main categories (cognitive, personality, social).
+*The number of pre-defined soft skills in the list will increase for greater precision.*
 
 ###### d. Executive Search Tools
 
-. <!-- TODO -->
-
-###### e. Networking and Referral Systems
-
-. <!-- TODO -->
-
-###### f. Job Posting Distribution Tools
-
-. <!-- TODO -->
+the application will evaluate the candidate's compatibilities on behalf of the recruiter with a minimum of 50% correspondence between the soft skills expected for the position and the soft skills that the candidate has entered on their profile. The program takes into account the multipliers that apply thanks to the validation of certain soft skills proving their credibility, thus allowing a better match.
+Then, it will select the best for the vacant position and the recruiter will only have to swipe the candidates.
 
 #### D. Contraints
 
@@ -246,9 +245,10 @@ new Container(
 <center>
 
 <img src="img/background.png" alt="Background" style="width:180px;height:350px;">
-<center>
 
-*the dotted lines demarcate the gradient area and the two-way arrow indicates the two colors used.*
+</center>
+
+*the dotted lines demarcate the gradient area and the two-way arrow indicates the two different colors used.*
 
 - Title
 
@@ -362,6 +362,33 @@ class _ConnectionPageState extends State<ConnectionPage> {
 }
 ```
 
+You can select if you're a candidate or a recruiter thanks the following code.
+
+```dart
+SizedBox(
+  width: mediaQuery.width * 0.5,
+  height: mediaQuery.height * 0.05,
+  child: ElevatedButton(
+    onPressed: () {
+      setState(() {
+        currentIndex = 1;
+      });
+    },
+    style: ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.secondary),
+    child: Center(
+      child: Text(
+        "Recruiter",
+        textAlign: TextAlign.center,
+        style: style,
+      ),
+    ),
+  ),
+),
+```
+
+*The same code is implemented for the candidate.*
+
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
 **2. Firebase**
@@ -452,13 +479,26 @@ floatingActionButton: FloatingActionButton(
 
 ![-](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
-**4. **
+**4. Company timeline**
 
-
+The recruiter can add to his timeline as many key dates as he wants regarding the activity of his company.
 
 ```dart
-
+onPressed: () {
+  setState(() {
+    dates.add('');
+    datesDescription.add('');
+    if (dates.length > datesSaved.length ||
+        dates.length < datesSaved.length) {
+      saved = false;
+    } else {
+      saved = true;
+    }
+  });
+},
 ```
+
+*He can also remove thanks the "removeAt" function.*
 
 ### IV. Further considerations
 
