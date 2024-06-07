@@ -10,7 +10,7 @@ body:
   - type: textarea
     id: typo
     attributes:
-      label: typographical mistake
+      label: typographical mistakes
       placeholder: Provide the line(s) of the typo(s) and highlight it.
     validations:
       required: true
