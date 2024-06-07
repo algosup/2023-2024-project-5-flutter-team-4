@@ -47,7 +47,7 @@ Key Performance Indicators (KPIs) are metrics that help us measure the success o
 
 The RACI Matrix is a tool used to define roles and responsibilities for each task in the project. You can find the RACI Matrix [here](management_artifacts/RACI_Matrix.pdf). 
 
-###### If you are having difficulties rendering the PDF on GitHub, you can refer to [this](https://github.com/orgs/community/discussions/64419#discussioncomment-8812718) or maybe try using a different browser.
+###### If you are having difficulties rendering the PDF on GitHub, you can refer to [this](https://github.com/orgs/community/discussions/64419#discussioncomment-8812718) or try using a different browser.
 
 ### 2.6. Risk Management
 
