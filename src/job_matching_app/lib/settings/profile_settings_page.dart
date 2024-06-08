@@ -6,7 +6,7 @@ import 'package:job_matching_app/settings/timeline_settings_page.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:flutter_geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
 
 class ProfileSettingsPage extends StatefulWidget {
   const ProfileSettingsPage({super.key});
@@ -28,27 +28,43 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
+  // ignore: prefer_const_constructors
+  List<double> cityCoordinates = [0, 0];
+  String city = "";
+
   @override
   void initState() {
     super.initState();
 
     db = FirebaseFirestore.instance;
 
-    db.collection('Companies').get().then(
-      (querySnapshot) {
-        for (var result in querySnapshot.docs) {
-          if (result.data()["ID"] == ID) {
-            if (result.data()["Name"] != null) {
-              name = result.data()["Name"];
+    db
+        .collection('Companies')
+        .get()
+        .then(
+          (querySnapshot) {
+            for (var result in querySnapshot.docs) {
+              if (result.data()["ID"] == ID) {
+                if (result.data()["Name"] != null) {
+                  name = result.data()["Name"];
+                }
+                if (result.data()["Location"].latitude != null && result.data()["Location"].longitude != null){
+                  cityCoordinates[0] = result.data()["Location"].latitude;
+                  cityCoordinates[1] =
+                      result.data()["Location"].longitude;
+                }
+                docName = result.id;
+                break;
+              }
             }
-            docName = result.id;
-            break;
-          }
-        }
-      },
-    ).then(
-      (value) => setState(() {}),
-    );
+          },
+        )
+        .then((value) => getCityFromCoordinates(cityCoordinates[0],
+            cityCoordinates[1]))
+        .then((value) => setState(() {
+              city = value;
+              print(city);
+            }));
   }
 
   @override
@@ -97,11 +113,11 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 169, 38, 135),
-                Color.fromARGB(255, 215, 0, 123),
-              ],
-            )),
+          colors: [
+            Color.fromARGB(255, 169, 38, 135),
+            Color.fromARGB(255, 215, 0, 123),
+          ],
+        )),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -164,11 +180,12 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                     child: TextField(
                       textAlign: TextAlign.center,
                       controller:
-                          TextEditingController(text: 'To Be Implemented'),
+                          TextEditingController(text: city.isEmpty ? "" : city),
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Location',
                       ),
+                      onChanged: (value) => city = value,
                     ),
                   ),
                   Container(
@@ -185,11 +202,11 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                     child: IconButton(
                       onPressed: () {
                         if (docName.isNotEmpty) {
-                          getCoordinatesFromCity('Vierzon').then(
+                          getCoordinatesFromCity(city).then(
                             (value) =>
                                 db.collection('Companies').doc(docName).update({
                               "Location":
-                                  GeoPoint(value.latitude!, value.longitude!),
+                                  GeoPoint(value.latitude, value.longitude),
                             }),
                           );
                           // .then((value) => getCityFromCoordinates(value)).then((value) => debugPrint(value));
@@ -236,18 +253,15 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
   }
 }
 
-Future<Coordinates> getCoordinatesFromCity(String key) async {
-  // From a query
-  final query = key;
-  var addresses = await Geocoder.local.findAddressesFromQuery(query);
-  var first = addresses.first;
-  return first.coordinates;
+Future<Location> getCoordinatesFromCity(String key) async {
+  List<Location> locations = await locationFromAddress(key);
+  for (var location in locations) {
+    debugPrint('location: $location');
+  }
+  return locations[0];
 }
 
-Future<String> getCityFromCoordinates(Coordinates coordinates) async {
-  // From coordinates
-  var addresses =
-      await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  var first = addresses.first;
-  return first.locality!;
+Future<String> getCityFromCoordinates(double latitude, double longitude) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+  return placemarks[0].locality!;
 }

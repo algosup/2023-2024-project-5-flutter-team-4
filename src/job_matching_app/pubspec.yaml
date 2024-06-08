@@ -13,7 +13,7 @@ dependencies:
   timeline_tile: ^2.0.0
   dotted_border: ^2.1.0
   location_picker_flutter_map: ^3.0.1
-  flutter_geocoder: ^0.2.2-nullsafety
+  geocoding: ^3.0.0
 
 
 
