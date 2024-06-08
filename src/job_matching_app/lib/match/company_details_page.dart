@@ -23,7 +23,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
     debugPrint("CompanyDetailsPage");
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
     var mediaQuery = MediaQuery.sizeOf(context);
-    LatLng position = LatLng(47.239576305730104, 2.0919235518778003);
+    LatLng position = const LatLng(47.239576305730104, 2.0919235518778003);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: true,
@@ -111,7 +111,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                     child: Transform.scale(
                       scale: 0.8,
                       child: ClipRRect(
-                        child: Image.asset("lib/assets/images/dart_logo.png"),
+                        child: Image.asset("lib/assets/images/logo.png"),
                       ),
                     ),
                   ),

@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'conversation_page.dart';
+
 class MessagesPage extends StatefulWidget {
   const MessagesPage({super.key, required this.id});
 
@@ -20,11 +22,25 @@ class _MessagesPageState extends State<MessagesPage> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  int convNum = 2;
+  int convNum = 0;
+
+  List<List<String>> conversations = [[]];
+
+  List<List<int>> companies = [[]];
+
+  final Gradient gradient = const LinearGradient(
+    colors: <Color>[
+      Color.fromARGB(255, 215, 0, 123),
+      Color.fromARGB(255, 169, 38, 135),
+    ],
+  );
 
   @override
   void initState() {
     super.initState();
+
+    conversations.clear();
+    companies.clear();
 
     id = 0;
 
@@ -34,10 +50,10 @@ class _MessagesPageState extends State<MessagesPage> {
       (querySnapshot) {
         for (var result in querySnapshot.docs) {
           if (result.data()["ID"] == id) {
-            if (result.data().containsKey("Conv")) {
-              Map<String, dynamic> conv = result.data();
-              List<String> keys = conv.keys.toList();
-              print(keys);
+            convNum = result.data()["ConvNum"];
+            for (int i = 1; i <= convNum; i++) {
+              conversations.add(result.data()["Conv$i"].cast<String>());
+              companies.add(result.data()["ConvW$i"].cast<int>());
             }
             break;
           }
@@ -59,13 +75,9 @@ class _MessagesPageState extends State<MessagesPage> {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            Color.fromARGB(255, 169, 38, 135),
-            Color.fromARGB(255, 215, 0, 123),
-          ],
-        )),
+        decoration: BoxDecoration(
+          gradient: gradient,
+        ),
         child: Column(
           children: [
             Row(
@@ -107,7 +119,15 @@ class _MessagesPageState extends State<MessagesPage> {
                 width: width * 0.9,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.grey.shade300,
+                      Colors.grey.shade500,
+                      Colors.black,
+                    ],
+                  ),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -117,8 +137,32 @@ class _MessagesPageState extends State<MessagesPage> {
                       width: width * 0.2,
                       height: 80,
                       decoration: BoxDecoration(
-                        color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Container(
+                        width: 84, // Width of the container
+
+                        // Decoration of the container
+                        decoration: const BoxDecoration(
+                          shape: BoxShape
+                              .circle, // Shape of the container is a circle
+                          gradient: RadialGradient(
+                            // Gradient of the container
+                            stops: [0.6, 0.95], // Stops of the gradient
+                            colors: [
+                              Colors.white, // Color of the container
+                              Colors.yellow, // Color of the container
+                            ],
+                          ),
+                        ),
+
+                        child: Transform.scale(
+                          scale:
+                              1.025, // Scale of the profile picture is set to 0.8
+                          child: const ClipRRect(
+                              // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
+                              ),
+                        ),
                       ),
                     ),
                     Container(
@@ -129,24 +173,35 @@ class _MessagesPageState extends State<MessagesPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: const Text(
-                              "Company Name",
-                              style: TextStyle(
+                            child: Text(
+                              conversations.isNotEmpty
+                                  ? conversations[i][0]
+                                  : "",
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Shanti',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 5.0),
-                            child: const Text(
-                              "Last Message",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Shanti',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                (companies[i][companies[i].length - 1] == 0
+                                        ? "him: "
+                                        : "vous: ") +
+                                    (conversations.isEmpty
+                                        ? ""
+                                        : conversations[i]
+                                            [conversations[i].length - 1]),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Shanti',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
                             ),
                           ),
                         ],
@@ -156,8 +211,22 @@ class _MessagesPageState extends State<MessagesPage> {
                       margin: const EdgeInsets.only(left: 10.0),
                       width: width * 0.1,
                       height: 80,
-                      child: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.black, size: 30),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ConversationPage(
+                                      convId: i,
+                                      conversation: conversations[i],
+                                      companies: companies[i]),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white, size: 30),
+                      ),
                     ),
                   ],
                 ),
@@ -165,6 +234,13 @@ class _MessagesPageState extends State<MessagesPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add_comment_rounded, color: Colors.black, size: 30),
+      )
     );
   }
 }
