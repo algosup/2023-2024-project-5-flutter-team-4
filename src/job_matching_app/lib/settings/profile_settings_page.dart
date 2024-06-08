@@ -48,10 +48,10 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                 if (result.data()["Name"] != null) {
                   name = result.data()["Name"];
                 }
-                if (result.data()["Location"].latitude != null && result.data()["Location"].longitude != null){
+                if (result.data()["Location"].latitude != null &&
+                    result.data()["Location"].longitude != null) {
                   cityCoordinates[0] = result.data()["Location"].latitude;
-                  cityCoordinates[1] =
-                      result.data()["Location"].longitude;
+                  cityCoordinates[1] = result.data()["Location"].longitude;
                 }
                 docName = result.id;
                 break;
@@ -59,8 +59,8 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
             }
           },
         )
-        .then((value) => getCityFromCoordinates(cityCoordinates[0],
-            cityCoordinates[1]))
+        .then((value) =>
+            getCityFromCoordinates(cityCoordinates[0], cityCoordinates[1]))
         .then((value) => setState(() {
               city = value;
               print(city);
@@ -95,12 +95,14 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const MoreSettingsPage(),
-                  ),
-                );
+                null;
+                // DISABLED UNTIL MORE SETTINGS ARE NEEDED
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) => const MoreSettingsPage(),
+                //   ),
+                // );
               },
               child: const Icon(
                 Icons.settings_suggest_rounded,
@@ -262,6 +264,7 @@ Future<Location> getCoordinatesFromCity(String key) async {
 }
 
 Future<String> getCityFromCoordinates(double latitude, double longitude) async {
-  List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+  List<Placemark> placemarks =
+      await placemarkFromCoordinates(latitude, longitude);
   return placemarks[0].locality!;
 }
