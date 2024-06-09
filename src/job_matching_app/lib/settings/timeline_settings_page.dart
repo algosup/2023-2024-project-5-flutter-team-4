@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -30,6 +31,11 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
   String docName = "";
 
   bool saved = true;
+
+  String dateTemp = "";
+  String dateDescriptionTemp = "";
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -193,41 +199,195 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(bottom: 20),
+                                  child: IconButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary),
+                                      shape: MaterialStateProperty.all<
+                                          CircleBorder>(
+                                        CircleBorder(
+                                          side: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        dates.insert(i + 1, '');
+                                        datesDescription.insert(i + 1, '');
+                                        if (dates.length > datesSaved.length ||
+                                            dates.length < datesSaved.length) {
+                                          saved = false;
+                                        } else {
+                                          saved = true;
+                                        }
+                                      });
+                                    },
+                                    icon: const Icon(Icons.add),
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(bottom: 20),
+                                  child: IconButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary),
+                                      shape: MaterialStateProperty.all<
+                                          CircleBorder>(
+                                        CircleBorder(
+                                          side: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      await showDialog<void>(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                                content: Stack(
+                                                  clipBehavior: Clip.none,
+                                                  children: <Widget>[
+                                                    Positioned(
+                                                      right: -40,
+                                                      top: -40,
+                                                      child: InkResponse(
+                                                        onTap: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child:
+                                                            const CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.red,
+                                                          child:
+                                                              Icon(Icons.close),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Form(
+                                                      key: _formKey,
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8),
+                                                            child:
+                                                                TextFormField(
+                                                              controller:
+                                                                  TextEditingController(
+                                                                      text: dates[
+                                                                          i]),
+                                                              decoration:
+                                                                  const InputDecoration(
+                                                                fillColor:
+                                                                    Colors
+                                                                        .black,
+                                                                hintText:
+                                                                    'Enter a year',
+                                                              ),
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .number,
+                                                              maxLength: 4,
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .digitsOnly,
+                                                              ],
+                                                              onChanged:
+                                                                  (value) {
+                                                                dateTemp =
+                                                                    value;
+                                                              },
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8),
+                                                            child:
+                                                                TextFormField(
+                                                              controller:
+                                                                  TextEditingController(
+                                                                      text: datesDescription[
+                                                                          i]),
+                                                              onChanged:
+                                                                  (value) => {
+                                                                dateDescriptionTemp =
+                                                                    value,
+                                                              },
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8),
+                                                            child:
+                                                                ElevatedButton(
+                                                              child: const Text(
+                                                                'Submit',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontFamily:
+                                                                      'Shanti',
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                              onPressed: () {
+                                                                dates[i] =
+                                                                    dateTemp;
+                                                                datesDescription[
+                                                                        i] =
+                                                                    dateDescriptionTemp;
+
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ));
+                                    },
+                                    icon: const Icon(Icons.edit),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                child: IconButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).colorScheme.secondary),
-                    shape: MaterialStateProperty.all<CircleBorder>(
-                      CircleBorder(
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      dates.add('');
-                      datesDescription.add('');
-                      if (dates.length > datesSaved.length ||
-                          dates.length < datesSaved.length) {
-                        saved = false;
-                      } else {
-                        saved = true;
-                      }
-                    });
-                  },
-                  icon: const Icon(Icons.add),
-                ),
-              ),
             ],
           ),
         ),
