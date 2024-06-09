@@ -108,7 +108,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   Container(
                     margin: const EdgeInsets.only(top: 25.0),
                     width: width * 0.3,
-                    color: Colors.cyan,
+                    // color: Colors.cyan,
                     child: const Text(
                       "Messages",
                       style: TextStyle(
@@ -119,11 +119,11 @@ class _MessagesPageState extends State<MessagesPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: width * 0.15, top: 25.0),
+                    margin: EdgeInsets.only(left: width * 0.35, top: 25.0),
                     width: width * 0.2,
-                    color: Colors.yellow,
+                    // color: Colors.yellow,
                     child: const IconButton(
-                      icon: Icon(Icons.search, color: Colors.white, size: 30),
+                      icon: Icon(Icons.search, color: Colors.grey, size: 30),
                       onPressed: null,
                     ),
                   ),
