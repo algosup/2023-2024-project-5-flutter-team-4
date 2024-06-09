@@ -1,8 +1,7 @@
-import 'dart:collection';
+// ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'conversation_page.dart';
 
@@ -12,6 +11,7 @@ class MessagesPage extends StatefulWidget {
   final int id;
 
   @override
+  // ignore: no_logic_in_create_state
   State<MessagesPage> createState() => _MessagesPageState(id: id);
 }
 
@@ -28,6 +28,10 @@ class _MessagesPageState extends State<MessagesPage> {
 
   List<List<int>> companies = [[]];
 
+  List<Timestamp> lastMessage = [];
+
+  List<int> messagesList = [];
+
   final Gradient gradient = const LinearGradient(
     colors: <Color>[
       Color.fromARGB(255, 215, 0, 123),
@@ -41,6 +45,8 @@ class _MessagesPageState extends State<MessagesPage> {
 
     conversations.clear();
     companies.clear();
+    lastMessage.clear();
+    messagesList.clear();
 
     id = 0;
 
@@ -54,7 +60,14 @@ class _MessagesPageState extends State<MessagesPage> {
             for (int i = 1; i <= convNum; i++) {
               conversations.add(result.data()["Conv$i"].cast<String>());
               companies.add(result.data()["ConvW$i"].cast<int>());
+              messagesList.add(i);
             }
+            if (convNum != 0) {
+              for (var date in result.data()["LastMessage"]) {
+                lastMessage.add(date as Timestamp);
+              }
+            }
+            messagesList = sortMessages(lastMessage, messagesList);
             break;
           }
         }
@@ -94,7 +107,8 @@ class _MessagesPageState extends State<MessagesPage> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 25.0),
-                    width: width * 0.5,
+                    width: width * 0.3,
+                    color: Colors.cyan,
                     child: const Text(
                       "Messages",
                       style: TextStyle(
@@ -107,6 +121,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   Container(
                     margin: EdgeInsets.only(left: width * 0.15, top: 25.0),
                     width: width * 0.2,
+                    color: Colors.yellow,
                     child: const IconButton(
                       icon: Icon(Icons.search, color: Colors.white, size: 30),
                       onPressed: null,
@@ -186,7 +201,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                       margin: const EdgeInsets.only(top: 10.0),
                                       child: Text(
                                         conversations.isNotEmpty
-                                            ? conversations[i][0]
+                                            ? conversations[messagesList[i] - 1][0]
                                             : "",
                                         style: const TextStyle(
                                             color: Colors.black,
@@ -200,15 +215,15 @@ class _MessagesPageState extends State<MessagesPage> {
                                         margin: const EdgeInsets.only(top: 5.0),
                                         child: Text(
                                           overflow: TextOverflow.ellipsis,
-                                          (companies[i][companies[i].length -
+                                          (companies[messagesList[i] - 1][companies[messagesList[i] - 1].length -
                                                           1] ==
                                                       0
                                                   ? "him: "
                                                   : "vous: ") +
                                               (conversations.isEmpty
                                                   ? ""
-                                                  : conversations[i][
-                                                      conversations[i].length -
+                                                  : conversations[messagesList[i] - 1][
+                                                      conversations[messagesList[i] - 1].length -
                                                           1]),
                                           style: const TextStyle(
                                               color: Colors.white,
@@ -232,9 +247,9 @@ class _MessagesPageState extends State<MessagesPage> {
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             ConversationPage(
-                                                convId: i,
-                                                conversation: conversations[i],
-                                                companies: companies[i]),
+                                                convId: messagesList[i] - 1,
+                                                conversation: conversations[messagesList[i] - 1],
+                                                companies: companies[messagesList[i] - 1]),
                                       ),
                                     );
                                   },
@@ -288,4 +303,23 @@ Color getColor(int index) {
     default:
       return Colors.black;
   }
+}
+
+List<int> sortMessages(List<Timestamp> list, List<int> conversations) {
+  List<int> sortedList = [];
+  Timestamp max = Timestamp(0, 0);
+  int maxIndex = -1;
+  for (int j = 0; j < list.length; j++) {
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].seconds > max.seconds) {
+        max = list[i];
+        maxIndex = i;
+      }
+    }
+    sortedList.add(conversations[maxIndex]);
+    list[maxIndex] = Timestamp(0, 0);
+    max = Timestamp(0, 0);
+    maxIndex = -1;
+  }
+  return sortedList;
 }
