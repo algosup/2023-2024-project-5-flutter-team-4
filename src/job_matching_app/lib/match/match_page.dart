@@ -75,6 +75,7 @@ class _MatchPageState extends State<MatchPage> {
       [0, 0, 0, 0, 0, 0, 0],
     ];
 
+
     final docRef = db.collection("Users");
     docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
       data.clear();
@@ -91,6 +92,7 @@ class _MatchPageState extends State<MatchPage> {
       }
     }).then((value) => setState(() {}));
   }
+    CardSwiperController cardController= CardSwiperController();
 
   @override
   Widget build(BuildContext context) {
@@ -426,6 +428,7 @@ class _MatchPageState extends State<MatchPage> {
               ],
             ),
             CardSwiper(
+              controller: cardController,
               cardsCount: cards.length,
               allowedSwipeDirection: const AllowedSwipeDirection.only(
                 right: true,
@@ -466,7 +469,9 @@ class _MatchPageState extends State<MatchPage> {
                   height: MediaQuery.of(context).size.width * 0.18,
                   child: IconButton(
                     iconSize: 30,
-                    onPressed: () {},
+                    onPressed: () {
+                      cardController.swipe(CardSwiperDirection.left);
+                    },
                     icon: const Icon(
                       WebSymbols.cancel,
                       color: Colors.red,
@@ -489,7 +494,10 @@ class _MatchPageState extends State<MatchPage> {
                   height: MediaQuery.of(context).size.width * 0.15,
                   child: IconButton(
                     iconSize: 25,
-                    onPressed: () {},
+                    onPressed: () {
+                      cardController.undo();
+
+                    },
                     icon: const Icon(
                       FontAwesome5.undo,
                       color: Colors.yellow,
@@ -512,7 +520,10 @@ class _MatchPageState extends State<MatchPage> {
                   height: MediaQuery.of(context).size.width * 0.18,
                   child: IconButton(
                     iconSize: 30,
-                    onPressed: () {},
+                    onPressed: () {
+                      cardController.swipe(CardSwiperDirection.right);
+
+                    },
                     icon: const Icon(
                       FontAwesome5.heart,
                       color: Colors.green,
