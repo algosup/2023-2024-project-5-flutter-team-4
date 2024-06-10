@@ -61,7 +61,7 @@ class _ConversationPageState extends State<ConversationPage>
 
   @override
   void didChangeMetrics() {
-    final bottomInset = View.of(context).viewInsets.bottom;
+    final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
     setState(() {
       _isKeyboardVisible = bottomInset > 0.0;
     });
@@ -76,9 +76,14 @@ class _ConversationPageState extends State<ConversationPage>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final double listViewHeight =
+        _isKeyboardVisible ? size.height * 0.821 : size.height * 0.921;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: backgroundGradient),
+        ),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
         title: Text(
@@ -95,118 +100,121 @@ class _ConversationPageState extends State<ConversationPage>
         decoration: BoxDecoration(
           gradient: backgroundGradient,
         ),
-        child: Stack(
-          children: [
-            SizedBox(
-              height: size.height * 0.921,
-              child: ListView(
-                children: [
-                  for (int i = 1; i < conversation.length; i++)
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 10.0,
-                        bottom: 10.0,
-                        left: companies[i] == 0 ? 10.0 : 70.0,
-                        right: companies[i] == 1 ? 10.0 : 70.0,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: ListTile(
-                        minLeadingWidth: 0,
-                        title: Text(
-                          textAlign: companies[i] == 0
-                              ? TextAlign.start
-                              : TextAlign.end,
-                          conversation[i],
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 100),
-              padding: EdgeInsets.only(
-                bottom: _isKeyboardVisible
-                    ? MediaQuery.of(context).viewInsets.bottom
-                    : 0,
-              ),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
+        child: SizedBox(
+          height: size.height * 0.921,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
                   children: [
-                    Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.8,
-                      decoration: const BoxDecoration(
-                        border: null,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10),
+                    for (int i = 1; i < conversation.length; i++)
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 10.0,
+                          bottom: 10.0,
+                          left: companies[i] == 0 ? 10.0 : 70.0,
+                          right: companies[i] == 1 ? 10.0 : 70.0,
                         ),
-                      ),
-                      child: TextFieldTapRegion(
-                        onTapOutside: (PointerDownEvent) {
-                          FocusScope.of(context).unfocus();
-                        },
-                        child: TextField(
-                          focusNode: _focusNode,
-                          decoration: InputDecoration(
-                            hintText: 'Type a message...',
-                            hintStyle: TextStyle(
-                              color: Colors.grey.shade900,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ListTile(
+                          minLeadingWidth: 0,
+                          title: Text(
+                            conversation[i],
+                            textAlign: companies[i] == 0
+                                ? TextAlign.start
+                                : TextAlign.end,
+                            style: const TextStyle(
+                              color: Colors.black,
                               fontFamily: 'Shanti',
                               fontSize: 20,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      padding: EdgeInsets.only(
+                        bottom: _isKeyboardVisible
+                            ? MediaQuery.of(context).viewPadding.bottom
+                            : 0,
+                      ),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: size.height * 0.08,
+                              width: size.width * 0.8,
+                              decoration: const BoxDecoration(
+                                border: null,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: TextFieldTapRegion(
+                                onTapOutside: (PointerDownEvent) {
+                                  FocusScope.of(context).unfocus();
+                                },
+                                child: TextField(
+                                  focusNode: _focusNode,
+                                  decoration: InputDecoration(
+                                    hintText: 'Type a message...',
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey.shade900,
+                                      fontFamily: 'Shanti',
+                                      fontSize: 20,
+                                    ),
+                                    border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                      ),
+                                    ),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                  ),
+                                ),
                               ),
                             ),
-                            fillColor: Colors.white,
-                            filled: true,
-                          ),
+                            Container(
+                              height: size.height * 0.08,
+                              width: size.width * 0.2,
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                    color: Colors.black,
+                                    width: 1.0,
+                                  ),
+                                  right: BorderSide(
+                                    color: Colors.black,
+                                    width: 1.0,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: Colors.black,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                ),
+                                color: Colors.white,
+                              ),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.send_rounded)),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.2,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
-                          ),
-                          right: BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
-                          ),
-                          bottom: BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
-                          ),
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10),
-                        ),
-                        color: Colors.white,
-                      ),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.send_rounded)),
                     ),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
