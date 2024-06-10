@@ -211,7 +211,7 @@ class _RootPageState extends State<RootPage> {
             ),
 
             // Match page
-            NavigationDestination(
+           if(!isCompanyView) NavigationDestination(
               icon: currentPage == 2
                   ? ShaderMask(
                       blendMode: BlendMode.srcIn,
@@ -235,7 +235,7 @@ class _RootPageState extends State<RootPage> {
               label: 'Match',
               enabled: false,
             ),
-
+              
             // Settings page
             NavigationDestination(
               icon: currentPage == 3
