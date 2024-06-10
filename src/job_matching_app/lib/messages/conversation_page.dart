@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class ConversationPage extends StatefulWidget {
   const ConversationPage(
@@ -10,9 +8,7 @@ class ConversationPage extends StatefulWidget {
       required this.companies});
 
   final int convId;
-
   final List<String> conversation;
-
   final List<int> companies;
 
   @override
@@ -20,7 +16,8 @@ class ConversationPage extends StatefulWidget {
       id: convId, conversation: conversation, companies: companies);
 }
 
-class _ConversationPageState extends State<ConversationPage> {
+class _ConversationPageState extends State<ConversationPage>
+    with WidgetsBindingObserver {
   var id;
   List<String> conversation;
   List<int> companies;
@@ -45,6 +42,37 @@ class _ConversationPageState extends State<ConversationPage> {
     ],
   );
 
+  bool _isKeyboardVisible = false;
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeMetrics() {
+    final bottomInset = View.of(context).viewInsets.bottom;
+    setState(() {
+      _isKeyboardVisible = bottomInset > 0.0;
+    });
+  }
+
+  void _onFocusChange() {
+    setState(() {
+      _isKeyboardVisible = _focusNode.hasFocus;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -57,7 +85,6 @@ class _ConversationPageState extends State<ConversationPage> {
           conversation[0],
         ),
         titleTextStyle: const TextStyle(
-          // color: Colors.white,
           fontFamily: 'Shanti',
           fontSize: 24,
         ),
@@ -74,7 +101,6 @@ class _ConversationPageState extends State<ConversationPage> {
               height: size.height * 0.921,
               child: ListView(
                 children: [
-                  // Text('Conversation $id'),
                   for (int i = 1; i < conversation.length; i++)
                     Container(
                       margin: EdgeInsets.only(
@@ -105,71 +131,79 @@ class _ConversationPageState extends State<ConversationPage> {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(
-                top: size.height * 0.921,
+            AnimatedContainer(
+              duration: Duration(milliseconds: 100),
+              padding: EdgeInsets.only(
+                bottom: _isKeyboardVisible
+                    ? MediaQuery.of(context).viewInsets.bottom
+                    : 0,
               ),
-              child: Row(
-                children: [
-                  Container(
-                    height: size.height * 0.08,
-                    width: size.width * 0.8,
-                    decoration: const BoxDecoration(
-                      border: null,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  children: [
+                    Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.8,
+                      decoration: const BoxDecoration(
+                        border: null,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                        ),
                       ),
-                    ),
-                    child: TextFieldTapRegion(
-                      onTapOutside: (PointerDownEvent) {
-                        FocusScope.of(context).unfocus();
-                      },
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Type a message...',
-                          hintStyle: TextStyle(
-                            color: Colors.grey.shade900,
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
-                          ),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
+                      child: TextFieldTapRegion(
+                        onTapOutside: (PointerDownEvent) {
+                          FocusScope.of(context).unfocus();
+                        },
+                        child: TextField(
+                          focusNode: _focusNode,
+                          decoration: InputDecoration(
+                            hintText: 'Type a message...',
+                            hintStyle: TextStyle(
+                              color: Colors.grey.shade900,
+                              fontFamily: 'Shanti',
+                              fontSize: 20,
                             ),
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                              ),
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
                           ),
-                          fillColor: Colors.white,
-                          filled: true,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: size.height * 0.08,
-                    width: size.width * 0.2,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
+                    Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.2,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: Colors.black,
+                            width: 1.0,
+                          ),
+                          right: BorderSide(
+                            color: Colors.black,
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            color: Colors.black,
+                            width: 1.0,
+                          ),
                         ),
-                        right: BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
                         ),
-                        bottom: BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
-                        ),
+                        color: Colors.white,
                       ),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
-                      ),
-                      color: Colors.white,
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.send_rounded)),
                     ),
-                    child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.send_rounded)),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
