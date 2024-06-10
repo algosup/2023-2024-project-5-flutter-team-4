@@ -3,6 +3,8 @@ import 'package:job_matching_app/main.dart';
 import 'package:job_matching_app/parsers/user_loader.dart';
 
 class CandidateFormPage extends StatefulWidget {
+  const CandidateFormPage({super.key});
+
   @override
   State<CandidateFormPage> createState() => _CandidateFormState();
 }

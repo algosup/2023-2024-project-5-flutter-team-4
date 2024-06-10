@@ -7,14 +7,18 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 
 // Firebase imports
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:job_matching_app/chart_page.dart';
+import 'package:job_matching_app/match/candidate_details_page.dart';
+import 'package:job_matching_app/settings/candidate_profile_settings_page.dart';
 import 'home/firebase_options.dart';
 
 // Pages imports
 import 'package:job_matching_app/connection_pages/connection_page.dart';
 import 'package:job_matching_app/messages/messages_page.dart';
 import 'package:job_matching_app/match/match_page.dart';
-import 'package:job_matching_app/settings/profile_settings_page.dart';
+import 'package:job_matching_app/settings/company_profile_settings_page.dart';
 import 'splash_screen.dart';
 
 // import 'package:fluttericon/mfg_labs_icons.dart';
@@ -128,28 +132,25 @@ class _RootPageState extends State<RootPage> {
 
   // Variables
   int currentPage = 0;
-  List<Widget> pages = [
-    const MatchPage(),
-    const MessagesPage(
-      id: 0,
-    ),
-    const MatchPage(),
-    const ProfileSettingsPage(),
-  ];
-  List<Widget> companyPages = [
-    const MatchPage(),
-    const MessagesPage(
-      id: 0,
-    ),
-    const ProfileSettingsPage(),
-  ];
 
   // Build function
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [
+      if (!isCompanyView) const MatchPage() else const ChartPage(),
+      if (!isCompanyView) const MessagesPage(id: 0) else const MatchPage(),
+      if (!isCompanyView)
+        const CompanyProfileSettingsPage()
+      else
+        const MessagesPage(id: 0),
+      if (!isCompanyView)
+        const CandidateProfileSettingsPage()
+      else
+        const CompanyProfileSettingsPage(),
+    ];
     return Scaffold(
       // Body is the current page
-      body: isCompanyView ? companyPages[currentPage] : pages[currentPage],
+      body: pages[currentPage],
 
       // Bottom navigation bar
       bottomNavigationBar: SafeArea(
@@ -179,11 +180,14 @@ class _RootPageState extends State<RootPage> {
                         ],
                       ).createShader(bounds),
                       child: Icon(
-                        RpgAwesome.supersonic_arrow,
+                        !isCompanyView
+                            ? RpgAwesome.supersonic_arrow
+                            : Icons.menu,
                         size: MediaQuery.of(context).size.width * 0.1,
                       ),
                     )
-                  : Icon(RpgAwesome.supersonic_arrow,
+                  : Icon(
+                      !isCompanyView ? RpgAwesome.supersonic_arrow : Icons.menu,
                       size: MediaQuery.of(context).size.width * 0.1,
                       color: Colors.black),
               label: 'Home',
@@ -205,47 +209,55 @@ class _RootPageState extends State<RootPage> {
                         tileMode: TileMode.clamp,
                       ).createShader(bounds),
                       child: Icon(
-                        FontAwesome.chat,
-                        size: MediaQuery.of(context).size.width * 0.12,
+                        !isCompanyView
+                            ? FontAwesome.chat
+                            : RpgAwesome.supersonic_arrow,
+                        size: MediaQuery.of(context).size.width * 0.1,
                       ),
                     )
-                  : Icon(FontAwesome.chat,
-                      size: MediaQuery.of(context).size.width * 0.12,
+                  : Icon(
+                      !isCompanyView
+                          ? FontAwesome.chat
+                          : RpgAwesome.supersonic_arrow,
+                      size: MediaQuery.of(context).size.width * 0.1,
                       color: Colors.black),
               label: 'Chat',
             ),
 
             // Match page
-            if (!isCompanyView)
-              NavigationDestination(
-                icon: currentPage == 2
-                    ? ShaderMask(
-                        blendMode: BlendMode.srcIn,
-                        shaderCallback: (Rect bounds) => const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: [0.25, 0.5],
-                          colors: [
-                            Color.fromARGB(255, 169, 38, 135),
-                            Color.fromARGB(255, 215, 0, 123),
-                          ],
-                        ).createShader(bounds),
-                        child: Icon(
-                          FontAwesome5.book_reader,
-                          size: MediaQuery.of(context).size.width * 0.1,
-                        ),
-                      )
-                    : Icon(FontAwesome5.book_reader,
+            NavigationDestination(
+              icon: currentPage == 2
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) => const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.25, 0.5],
+                        colors: [
+                          Color.fromARGB(255, 169, 38, 135),
+                          Color.fromARGB(255, 215, 0, 123),
+                        ],
+                      ).createShader(bounds),
+                      child: Icon(
+                        !isCompanyView
+                            ? FontAwesome5.book_reader
+                            : FontAwesome.chat,
                         size: MediaQuery.of(context).size.width * 0.1,
-                        color: Colors.grey),
-                label: 'Match',
-                enabled: false,
-              ),
+                      ),
+                    )
+                  : Icon(
+                      !isCompanyView
+                          ? FontAwesome5.book_reader
+                          : FontAwesome.chat,
+                      size: MediaQuery.of(context).size.width * 0.1,
+                      color: isCompanyView ? Colors.black : Colors.grey),
+              label: 'Match',
+              enabled: isCompanyView ? true : false,
+            ),
 
             // Settings page
             NavigationDestination(
-              icon: currentPage == 3 && isCompanyView == false ||
-                      currentPage == 2 && isCompanyView == true
+              icon: currentPage == 3
                   ? ShaderMask(
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (Rect bounds) => const LinearGradient(

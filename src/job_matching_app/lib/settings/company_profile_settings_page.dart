@@ -8,15 +8,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:geocoding/geocoding.dart';
 
-class ProfileSettingsPage extends StatefulWidget {
-  const ProfileSettingsPage({super.key});
+class CompanyProfileSettingsPage extends StatefulWidget {
+  const CompanyProfileSettingsPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProfileSettingState createState() => _ProfileSettingState();
+  _CompanyProfileSettingState createState() => _CompanyProfileSettingState();
 }
 
-class _ProfileSettingState extends State<ProfileSettingsPage> {
+class _CompanyProfileSettingState extends State<CompanyProfileSettingsPage> {
   bool isDarkMode = false;
   bool isCompanyView = false;
 
@@ -95,14 +95,14 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                 ),
               ),
               onPressed: () {
-                null;
+                // null;
                 // DISABLED UNTIL MORE SETTINGS ARE NEEDED
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute<void>(
-                //     builder: (BuildContext context) => const MoreSettingsPage(),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const MoreSettingsPage(),
+                  ),
+                );
               },
               child: const Icon(
                 Icons.settings_suggest_rounded,
