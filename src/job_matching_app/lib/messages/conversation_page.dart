@@ -76,8 +76,6 @@ class _ConversationPageState extends State<ConversationPage>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final double listViewHeight =
-        _isKeyboardVisible ? size.height * 0.821 : size.height * 0.921;
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(
@@ -135,82 +133,82 @@ class _ConversationPageState extends State<ConversationPage>
                           ),
                         ),
                       ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      padding: EdgeInsets.only(
-                        bottom: _isKeyboardVisible
-                            ? MediaQuery.of(context).viewPadding.bottom
-                            : 0,
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: size.height * 0.08,
-                              width: size.width * 0.8,
-                              decoration: const BoxDecoration(
-                                border: null,
+                  ],
+                ),
+              ),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                padding: EdgeInsets.only(
+                  bottom: _isKeyboardVisible
+                      ? MediaQuery.of(context).viewPadding.bottom
+                      : 0,
+                ),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.8,
+                        decoration: const BoxDecoration(
+                          border: null,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: TextFieldTapRegion(
+                          onTapOutside: (PointerDownEvent) {
+                            FocusScope.of(context).unfocus();
+                          },
+                          child: TextField(
+                            focusNode: _focusNode,
+                            decoration: InputDecoration(
+                              hintText: 'Type a message...',
+                              hintStyle: TextStyle(
+                                color: Colors.grey.shade900,
+                                fontFamily: 'Shanti',
+                                fontSize: 20,
+                              ),
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
+                                  topLeft: Radius.circular(10),
                                 ),
                               ),
-                              child: TextFieldTapRegion(
-                                onTapOutside: (PointerDownEvent) {
-                                  FocusScope.of(context).unfocus();
-                                },
-                                child: TextField(
-                                  focusNode: _focusNode,
-                                  decoration: InputDecoration(
-                                    hintText: 'Type a message...',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey.shade900,
-                                      fontFamily: 'Shanti',
-                                      fontSize: 20,
-                                    ),
-                                    border: const OutlineInputBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                      ),
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
-                              ),
+                              fillColor: Colors.white,
+                              filled: true,
                             ),
-                            Container(
-                              height: size.height * 0.08,
-                              width: size.width * 0.2,
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.0,
-                                  ),
-                                  right: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.0,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                ),
-                                color: Colors.white,
-                              ),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.send_rounded)),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.2,
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            top: BorderSide(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                            right: BorderSide(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                            bottom: BorderSide(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.send_rounded)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
