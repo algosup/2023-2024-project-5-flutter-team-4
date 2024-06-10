@@ -136,128 +136,153 @@ class _MessagesPageState extends State<MessagesPage> {
                   child: Column(
                     children: [
                       for (int i = 0; i < convNum; i++)
-                        Container(
-                          margin: EdgeInsets.only(
-                              top: 10.0, bottom: i == convNum - 1 ? 10.0 : 0.0),
-                          width: width * 0.9,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.grey.shade300,
-                                Colors.grey.shade500,
-                                Colors.black,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 10.0),
-                                width: width * 0.2,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  width: 84, // Width of the container
-
-                                  // Decoration of the container
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape
-                                        .circle, // Shape of the container is a circle
-                                    gradient: RadialGradient(
-                                      // Gradient of the container
-                                      stops: const [
-                                        0.6,
-                                        0.95
-                                      ], // Stops of the gradient
-                                      colors: [
-                                        Colors.white, // Color of the container
-                                        getColor(i), // Color of the container
-                                      ],
-                                    ),
-                                  ),
-
-                                  child: Transform.scale(
-                                    scale:
-                                        1.025, // Scale of the profile picture is set to 0.8
-                                    child: const ClipRRect(
-                                        // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
-                                        ),
-                                  ),
-                                ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    ConversationPage(
+                                        convId: messagesList[i] - 1,
+                                        conversation:
+                                            conversations[messagesList[i] - 1],
+                                        companies:
+                                            companies[messagesList[i] - 1]),
                               ),
-                              Container(
-                                margin: const EdgeInsets.only(left: 10.0),
-                                width: width * 0.5,
-                                height: 80,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10.0),
-                                      child: Text(
-                                        conversations.isNotEmpty
-                                            ? conversations[messagesList[i] - 1][0]
-                                            : "",
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Shanti',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            splashFactory: NoSplash.splashFactory,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            backgroundColor:
+                                Colors.transparent, // Background color
+                            shadowColor:
+                                Colors.transparent, // Remove shadow if any
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                top: 10.0,
+                                bottom: i == convNum - 1 ? 10.0 : 0.0),
+                            width: width * 0.9,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.grey.shade300,
+                                  Colors.grey.shade500,
+                                  Colors.black,
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(left: 10.0),
+                                  width: width * 0.2,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    width: 84, // Width of the container
+
+                                    // Decoration of the container
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape
+                                          .circle, // Shape of the container is a circle
+                                      gradient: RadialGradient(
+                                        // Gradient of the container
+                                        stops: const [
+                                          0.6,
+                                          0.95
+                                        ], // Stops of the gradient
+                                        colors: [
+                                          Colors
+                                              .white, // Color of the container
+                                          getColor(i), // Color of the container
+                                        ],
                                       ),
                                     ),
-                                    Flexible(
-                                      child: Container(
-                                        margin: const EdgeInsets.only(top: 5.0),
+
+                                    child: Transform.scale(
+                                      scale:
+                                          1.025, // Scale of the profile picture is set to 0.8
+                                      child: const ClipRRect(
+                                          // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 10.0),
+                                  width: width * 0.5,
+                                  height: 80,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(top: 10.0),
                                         child: Text(
-                                          overflow: TextOverflow.ellipsis,
-                                          (companies[messagesList[i] - 1][companies[messagesList[i] - 1].length -
-                                                          1] ==
-                                                      0
-                                                  ? "him: "
-                                                  : "vous: ") +
-                                              (conversations.isEmpty
-                                                  ? ""
-                                                  : conversations[messagesList[i] - 1][
-                                                      conversations[messagesList[i] - 1].length -
-                                                          1]),
+                                          conversations.isNotEmpty
+                                              ? conversations[
+                                                  messagesList[i] - 1][0]
+                                              : "",
                                           style: const TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontFamily: 'Shanti',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 20),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(left: 10.0),
-                                width: width * 0.1,
-                                height: 80,
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ConversationPage(
-                                                convId: messagesList[i] - 1,
-                                                conversation: conversations[messagesList[i] - 1],
-                                                companies: companies[messagesList[i] - 1]),
+                                      Flexible(
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            (companies[messagesList[i] - 1][
+                                                            companies[messagesList[
+                                                                            i] -
+                                                                        1]
+                                                                    .length -
+                                                                1] ==
+                                                        0
+                                                    ? "him: "
+                                                    : "vous: ") +
+                                                (conversations.isEmpty
+                                                    ? ""
+                                                    : conversations[
+                                                        messagesList[i] -
+                                                            1][conversations[
+                                                                messagesList[i] - 1]
+                                                            .length -
+                                                        1]),
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Shanti',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                          ),
+                                        ),
                                       ),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.arrow_forward_ios,
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 10.0),
+                                  width: width * 0.1,
+                                  height: 80,
+                                  child: const Icon(Icons.arrow_forward_ios,
                                       color: Colors.white, size: 30),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                     ],
