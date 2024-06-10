@@ -4,27 +4,32 @@ class ConversationPage extends StatefulWidget {
   const ConversationPage(
       {super.key,
       required this.convId,
-      required this.conversation,
-      required this.companies});
+      required this.messages,
+      required this.isCompany});
 
   final int convId;
-  final List<String> conversation;
-  final List<int> companies;
+  final List<String> messages;
+  final List<int> isCompany;
 
   @override
   State<ConversationPage> createState() => _ConversationPageState(
-      id: convId, conversation: conversation, companies: companies);
+      id: convId, messages: messages, isCompany: isCompany);
 }
 
 class _ConversationPageState extends State<ConversationPage>
     with WidgetsBindingObserver {
   var id;
-  List<String> conversation;
-  List<int> companies;
+
+  /// A list containing all messages of a conversation
+  List<String> messages;
+
+  /// A list mirroring the messages list to identify the sender
+  List<int> isCompany;
 
   _ConversationPageState(
-      {required this.id, required this.conversation, required this.companies});
+      {required this.id, required this.messages, required this.isCompany});
 
+  /// A gradiant for the background going from pink to purple
   final LinearGradient backgroundGradient = const LinearGradient(
     colors: <Color>[
       Color.fromARGB(255, 215, 0, 123),
@@ -32,17 +37,10 @@ class _ConversationPageState extends State<ConversationPage>
     ],
   );
 
-  final LinearGradient itemGradient = LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: <Color>[
-      Colors.grey.shade300,
-      Colors.grey.shade500,
-      Colors.black,
-    ],
-  );
-
+  /// A boolean to identify if the keyboard is opened or not
   bool _isKeyboardVisible = false;
+
+  /// The node to manage interactions with text fields
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -78,14 +76,16 @@ class _ConversationPageState extends State<ConversationPage>
     final size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: false,
+      //----------------- APPBAR -----------------
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(gradient: backgroundGradient),
         ),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
+        //------------- PARTICIPANT NAME -------------
         title: Text(
-          conversation[0],
+          messages[0],
         ),
         titleTextStyle: const TextStyle(
           fontFamily: 'Shanti',
@@ -93,6 +93,7 @@ class _ConversationPageState extends State<ConversationPage>
         ),
         centerTitle: true,
       ),
+      //----------------- MESSAGES -----------------
       body: Container(
         height: size.height,
         decoration: BoxDecoration(
@@ -106,13 +107,13 @@ class _ConversationPageState extends State<ConversationPage>
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
-                    for (int i = 1; i < conversation.length; i++)
+                    for (int i = 1; i < messages.length; i++)
                       Container(
                         margin: EdgeInsets.only(
                           top: 10.0,
                           bottom: 10.0,
-                          left: companies[i] == 0 ? 10.0 : 70.0,
-                          right: companies[i] == 1 ? 10.0 : 70.0,
+                          left: isCompany[i] == 0 ? 10.0 : 70.0,
+                          right: isCompany[i] == 1 ? 10.0 : 70.0,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -121,8 +122,8 @@ class _ConversationPageState extends State<ConversationPage>
                         child: ListTile(
                           minLeadingWidth: 0,
                           title: Text(
-                            conversation[i],
-                            textAlign: companies[i] == 0
+                            messages[i],
+                            textAlign: isCompany[i] == 0
                                 ? TextAlign.start
                                 : TextAlign.end,
                             style: const TextStyle(
@@ -136,6 +137,8 @@ class _ConversationPageState extends State<ConversationPage>
                   ],
                 ),
               ),
+
+              //---------------- TEXT FIELD ----------------
               AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 padding: EdgeInsets.only(
@@ -180,6 +183,8 @@ class _ConversationPageState extends State<ConversationPage>
                           ),
                         ),
                       ),
+
+                      //--------------- SEND BUTTON ----------------
                       Container(
                         height: size.height * 0.08,
                         width: size.width * 0.2,

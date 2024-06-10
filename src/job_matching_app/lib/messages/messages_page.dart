@@ -24,7 +24,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
   int convNum = 0;
 
-  List<List<String>> conversations = [[]];
+  List<List<String>> messages = [[]];
 
   List<List<int>> companies = [[]];
 
@@ -43,7 +43,7 @@ class _MessagesPageState extends State<MessagesPage> {
   void initState() {
     super.initState();
 
-    conversations.clear();
+    messages.clear();
     companies.clear();
     lastMessage.clear();
     messagesList.clear();
@@ -58,7 +58,7 @@ class _MessagesPageState extends State<MessagesPage> {
           if (result.data()["ID"] == id) {
             convNum = result.data()["ConvNum"];
             for (int i = 1; i <= convNum; i++) {
-              conversations.add(result.data()["Conv$i"].cast<String>());
+              messages.add(result.data()["Conv$i"].cast<String>());
               companies.add(result.data()["ConvW$i"].cast<int>());
               messagesList.add(i);
             }
@@ -144,9 +144,9 @@ class _MessagesPageState extends State<MessagesPage> {
                                 builder: (BuildContext context) =>
                                     ConversationPage(
                                         convId: messagesList[i] - 1,
-                                        conversation:
-                                            conversations[messagesList[i] - 1],
-                                        companies:
+                                        messages:
+                                            messages[messagesList[i] - 1],
+                                        isCompany:
                                             companies[messagesList[i] - 1]),
                               ),
                             );
@@ -229,8 +229,8 @@ class _MessagesPageState extends State<MessagesPage> {
                                         margin:
                                             const EdgeInsets.only(top: 10.0),
                                         child: Text(
-                                          conversations.isNotEmpty
-                                              ? conversations[
+                                          messages.isNotEmpty
+                                              ? messages[
                                                   messagesList[i] - 1][0]
                                               : "",
                                           style: const TextStyle(
@@ -255,11 +255,11 @@ class _MessagesPageState extends State<MessagesPage> {
                                                         0
                                                     ? "him: "
                                                     : "vous: ") +
-                                                (conversations.isEmpty
+                                                (messages.isEmpty
                                                     ? ""
-                                                    : conversations[
+                                                    : messages[
                                                         messagesList[i] -
-                                                            1][conversations[
+                                                            1][messages[
                                                                 messagesList[i] - 1]
                                                             .length -
                                                         1]),
@@ -330,7 +330,7 @@ Color getColor(int index) {
   }
 }
 
-List<int> sortMessages(List<Timestamp> list, List<int> conversations) {
+List<int> sortMessages(List<Timestamp> list, List<int> messages) {
   List<int> sortedList = [];
   Timestamp max = Timestamp(0, 0);
   int maxIndex = -1;
@@ -341,7 +341,7 @@ List<int> sortMessages(List<Timestamp> list, List<int> conversations) {
         maxIndex = i;
       }
     }
-    sortedList.add(conversations[maxIndex]);
+    sortedList.add(messages[maxIndex]);
     list[maxIndex] = Timestamp(0, 0);
     max = Timestamp(0, 0);
     maxIndex = -1;
