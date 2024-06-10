@@ -56,6 +56,7 @@ class _MatchPageState extends State<MatchPage> {
       70,
       80,
       90,
+      100,
     ];
 
     features = [
@@ -382,6 +383,7 @@ class _MatchPageState extends State<MatchPage> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
+          // color: Colors.white,
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

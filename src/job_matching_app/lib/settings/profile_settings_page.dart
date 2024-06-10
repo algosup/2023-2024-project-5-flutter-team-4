@@ -141,8 +141,12 @@ class _ProfileSettingState extends State<ProfileSettingsPage> {
                     ),
                     onChanged: (value) => name = value,
                     decoration: const InputDecoration(
+                      // label: Text('Nom de l\'entreprise', textAlign: TextAlign.center,),
+                      // labelStyle: TextStyle(
+                      //   color: Colors.black,
+                      // ),
                       border: InputBorder.none,
-                      hintText: 'Enter your name',
+                      hintText: 'Entrez Votre Nom',
                     ),
                   ),
                 ),

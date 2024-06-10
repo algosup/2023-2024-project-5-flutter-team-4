@@ -1,6 +1,3 @@
-
-
-
 // Main imports native from flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +21,6 @@ import 'splash_screen.dart';
 import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/octicons_icons.dart';
-
 
 // Main function
 Future<void> main() async {
@@ -60,12 +56,12 @@ class MyApp extends StatelessWidget {
       Future.delayed(const Duration(milliseconds: 500), () {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
             overlays: [SystemUiOverlay.top]);
-        
-      }).then((value) => SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.dark,
-      )));
+      }).then((value) =>
+          SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+            systemNavigationBarDividerColor: Colors.transparent,
+            systemNavigationBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.dark,
+          )));
     });
     // SharedPreferences.setMockInitialValues({}); // May be important ???????????
 
@@ -134,8 +130,17 @@ class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> pages = [
     const MatchPage(),
-    const MessagesPage(id: 0,),
+    const MessagesPage(
+      id: 0,
+    ),
     const MatchPage(),
+    const ProfileSettingsPage(),
+  ];
+  List<Widget> companyPages = [
+    const MatchPage(),
+    const MessagesPage(
+      id: 0,
+    ),
     const ProfileSettingsPage(),
   ];
 
@@ -144,7 +149,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Body is the current page
-      body: pages[currentPage],
+      body: isCompanyView ? companyPages[currentPage] : pages[currentPage],
 
       // Bottom navigation bar
       bottomNavigationBar: SafeArea(
@@ -162,62 +167,11 @@ class _RootPageState extends State<RootPage> {
             // Home page
             NavigationDestination(
               icon: currentPage == 0
-              ? ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (Rect bounds) => const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.25, 0.5],
-                  colors: [
-                    Color.fromARGB(255, 169, 38, 135),
-                    Color.fromARGB(255, 215, 0, 123),
-                  ],
-                ).createShader(bounds),
-                child: Icon(
-                  RpgAwesome.supersonic_arrow,
-                  size: MediaQuery.of(context).size.width * 0.1,
-                ),
-              )
-              : Icon(RpgAwesome.supersonic_arrow,
-                  size: MediaQuery.of(context).size.width * 0.1,
-                  color: Colors.black),
-              label: 'Home',
-            ),
-
-            // Settings page
-            NavigationDestination(
-              icon: currentPage == 1
-              ? ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (Rect bounds) => const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.25, 0.5],
-                  colors: [
-                    Color.fromARGB(255, 169, 38, 135),
-                    Color.fromARGB(255, 215, 0, 123),
-                  ],
-                  tileMode: TileMode.clamp,
-                ).createShader(bounds),
-                child: Icon(
-                  FontAwesome.chat,
-                  size: MediaQuery.of(context).size.width * 0.12,
-                ),
-              )
-              : Icon(FontAwesome.chat,
-                  size: MediaQuery.of(context).size.width * 0.12,
-                  color: Colors.black),
-              label: 'Chat',
-            ),
-
-            // Match page
-           if(!isCompanyView) NavigationDestination(
-              icon: currentPage == 2
                   ? ShaderMask(
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (Rect bounds) => const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                         stops: [0.25, 0.5],
                         colors: [
                           Color.fromARGB(255, 169, 38, 135),
@@ -225,25 +179,78 @@ class _RootPageState extends State<RootPage> {
                         ],
                       ).createShader(bounds),
                       child: Icon(
-                        FontAwesome5.book_reader,
+                        RpgAwesome.supersonic_arrow,
                         size: MediaQuery.of(context).size.width * 0.1,
                       ),
                     )
-                  : Icon(FontAwesome5.book_reader,
+                  : Icon(RpgAwesome.supersonic_arrow,
                       size: MediaQuery.of(context).size.width * 0.1,
-                      color: Colors.grey),
-              label: 'Match',
-              enabled: false,
+                      color: Colors.black),
+              label: 'Home',
             ),
-              
+
             // Settings page
             NavigationDestination(
-              icon: currentPage == 3
+              icon: currentPage == 1
                   ? ShaderMask(
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (Rect bounds) => const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.25, 0.5],
+                        colors: [
+                          Color.fromARGB(255, 169, 38, 135),
+                          Color.fromARGB(255, 215, 0, 123),
+                        ],
+                        tileMode: TileMode.clamp,
+                      ).createShader(bounds),
+                      child: Icon(
+                        FontAwesome.chat,
+                        size: MediaQuery.of(context).size.width * 0.12,
+                      ),
+                    )
+                  : Icon(FontAwesome.chat,
+                      size: MediaQuery.of(context).size.width * 0.12,
+                      color: Colors.black),
+              label: 'Chat',
+            ),
+
+            // Match page
+            if (!isCompanyView)
+              NavigationDestination(
+                icon: currentPage == 2
+                    ? ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) => const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          stops: [0.25, 0.5],
+                          colors: [
+                            Color.fromARGB(255, 169, 38, 135),
+                            Color.fromARGB(255, 215, 0, 123),
+                          ],
+                        ).createShader(bounds),
+                        child: Icon(
+                          FontAwesome5.book_reader,
+                          size: MediaQuery.of(context).size.width * 0.1,
+                        ),
+                      )
+                    : Icon(FontAwesome5.book_reader,
+                        size: MediaQuery.of(context).size.width * 0.1,
+                        color: Colors.grey),
+                label: 'Match',
+                enabled: false,
+              ),
+
+            // Settings page
+            NavigationDestination(
+              icon: currentPage == 3 && isCompanyView == false ||
+                      currentPage == 2 && isCompanyView == true
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) => const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                         stops: [0.25, 0.5],
                         colors: [
                           Color.fromARGB(255, 169, 38, 135),

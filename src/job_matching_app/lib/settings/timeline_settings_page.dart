@@ -172,6 +172,7 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                               ),
                             ),
                             TextField(
+                              readOnly: true,
                               maxLines: null,
                               controller: TextEditingController(
                                 text: datesDescription[i],
