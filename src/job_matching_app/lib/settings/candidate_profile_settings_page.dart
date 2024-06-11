@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:job_matching_app/settings/more_settings_page.dart';
-
-import 'package:job_matching_app/settings/timeline_settings_page.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -47,7 +44,11 @@ class _CandidateProfileSettingState
     "Passes-Temps",
   ];
 
+  List<bool> softSkillsStates = [];
+
   String pseudo = "";
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -73,6 +74,9 @@ class _CandidateProfileSettingState
                   cityCoordinates[0] = result.data()["Location"].latitude;
                   cityCoordinates[1] = result.data()["Location"].longitude;
                 }
+                if (result.data()["SoftSkills"] != null) {
+                  softSkillsStates = result.data()["SoftSkills"].cast<bool>();
+                }
                 docName = result.id;
                 break;
               }
@@ -92,6 +96,41 @@ class _CandidateProfileSettingState
   String distanceMessage = "A 32km du lieu de travail";
 
   String age = "21";
+
+  final List<String> softSkills = [
+    "Résolution de problèmes",
+    "Pensée Rapide",
+    "Pensée Logique",
+    "Créativité",
+    "Imagination",
+    "Perspicacité",
+    "Ouverture d'esprit",
+    "Pensée numérique",
+    "Vision globale",
+    "Intelligence Sociale",
+    "Lire les gens",
+    "Empathie",
+    "Accessiblité",
+    "Collaboration",
+    "Sang-froid",
+    "Aventureux",
+    "Auto-contrôle",
+    "Planification",
+    "Persévérance",
+    "Travailleur",
+    "Intégrité",
+    "Optimisme",
+    "Confiance en soi",
+    "Motivation",
+    "Ingéniosité",
+    "Résilience",
+    "Ténacité",
+    "Leadership",
+    "Charisme",
+    "Entreprenant",
+    "Mentalité agile",
+    "Ambition",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -207,7 +246,9 @@ class _CandidateProfileSettingState
                   readOnly: true,
                   textAlign: TextAlign.center,
                   controller: TextEditingController(
-                    text: pseudo.isEmpty ? "" : "${pseudo.substring(0, pseudo.length - 3)} Anonyme",
+                    text: pseudo.isEmpty
+                        ? ""
+                        : "${pseudo.substring(0, pseudo.length - 3)} Anonyme",
                   ),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -657,8 +698,135 @@ class _CandidateProfileSettingState
                   width: width * 0.08,
                   child: IconButton(
                     iconSize: width * 0.08,
-                    onPressed: () {
-                      null;
+                    onPressed: () async {
+                      await showDialog<void>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                content: Stack(
+                                  clipBehavior: Clip.none,
+                                  children: <Widget>[
+                                    Positioned(
+                                      right: -40,
+                                      top: -40,
+                                      child: InkResponse(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const CircleAvatar(
+                                          backgroundColor: Colors.red,
+                                          child: Icon(Icons.close),
+                                        ),
+                                      ),
+                                    ),
+                                    Form(
+                                      key: _formKey,
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            const Text(
+                                              'Soft Skills Selection',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'Shanti',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const Divider(
+                                              color: Colors.grey,
+                                              thickness: 1.0,
+                                            ),
+                                            Column(
+                                              children: [
+                                                for (int i = 0;
+                                                    i < softSkills.length;
+                                                    i++)
+                                                  if (softSkillsStates[i])
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          overflow: TextOverflow
+                                                              .visible,
+                                                          softSkills[i],
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Shanti',
+                                                            fontSize: 17,
+                                                          ),
+                                                        ),
+                                                        IconButton(
+                                                          iconSize:
+                                                              width * 0.08,
+                                                          onPressed: () {
+                                                            null;
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons
+                                                                .remove_circle_rounded,
+                                                            color: Colors.red,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.05,
+                                              child:
+                                                  const Text("Ajouter plus..."),
+                                            ),
+                                            Column(
+                                              children: [
+                                                for (int i = 0;
+                                                    i < softSkills.length;
+                                                    i++)
+                                                  if (!softSkillsStates[i])
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          overflow: TextOverflow
+                                                              .visible,
+                                                          softSkills[i],
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Shanti',
+                                                            fontSize: 17,
+                                                          ),
+                                                        ),
+                                                        IconButton(
+                                                          iconSize:
+                                                              width * 0.08,
+                                                          onPressed: () {
+                                                            null;
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons
+                                                                .add_circle_rounded,
+                                                            color: Colors.blue,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ));
                     },
                     icon: const Icon(
                       Icons.keyboard_arrow_right_rounded,
@@ -877,53 +1045,50 @@ class _CandidateProfileSettingState
                 ),
               ],
             ),
-            for (int k = 0; k < notUsedNames.length *2; k++)
-            k % 2 == 0
-            ? Row(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: width * 0.77,
-                  height: height * 0.06,
-                  margin: EdgeInsets.only(left: width * 0.03),
-                  child: Text(
-                    notUsedNames[k ~/ 2],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Shanti',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+            for (int k = 0; k < notUsedNames.length * 2; k++)
+              k % 2 == 0
+                  ? Row(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: width * 0.77,
+                          height: height * 0.06,
+                          margin: EdgeInsets.only(left: width * 0.03),
+                          child: Text(
+                            notUsedNames[k ~/ 2],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Shanti',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: width * 0.05),
+                          width: width * 0.08,
+                          child: IconButton(
+                            iconSize: width * 0.08,
+                            onPressed: () {
+                              null;
+                            },
+                            icon: const Icon(
+                              Icons.add_circle_rounded,
+                              color: Colors.tealAccent,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const Divider(
+                      color: Colors.grey,
+                      thickness: 1.0,
                     ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: width * 0.05),
-                  width: width * 0.08,
-                  child: IconButton(
-                    iconSize: width * 0.08,
-                    onPressed: () {
-                      null;
-                    },
-                    icon: const Icon(
-                      Icons.add_circle_rounded,
-                      color: Colors.tealAccent,
-                    ),
-                  ),
-                ),
-              ],
-            )
-            : const Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            ),
           ],
         ),
       ),
     );
-
-
-
 
     //----------------- RETURN -----------------
     return Scaffold(
@@ -975,3 +1140,4 @@ Future<String> getCityFromCoordinates(double latitude, double longitude) async {
       await placemarkFromCoordinates(latitude, longitude);
   return placemarks[0].locality!;
 }
+
