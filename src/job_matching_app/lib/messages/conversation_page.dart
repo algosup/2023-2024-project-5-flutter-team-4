@@ -95,46 +95,47 @@ class _ConversationPageState extends State<ConversationPage>
       ),
       //----------------- MESSAGES -----------------
       body: Container(
-        height: size.height,
         decoration: BoxDecoration(
           gradient: backgroundGradient,
         ),
         child: SizedBox(
-          height: size.height * 0.921,
           child: Stack(
             children: [
-              SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    for (int i = 1; i < messages.length; i++)
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 10.0,
-                          bottom: 10.0,
-                          left: isCompany[i] == 0 ? 10.0 : 70.0,
-                          right: isCompany[i] == 1 ? 10.0 : 70.0,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            messages[i],
-                            textAlign: isCompany[i] == 0
-                                ? TextAlign.start
-                                : TextAlign.end,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Shanti',
-                              fontSize: 20,
+              SizedBox(
+                height: size.height - size.height * 0.18,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      for (int i = 1; i < messages.length; i++)
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: 10.0,
+                            bottom: 10.0,
+                            left: isCompany[i] == 0 ? 10.0 : 70.0,
+                            right: isCompany[i] == 1 ? 10.0 : 70.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ListTile(
+                            minLeadingWidth: 0,
+                            title: Text(
+                              messages[i],
+                              textAlign: isCompany[i] == 0
+                                  ? TextAlign.start
+                                  : TextAlign.end,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Shanti',
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
 
