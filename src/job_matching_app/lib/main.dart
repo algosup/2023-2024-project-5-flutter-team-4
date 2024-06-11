@@ -133,6 +133,8 @@ class _RootPageState extends State<RootPage> {
   // Variables
   int currentPage = 0;
 
+  static const int id = 1;
+
   // Build function
   @override
   Widget build(BuildContext context) {
@@ -140,13 +142,13 @@ class _RootPageState extends State<RootPage> {
       if (!isCompanyView) const MatchPage() else const ChartPage(),
       if (!isCompanyView) const MessagesPage(id: 0) else const MatchPage(),
       if (!isCompanyView)
-        const CompanyProfileSettingsPage()
+        const CompanyProfileSettingsPage(isDetailsPage: true, id: id)
       else
         const MessagesPage(id: 0),
       if (!isCompanyView)
-        const CandidateProfileSettingsPage()
+        const CandidateProfileSettingsPage(isDetailsPage: true, id: id)
       else
-        const CompanyProfileSettingsPage(),
+        const CompanyProfileSettingsPage(isDetailsPage: true, id: id),
     ];
     return Scaffold(
       // Body is the current page

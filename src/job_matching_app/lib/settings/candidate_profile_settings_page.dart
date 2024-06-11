@@ -1,25 +1,36 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:geocoding/geocoding.dart';
+import 'package:job_matching_app/match/details_timeline_page.dart';
+import 'package:job_matching_app/settings/timeline_settings_page.dart';
 
 class CandidateProfileSettingsPage extends StatefulWidget {
-  const CandidateProfileSettingsPage({super.key});
+  const CandidateProfileSettingsPage({super.key, required this.isDetailsPage, required this.id});
+
+  final bool isDetailsPage;
+  final int id;
 
   @override
   // ignore: library_private_types_in_public_api
   _CandidateProfileSettingState createState() =>
-      _CandidateProfileSettingState();
+      _CandidateProfileSettingState( isDetailsPage: isDetailsPage, id: id);
 }
 
 class _CandidateProfileSettingState
     extends State<CandidateProfileSettingsPage> {
+
+  bool isDetailsPage;
+  int id;
+
+  _CandidateProfileSettingState({required this.isDetailsPage, required this.id});
+
+
   bool isDarkMode = false;
   bool isCompanyView = false;
-
-  final int ID = 1;
 
   String name = "";
 
@@ -62,7 +73,7 @@ class _CandidateProfileSettingState
         .then(
           (querySnapshot) {
             for (var result in querySnapshot.docs) {
-              if (result.data()["ID"] == ID) {
+              if (result.data()["ID"] == id) {
                 if (result.data()["Name"] != null) {
                   name = result.data()["Name"];
                 }
@@ -134,14 +145,14 @@ class _CandidateProfileSettingState
 
   @override
   Widget build(BuildContext context) {
-    Gradient gradientColored = const LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: <Color>[
-        Color.fromARGB(255, 215, 0, 123),
-        Color.fromARGB(255, 169, 38, 135),
-      ],
-    );
+    // Gradient gradientColored = const LinearGradient(
+    //   begin: Alignment.topCenter,
+    //   end: Alignment.bottomCenter,
+    //   colors: <Color>[
+    //     Color.fromARGB(255, 215, 0, 123),
+    //     Color.fromARGB(255, 169, 38, 135),
+    //   ],
+    // );
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -152,57 +163,6 @@ class _CandidateProfileSettingState
       child: Center(
         child: ListView(
           children: [
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.transparent,
-                      ),
-                    ),
-                    onPressed: () => {
-                      if (!isModifying)
-                        {
-                          setState(() {
-                            isModifying = true;
-                          }),
-                        }
-                    },
-                    child: const Text(
-                      'Modifier',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Shanti',
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  VerticalDivider(
-                    color: Colors.grey.shade500,
-                    thickness: 2.0,
-                    width: 1.0,
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.transparent,
-                      ),
-                    ),
-                    onPressed: () => {},
-                    child: const Text(
-                      'Aperçu',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 215, 0, 123),
-                        fontFamily: 'Shanti',
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Container(
               width: width,
               height: width * 0.4,
@@ -324,8 +284,80 @@ class _CandidateProfileSettingState
                   width: width * 0.08,
                   child: IconButton(
                     iconSize: width * 0.08,
-                    onPressed: () {
-                      null;
+                    onPressed: () async {
+                      await showDialog<void>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                content: Stack(
+                                  clipBehavior: Clip.none,
+                                  children: <Widget>[
+                                    Positioned(
+                                      right: -40,
+                                      top: -40,
+                                      child: InkResponse(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const CircleAvatar(
+                                          backgroundColor: Colors.red,
+                                          child: Icon(Icons.close),
+                                        ),
+                                      ),
+                                    ),
+                                    Form(
+                                      key: _formKey,
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            const Text(
+                                              'Soft Skills Selection',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'Shanti',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const Divider(
+                                              color: Colors.grey,
+                                              thickness: 1.0,
+                                            ),
+                                            for (int i = 0;
+                                                i < softSkills.length;
+                                                i++)
+                                              if (softSkillsStates[i])
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      overflow:
+                                                          TextOverflow.visible,
+                                                      softSkills[i],
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Shanti',
+                                                        fontSize: 17,
+                                                      ),
+                                                    ),
+                                                    IconButton(
+                                                      iconSize: width * 0.08,
+                                                      onPressed: () {
+                                                        null;
+                                                      },
+                                                      icon: const Icon(null),
+                                                    ),
+                                                  ],
+                                                ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ));
                     },
                     icon: const Icon(
                       Icons.keyboard_arrow_right_rounded,
@@ -462,7 +494,12 @@ class _CandidateProfileSettingState
                   child: IconButton(
                     iconSize: width * 0.08,
                     onPressed: () {
-                      null;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailsTimeLinePage(id: id),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.keyboard_arrow_right_rounded,
@@ -526,59 +563,6 @@ class _CandidateProfileSettingState
       child: Center(
         child: ListView(
           children: [
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.transparent,
-                      ),
-                    ),
-                    onPressed: () => {
-                      null,
-                    },
-                    child: const Text(
-                      'Modifier',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 215, 0, 123),
-                        fontFamily: 'Shanti',
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  VerticalDivider(
-                    color: Colors.grey.shade500,
-                    thickness: 2.0,
-                    width: 1.0,
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.transparent,
-                      ),
-                    ),
-                    onPressed: () => {
-                      if (isModifying)
-                        {
-                          setState(() {
-                            isModifying = false;
-                          }),
-                        }
-                    },
-                    child: const Text(
-                      'Aperçu',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Shanti',
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Container(
               width: width,
               height: width * 0.4,
@@ -977,7 +961,13 @@ class _CandidateProfileSettingState
                   child: IconButton(
                     iconSize: width * 0.08,
                     onPressed: () {
-                      null;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TimelineSettingsPage(id: id, isUser: true),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.mode_edit_outline_rounded,
@@ -1092,36 +1082,126 @@ class _CandidateProfileSettingState
 
     //----------------- RETURN -----------------
     return Scaffold(
-      appBar: AppBar(
+      
+      appBar: isDetailsPage
+      ? AppBar(
+        toolbarHeight: height * 0.14,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         surfaceTintColor: Colors.white,
         actions: [
-          Container(
-            margin: EdgeInsets.only(right: width * 0.15),
-            child: Image.asset(
-              'lib/assets/images/logo_gradient.png',
-              width: width * 0.4,
-            ),
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.ios_share_rounded,
-              color: Colors.black,
-              size: width * 0.1,
-            ),
-            onPressed: () {
-              null;
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const MoreSettingsPage(),
-              //   ),
-              // );
-            },
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: width * 0.5,
+                    height: height * 0.08,
+                    margin: EdgeInsets.only(
+                      right: width * 0.15,
+                    ),
+                    child: Image.asset(
+                      'lib/assets/images/logo_gradient.png',
+                      width: width * 0.4,
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.1,
+                    margin: EdgeInsets.only(
+                      right: width * 0.05,
+                    ),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.ios_share_rounded,
+                        color: Colors.black,
+                        size: width * 0.08,
+                      ),
+                      onPressed: () {
+                        null;
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const MoreSettingsPage(),
+                        //   ),
+                        // );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      height: height * 0.05,
+                      width: width * 0.49,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.transparent,
+                          ),
+                        ),
+                        onPressed: () => {
+                          if (!isModifying)
+                            {
+                              setState(() {
+                                isModifying = true;
+                              }),
+                            }
+                        },
+                        child: Text(
+                          'Modifier',
+                          style: TextStyle(
+                            color: isModifying ? const Color.fromARGB(255, 215, 0, 123) : Colors.black,
+                            fontFamily: 'Shanti',
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                    VerticalDivider(
+                      color: Colors.grey.shade500,
+                      thickness: 2.0,
+                      width: width * 0.02,
+                    ),
+                    SizedBox(
+                      width: width * 0.49,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.transparent,
+                          ),
+                        ),
+                        onPressed: () => {
+                          if (isModifying)
+                            {
+                              setState(() {
+                                isModifying = false;
+                              }),
+                            }
+                        },
+                        child: Text(
+                          'Aperçu',
+                          style: TextStyle(
+                            color: isModifying ? Colors.black : const Color.fromARGB(255, 215, 0, 123),
+                            fontFamily: 'Shanti',
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
-      ),
+      )
+      : null,
+
       body: isModifying ? modifiying : showing,
     );
   }
@@ -1140,4 +1220,3 @@ Future<String> getCityFromCoordinates(double latitude, double longitude) async {
       await placemarkFromCoordinates(latitude, longitude);
   return placemarks[0].locality!;
 }
-

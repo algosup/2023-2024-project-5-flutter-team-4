@@ -17,7 +17,7 @@ class _DetailsTimeLinePageState extends State<DetailsTimeLinePage> {
   _DetailsTimeLinePageState({required this.id});
 
 
-  List<int> dates = [];
+  List<String> dates = [];
   List<String> datesDescription = [];
 
   @override
@@ -29,7 +29,7 @@ class _DetailsTimeLinePageState extends State<DetailsTimeLinePage> {
       (querySnapshot) {
         for (var result in querySnapshot.docs) {
           if (result.data()["ID"] == id) {
-            dates = result.data()["Dates"].cast<int>();
+            dates = result.data()["Dates"].cast<String>();
             datesDescription = result.data()["DatesDescription"].cast<String>();
             break;
           }
@@ -90,7 +90,7 @@ class _DetailsTimeLinePageState extends State<DetailsTimeLinePage> {
                 child: Column(
                   children: [
                     Text(
-                      dates[i].toString(),
+                      dates[i],
                       style: const TextStyle(
                           color: Colors.red,
                           fontSize: 18,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
+import 'package:job_matching_app/main.dart';
+import 'package:job_matching_app/settings/candidate_profile_settings_page.dart';
+import 'package:job_matching_app/settings/company_profile_settings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:job_matching_app/match/candidate_details_page.dart';
@@ -20,14 +23,17 @@ class MatchPage extends StatefulWidget {
 class _MatchPageState extends State<MatchPage> {
   late bool darkMode;
   bool isCompanyView = false;
-  int length = 3;
+  int length = 2;
   List<List<num>> data = [];
   List<int> ticks = [];
   List<String> features = [];
   bool useSides = false;
   int indexOfIds = 0;
   List<int> idList = [];
-  List<String> imagesList = ["one", "two", "three", "four", "five"];
+  // List<String> imagesList = ["one", "two", "three", "four", "five"];
+  List<String> imagesListCompanies = ["algo", "wae"];
+  List<String> imagesListCandidates = [];
+  // List<String> imagesListCandidates = ["one", "two", "three", "four", "five"];
 
   List<String> names = [];
 
@@ -75,24 +81,39 @@ class _MatchPageState extends State<MatchPage> {
       [0, 0, 0, 0, 0, 0, 0],
     ];
 
-
-    final docRef = db.collection("Users");
-    docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
-      data.clear();
-      for (int i = 0; i < querySnapshot.docs.length; i++) {
-        data.add([0, 0, 0, 0, 0, 0, 0]);
-        idList.add(querySnapshot.docs[i].data()['ID']);
-        length = i + 1;
-      }
-      for (int j = 0; j < querySnapshot.docs.length; j++) {
-        names.add(querySnapshot.docs[j].data()['Name']);
-        for (int i = 0; i < 7; i++) {
-          data[j][i] = querySnapshot.docs[j].data()['Graph'][i];
+    if (isCompanyView) {
+      final docRef = db.collection("Users");
+      docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
+        data.clear();
+        for (int i = 0; i < querySnapshot.docs.length; i++) {
+          data.add([0, 0, 0, 0, 0, 0, 0]);
+          idList.add(querySnapshot.docs[i].data()['ID']);
+          length = i + 1;
         }
-      }
-    }).then((value) => setState(() {}));
+        for (int j = 0; j < querySnapshot.docs.length; j++) {
+          names.add(querySnapshot.docs[j].data()['Name']);
+          for (int i = 0; i < 7; i++) {
+            data[j][i] = querySnapshot.docs[j].data()['Graph'][i];
+          }
+        }
+      }).then((value) => setState(() {}));
+    } else {
+      final docRef = db.collection("Companies");
+      docRef.where('ID', isNotEqualTo: -1).get().then((querySnapshot) {
+        data.clear();
+        for (int i = 0; i < querySnapshot.docs.length; i++) {
+          data.add([0, 0, 0, 0, 0, 0, 0]);
+          idList.add(querySnapshot.docs[i].data()['ID']);
+          length = i + 1;
+        }
+        for (int j = 0; j < querySnapshot.docs.length; j++) {
+          names.add(querySnapshot.docs[j].data()['Name']);
+        }
+      }).then((value) => setState(() {}));
+    }
   }
-    CardSwiperController cardController= CardSwiperController();
+
+  CardSwiperController cardController = CardSwiperController();
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +131,9 @@ class _MatchPageState extends State<MatchPage> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              stops: const [0.3, 0.7, 1],
+              stops: const [0.4, 0.7, 1],
               colors: [
-                Colors.grey.shade300,
+                Colors.white,
                 Colors.grey.shade500,
                 Colors.black,
               ],
@@ -126,9 +147,9 @@ class _MatchPageState extends State<MatchPage> {
                 MaterialPageRoute(
                   builder: isCompanyView
                       ? (BuildContext context) =>
-                          CandidateDetailsPage(id: idList[i])
+                          CandidateProfileSettingsPage(isDetailsPage: false, id: idList[i])
                       : (BuildContext context) =>
-                          CompanyDetailsPage(id: idList[i]),
+                          CompanyProfileSettingsPage(isDetailsPage: false, id: idList[i]),
                 ),
               );
             },
@@ -148,24 +169,25 @@ class _MatchPageState extends State<MatchPage> {
                         width: 84, // Width of the container
 
                         // Decoration of the container
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape
                               .circle, // Shape of the container is a circle
-                          gradient: RadialGradient(
-                            // Gradient of the container
-                            stops: const [0.6, 0.95], // Stops of the gradient
-                            colors: [
-                              Colors.white, // Color of the container
-                              getColor(i), // Color of the container
-                            ],
-                          ),
+                          // gradient: RadialGradient(
+                          //   // Gradient of the container
+                          //   stops: const [0.6, 0.95], // Stops of the gradient
+                          //   colors: [
+                          //     Colors.white, // Color of the container
+                          //     getColor(i), // Color of the container
+                          //   ],
+                          // ),
                         ),
 
                         child: Transform.scale(
                           scale:
                               1.025, // Scale of the profile picture is set to 0.8
-                          child: const ClipRRect(
+                          child: ClipRRect(
                               // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
+                              child: isCompanyView ? Image.asset("lib/assets/images/${imagesListCandidates[i]}.png") : Image.asset("lib/assets/images/${imagesListCompanies[i]}.png") // ADD IMAGE
                               ),
                         ),
                       ),
@@ -215,167 +237,173 @@ class _MatchPageState extends State<MatchPage> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.01,
-                        left: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.38,
-                      height: MediaQuery.of(context).size.height * 0.02,
-                      child: LinearProgressIndicator(
-                        backgroundColor: Colors.blueGrey.shade900,
-                        color: Colors.lightGreen,
-                        value: cognitive / 100,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.097,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.38,
-                      height: MediaQuery.of(context).size.height * 0.02,
-                      child: LinearProgressIndicator(
-                        backgroundColor: Colors.blueGrey.shade900,
-                        color: Colors.lightGreen,
-                        value: social / 100,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: const Text(
-                        "Cognitif",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Raleway',
+                if (isCompanyView)
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.01,
+                          left: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.38,
+                        height: MediaQuery.of(context).size.height * 0.02,
+                        child: LinearProgressIndicator(
+                          backgroundColor: Colors.blueGrey.shade900,
+                          color: Colors.lightGreen,
+                          value: cognitive / 100,
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.097,
-                      ),
-                      child: const Text(
-                        "Social",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Raleway',
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.097,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.38,
+                        height: MediaQuery.of(context).size.height * 0.02,
+                        child: LinearProgressIndicator(
+                          backgroundColor: Colors.blueGrey.shade900,
+                          color: Colors.lightGreen,
+                          value: social / 100,
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.01,
-                        left: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.38,
-                      height: MediaQuery.of(context).size.height * 0.02,
-                      child: LinearProgressIndicator(
-                        backgroundColor: Colors.blueGrey.shade900,
-                        color: Colors.lightGreen,
-                        value: personality / 100,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Colors.red,
-                      ),
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.01,
-                        left: MediaQuery.of(context).size.width * 0.097,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.38,
-                      height: MediaQuery.of(context).size.height * 0.02,
-                      child: LinearProgressIndicator(
-                        backgroundColor: Colors.blueGrey.shade900,
-                        color: Colors.lightGreen,
-                        value: credibility / 100,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: const Text(
-                        "Personnalité",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Raleway',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.097,
-                      ),
-                      child: const Text(
-                        "Crédibilité",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Raleway',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.02,
+                    ],
                   ),
-                  child: Text(
-                    "Cognitif",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onBackground,
-                      fontSize: MediaQuery.of(context).size.width * 0.07,
-                      fontFamily: 'Shanti',
-                      // fontWeight: FontWeight.bold,
+                if (isCompanyView)
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: const Text(
+                          "Cognitif",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.097,
+                        ),
+                        child: const Text(
+                          "Social",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                if (isCompanyView)
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.01,
+                          left: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.38,
+                        height: MediaQuery.of(context).size.height * 0.02,
+                        child: LinearProgressIndicator(
+                          backgroundColor: Colors.blueGrey.shade900,
+                          color: Colors.lightGreen,
+                          value: personality / 100,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.red,
+                        ),
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.01,
+                          left: MediaQuery.of(context).size.width * 0.097,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.38,
+                        height: MediaQuery.of(context).size.height * 0.02,
+                        child: LinearProgressIndicator(
+                          backgroundColor: Colors.blueGrey.shade900,
+                          color: Colors.lightGreen,
+                          value: credibility / 100,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                    ],
+                  ),
+                if (isCompanyView)
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: const Text(
+                          "Personnalité",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.097,
+                        ),
+                        child: const Text(
+                          "Crédibilité",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                if (isCompanyView)
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    child: Text(
+                      "Cognitif",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        fontSize: MediaQuery.of(context).size.width * 0.07,
+                        fontFamily: 'Shanti',
+                        // fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.8,
-                  child: darkMode
-                      ? RadarChart.dark(
-                          ticks: ticks,
-                          features: features,
-                          data: [data[i]],
-                          reverseAxis: true,
-                          useSides: useSides,
-                        )
-                      : RadarChart.light(
-                          ticks: ticks,
-                          features: features,
-                          data: [data[i]],
-                          reverseAxis: false,
-                          useSides: useSides,
-                        ),
-                ),
+                if (isCompanyView)
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.8,
+                    child: darkMode
+                        ? RadarChart.dark(
+                            ticks: ticks,
+                            features: features,
+                            data: [data[i]],
+                            reverseAxis: true,
+                            useSides: useSides,
+                          )
+                        : RadarChart.light(
+                            ticks: ticks,
+                            features: features,
+                            data: [data[i]],
+                            reverseAxis: false,
+                            useSides: useSides,
+                          ),
+                  )
               ],
             ),
           ),
@@ -385,16 +413,16 @@ class _MatchPageState extends State<MatchPage> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          // color: Colors.white,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.5, 0.7],
-            colors: [
-              Color.fromARGB(255, 169, 38, 135),
-              Color.fromARGB(255, 215, 0, 123),
-            ],
-          ),
+          color: Colors.white,
+          // gradient: LinearGradient(
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   stops: [0.5, 0.7],
+          //   colors: [
+          //     Color.fromARGB(255, 169, 38, 135),
+          //     Color.fromARGB(255, 215, 0, 123),
+          //   ],
+          // ),
         ),
         child: Stack(
           children: [
@@ -427,29 +455,30 @@ class _MatchPageState extends State<MatchPage> {
                 ),
               ],
             ),
-            CardSwiper(
-              controller: cardController,
-              cardsCount: cards.length,
-              allowedSwipeDirection: const AllowedSwipeDirection.only(
-                right: true,
-                left: true,
-                up: false,
-                down: false,
+            if (cards.length > 1)
+              CardSwiper(
+                controller: cardController,
+                cardsCount: cards.length,
+                allowedSwipeDirection: const AllowedSwipeDirection.only(
+                  right: true,
+                  left: true,
+                  up: false,
+                  down: false,
+                ),
+                cardBuilder:
+                    (context, index, percentThresholdX, percentThresholdY) =>
+                        cards[index],
+                onSwipe: (previousIndex, currentIndex, direction) {
+                  //  TODO
+                  if (direction == CardSwiperDirection.left) {
+                    // Dislike
+                  } else if (direction == CardSwiperDirection.right) {
+                    // Like
+                  }
+                  indexOfIds = currentIndex!;
+                  return true;
+                },
               ),
-              cardBuilder:
-                  (context, index, percentThresholdX, percentThresholdY) =>
-                      cards[index],
-              onSwipe: (previousIndex, currentIndex, direction) {
-                //  TODO
-                if (direction == CardSwiperDirection.left) {
-                  // Dislike
-                } else if (direction == CardSwiperDirection.right) {
-                  // Like
-                }
-                indexOfIds = currentIndex!;
-                return true;
-              },
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -496,7 +525,6 @@ class _MatchPageState extends State<MatchPage> {
                     iconSize: 25,
                     onPressed: () {
                       cardController.undo();
-
                     },
                     icon: const Icon(
                       FontAwesome5.undo,
@@ -522,7 +550,6 @@ class _MatchPageState extends State<MatchPage> {
                     iconSize: 30,
                     onPressed: () {
                       cardController.swipe(CardSwiperDirection.right);
-
                     },
                     icon: const Icon(
                       FontAwesome5.heart,

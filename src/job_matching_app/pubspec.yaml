@@ -40,6 +40,8 @@ flutter:
     - lib/assets/images/logo_white.png
     - lib/assets/images/logo_gradient.png
     - lib/assets/images/Splash.png
+    - lib/assets/images/wae.png
+    - lib/assets/images/algo.png
   fonts:
     - family: Raleway
       fonts:
