@@ -36,6 +36,12 @@ class _MessagesPageState extends State<MessagesPage> {
 
   List<int> messagesList = [];
 
+  List<int> otherList = [];
+
+  List<int> matchListOther = [];
+
+  List<String> conversationslist = [];
+
   final Gradient gradient = const LinearGradient(
     colors: <Color>[
       Color.fromARGB(255, 215, 0, 123),
@@ -54,28 +60,43 @@ class _MessagesPageState extends State<MessagesPage> {
 
     db = FirebaseFirestore.instance;
 
+    isCompanyView ? otherList = getUsersList() : otherList = getCompaniesList();
+
+    // Get the list of all conversations (IDS are stored in the form "CompanyID:UserID" in the IDS field of each document)
+    db
+        .collection("Conversations")
+        .where("")
+        .get()
+        .then((value) => value.docs.forEach((element) {
+              if (isCompanyView) {
+                if (element.data()["IDS"].toString().split(":")[0] as int == id) {
+                  conversationslist.add(element.data()["IDS"]);
+                  messages.add(element.data()["Messages"].cast<String>());
+                  companies.add(element.data()["MessagesW"].cast<int>());
+                  lastMessage.add(element.data()["Dates"]
+                      [element.data()["Dates"].length - 1] as Timestamp);
+                  convNum++;
+                }
+              }
+              else {
+                if (int.parse(element.data()["IDS"].toString().split(":")[1]) == id) {
+                  conversationslist.add(element.data()["IDS"]);
+                  messages.add(element.data()["Messages"].cast<String>());
+                  companies.add(element.data()["MessagesW"].cast<int>());
+                  lastMessage.add(element.data()["Dates"]
+                      [element.data()["Dates"].length - 1] as Timestamp);
+                  convNum++;
+                }
+              }
+            }))
+        .then((value) => setState(() {debugPrint(convNum.toString());}));
+
     !isCompanyView
         ? db.collection('Users').where("").get().then(
             (querySnapshot) {
               for (var result in querySnapshot.docs) {
                 if (result.data()["ID"] == id) {
-                  if (result.data()["ConvNum"] != null) {
-                  convNum = result.data()["ConvNum"];
-                  }
-                  else {
-                    convNum = 0;
-                  }
-                  for (int i = 1; i <= convNum; i++) {
-                    messages.add(result.data()["Conv$i"].cast<String>());
-                    companies.add(result.data()["ConvW$i"].cast<int>());
-                    messagesList.add(i);
-                  }
-                  if (convNum != 0) {
-                    for (var date in result.data()["LastMessage"]) {
-                      lastMessage.add(date as Timestamp);
-                    }
-                  }
-                  messagesList = sortMessages(lastMessage, messagesList);
+                  matchListOther = result.data()["Matched"].cast<int>();
                   break;
                 }
               }
@@ -98,7 +119,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       lastMessage.add(date as Timestamp);
                     }
                   }
-                  messagesList = sortMessages(lastMessage, messagesList);
+                  matchListOther = result.data()["Matched"].cast<int>();
                   break;
                 }
               }
@@ -112,6 +133,11 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    debugPrint(conversationslist.toString());
+    // for (int h = 0; h < otherList.length; h++) {
+    //   debugPrint('${getCompanyMatchList(otherList[h], id)}');
+    // }
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -174,10 +200,10 @@ class _MessagesPageState extends State<MessagesPage> {
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     ConversationPage(
-                                        convId: messagesList[i] - 1,
-                                        messages: messages[messagesList[i] - 1],
+                                        convId: i,
+                                        messages: messages[i],
                                         isCompany:
-                                            companies[messagesList[i] - 1]),
+                                            companies[i]),
                               ),
                             );
                           },
@@ -249,14 +275,17 @@ class _MessagesPageState extends State<MessagesPage> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(
                                             100), // Border radius of the profile picture is set to 100
-                                        child: Image.asset(getImageFromNickName(
-                                            messages[messagesList[i] - 1][0]
-                                                .substring(
-                                                    0,
-                                                    messages[messagesList[i] -
-                                                                1][0]
-                                                            .length -
-                                                        3))), // ADD IMAGE
+                                        child: Image.asset(
+                                            'lib/assets/images/logo.png'
+                                          // getImageFromNickName(
+                                          //   messages[messagesList[i] - 1][0]
+                                          //       .substring(
+                                          //           0,
+                                          //           messages[messagesList[i] -
+                                          //                       1][0]
+                                          //                   .length -
+                                          //               3) )
+                                                        ), // ADD IMAGE
                                       ),
                                     ),
                                   ),
@@ -272,7 +301,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                             const EdgeInsets.only(top: 10.0),
                                         child: Text(
                                           messages.isNotEmpty
-                                              ? messages[messagesList[i] - 1][0]
+                                              ? messages[i][0]
                                               : "",
                                           style: const TextStyle(
                                               color: Colors.black,
@@ -287,10 +316,8 @@ class _MessagesPageState extends State<MessagesPage> {
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
                                             overflow: TextOverflow.ellipsis,
-                                            (companies[messagesList[i] - 1][
-                                                            companies[messagesList[
-                                                                            i] -
-                                                                        1]
+                                            (companies[i][
+                                                            companies[i]
                                                                     .length -
                                                                 1] ==
                                                         0
@@ -298,10 +325,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                                     : "vous: ") +
                                                 (messages.isEmpty
                                                     ? ""
-                                                    : messages[messagesList[i] -
-                                                        1][messages[
-                                                                messagesList[i] -
-                                                                    1]
+                                                    : messages[i][messages[i]
                                                             .length -
                                                         1]),
                                             style: const TextStyle(
@@ -326,6 +350,123 @@ class _MessagesPageState extends State<MessagesPage> {
                             ),
                           ),
                         ),
+                      for (int h = 0; h < otherList.length; h++) // Container()
+                        if (matchListOther.contains(otherList[h]))
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ConversationPage(
+                                          convId: messagesList[h] - 1,
+                                          messages:
+                                              messages[messagesList[h] - 1],
+                                          isCompany:
+                                              companies[messagesList[h] - 1]),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              splashFactory: NoSplash.splashFactory,
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              backgroundColor:
+                                  Colors.transparent, // Background color
+                              shadowColor:
+                                  Colors.transparent, // Remove shadow if any
+                              surfaceTintColor:
+                                  Colors.transparent, // Remove shadow if any
+                            ),
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  top: 10.0,
+                                  bottom: h == convNum - 1 ? 10.0 : 0.0),
+                              width: width * 0.9,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10.0),
+                                    width: width * 0.2,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Container(
+                                      width: 84, // Width of the container
+
+                                      // Decoration of the container
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape
+                                            .circle, // Shape of the container is a circle
+                                        gradient: RadialGradient(
+                                          // Gradient of the container
+                                          stops: const [
+                                            0.6,
+                                            0.95
+                                          ], // Stops of the gradient
+                                          colors: [
+                                            Colors
+                                                .white, // Color of the container
+                                            getColor(
+                                                h), // Color of the container
+                                          ],
+                                        ),
+                                      ),
+
+                                      child: Transform.scale(
+                                        scale:
+                                            1.025, // Scale of the profile picture is set to 0.8
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              100), // Border radius of the profile picture is set to 100
+                                          child: Image.asset(
+                                              'lib/assets/images/logo.png'), // ADD IMAGE
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10.0),
+                                    width: width * 0.5,
+                                    height: 80,
+                                    child: Column(
+                                      children: [
+                                        Flexible(
+                                          child: Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 5.0),
+                                            child: const Text(
+                                              "Vous avez un match avec cette entreprise !",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: 'Shanti',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10.0),
+                                    width: width * 0.1,
+                                    height: 80,
+                                    child: const Icon(Icons.arrow_forward_ios,
+                                        color: Colors.black, size: 30),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                     ],
                   ),
                 ),
@@ -415,4 +556,79 @@ String getImageFromNickName(String nickName) {
     default:
       return 'lib/assets/images/logo.png';
   }
+}
+
+// Returns true if the company is a match with the user
+bool getUserMatchList(int userId, int companyId) {
+  List<int> matchList = [];
+  bool isAMatch = false;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection('Users').get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] == userId) {
+          matchList = result.data()["Matched"].cast<int>();
+          if (matchList.contains(companyId)) {
+            isAMatch = true;
+          }
+          break;
+        }
+      }
+    },
+  );
+  return isAMatch;
+}
+
+// Returns true if the user is a match with the company
+Future<bool> getCompanyMatchList(int companyId, int userId) async {
+  List<int> matchList = [];
+  bool isAMatch = false;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  await db.collection('Companies').get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] == companyId) {
+          debugPrint("${result.data()["Matched"]} $userId");
+          matchList = result.data()["Matched"].cast<int>();
+          if (matchList.contains(userId)) {
+            isAMatch = true;
+            break;
+          }
+        }
+      }
+    },
+  );
+  return isAMatch;
+}
+
+// Return the list of all users
+List<int> getUsersList() {
+  List<int> usersList = [];
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection('Users').get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] != null && result.data()["ID"] != -1) {
+          usersList.add(result.data()["ID"]);
+        }
+      }
+    },
+  );
+  return usersList;
+}
+
+// Return the list of all companies
+List<int> getCompaniesList() {
+  List<int> companiesList = [];
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection('Companies').get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] != null && result.data()["ID"] != -1) {
+          companiesList.add(result.data()["ID"]);
+        }
+      }
+    },
+  );
+  return companiesList;
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:job_matching_app/main.dart';
 import 'package:job_matching_app/settings/candidate_profile_settings_page.dart';
@@ -31,16 +33,13 @@ class _MatchPageState extends State<MatchPage> {
   _MatchPageState({required this.isCompanyView, required this.id});
 
   late bool darkMode;
-  int length = 2;
+  int length = 0;
   List<List<num>> data = [];
   List<int> ticks = [];
   List<String> features = [];
   bool useSides = false;
-  int indexOfIds = 0;
   List<int> idList = [];
-  // List<String> imagesList = ["one", "two", "three", "four", "five"];
   List<String> imagesListCompanies = ["logo", "wae"];
-  // List<String> imagesListCandidates = [];
   List<String> imagesListCandidates = [
     "giraffe",
     "lion",
@@ -59,6 +58,12 @@ class _MatchPageState extends State<MatchPage> {
 
   List<int> matched = [];
   List<int> notMatched = [];
+
+  List<String> jobNames = [];
+
+  List<String> lastMoves = [];
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -101,8 +106,6 @@ class _MatchPageState extends State<MatchPage> {
             .where('ID', isEqualTo: id)
             .get()
             .then((querySnapshot) {
-              matched.clear();
-              notMatched.clear();
               matched = querySnapshot.docs[0].data()['Matched'].cast<int>();
               notMatched =
                   querySnapshot.docs[0].data()['NotMatched'].cast<int>();
@@ -124,6 +127,9 @@ class _MatchPageState extends State<MatchPage> {
                       for (int j = 0; j < 7; j++) {
                         data[i][j] = querySnapshot.docs[i].data()['Graph'][j];
                       }
+                      if (querySnapshot.docs[i].data()['Job'] != null) {
+                        jobNames.add(querySnapshot.docs[i].data()['Job']);
+                      }
                     }
                   }
                 }))
@@ -133,8 +139,6 @@ class _MatchPageState extends State<MatchPage> {
             .where('ID', isEqualTo: id)
             .get()
             .then((querySnapshot) {
-              matched.clear();
-              notMatched.clear();
               matched = querySnapshot.docs[0].data()['Matched'].cast<int>();
               notMatched =
                   querySnapshot.docs[0].data()['NotMatched'].cast<int>();
@@ -287,6 +291,23 @@ class _MatchPageState extends State<MatchPage> {
                       ],
                     ),
                   ],
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.01,
+                    left: MediaQuery.of(context).size.width * 0.02,
+                  ),
+                  child: Text(
+                    textAlign: TextAlign.start,
+                    jobNames.isNotEmpty ? jobNames[i] : "",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: MediaQuery.of(context).size.width * 0.045,
+                      fontFamily: 'Shanti',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 if (isCompanyView)
                   Row(
@@ -462,140 +483,288 @@ class _MatchPageState extends State<MatchPage> {
       );
     }
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Stack(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  child: Image.asset(
-                    'lib/assets/images/logo_gradient.png',
-                    height: MediaQuery.of(context).size.height * 0.08,
-                  ),
-                ),
-              ],
-            ),
-            if (cards.length > 1)
-              CardSwiper(
-                isLoop: false,
-                controller: cardController,
-                cardsCount: cards.length,
-                allowedSwipeDirection: const AllowedSwipeDirection.only(
-                  right: true,
-                  left: true,
-                  up: false,
-                  down: false,
-                ),
-                cardBuilder:
-                    (context, index, percentThresholdX, percentThresholdY) =>
-                        cards[index],
-                onSwipe: (previousIndex, currentIndex, direction) {
-                  //  TODO
-                  if (direction == CardSwiperDirection.left &&
-                      currentIndex != null) {
-                    notMatched.add(idList[currentIndex]);
-                    setFirebaseData(isCompanyView, id, 'NotMatched', notMatched);
-                  } else if (direction == CardSwiperDirection.right &&
-                      currentIndex != null) {
-                    matched.add(idList[currentIndex]);
-                    setFirebaseData(isCompanyView, id, 'Matched', matched);
-                  }
-                  if (currentIndex != null) {
-                    indexOfIds = currentIndex;
-                  }
-                  return true;
-                },
+      body: cards.isNotEmpty
+          ? Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.76,
-                    // left: MediaQuery.of(context).size.width * 0.1,
+              child: Stack(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        child: Image.asset(
+                          'lib/assets/images/logo_gradient.png',
+                          height: MediaQuery.of(context).size.height * 0.08,
+                        ),
+                      ),
+                    ],
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.red,
+                  if (cards.length > 1)
+                    CardSwiper(
+                      isLoop: false,
+                      controller: cardController,
+                      cardsCount: cards.length,
+                      allowedSwipeDirection: const AllowedSwipeDirection.only(
+                        right: true,
+                        left: true,
+                        up: false,
+                        down: false,
+                      ),
+                      cardBuilder: (context, index, percentThresholdX,
+                              percentThresholdY) =>
+                          cards[index],
+                      onSwipe: (previousIndex, currentIndex, direction) async {
+                        //  TODO
+                        if (direction == CardSwiperDirection.left) {
+                          notMatched.add(idList[previousIndex]);
+                          setFirebaseData(
+                              isCompanyView, id, 'NotMatched', notMatched);
+                          lastMoves.add('left');
+                        } else if (direction == CardSwiperDirection.right) {
+                          matched.add(idList[previousIndex]);
+                          setFirebaseData(
+                              isCompanyView, id, 'Matched', matched);
+                          lastMoves.add('right');
+                        }
+                        if (length - cards.length-1 == 0) {
+                          await showDialog<void>(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    content: Stack(
+                                      clipBehavior: Clip.none,
+                                      children: <Widget>[
+                                        Positioned(
+                                          right: -40,
+                                          top: -40,
+                                          child: InkResponse(
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const CircleAvatar(
+                                              backgroundColor: Colors.red,
+                                              child: Icon(Icons.close),
+                                            ),
+                                          ),
+                                        ),
+                                        Form(
+                                          key: _formKey,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              const Padding(
+                                                padding: EdgeInsets.all(8),
+                                                child: Text(
+                                                  textAlign: TextAlign.center,
+                                                  'Vous avez atteint la fin de la liste des candidats.',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: 'Shanti',
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                child: ElevatedButton(
+                                                  child: const Text(
+                                                    textAlign: TextAlign.center,
+                                                    'Revoir les candidats refusés',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Shanti',
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    notMatched.clear();
+                                                    notMatched.add(-1);
+                                                    setFirebaseData(isCompanyView, id,
+                                                        'NotMatched', notMatched);
+                                                    setState(() {
+                                                    });
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                child: ElevatedButton(
+                                                  child: const Text(
+                                                    'Fermer',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Shanti',
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                        }
+                        return true;
+                      },
                     ),
-                    color: Colors.transparent,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.76,
+                          // left: MediaQuery.of(context).size.width * 0.1,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: Colors.red,
+                          ),
+                          color: Colors.transparent,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.18,
+                        height: MediaQuery.of(context).size.width * 0.18,
+                        child: IconButton(
+                          iconSize: 30,
+                          onPressed: () {
+                            cardController.swipe(CardSwiperDirection.left);
+                          },
+                          icon: const Icon(
+                            WebSymbols.cancel,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.77,
+                          // left: MediaQuery.of(context).size.width * 0.43,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: Colors.yellow,
+                          ),
+                          color: Colors.transparent,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        height: MediaQuery.of(context).size.width * 0.15,
+                        child: IconButton(
+                          iconSize: 25,
+                          onPressed: () {
+                            cardController.undo();
+                            if (lastMoves.isNotEmpty) {
+                              if (lastMoves.last == 'left') {
+                                notMatched.removeLast();
+                                setFirebaseData(isCompanyView, id, 'NotMatched',
+                                    notMatched);
+                              } else if (lastMoves.last == 'right') {
+                                matched.removeLast();
+                                setFirebaseData(
+                                    isCompanyView, id, 'Matched', matched);
+                              }
+                              lastMoves.removeLast();
+                            }
+                          },
+                          icon: const Icon(
+                            FontAwesome5.undo,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.76,
+                          // left: MediaQuery.of(context).size.width * 0.7,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: Colors.green,
+                          ),
+                          color: Colors.transparent,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.18,
+                        height: MediaQuery.of(context).size.width * 0.18,
+                        child: IconButton(
+                          iconSize: 30,
+                          onPressed: () {
+                            cardController.swipe(CardSwiperDirection.right);
+                          },
+                          icon: const Icon(
+                            FontAwesome5.heart,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  width: MediaQuery.of(context).size.width * 0.18,
-                  height: MediaQuery.of(context).size.width * 0.18,
-                  child: IconButton(
-                    iconSize: 30,
-                    onPressed: () {
-                      cardController.swipe(CardSwiperDirection.left);
-                    },
-                    icon: const Icon(
-                      WebSymbols.cancel,
-                      color: Colors.red,
-                    ),
+                ],
+              ),
+            )
+          : lastMoves.isNotEmpty
+              ? Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.77,
+                          // left: MediaQuery.of(context).size.width * 0.43,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: Colors.yellow,
+                          ),
+                          color: Colors.transparent,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        height: MediaQuery.of(context).size.width * 0.15,
+                        child: IconButton(
+                          iconSize: 25,
+                          onPressed: () {
+                            cardController.undo();
+                            if (lastMoves.isNotEmpty) {
+                              if (lastMoves.last == 'left') {
+                                notMatched.removeLast();
+                                setFirebaseData(isCompanyView, id, 'NotMatched',
+                                    notMatched);
+                              } else if (lastMoves.last == 'right') {
+                                matched.removeLast();
+                                setFirebaseData(
+                                    isCompanyView, id, 'Matched', matched);
+                              }
+                              lastMoves.removeLast();
+                            }
+                          },
+                          icon: const Icon(
+                            FontAwesome5.undo,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.77,
-                    // left: MediaQuery.of(context).size.width * 0.43,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.yellow,
-                    ),
-                    color: Colors.transparent,
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.15,
-                  height: MediaQuery.of(context).size.width * 0.15,
-                  child: IconButton(
-                    iconSize: 25,
-                    onPressed: () {
-                      cardController.undo();
-                    },
-                    icon: const Icon(
-                      FontAwesome5.undo,
-                      color: Colors.yellow,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.76,
-                    // left: MediaQuery.of(context).size.width * 0.7,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.green,
-                    ),
-                    color: Colors.transparent,
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.18,
-                  height: MediaQuery.of(context).size.width * 0.18,
-                  child: IconButton(
-                    iconSize: 30,
-                    onPressed: () {
-                      cardController.swipe(CardSwiperDirection.right);
-                    },
-                    icon: const Icon(
-                      FontAwesome5.heart,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+                )
+              : null,
     );
   }
 }
@@ -633,18 +802,21 @@ Color getColor(int index) {
   }
 }
 
-void setFirebaseData(bool isComapnyView, int id, String key, Object value) {
+void setFirebaseData(bool isComapnyView, int id, String key, List<int> values) {
+  debugPrint('setFirebaseData: id: $id, key: $key, value: $values');
   String docName = '';
   String collection;
   isCompanyView ? collection = 'Companies' : collection = 'Users';
   var db = FirebaseFirestore.instance;
-  db.collection(collection).where('ID', isEqualTo: id).get().then(
-    (querySnapshot) {
-      docName = querySnapshot.docs[0].id;
-    },
-  ).then(
-    (value) => db.collection('Companies').doc(docName).update({
-      key: value,
-    }),
-  );
+  if (collection != '') {
+    db.collection(collection).where('ID', isEqualTo: id).get().then(
+      (querySnapshot) {
+        docName = querySnapshot.docs[0].id;
+      },
+    ).then(
+      (value) => db.collection(collection).doc(docName).update({
+        key: values,
+      }),
+    );
+  }
 }
