@@ -9,7 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geocoding/geocoding.dart';
 
 class CompanyProfileSettingsPage extends StatefulWidget {
-  const CompanyProfileSettingsPage({super.key, required this.isDetailsPage, required this.id});
+  const CompanyProfileSettingsPage(
+      {super.key, required this.isDetailsPage, required this.id});
 
   final bool isDetailsPage;
 
@@ -17,7 +18,8 @@ class CompanyProfileSettingsPage extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _CompanyProfileSettingState createState() => _CompanyProfileSettingState(isDetailsPage: isDetailsPage, id: id);
+  _CompanyProfileSettingState createState() =>
+      _CompanyProfileSettingState(isDetailsPage: isDetailsPage, id: id);
 }
 
 class _CompanyProfileSettingState extends State<CompanyProfileSettingsPage> {
@@ -25,8 +27,6 @@ class _CompanyProfileSettingState extends State<CompanyProfileSettingsPage> {
   bool isDetailsPage;
 
   _CompanyProfileSettingState({required this.isDetailsPage, required this.id});
-
-
 
   bool isDarkMode = false;
   bool isCompanyView = false;
@@ -1081,126 +1081,173 @@ class _CompanyProfileSettingState extends State<CompanyProfileSettingsPage> {
 
     //----------------- RETURN -----------------
     return Scaffold(
-      
       appBar: isDetailsPage
-      ? AppBar(
-        toolbarHeight: height * 0.14,
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: true,
-        surfaceTintColor: Colors.white,
-        actions: [
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: width * 0.5,
-                    height: height * 0.08,
-                    margin: EdgeInsets.only(
-                      right: width * 0.15,
-                    ),
-                    child: Image.asset(
-                      'lib/assets/images/logo_gradient.png',
-                      width: width * 0.4,
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.1,
-                    margin: EdgeInsets.only(
-                      right: width * 0.05,
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.ios_share_rounded,
-                        color: Colors.black,
-                        size: width * 0.08,
-                      ),
-                      onPressed: () {
-                        null;
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const MoreSettingsPage(),
-                        //   ),
-                        // );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ? AppBar(
+              toolbarHeight: height * 0.14,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: true,
+              surfaceTintColor: Colors.white,
+              actions: [
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      height: height * 0.05,
-                      width: width * 0.49,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent,
+                    Row(
+                      children: [
+                        Container(
+                          width: width * 0.5,
+                          height: height * 0.08,
+                          margin: EdgeInsets.only(
+                            right: width * 0.15,
+                          ),
+                          child: Image.asset(
+                            'lib/assets/images/logo_gradient.png',
+                            width: width * 0.4,
                           ),
                         ),
-                        onPressed: () => {
-                          if (!isModifying)
-                            {
-                              setState(() {
-                                isModifying = true;
-                              }),
-                            }
-                        },
-                        child: Text(
-                          'Modifier',
-                          style: TextStyle(
-                            color: isModifying ? const Color.fromARGB(255, 215, 0, 123) : Colors.black,
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
+                        Container(
+                          width: width * 0.1,
+                          margin: EdgeInsets.only(
+                            right: width * 0.05,
+                          ),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.ios_share_rounded,
+                              color: Colors.black,
+                              size: width * 0.08,
+                            ),
+                            onPressed: () {
+                              null;
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const MoreSettingsPage(),
+                              //   ),
+                              // );
+                            },
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    VerticalDivider(
-                      color: Colors.grey.shade500,
-                      thickness: 2.0,
-                      width: width * 0.02,
-                    ),
-                    SizedBox(
-                      width: width * 0.49,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent,
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            height: height * 0.05,
+                            width: width * 0.49,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.transparent,
+                                ),
+                              ),
+                              onPressed: () => {
+                                if (!isModifying)
+                                  {
+                                    setState(() {
+                                      isModifying = true;
+                                    }),
+                                  }
+                              },
+                              child: Text(
+                                'Modifier',
+                                style: TextStyle(
+                                  color: isModifying
+                                      ? const Color.fromARGB(255, 215, 0, 123)
+                                      : Colors.black,
+                                  fontFamily: 'Shanti',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        onPressed: () => {
-                          if (isModifying)
-                            {
-                              setState(() {
-                                isModifying = false;
-                              }),
-                            }
-                        },
-                        child: Text(
-                          'Aperçu',
-                          style: TextStyle(
-                            color: isModifying ? Colors.black : const Color.fromARGB(255, 215, 0, 123),
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
+                          VerticalDivider(
+                            color: Colors.grey.shade500,
+                            thickness: 2.0,
+                            width: width * 0.02,
                           ),
-                        ),
+                          SizedBox(
+                            width: width * 0.49,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.transparent,
+                                ),
+                              ),
+                              onPressed: () => {
+                                if (isModifying)
+                                  {
+                                    setState(() {
+                                      isModifying = false;
+                                    }),
+                                  }
+                              },
+                              child: Text(
+                                'Aperçu',
+                                style: TextStyle(
+                                  color: isModifying
+                                      ? Colors.black
+                                      : const Color.fromARGB(255, 215, 0, 123),
+                                  fontFamily: 'Shanti',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      )
-      : null,
-
+              ],
+            )
+          : AppBar(
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: true,
+              surfaceTintColor: Colors.white,
+              actions: [
+                Row(
+                  children: [
+                    Container(
+                      width: width * 0.5,
+                      height: height * 0.08,
+                      margin: EdgeInsets.only(
+                        right: width * 0.15,
+                      ),
+                      child: Image.asset(
+                        'lib/assets/images/logo_gradient.png',
+                        width: width * 0.4,
+                      ),
+                    ),
+                    Container(
+                      width: width * 0.1,
+                      margin: EdgeInsets.only(
+                        right: width * 0.05,
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.ios_share_rounded,
+                          color: Colors.black,
+                          size: width * 0.08,
+                        ),
+                        onPressed: () {
+                          null;
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const MoreSettingsPage(),
+                          //   ),
+                          // );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
       body: isModifying ? modifiying : showing,
     );
   }

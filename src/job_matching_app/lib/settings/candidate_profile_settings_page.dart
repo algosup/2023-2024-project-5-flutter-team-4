@@ -9,7 +9,8 @@ import 'package:job_matching_app/match/details_timeline_page.dart';
 import 'package:job_matching_app/settings/timeline_settings_page.dart';
 
 class CandidateProfileSettingsPage extends StatefulWidget {
-  const CandidateProfileSettingsPage({super.key, required this.isDetailsPage, required this.id});
+  const CandidateProfileSettingsPage(
+      {super.key, required this.isDetailsPage, required this.id});
 
   final bool isDetailsPage;
   final int id;
@@ -17,17 +18,16 @@ class CandidateProfileSettingsPage extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _CandidateProfileSettingState createState() =>
-      _CandidateProfileSettingState( isDetailsPage: isDetailsPage, id: id);
+      _CandidateProfileSettingState(isDetailsPage: isDetailsPage, id: id);
 }
 
 class _CandidateProfileSettingState
     extends State<CandidateProfileSettingsPage> {
-
   bool isDetailsPage;
   int id;
 
-  _CandidateProfileSettingState({required this.isDetailsPage, required this.id});
-
+  _CandidateProfileSettingState(
+      {required this.isDetailsPage, required this.id});
 
   bool isDarkMode = false;
   bool isCompanyView = false;
@@ -186,10 +186,17 @@ class _CandidateProfileSettingState
                 ),
 
                 child: Transform.scale(
-                  scale: 1.025, // Scale of the profile picture is set to 0.8
-                  child: const ClipRRect(
-                      // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
-                      ),
+                  scale: 1, // Scale of the profile picture is set to 0.8
+                  child: ClipRRect(
+                    child: pseudo.isNotEmpty
+                        ? Image.asset(
+                            getImageFromNickName(
+                              pseudo.substring(0, pseudo.length - 3),
+                            ),
+                            // fit: BoxFit.scaleDown,
+                          )
+                        : null,
+                  ),
                 ),
               ),
             ),
@@ -1082,126 +1089,173 @@ class _CandidateProfileSettingState
 
     //----------------- RETURN -----------------
     return Scaffold(
-      
       appBar: isDetailsPage
-      ? AppBar(
-        toolbarHeight: height * 0.14,
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: true,
-        surfaceTintColor: Colors.white,
-        actions: [
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: width * 0.5,
-                    height: height * 0.08,
-                    margin: EdgeInsets.only(
-                      right: width * 0.15,
-                    ),
-                    child: Image.asset(
-                      'lib/assets/images/logo_gradient.png',
-                      width: width * 0.4,
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.1,
-                    margin: EdgeInsets.only(
-                      right: width * 0.05,
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.ios_share_rounded,
-                        color: Colors.black,
-                        size: width * 0.08,
-                      ),
-                      onPressed: () {
-                        null;
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const MoreSettingsPage(),
-                        //   ),
-                        // );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ? AppBar(
+              toolbarHeight: height * 0.14,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: true,
+              surfaceTintColor: Colors.white,
+              actions: [
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      height: height * 0.05,
-                      width: width * 0.49,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent,
+                    Row(
+                      children: [
+                        Container(
+                          width: width * 0.5,
+                          height: height * 0.08,
+                          margin: EdgeInsets.only(
+                            right: width * 0.15,
+                          ),
+                          child: Image.asset(
+                            'lib/assets/images/logo_gradient.png',
+                            width: width * 0.4,
                           ),
                         ),
-                        onPressed: () => {
-                          if (!isModifying)
-                            {
-                              setState(() {
-                                isModifying = true;
-                              }),
-                            }
-                        },
-                        child: Text(
-                          'Modifier',
-                          style: TextStyle(
-                            color: isModifying ? const Color.fromARGB(255, 215, 0, 123) : Colors.black,
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
+                        Container(
+                          width: width * 0.1,
+                          margin: EdgeInsets.only(
+                            right: width * 0.05,
+                          ),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.ios_share_rounded,
+                              color: Colors.black,
+                              size: width * 0.08,
+                            ),
+                            onPressed: () {
+                              null;
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const MoreSettingsPage(),
+                              //   ),
+                              // );
+                            },
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    VerticalDivider(
-                      color: Colors.grey.shade500,
-                      thickness: 2.0,
-                      width: width * 0.02,
-                    ),
-                    SizedBox(
-                      width: width * 0.49,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent,
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            height: height * 0.05,
+                            width: width * 0.49,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.transparent,
+                                ),
+                              ),
+                              onPressed: () => {
+                                if (!isModifying)
+                                  {
+                                    setState(() {
+                                      isModifying = true;
+                                    }),
+                                  }
+                              },
+                              child: Text(
+                                'Modifier',
+                                style: TextStyle(
+                                  color: isModifying
+                                      ? const Color.fromARGB(255, 215, 0, 123)
+                                      : Colors.black,
+                                  fontFamily: 'Shanti',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        onPressed: () => {
-                          if (isModifying)
-                            {
-                              setState(() {
-                                isModifying = false;
-                              }),
-                            }
-                        },
-                        child: Text(
-                          'Aperçu',
-                          style: TextStyle(
-                            color: isModifying ? Colors.black : const Color.fromARGB(255, 215, 0, 123),
-                            fontFamily: 'Shanti',
-                            fontSize: 20,
+                          VerticalDivider(
+                            color: Colors.grey.shade500,
+                            thickness: 2.0,
+                            width: width * 0.02,
                           ),
-                        ),
+                          SizedBox(
+                            width: width * 0.49,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.transparent,
+                                ),
+                              ),
+                              onPressed: () => {
+                                if (isModifying)
+                                  {
+                                    setState(() {
+                                      isModifying = false;
+                                    }),
+                                  }
+                              },
+                              child: Text(
+                                'Aperçu',
+                                style: TextStyle(
+                                  color: isModifying
+                                      ? Colors.black
+                                      : const Color.fromARGB(255, 215, 0, 123),
+                                  fontFamily: 'Shanti',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      )
-      : null,
-
+              ],
+            )
+          : AppBar(
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: true,
+              surfaceTintColor: Colors.white,
+              actions: [
+                Row(
+                  children: [
+                    Container(
+                      width: width * 0.5,
+                      height: height * 0.08,
+                      margin: EdgeInsets.only(
+                        right: width * 0.15,
+                      ),
+                      child: Image.asset(
+                        'lib/assets/images/logo_gradient.png',
+                        width: width * 0.4,
+                      ),
+                    ),
+                    Container(
+                      width: width * 0.1,
+                      margin: EdgeInsets.only(
+                        right: width * 0.05,
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.ios_share_rounded,
+                          color: Colors.black,
+                          size: width * 0.08,
+                        ),
+                        onPressed: () {
+                          null;
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const MoreSettingsPage(),
+                          //   ),
+                          // );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
       body: isModifying ? modifiying : showing,
     );
   }
@@ -1219,4 +1273,31 @@ Future<String> getCityFromCoordinates(double latitude, double longitude) async {
   List<Placemark> placemarks =
       await placemarkFromCoordinates(latitude, longitude);
   return placemarks[0].locality!;
+}
+
+String getImageFromNickName(String nickName) {
+  switch (nickName) {
+    case 'Giraffe':
+      return 'lib/assets/images/giraffe.png';
+    case 'Elephant' || 'Eléphant':
+      return 'lib/assets/images/elephant.png';
+    case 'Gorille':
+      return 'lib/assets/images/gorilla.png';
+    case 'Lion':
+      return 'lib/assets/images/lion.png';
+    case 'Renard':
+      return 'lib/assets/images/fox.png';
+    case 'Kangourou':
+      return 'lib/assets/images/kangaroo.png';
+    case 'Loup':
+      return 'lib/assets/images/wolf.png';
+    case 'Panda':
+      return 'lib/assets/images/panda.png';
+    case 'Zèbre' || 'Zebre':
+      return 'lib/assets/images/zebra.png';
+    case 'Koala':
+      return 'lib/assets/images/koala.png';
+    default:
+      return 'lib/assets/images/elephant.png';
+  }
 }

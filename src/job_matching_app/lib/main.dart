@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 // Adaptive theme import for theme changing
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Firebase imports
 import 'package:firebase_core/firebase_core.dart';
@@ -125,8 +126,9 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
+    _setSharedPreferences('isCompanyView', false);
     getSharedPreferences('isCompanyView').then((value) {
-      isCompanyView = value;
+      isCompanyView = value; 
     }).then((value) => setState(() {}));
   }
 
@@ -139,12 +141,12 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      if (!isCompanyView) const MatchPage() else const ChartPage(),
-      if (!isCompanyView) const MessagesPage(id: 0) else const MatchPage(),
+      if (!isCompanyView) MatchPage(isCompanyView: isCompanyView, id: id) else const ChartPage(),
+      if (!isCompanyView) MessagesPage(id: id, isCompanyView: isCompanyView,) else MatchPage(isCompanyView: isCompanyView, id: id),
       if (!isCompanyView)
         const CompanyProfileSettingsPage(isDetailsPage: true, id: id)
       else
-        const MessagesPage(id: 0),
+        MessagesPage(id: id, isCompanyView: isCompanyView,),
       if (!isCompanyView)
         const CandidateProfileSettingsPage(isDetailsPage: true, id: id)
       else
@@ -297,4 +299,9 @@ class _RootPageState extends State<RootPage> {
       ),
     );
   }
+}
+
+Future<void> _setSharedPreferences(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool(key, value);
 }

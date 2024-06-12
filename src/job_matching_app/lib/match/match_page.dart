@@ -14,15 +14,23 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 
 class MatchPage extends StatefulWidget {
-  const MatchPage({super.key});
+  const MatchPage({super.key, required this.isCompanyView, required this.id});
+
+  final int id;
+  final bool isCompanyView;
 
   @override
-  State<MatchPage> createState() => _MatchPageState();
+  State<MatchPage> createState() =>
+      _MatchPageState(isCompanyView: isCompanyView, id: id);
 }
 
 class _MatchPageState extends State<MatchPage> {
+  bool isCompanyView;
+  int id;
+
+  _MatchPageState({required this.isCompanyView, required this.id});
+
   late bool darkMode;
-  bool isCompanyView = false;
   int length = 2;
   List<List<num>> data = [];
   List<int> ticks = [];
@@ -31,9 +39,15 @@ class _MatchPageState extends State<MatchPage> {
   int indexOfIds = 0;
   List<int> idList = [];
   // List<String> imagesList = ["one", "two", "three", "four", "five"];
-  List<String> imagesListCompanies = ["algo", "wae"];
-  List<String> imagesListCandidates = [];
-  // List<String> imagesListCandidates = ["one", "two", "three", "four", "five"];
+  List<String> imagesListCompanies = ["logo", "wae"];
+  // List<String> imagesListCandidates = [];
+  List<String> imagesListCandidates = [
+    "giraffe",
+    "lion",
+    "koala",
+    "kangaroo",
+    "panda"
+  ];
 
   List<String> names = [];
 
@@ -43,12 +57,12 @@ class _MatchPageState extends State<MatchPage> {
   int credibility = 60;
   int compatibility = 85;
 
+  List<int> matched = [];
+  List<int> notMatched = [];
+
   @override
   void initState() {
     super.initState();
-    getSharedPreferences('isCompanyView').then((value) {
-      isCompanyView = value;
-    });
     Firebase.initializeApp();
     var db = FirebaseFirestore.instance;
 
@@ -81,36 +95,68 @@ class _MatchPageState extends State<MatchPage> {
       [0, 0, 0, 0, 0, 0, 0],
     ];
 
-    if (isCompanyView) {
-      final docRef = db.collection("Users");
-      docRef.where('hasGraph', isEqualTo: true).get().then((querySnapshot) {
-        data.clear();
-        for (int i = 0; i < querySnapshot.docs.length; i++) {
-          data.add([0, 0, 0, 0, 0, 0, 0]);
-          idList.add(querySnapshot.docs[i].data()['ID']);
-          length = i + 1;
-        }
-        for (int j = 0; j < querySnapshot.docs.length; j++) {
-          names.add(querySnapshot.docs[j].data()['Name']);
-          for (int i = 0; i < 7; i++) {
-            data[j][i] = querySnapshot.docs[j].data()['Graph'][i];
-          }
-        }
-      }).then((value) => setState(() {}));
-    } else {
-      final docRef = db.collection("Companies");
-      docRef.where('ID', isNotEqualTo: -1).get().then((querySnapshot) {
-        data.clear();
-        for (int i = 0; i < querySnapshot.docs.length; i++) {
-          data.add([0, 0, 0, 0, 0, 0, 0]);
-          idList.add(querySnapshot.docs[i].data()['ID']);
-          length = i + 1;
-        }
-        for (int j = 0; j < querySnapshot.docs.length; j++) {
-          names.add(querySnapshot.docs[j].data()['Name']);
-        }
-      }).then((value) => setState(() {}));
-    }
+    isCompanyView
+        ? db
+            .collection("Companies")
+            .where('ID', isEqualTo: id)
+            .get()
+            .then((querySnapshot) {
+              matched.clear();
+              notMatched.clear();
+              matched = querySnapshot.docs[0].data()['Matched'].cast<int>();
+              notMatched =
+                  querySnapshot.docs[0].data()['NotMatched'].cast<int>();
+            })
+            .then((value) => db
+                    .collection("Users")
+                    .where('ID', whereNotIn: matched)
+                    .get()
+                    .then((querySnapshot) {
+                  data.clear();
+                  for (int i = 0; i < querySnapshot.docs.length; i++) {
+                    if (querySnapshot.docs[i].data()['ID'] != -1 &&
+                        !notMatched
+                            .contains(querySnapshot.docs[i].data()['ID'])) {
+                      data.add([0, 0, 0, 0, 0, 0, 0]);
+                      idList.add(querySnapshot.docs[i].data()['ID']);
+                      length = i + 1;
+                      names.add(querySnapshot.docs[i].data()['Name']);
+                      for (int j = 0; j < 7; j++) {
+                        data[i][j] = querySnapshot.docs[i].data()['Graph'][j];
+                      }
+                    }
+                  }
+                }))
+            .then((value) => setState(() {}))
+        : db
+            .collection("Users")
+            .where('ID', isEqualTo: id)
+            .get()
+            .then((querySnapshot) {
+              matched.clear();
+              notMatched.clear();
+              matched = querySnapshot.docs[0].data()['Matched'].cast<int>();
+              notMatched =
+                  querySnapshot.docs[0].data()['NotMatched'].cast<int>();
+            })
+            .then((value) => db
+                    .collection("Companies")
+                    .where('ID', whereNotIn: matched)
+                    .get()
+                    .then((querySnapshot) {
+                  data.clear();
+                  for (int i = 0; i < querySnapshot.docs.length; i++) {
+                    if (querySnapshot.docs[i].data()['ID'] != -1 &&
+                        !notMatched
+                            .contains(querySnapshot.docs[i].data()['ID'])) {
+                      data.add([0, 0, 0, 0, 0, 0, 0]);
+                      idList.add(querySnapshot.docs[i].data()['ID']);
+                      length = i + 1;
+                      names.add(querySnapshot.docs[i].data()['Name']);
+                    }
+                  }
+                }))
+            .then((value) => setState(() {}));
   }
 
   CardSwiperController cardController = CardSwiperController();
@@ -146,10 +192,10 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: isCompanyView
-                      ? (BuildContext context) =>
-                          CandidateProfileSettingsPage(isDetailsPage: false, id: idList[i])
-                      : (BuildContext context) =>
-                          CompanyProfileSettingsPage(isDetailsPage: false, id: idList[i]),
+                      ? (BuildContext context) => CandidateProfileSettingsPage(
+                          isDetailsPage: false, id: idList[i])
+                      : (BuildContext context) => CompanyProfileSettingsPage(
+                          isDetailsPage: false, id: idList[i]),
                 ),
               );
             },
@@ -169,25 +215,30 @@ class _MatchPageState extends State<MatchPage> {
                         width: 84, // Width of the container
 
                         // Decoration of the container
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape
                               .circle, // Shape of the container is a circle
-                          // gradient: RadialGradient(
-                          //   // Gradient of the container
-                          //   stops: const [0.6, 0.95], // Stops of the gradient
-                          //   colors: [
-                          //     Colors.white, // Color of the container
-                          //     getColor(i), // Color of the container
-                          //   ],
-                          // ),
+                          gradient: RadialGradient(
+                            // Gradient of the container
+                            stops: const [0.6, 0.95], // Stops of the gradient
+                            colors: [
+                              Colors.white, // Color of the container
+                              getColor(i), // Color of the container
+                            ],
+                          ),
                         ),
 
                         child: Transform.scale(
                           scale:
                               1.025, // Scale of the profile picture is set to 0.8
                           child: ClipRRect(
-                              // child: Image.asset( "lib/assets/images/${imagesList[i]}.png"),// ADD IMAGE
-                              child: isCompanyView ? Image.asset("lib/assets/images/${imagesListCandidates[i]}.png") : Image.asset("lib/assets/images/${imagesListCompanies[i]}.png") // ADD IMAGE
+                              borderRadius: BorderRadius.circular(
+                                  100), // Border radius of the profile picture
+                              child: isCompanyView
+                                  ? Image.asset(
+                                      "lib/assets/images/${imagesListCandidates[i]}.png")
+                                  : Image.asset(
+                                      "lib/assets/images/${imagesListCompanies[i]}.png") // ADD IMAGE
                               ),
                         ),
                       ),
@@ -414,15 +465,6 @@ class _MatchPageState extends State<MatchPage> {
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
-          // gradient: LinearGradient(
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          //   stops: [0.5, 0.7],
-          //   colors: [
-          //     Color.fromARGB(255, 169, 38, 135),
-          //     Color.fromARGB(255, 215, 0, 123),
-          //   ],
-          // ),
         ),
         child: Stack(
           children: [
@@ -431,32 +473,18 @@ class _MatchPageState extends State<MatchPage> {
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.02,
+                    top: MediaQuery.of(context).size.height * 0.03,
                   ),
                   child: Image.asset(
-                    'lib/assets/images/logo.png',
+                    'lib/assets/images/logo_gradient.png',
                     height: MediaQuery.of(context).size.height * 0.08,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  child: Text(
-                    "Adopte 1\nCandidat",
-                    style: TextStyle(
-                      // color: Theme.of(context).colorScheme.onBackground,
-                      fontSize: MediaQuery.of(context).size.width * 0.05,
-                      fontFamily: 'MontserratAlternates',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
                   ),
                 ),
               ],
             ),
             if (cards.length > 1)
               CardSwiper(
+                isLoop: false,
                 controller: cardController,
                 cardsCount: cards.length,
                 allowedSwipeDirection: const AllowedSwipeDirection.only(
@@ -470,12 +498,18 @@ class _MatchPageState extends State<MatchPage> {
                         cards[index],
                 onSwipe: (previousIndex, currentIndex, direction) {
                   //  TODO
-                  if (direction == CardSwiperDirection.left) {
-                    // Dislike
-                  } else if (direction == CardSwiperDirection.right) {
-                    // Like
+                  if (direction == CardSwiperDirection.left &&
+                      currentIndex != null) {
+                    notMatched.add(idList[currentIndex]);
+                    setFirebaseData(isCompanyView, id, 'NotMatched', notMatched);
+                  } else if (direction == CardSwiperDirection.right &&
+                      currentIndex != null) {
+                    matched.add(idList[currentIndex]);
+                    setFirebaseData(isCompanyView, id, 'Matched', matched);
                   }
-                  indexOfIds = currentIndex!;
+                  if (currentIndex != null) {
+                    indexOfIds = currentIndex;
+                  }
                   return true;
                 },
               ),
@@ -597,4 +631,20 @@ Color getColor(int index) {
     default:
       return Colors.black;
   }
+}
+
+void setFirebaseData(bool isComapnyView, int id, String key, Object value) {
+  String docName = '';
+  String collection;
+  isCompanyView ? collection = 'Companies' : collection = 'Users';
+  var db = FirebaseFirestore.instance;
+  db.collection(collection).where('ID', isEqualTo: id).get().then(
+    (querySnapshot) {
+      docName = querySnapshot.docs[0].id;
+    },
+  ).then(
+    (value) => db.collection('Companies').doc(docName).update({
+      key: value,
+    }),
+  );
 }

@@ -36,12 +36,29 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets: 
+    # ------- LOGOS ---------
     - lib/assets/images/logo.png
     - lib/assets/images/logo_white.png
     - lib/assets/images/logo_gradient.png
+    - lib/assets/images/icon_gradient.png
     - lib/assets/images/Splash.png
+
+    
+    # ------- Companies ---------
     - lib/assets/images/wae.png
     - lib/assets/images/algo.png
+
+    # ------- ANIMALS ---------
+    - lib/assets/images/elephant.png
+    - lib/assets/images/fox.png
+    - lib/assets/images/giraffe.png
+    - lib/assets/images/gorilla.png
+    - lib/assets/images/kangaroo.png
+    - lib/assets/images/koala.png
+    - lib/assets/images/lion.png
+    - lib/assets/images/panda.png
+    - lib/assets/images/wolf.png
+    - lib/assets/images/zebra.png
   fonts:
     - family: Raleway
       fonts:
