@@ -69,7 +69,7 @@ class _MessagesPageState extends State<MessagesPage> {
         .get()
         .then((value) => value.docs.forEach((element) {
               if (isCompanyView) {
-                if (element.data()["IDS"].toString().split(":")[0] as int == id) {
+                if (int.parse(element.data()["IDS"].toString().split(":")[0]) == id) {
                   conversationslist.add(element.data()["IDS"]);
                   messages.add(element.data()["Messages"].cast<String>());
                   companies.add(element.data()["MessagesW"].cast<int>());
