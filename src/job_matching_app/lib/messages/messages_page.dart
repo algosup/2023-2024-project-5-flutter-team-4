@@ -191,8 +191,9 @@ class _MessagesPageState extends State<MessagesPage> {
                                     ConversationPage(
                                         convId: i,
                                         messages: messages[i],
-                                        isCompany:
-                                            companies[i]),
+                                        sender:
+                                            companies[i],
+                                            isCompany: isCompanyView,),
                               ),
                             );
                           },
@@ -351,8 +352,9 @@ class _MessagesPageState extends State<MessagesPage> {
                                           convId: messagesList[h] - 1,
                                           messages:
                                               messages[messagesList[h] - 1],
-                                          isCompany:
-                                              companies[messagesList[h] - 1]),
+                                          sender:
+                                              companies[messagesList[h] - 1],
+                                              isCompany: isCompanyView,),
                                 ),
                               );
                             },

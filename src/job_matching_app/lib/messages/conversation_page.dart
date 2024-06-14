@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ConversationPage extends StatefulWidget {
@@ -5,15 +6,17 @@ class ConversationPage extends StatefulWidget {
       {super.key,
       required this.convId,
       required this.messages,
+      required this.sender,
       required this.isCompany});
 
   final int convId;
   final List<String> messages;
-  final List<int> isCompany;
+  final List<int> sender;
+  final bool isCompany;
 
   @override
   State<ConversationPage> createState() => _ConversationPageState(
-      id: convId, messages: messages, isCompany: isCompany);
+      id: convId, messages: messages, sender: sender,isCompany: isCompany);
 }
 
 class _ConversationPageState extends State<ConversationPage>
@@ -24,10 +27,12 @@ class _ConversationPageState extends State<ConversationPage>
   List<String> messages;
 
   /// A list mirroring the messages list to identify the sender
-  List<int> isCompany;
+  List<int> sender;
 
+  /// A boolean to identify which view the app is on: 0 is on candidate vew, 1 company view
+  bool isCompany;
   _ConversationPageState(
-      {required this.id, required this.messages, required this.isCompany});
+      {required this.id, required this.messages, required this.sender, required this.isCompany});
 
   /// A gradiant for the background going from pink to purple
   final LinearGradient backgroundGradient = const LinearGradient(
@@ -71,6 +76,7 @@ class _ConversationPageState extends State<ConversationPage>
     });
   }
 
+  final TextfieldController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -112,8 +118,8 @@ class _ConversationPageState extends State<ConversationPage>
                           margin: EdgeInsets.only(
                             top: 10.0,
                             bottom: 10.0,
-                            left: isCompany[i] == 0 ? 10.0 : 70.0,
-                            right: isCompany[i] == 1 ? 10.0 : 70.0,
+                            left: sender[i] == 0 ? 10.0 : 70.0,
+                            right: sender[i] == 1 ? 10.0 : 70.0,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -123,7 +129,7 @@ class _ConversationPageState extends State<ConversationPage>
                             minLeadingWidth: 0,
                             title: Text(
                               messages[i],
-                              textAlign: isCompany[i] == 0
+                              textAlign: sender[i] == 0
                                   ? TextAlign.start
                                   : TextAlign.end,
                               style: const TextStyle(
@@ -165,6 +171,7 @@ class _ConversationPageState extends State<ConversationPage>
                             FocusScope.of(context).unfocus();
                           },
                           child: TextField(
+                            controller: TextfieldController,
                             focusNode: _focusNode,
                             decoration: InputDecoration(
                               hintText: 'Type a message...',
@@ -210,7 +217,26 @@ class _ConversationPageState extends State<ConversationPage>
                           color: Colors.white,
                         ),
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              FirebaseFirestore.instance
+                                  .collection('Conversations')
+                                  .where('IDS', isEqualTo: "1:1")
+                                  .get()
+                                  .then((querySnapshot) {
+                                for (var result in querySnapshot.docs) {
+                                  FirebaseFirestore.instance
+                                      .collection('Conversations')
+                                      .doc(result.id)
+                                      .update({"Messages": TextfieldController.text});
+                                  FirebaseFirestore.instance
+                                      .collection('Conversations')
+                                      .doc(result.id)
+                                      .update({"MessagesW": isCompany as int});
+                                      TextfieldController.text="";
+                                }
+
+                              });
+                            },
                             icon: const Icon(Icons.send_rounded)),
                       ),
                     ],
