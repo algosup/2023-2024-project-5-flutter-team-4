@@ -1,0 +1,80 @@
+name: job_matching_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  adaptive_theme: ^3.6.0
+  shared_preferences: ^2.0.0
+  flutter_radar_chart: ^0.2.1
+  timeline_tile: ^2.0.0
+  dotted_border: ^2.1.0
+  location_picker_flutter_map: ^3.0.1
+  geocoding: ^3.0.0
+
+
+
+  flutter:
+    sdk: flutter
+  flutter_card_swiper: ^7.0.1
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  url_launcher: ^6.2.6
+  firebase_core: ^2.31.1
+  cloud_firestore: ^4.17.4
+  marquee: ^2.2.3
+  fluttericon: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets: 
+    # ------- LOGOS ---------
+    - lib/assets/images/logo.png
+    - lib/assets/images/logo_white.png
+    - lib/assets/images/logo_gradient.png
+    - lib/assets/images/icon_gradient.png
+    - lib/assets/images/Splash.png
+
+    
+    # ------- Companies ---------
+    - lib/assets/images/wae.png
+    - lib/assets/images/algo.png
+
+    # ------- ANIMALS ---------
+    - lib/assets/images/elephant.png
+    - lib/assets/images/fox.png
+    - lib/assets/images/giraffe.png
+    - lib/assets/images/gorilla.png
+    - lib/assets/images/kangaroo.png
+    - lib/assets/images/koala.png
+    - lib/assets/images/lion.png
+    - lib/assets/images/panda.png
+    - lib/assets/images/wolf.png
+    - lib/assets/images/zebra.png
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Italic.ttf
+          style: italic
+        - asset: fonts/Raleway-Bold.ttf
+    - family: Oxygen
+      fonts:
+        - asset: fonts/Oxygen-Regular.ttf
+        - asset: fonts/Oxygen-Light.ttf
+    - family: Shanti
+      fonts:
+        - asset: fonts/Shanti-Regular.ttf
+    - family: MontserratAlternates
+      fonts:
+        - asset: fonts/MontserratAlternates-Regular.ttf
+        - asset: fonts/MontserratAlternates-Italic.ttf
+          style: italic

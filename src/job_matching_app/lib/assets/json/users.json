@@ -1,0 +1,20 @@
+{
+    "users": [
+        {
+            "email": "a@m.com",
+            "password":"a",
+            "softSkills": [
+                []
+            ],
+            "chart": []
+        },
+        {
+            "email": "secondaccound@hotmail.com",
+            "password": "password",
+            "softSkills": [
+                []
+            ],
+            "chart": []
+        }
+    ]
+}
