@@ -117,18 +117,15 @@ class _MatchPageState extends State<MatchPage> {
                     .then((querySnapshot) {
                   data.clear();
                   for (int i = 0; i < querySnapshot.docs.length; i++) {
+                      data.add([0, 0, 0, 0, 0, 0, 0]);
                     if (querySnapshot.docs[i].data()['ID'] != -1 &&
                         !notMatched
                             .contains(querySnapshot.docs[i].data()['ID'])) {
-                      data.add([0, 0, 0, 0, 0, 0, 0]);
                       idList.add(querySnapshot.docs[i].data()['ID']);
                       length = i + 1;
                       names.add(querySnapshot.docs[i].data()['Name']);
                       for (int j = 0; j < 7; j++) {
                         data[i][j] = querySnapshot.docs[i].data()['Graph'][j];
-                      }
-                      if (querySnapshot.docs[i].data()['Job'] != null) {
-                        jobNames.add(querySnapshot.docs[i].data()['Job']);
                       }
                     }
                   }
@@ -157,6 +154,9 @@ class _MatchPageState extends State<MatchPage> {
                       idList.add(querySnapshot.docs[i].data()['ID']);
                       length = i + 1;
                       names.add(querySnapshot.docs[i].data()['Name']);
+                      if (querySnapshot.docs[i].data()['Job'] != null) {
+                        jobNames.add(querySnapshot.docs[i].data()['Job']);
+                      }
                     }
                   }
                 }))
@@ -170,7 +170,7 @@ class _MatchPageState extends State<MatchPage> {
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
     List<Container> cards = [];
 
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < length- matched.length; i++) {
       cards.add(
         Container(
           margin:

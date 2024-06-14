@@ -29,8 +29,10 @@ class _DetailsTimeLinePageState extends State<DetailsTimeLinePage> {
       (querySnapshot) {
         for (var result in querySnapshot.docs) {
           if (result.data()["ID"] == id) {
+            if (result.data()["Dates"] != null){
             dates = result.data()["Dates"].cast<String>();
             datesDescription = result.data()["DatesDescription"].cast<String>();
+            }
             break;
           }
         }

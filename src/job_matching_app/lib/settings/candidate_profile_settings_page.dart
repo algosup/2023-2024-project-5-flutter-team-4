@@ -65,6 +65,8 @@ class _CandidateProfileSettingState
   void initState() {
     super.initState();
 
+    debugPrint('id: $id');
+
     db = FirebaseFirestore.instance;
 
     db
@@ -80,10 +82,12 @@ class _CandidateProfileSettingState
                 if (result.data()["Pseudonyme"] != null) {
                   pseudo = result.data()["Pseudonyme"];
                 }
-                if (result.data()["Location"].latitude != null &&
-                    result.data()["Location"].longitude != null) {
-                  cityCoordinates[0] = result.data()["Location"].latitude;
-                  cityCoordinates[1] = result.data()["Location"].longitude;
+                if (result.data()["Location"] != null) {
+                  if (result.data()["Location"].latitude != null &&
+                      result.data()["Location"].longitude != null) {
+                    cityCoordinates[0] = result.data()["Location"].latitude;
+                    cityCoordinates[1] = result.data()["Location"].longitude;
+                  }
                 }
                 if (result.data()["SoftSkills"] != null) {
                   softSkillsStates = result.data()["SoftSkills"].cast<bool>();
@@ -286,92 +290,95 @@ class _CandidateProfileSettingState
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: width * 0.45),
-                  width: width * 0.08,
-                  child: IconButton(
-                    iconSize: width * 0.08,
-                    onPressed: () async {
-                      await showDialog<void>(
+                if (isDetailsPage)
+                  Container(
+                    margin: EdgeInsets.only(left: width * 0.45),
+                    width: width * 0.08,
+                    child: IconButton(
+                      iconSize: width * 0.08,
+                      onPressed: () async {
+                        await showDialog<void>(
                           context: context,
                           builder: (context) => AlertDialog(
-                                content: Stack(
-                                  clipBehavior: Clip.none,
-                                  children: <Widget>[
-                                    Positioned(
-                                      right: -40,
-                                      top: -40,
-                                      child: InkResponse(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const CircleAvatar(
-                                          backgroundColor: Colors.red,
-                                          child: Icon(Icons.close),
-                                        ),
-                                      ),
+                            content: Stack(
+                              clipBehavior: Clip.none,
+                              children: <Widget>[
+                                Positioned(
+                                  right: -40,
+                                  top: -40,
+                                  child: InkResponse(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      child: Icon(Icons.close),
                                     ),
-                                    Form(
-                                      key: _formKey,
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            const Text(
-                                              'Soft Skills Selection',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: 'Shanti',
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const Divider(
-                                              color: Colors.grey,
-                                              thickness: 1.0,
-                                            ),
-                                            for (int i = 0;
-                                                i < softSkills.length;
-                                                i++)
-                                              if (softSkillsStates[i])
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      overflow:
-                                                          TextOverflow.visible,
-                                                      softSkills[i],
-                                                      style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontFamily: 'Shanti',
-                                                        fontSize: 17,
-                                                      ),
-                                                    ),
-                                                    IconButton(
-                                                      iconSize: width * 0.08,
-                                                      onPressed: () {
-                                                        null;
-                                                      },
-                                                      icon: const Icon(null),
-                                                    ),
-                                                  ],
-                                                ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ));
-                    },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      color: Colors.grey,
+                                Form(
+                                  key: _formKey,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        const Text(
+                                          'Soft Skills Selection',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Shanti',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const Divider(
+                                          color: Colors.grey,
+                                          thickness: 1.0,
+                                        ),
+                                        for (int i = 0;
+                                            i < softSkills.length;
+                                            i++)
+                                          if (softSkillsStates.isNotEmpty &&
+                                              softSkillsStates[i])
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softSkills[i],
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: 'Shanti',
+                                                    fontSize: 17,
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  iconSize: width * 0.08,
+                                                  onPressed: () {
+                                                    null;
+                                                  },
+                                                  icon: const Icon(null),
+                                                ),
+                                              ],
+                                            ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const Divider(
@@ -410,20 +417,21 @@ class _CandidateProfileSettingState
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: width * 0.03),
-                  width: width * 0.08,
-                  child: IconButton(
-                    iconSize: width * 0.08,
-                    onPressed: () {
-                      null;
-                    },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      color: Colors.grey,
+                if (isDetailsPage)
+                  Container(
+                    margin: EdgeInsets.only(left: width * 0.03),
+                    width: width * 0.08,
+                    child: IconButton(
+                      iconSize: width * 0.08,
+                      onPressed: () {
+                        null;
+                      },
+                      icon: const Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const Divider(
@@ -495,25 +503,26 @@ class _CandidateProfileSettingState
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: width * 0.45),
-                  width: width * 0.08,
-                  child: IconButton(
-                    iconSize: width * 0.08,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailsTimeLinePage(id: id),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      color: Colors.grey,
+                if (isDetailsPage)
+                  Container(
+                    margin: EdgeInsets.only(left: width * 0.45),
+                    width: width * 0.08,
+                    child: IconButton(
+                      iconSize: width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsTimeLinePage(id: id),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const Divider(
@@ -538,20 +547,21 @@ class _CandidateProfileSettingState
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: width * 0.05),
-                  width: width * 0.08,
-                  child: IconButton(
-                    iconSize: width * 0.08,
-                    onPressed: () {
-                      null;
-                    },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_right_rounded,
-                      color: Colors.grey,
+                if (isDetailsPage)
+                  Container(
+                    margin: EdgeInsets.only(left: width * 0.05),
+                    width: width * 0.08,
+                    child: IconButton(
+                      iconSize: width * 0.08,
+                      onPressed: () {
+                        null;
+                      },
+                      icon: const Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const Divider(

@@ -126,14 +126,14 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
-    _setSharedPreferences('isCompanyView', false);
+    _setSharedPreferences('isCompanyView', true);
     getSharedPreferences('isCompanyView').then((value) {
       isCompanyView = value; 
     }).then((value) => setState(() {}));
   }
 
   // Variables
-  int currentPage = 0;
+  int currentPage = isCompanyView ? 0 : 1;
 
   static const int id = 1;
 
@@ -193,8 +193,9 @@ class _RootPageState extends State<RootPage> {
                   : Icon(
                       !isCompanyView ? RpgAwesome.supersonic_arrow : Icons.menu,
                       size: MediaQuery.of(context).size.width * 0.1,
-                      color: Colors.black),
+                      color: isCompanyView ? Colors.grey : Colors.black),
               label: 'Home',
+              enabled: isCompanyView ? false : true,
             ),
 
             // Settings page
