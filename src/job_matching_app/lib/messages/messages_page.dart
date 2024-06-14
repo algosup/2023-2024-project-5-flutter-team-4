@@ -108,17 +108,6 @@ class _MessagesPageState extends State<MessagesPage> {
             (querySnapshot) {
               for (var result in querySnapshot.docs) {
                 if (result.data()["ID"] == id) {
-                  convNum = result.data()["ConvNum"];
-                  for (int i = 1; i <= convNum; i++) {
-                    messages.add(result.data()["Conv$i"].cast<String>());
-                    companies.add(result.data()["ConvW$i"].cast<int>());
-                    messagesList.add(i);
-                  }
-                  if (convNum != 0) {
-                    for (var date in result.data()["LastMessage"]) {
-                      lastMessage.add(date as Timestamp);
-                    }
-                  }
                   matchListOther = result.data()["Matched"].cast<int>();
                   break;
                 }
