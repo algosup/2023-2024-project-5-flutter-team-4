@@ -69,7 +69,8 @@ class _MessagesPageState extends State<MessagesPage> {
         .get()
         .then((value) => value.docs.forEach((element) {
               if (isCompanyView) {
-                if (int.parse(element.data()["IDS"].toString().split(":")[0]) == id) {
+                if (int.parse(element.data()["IDS"].toString().split(":")[0]) ==
+                    id) {
                   conversationslist.add(element.data()["IDS"]);
                   messages.add(element.data()["Messages"].cast<String>());
                   companies.add(element.data()["MessagesW"].cast<int>());
@@ -77,9 +78,9 @@ class _MessagesPageState extends State<MessagesPage> {
                       [element.data()["Dates"].length - 1] as Timestamp);
                   convNum++;
                 }
-              }
-              else {
-                if (int.parse(element.data()["IDS"].toString().split(":")[1]) == id) {
+              } else {
+                if (int.parse(element.data()["IDS"].toString().split(":")[1]) ==
+                    id) {
                   conversationslist.add(element.data()["IDS"]);
                   messages.add(element.data()["Messages"].cast<String>());
                   companies.add(element.data()["MessagesW"].cast<int>());
@@ -89,7 +90,9 @@ class _MessagesPageState extends State<MessagesPage> {
                 }
               }
             }))
-        .then((value) => setState(() {debugPrint(convNum.toString());}));
+        .then((value) => setState(() {
+              debugPrint(convNum.toString());
+            }));
 
     !isCompanyView
         ? db.collection('Users').where("").get().then(
@@ -189,11 +192,11 @@ class _MessagesPageState extends State<MessagesPage> {
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     ConversationPage(
-                                        convId: i,
-                                        messages: messages[i],
-                                        sender:
-                                            companies[i],
-                                            isCompany: isCompanyView,),
+                                  convId: i,
+                                  messages: messages[i],
+                                  sender: companies[i],
+                                  isCompany: isCompanyView,
+                                ),
                               ),
                             );
                           },
@@ -267,15 +270,15 @@ class _MessagesPageState extends State<MessagesPage> {
                                             100), // Border radius of the profile picture is set to 100
                                         child: Image.asset(
                                             'lib/assets/images/logo.png'
-                                          // getImageFromNickName(
-                                          //   messages[messagesList[i] - 1][0]
-                                          //       .substring(
-                                          //           0,
-                                          //           messages[messagesList[i] -
-                                          //                       1][0]
-                                          //                   .length -
-                                          //               3) )
-                                                        ), // ADD IMAGE
+                                            // getImageFromNickName(
+                                            //   messages[messagesList[i] - 1][0]
+                                            //       .substring(
+                                            //           0,
+                                            //           messages[messagesList[i] -
+                                            //                       1][0]
+                                            //                   .length -
+                                            //               3) )
+                                            ), // ADD IMAGE
                                       ),
                                     ),
                                   ),
@@ -306,18 +309,16 @@ class _MessagesPageState extends State<MessagesPage> {
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
                                             overflow: TextOverflow.ellipsis,
-                                            (companies[i][
-                                                            companies[i]
-                                                                    .length -
-                                                                1] ==
+                                            (companies[i][companies[i].length -
+                                                            1] ==
                                                         0
                                                     ? "him: "
                                                     : "vous: ") +
                                                 (messages.isEmpty
                                                     ? ""
-                                                    : messages[i][messages[i]
-                                                            .length -
-                                                        1]),
+                                                    : messages[i][
+                                                        messages[i].length -
+                                                            1]),
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontFamily: 'Shanti',
@@ -349,12 +350,11 @@ class _MessagesPageState extends State<MessagesPage> {
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       ConversationPage(
-                                          convId: messagesList[h] - 1,
-                                          messages:
-                                              messages[messagesList[h] - 1],
-                                          sender:
-                                              companies[messagesList[h] - 1],
-                                              isCompany: isCompanyView,),
+                                    convId: messagesList[h] - 1,
+                                    messages: messages[messagesList[h] - 1],
+                                    sender: companies[messagesList[h] - 1],
+                                    isCompany: isCompanyView,
+                                  ),
                                 ),
                               );
                             },
