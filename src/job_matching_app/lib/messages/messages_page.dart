@@ -42,14 +42,20 @@ class _MessagesPageState extends State<MessagesPage> {
 
   List<String> conversationslist = [];
 
-  final Gradient gradient = const LinearGradient(
-    colors: <Color>[
-      Color.fromARGB(255, 215, 0, 123),
-      Color.fromARGB(255, 169, 38, 135),
-    ],
-  );
+  List<String> conversationsIds = [];
+
+  // final Gradient gradient = const LinearGradient(
+  //   colors: <Color>[
+  //     Color.fromARGB(255, 215, 0, 123),
+  //     Color.fromARGB(255, 169, 38, 135),
+  //   ],
+  // );
 
   List<String> conversationsNames = [];
+
+  bool reload = false;
+
+  int index = -1;
 
   @override
   void initState() {
@@ -61,8 +67,6 @@ class _MessagesPageState extends State<MessagesPage> {
     messagesList.clear();
 
     db = FirebaseFirestore.instance;
-
-    isCompanyView ? otherList = getUsersList() : otherList = getCompaniesList();
 
     // Get the list of all conversations (IDS are stored in the form "CompanyID:UserID" in the IDS field of each document)
     db
@@ -79,6 +83,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
                   conversationsNames.add(element.data()["Names"]);
+                  conversationsIds.add(element.data()["IDS"]);
                   convNum++;
                 }
               } else {
@@ -90,12 +95,17 @@ class _MessagesPageState extends State<MessagesPage> {
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
                   conversationsNames.add(element.data()["Names"]);
+                  conversationsIds.add(element.data()["IDS"]);
                   convNum++;
                 }
               }
             }))
         .then((value) => setState(() {
               debugPrint(convNum.toString());
+
+              isCompanyView
+                  ? otherList = getUsersList()
+                  : otherList = getCompaniesList();
             }));
 
     !isCompanyView
@@ -134,76 +144,232 @@ class _MessagesPageState extends State<MessagesPage> {
     //   debugPrint('${getCompanyMatchList(otherList[h], id)}');
     // }
 
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
+    if (reload && index != -1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => ConversationPage(
+            names: isCompanyView
+                ? "${getNameFromId(id, true)}:${getNameFromId(otherList[index], false)}"
+                : "${getNameFromId(otherList[index], true)}:${getNameFromId(id, false)}",
+            messages: const ["Ceci est le début de votre conversation"],
+            sender: const [2],
+            isCompany: isCompanyView,
+          ),
         ),
-        body: Container(
-          color: Colors.white,
-          // decoration: BoxDecoration(
-          //   gradient: gradient,
-          // ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 25.0, left: width * 0.03),
-                    width: width * 0.15,
-                    child: Image.asset(
-                      'lib/assets/images/icon_gradient.png',
-                      width: 50,
-                      height: 50,
-                    ),
+      );
+    }
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+      ),
+      body: Container(
+        color: Colors.white,
+        // decoration: BoxDecoration(
+        //   gradient: gradient,
+        // ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 25.0, left: width * 0.03),
+                  width: width * 0.15,
+                  child: Image.asset(
+                    'lib/assets/images/icon_gradient.png',
+                    width: 50,
+                    height: 50,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 25.0),
-                    width: width * 0.3,
-                    // color: Colors.cyan,
-                    child: const Text(
-                      "Messages",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Shanti',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 25.0),
+                  width: width * 0.3,
+                  // color: Colors.cyan,
+                  child: const Text(
+                    "Messages",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Shanti',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: width * 0.32, top: 25.0),
-                    width: width * 0.2,
-                    // color: Colors.yellow,
-                    child: const IconButton(
-                      icon: Icon(Icons.search, color: Colors.grey, size: 30),
-                      onPressed: null,
-                    ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: width * 0.32, top: 25.0),
+                  width: width * 0.2,
+                  // color: Colors.yellow,
+                  child: const IconButton(
+                    icon: Icon(Icons.search, color: Colors.grey, size: 30),
+                    onPressed: null,
                   ),
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0),
-                height: height * 0.8109,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (int i = 0; i < convNum; i++)
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    ConversationPage(
-                                  name: isCompanyView ? conversationsNames[i].split(":")[1] :
-                                      conversationsNames[i].split(":")[0],
-                                  messages: messages[i],
-                                  sender: companies[i],
-                                  isCompany: isCompanyView,
+                ),
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10.0),
+              height: height * 0.8109,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (int i = 0; i < convNum; i++)
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ConversationPage(
+                                names: conversationsNames[i],
+                                messages: messages[i],
+                                sender: companies[i],
+                                isCompany: isCompanyView,
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          splashFactory: NoSplash.splashFactory,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor:
+                              Colors.transparent, // Background color
+                          shadowColor:
+                              Colors.transparent, // Remove shadow if any
+                          surfaceTintColor:
+                              Colors.transparent, // Remove shadow if any
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: 10.0, bottom: i == convNum - 1 ? 10.0 : 0.0),
+                          width: width * 0.9,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 10.0),
+                                width: width * 0.2,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Container(
+                                  width: 84, // Width of the container
+
+                                  // Decoration of the container
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape
+                                        .circle, // Shape of the container is a circle
+                                    gradient: RadialGradient(
+                                      // Gradient of the container
+                                      stops: const [
+                                        0.6,
+                                        0.95
+                                      ], // Stops of the gradient
+                                      colors: [
+                                        Colors.white, // Color of the container
+                                        getColor(i), // Color of the container
+                                      ],
+                                    ),
+                                  ),
+
+                                  child: Transform.scale(
+                                    scale:
+                                        1.025, // Scale of the profile picture is set to 0.8
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          100), // Border radius of the profile picture is set to 100
+                                      child: Image.asset(
+                                          'lib/assets/images/logo.png'), // ADD IMAGE
+                                    ),
+                                  ),
                                 ),
                               ),
-                            );
+                              Container(
+                                margin: const EdgeInsets.only(left: 10.0),
+                                width: width * 0.5,
+                                height: 80,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 10.0),
+                                      child: Text(
+                                        messages.isNotEmpty
+                                            ? isCompanyView
+                                                ? conversationsNames[i]
+                                                    .split(':')[1]
+                                                : conversationsNames[i]
+                                                    .split(':')[0]
+                                            : "",
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Shanti',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: Container(
+                                        margin: const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          (companies[i][companies[i].length -
+                                                          1] ==
+                                                      0
+                                                  ? isCompanyView
+                                                      ? "${conversationsNames[i].split(':')[1]}: "
+                                                      : "vous: "
+                                                  : isCompanyView
+                                                      ? "vous: "
+                                                      : "${conversationsNames[i].split(':')[0]}: ") +
+                                              (messages.isEmpty
+                                                  ? ""
+                                                  : messages[i]
+                                                      [messages[i].length - 1]),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Shanti',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(left: 10.0),
+                                width: width * 0.1,
+                                height: 80,
+                                child: const Icon(Icons.arrow_forward_ios,
+                                    color: Colors.black, size: 30),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    for (int h = 0; h < otherList.length; h++) // Container()
+                      if (matchListOther.contains(otherList[h]) &&
+                          !conversationsIds.contains(isCompanyView
+                              ? "$id:${otherList[h]}"
+                              : "${otherList[h]}:$id"))
+                        ElevatedButton(
+                          onPressed: () {
+                            isCompanyView
+                                ? createNewConversation("", id, otherList[h])
+                                : createNewConversation("", otherList[h], id);
+                            setState(() {
+                              reload = true;
+                              index = h;
+                            });
                           },
                           style: ElevatedButton.styleFrom(
                             splashFactory: NoSplash.splashFactory,
@@ -221,7 +387,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           child: Container(
                             margin: EdgeInsets.only(
                                 top: 10.0,
-                                bottom: i == convNum - 1 ? 10.0 : 0.0),
+                                bottom: h == convNum - 1 ? 10.0 : 0.0),
                             width: width * 0.9,
                             height: 100,
                             decoration: BoxDecoration(
@@ -253,7 +419,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                         colors: [
                                           Colors
                                               .white, // Color of the container
-                                          getColor(i), // Color of the container
+                                          getColor(h), // Color of the container
                                         ],
                                       ),
                                     ),
@@ -265,8 +431,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                         borderRadius: BorderRadius.circular(
                                             100), // Border radius of the profile picture is set to 100
                                         child: Image.asset(
-                                            'lib/assets/images/logo.png'
-                                            ), // ADD IMAGE
+                                            'lib/assets/images/logo.png'), // ADD IMAGE
                                       ),
                                     ),
                                   ),
@@ -277,41 +442,17 @@ class _MessagesPageState extends State<MessagesPage> {
                                   height: 80,
                                   child: Column(
                                     children: [
-                                      Container(
-                                        margin:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Text(
-                                          messages.isNotEmpty
-                                              ? isCompanyView ? conversationsNames[i].split(':')[1] : conversationsNames[i].split(':')[0]
-                                              : "",
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'Shanti',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        ),
-                                      ),
                                       Flexible(
                                         child: Container(
                                           margin:
                                               const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            overflow: TextOverflow.ellipsis,
-                                            (companies[i][companies[i].length -
-                                                            1] ==
-                                                        0
-                                                    ? "him: "
-                                                    : "vous: ") +
-                                                (messages.isEmpty
-                                                    ? ""
-                                                    : messages[i][
-                                                        messages[i].length -
-                                                            1]),
-                                            style: const TextStyle(
+                                          child: const Text(
+                                            "Vous avez un match avec cette entreprise !",
+                                            style: TextStyle(
                                                 color: Colors.black,
                                                 fontFamily: 'Shanti',
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 15),
+                                                fontSize: 18),
                                           ),
                                         ),
                                       ),
@@ -329,138 +470,22 @@ class _MessagesPageState extends State<MessagesPage> {
                             ),
                           ),
                         ),
-                      for (int h = 0; h < otherList.length; h++) // Container()
-                        if (matchListOther.contains(otherList[h]))
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ConversationPage(
-                                    name: "Match",
-                                    messages: messages[messagesList[h] - 1],
-                                    sender: companies[messagesList[h] - 1],
-                                    isCompany: isCompanyView,
-                                  ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              splashFactory: NoSplash.splashFactory,
-                              padding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              backgroundColor:
-                                  Colors.transparent, // Background color
-                              shadowColor:
-                                  Colors.transparent, // Remove shadow if any
-                              surfaceTintColor:
-                                  Colors.transparent, // Remove shadow if any
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                  top: 10.0,
-                                  bottom: h == convNum - 1 ? 10.0 : 0.0),
-                              width: width * 0.9,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(left: 10.0),
-                                    width: width * 0.2,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Container(
-                                      width: 84, // Width of the container
-
-                                      // Decoration of the container
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape
-                                            .circle, // Shape of the container is a circle
-                                        gradient: RadialGradient(
-                                          // Gradient of the container
-                                          stops: const [
-                                            0.6,
-                                            0.95
-                                          ], // Stops of the gradient
-                                          colors: [
-                                            Colors
-                                                .white, // Color of the container
-                                            getColor(
-                                                h), // Color of the container
-                                          ],
-                                        ),
-                                      ),
-
-                                      child: Transform.scale(
-                                        scale:
-                                            1.025, // Scale of the profile picture is set to 0.8
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                              100), // Border radius of the profile picture is set to 100
-                                          child: Image.asset(
-                                              'lib/assets/images/logo.png'), // ADD IMAGE
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(left: 10.0),
-                                    width: width * 0.5,
-                                    height: 80,
-                                    child: Column(
-                                      children: [
-                                        Flexible(
-                                          child: Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 5.0),
-                                            child: const Text(
-                                              "Vous avez un match avec cette entreprise !",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: 'Shanti',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(left: 10.0),
-                                    width: width * 0.1,
-                                    height: 80,
-                                    child: const Icon(Icons.arrow_forward_ios,
-                                        color: Colors.black, size: 30),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
-          },
-          backgroundColor: Colors.white,
-          child: const Icon(Icons.add_comment_rounded,
-              color: Colors.black, size: 30),
-        ));
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Add your onPressed code here!
+      //   },
+      //   backgroundColor: Colors.white,
+      //   child: const Icon(Icons.add_comment_rounded,
+      //       color: Colors.black, size: 30),
+      // ),
+    );
   }
 }
 
@@ -538,7 +563,8 @@ String getImageFromNickName(String nickName) {
 }
 
 // Returns true if the company is a match with the user
-bool getUserMatchList(int userId, int companyId) {
+bool getUserMatchList(
+    int userId, int companyId, List<String> conversationsIds) {
   List<int> matchList = [];
   bool isAMatch = false;
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -559,7 +585,8 @@ bool getUserMatchList(int userId, int companyId) {
 }
 
 // Returns true if the user is a match with the company
-Future<bool> getCompanyMatchList(int companyId, int userId) async {
+Future<bool> getCompanyMatchList(
+    int companyId, int userId, List<String> conversationsIds) async {
   List<int> matchList = [];
   bool isAMatch = false;
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -610,4 +637,29 @@ List<int> getCompaniesList() {
     },
   );
   return companiesList;
+}
+
+void createNewConversation(String names, int companyId, int candidateId) {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection('Conversations').add({
+    'IDS': '$companyId:$candidateId',
+    'Messages': ["Ceci est le début de votre conversation"],
+    'MessagesW': [2],
+    'Dates': [Timestamp.now()],
+    'Names': names,
+  });
+}
+
+String getNameFromId(int id, bool isCompany) {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection(isCompany ? "Companies" : "Users").where("").get().then(
+    (querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (result.data()["ID"] == id) {
+          return result.data()["Name"];
+        }
+      }
+    },
+  );
+  return "";
 }

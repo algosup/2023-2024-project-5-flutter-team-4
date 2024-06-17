@@ -5,24 +5,24 @@ import 'package:job_matching_app/main.dart';
 class ConversationPage extends StatefulWidget {
   const ConversationPage(
       {super.key,
-      required this.name,
+      required this.names,
       required this.messages,
       required this.sender,
       required this.isCompany});
 
-  final String name;
+  final String names;
   final List<String> messages;
   final List<int> sender;
   final bool isCompany;
 
   @override
   State<ConversationPage> createState() => _ConversationPageState(
-      name: name, messages: messages, sender: sender, isCompany: isCompany);
+      names: names, messages: messages, sender: sender, isCompany: isCompany);
 }
 
 class _ConversationPageState extends State<ConversationPage>
     with WidgetsBindingObserver {
-  var name;
+  var names;
 
   /// A list containing all messages of a conversation
   List<String> messages;
@@ -33,7 +33,7 @@ class _ConversationPageState extends State<ConversationPage>
   /// A boolean to identify which view the app is on: 0 is on candidate vew, 1 company view
   bool isCompany;
   _ConversationPageState(
-      {required this.name,
+      {required this.names,
       required this.messages,
       required this.sender,
       required this.isCompany});
@@ -95,7 +95,7 @@ class _ConversationPageState extends State<ConversationPage>
         foregroundColor: Colors.white,
         //------------- PARTICIPANT NAME -------------
         title: Text(
-          name,
+          isCompany ? names.split(":")[1] : names.split(":")[0],
         ),
         titleTextStyle: const TextStyle(
           fontFamily: 'Shanti',
@@ -122,8 +122,20 @@ class _ConversationPageState extends State<ConversationPage>
                           margin: EdgeInsets.only(
                             top: 10.0,
                             bottom: 10.0,
-                            left: isCompany ? sender[i] == 0 ? 10.0 : 70.0 : sender[i] == 1 ? 10.0 : 70.0,
-                            right: isCompany ? sender[i] == 1 ? 10.0 : 70.0 : sender[i] == 0 ? 10.0 : 70.0,
+                            left: isCompany
+                                ? sender[i] == 0
+                                    ? 10.0
+                                    : 70.0
+                                : sender[i] == 1
+                                    ? 10.0
+                                    : 70.0,
+                            right: isCompany
+                                ? sender[i] == 1
+                                    ? 10.0
+                                    : 70.0
+                                : sender[i] == 0
+                                    ? 10.0
+                                    : 70.0,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -222,31 +234,16 @@ class _ConversationPageState extends State<ConversationPage>
                         ),
                         child: IconButton(
                             onPressed: () {
-                              sender.add(isCompany ? 1 : 0);
-                              messages.add(TextfieldController.text);
-                              FirebaseFirestore.instance
-                                  .collection('Conversations')
-                                  .where('IDS', isEqualTo: "1:1")
-                                  .get()
-                                  .then((querySnapshot) {
-                                for (var result in querySnapshot.docs) {
-                                  FirebaseFirestore.instance
-                                      .collection('Conversations')
-                                      .doc(result.id)
-                                      .update({"Messages": messages});
-                                  FirebaseFirestore.instance
-                                      .collection('Conversations')
-                                      .doc(result.id)
-                                      .update({"MessagesW": sender});
-                                  FirebaseFirestore.instance
-                                      .collection('Conversations')
-                                      .doc(result.id)
-                                      .update({
-                                    "Dates":
-                                        FieldValue.arrayUnion([Timestamp.now()])
-                                  });
-                                  TextfieldController.text = "";
-                                }
+                              updateMessagesOnDatabase(
+                                  TextfieldController.text,
+                                  isCompany,
+                                  names.split(":")[0],
+                                  names.split(":")[1]
+                                  );
+                              setState(() {
+                                messages.add(TextfieldController.text);
+                                sender.add(isCompany ? 1 : 0);
+                                TextfieldController.clear();
                               });
                             },
                             icon: const Icon(Icons.send_rounded)),
@@ -261,4 +258,52 @@ class _ConversationPageState extends State<ConversationPage>
       ),
     );
   }
+}
+
+void updateMessagesOnDatabase(
+    String message, bool isCompany, String companyId, String candidateId) {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  List<String> messages = [];
+  List<int> sender = [];
+  String id = "";
+
+  db
+      .collection("Conversations")
+      .where('IDS', isEqualTo: "$companyId:$candidateId")
+      .get()
+      .then((value) => {
+            if (value.docs[0].data()["Messages"] != null)
+              {
+                messages = List<String>.from(value.docs[0].data()["Messages"]),
+                sender = List<int>.from(value.docs[0].data()["MessagesW"]),
+                id = value.docs[0].id,
+              }
+          })
+      .then((value) => {
+            if (isCompany)
+              {
+                sender.add(1),
+                messages.add(message),
+              }
+            else
+              {
+                sender.add(0),
+                messages.add(message),
+              }
+          })
+      .then((value) => FirebaseFirestore.instance
+          .collection('Conversations')
+          .doc(id)
+          .update({"Messages": messages}))
+      .then((value) => FirebaseFirestore.instance
+          .collection('Conversations')
+          .doc(id)
+          .update({"MessagesW": sender}))
+      .then((value) => FirebaseFirestore.instance
+              .collection('Conversations')
+              .doc(id)
+              .update({
+            "Dates": FieldValue.arrayUnion([Timestamp.now()])
+          }));
 }
