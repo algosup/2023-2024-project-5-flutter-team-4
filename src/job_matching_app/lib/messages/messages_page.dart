@@ -49,6 +49,8 @@ class _MessagesPageState extends State<MessagesPage> {
     ],
   );
 
+  List<String> conversationsNames = [];
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +78,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   companies.add(element.data()["MessagesW"].cast<int>());
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
+                  conversationsNames = element.data()["Names"].cast<String>();
                   convNum++;
                 }
               } else {
@@ -86,6 +89,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   companies.add(element.data()["MessagesW"].cast<int>());
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
+                  conversationsNames.add(element.data()["Names"]);
                   convNum++;
                 }
               }
@@ -192,7 +196,8 @@ class _MessagesPageState extends State<MessagesPage> {
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     ConversationPage(
-                                  convId: i,
+                                  name: isCompanyView ? conversationsNames[i].split(":")[1] :
+                                      conversationsNames[i].split(":")[0],
                                   messages: messages[i],
                                   sender: companies[i],
                                   isCompany: isCompanyView,
@@ -220,15 +225,6 @@ class _MessagesPageState extends State<MessagesPage> {
                             width: width * 0.9,
                             height: 100,
                             decoration: BoxDecoration(
-                              // gradient: LinearGradient(
-                              //   begin: Alignment.topCenter,
-                              //   end: Alignment.bottomCenter,
-                              //   colors: [
-                              //     Colors.grey.shade300,
-                              //     Colors.grey.shade500,
-                              //     Colors.black,
-                              //   ],
-                              // ),
                               color: Colors.grey.shade300,
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -270,14 +266,6 @@ class _MessagesPageState extends State<MessagesPage> {
                                             100), // Border radius of the profile picture is set to 100
                                         child: Image.asset(
                                             'lib/assets/images/logo.png'
-                                            // getImageFromNickName(
-                                            //   messages[messagesList[i] - 1][0]
-                                            //       .substring(
-                                            //           0,
-                                            //           messages[messagesList[i] -
-                                            //                       1][0]
-                                            //                   .length -
-                                            //               3) )
                                             ), // ADD IMAGE
                                       ),
                                     ),
@@ -294,7 +282,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                             const EdgeInsets.only(top: 10.0),
                                         child: Text(
                                           messages.isNotEmpty
-                                              ? messages[i][0]
+                                              ? isCompanyView ? conversationsNames[i].split(':')[1] : conversationsNames[i].split(':')[0]
                                               : "",
                                           style: const TextStyle(
                                               color: Colors.black,
@@ -350,7 +338,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       ConversationPage(
-                                    convId: messagesList[h] - 1,
+                                    name: "Match",
                                     messages: messages[messagesList[h] - 1],
                                     sender: companies[messagesList[h] - 1],
                                     isCompany: isCompanyView,

@@ -5,24 +5,24 @@ import 'package:job_matching_app/main.dart';
 class ConversationPage extends StatefulWidget {
   const ConversationPage(
       {super.key,
-      required this.convId,
+      required this.name,
       required this.messages,
       required this.sender,
       required this.isCompany});
 
-  final int convId;
+  final String name;
   final List<String> messages;
   final List<int> sender;
   final bool isCompany;
 
   @override
   State<ConversationPage> createState() => _ConversationPageState(
-      id: convId, messages: messages, sender: sender, isCompany: isCompany);
+      name: name, messages: messages, sender: sender, isCompany: isCompany);
 }
 
 class _ConversationPageState extends State<ConversationPage>
     with WidgetsBindingObserver {
-  var id;
+  var name;
 
   /// A list containing all messages of a conversation
   List<String> messages;
@@ -33,7 +33,7 @@ class _ConversationPageState extends State<ConversationPage>
   /// A boolean to identify which view the app is on: 0 is on candidate vew, 1 company view
   bool isCompany;
   _ConversationPageState(
-      {required this.id,
+      {required this.name,
       required this.messages,
       required this.sender,
       required this.isCompany});
@@ -95,7 +95,7 @@ class _ConversationPageState extends State<ConversationPage>
         foregroundColor: Colors.white,
         //------------- PARTICIPANT NAME -------------
         title: Text(
-          messages[0],
+          name,
         ),
         titleTextStyle: const TextStyle(
           fontFamily: 'Shanti',
@@ -122,8 +122,8 @@ class _ConversationPageState extends State<ConversationPage>
                           margin: EdgeInsets.only(
                             top: 10.0,
                             bottom: 10.0,
-                            left: sender[i] == 0 ? 10.0 : 70.0,
-                            right: sender[i] == 1 ? 10.0 : 70.0,
+                            left: isCompany ? sender[i] == 0 ? 10.0 : 70.0 : sender[i] == 1 ? 10.0 : 70.0,
+                            right: isCompany ? sender[i] == 1 ? 10.0 : 70.0 : sender[i] == 0 ? 10.0 : 70.0,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -222,6 +222,8 @@ class _ConversationPageState extends State<ConversationPage>
                         ),
                         child: IconButton(
                             onPressed: () {
+                              sender.add(isCompany ? 1 : 0);
+                              messages.add(TextfieldController.text);
                               FirebaseFirestore.instance
                                   .collection('Conversations')
                                   .where('IDS', isEqualTo: "1:1")
@@ -231,17 +233,11 @@ class _ConversationPageState extends State<ConversationPage>
                                   FirebaseFirestore.instance
                                       .collection('Conversations')
                                       .doc(result.id)
-                                      .update({
-                                    "Messages": FieldValue.arrayUnion(
-                                        [TextfieldController.text])
-                                  });
-                                  sender.add(isCompany as int);
+                                      .update({"Messages": messages});
                                   FirebaseFirestore.instance
                                       .collection('Conversations')
                                       .doc(result.id)
-                                      .update({
-                                    "MessagesW": sender
-                                  });
+                                      .update({"MessagesW": sender});
                                   FirebaseFirestore.instance
                                       .collection('Conversations')
                                       .doc(result.id)

@@ -39,13 +39,17 @@ class _MatchPageState extends State<MatchPage> {
   List<String> features = [];
   bool useSides = false;
   List<int> idList = [];
-  List<String> imagesListCompanies = ["logo", "wae"];
   List<String> imagesListCandidates = [
     "giraffe",
     "lion",
     "koala",
     "kangaroo",
-    "panda"
+    "panda",
+    "elephant",
+    "renard",
+    "loup",
+    "zebre",
+    "gorille",
   ];
 
   List<String> names = [];
@@ -240,9 +244,9 @@ class _MatchPageState extends State<MatchPage> {
                                   100), // Border radius of the profile picture
                               child: isCompanyView
                                   ? Image.asset(
-                                      "lib/assets/images/${imagesListCandidates[i]}.png")
+                                      "lib/assets/images/${imagesListCandidates[i%10]}.png")
                                   : Image.asset(
-                                      "lib/assets/images/${imagesListCompanies[i]}.png") // ADD IMAGE
+                                      "lib/assets/images/logo.png") // ADD IMAGE
                               ),
                         ),
                       ),
