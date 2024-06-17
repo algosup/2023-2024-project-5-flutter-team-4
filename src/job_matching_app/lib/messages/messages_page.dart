@@ -78,7 +78,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   companies.add(element.data()["MessagesW"].cast<int>());
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
-                  conversationsNames = element.data()["Names"].cast<String>();
+                  conversationsNames.add(element.data()["Names"]);
                   convNum++;
                 }
               } else {
