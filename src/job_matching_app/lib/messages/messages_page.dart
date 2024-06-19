@@ -26,7 +26,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  int convNum = 0;
+  int conversationNum = 0;
 
   List<List<String>> messages = [[]];
 
@@ -40,22 +40,17 @@ class _MessagesPageState extends State<MessagesPage> {
 
   List<int> matchListOther = [];
 
-  List<String> conversationslist = [];
+  List<String> conversationsList = [];
 
   List<String> conversationsIds = [];
 
-  // final Gradient gradient = const LinearGradient(
-  //   colors: <Color>[
-  //     Color.fromARGB(255, 215, 0, 123),
-  //     Color.fromARGB(255, 169, 38, 135),
-  //   ],
-  // );
-
   List<String> conversationsNames = [];
 
-  bool reload = false;
+  List<String> otherNames = [];
 
-  int index = -1;
+  String yourName = "";
+
+  bool reload = true;
 
   @override
   void initState() {
@@ -77,36 +72,30 @@ class _MessagesPageState extends State<MessagesPage> {
               if (isCompanyView) {
                 if (int.parse(element.data()["IDS"].toString().split(":")[0]) ==
                     id) {
-                  conversationslist.add(element.data()["IDS"]);
+                  conversationsList.add(element.data()["IDS"]);
                   messages.add(element.data()["Messages"].cast<String>());
                   companies.add(element.data()["MessagesW"].cast<int>());
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
                   conversationsNames.add(element.data()["Names"]);
                   conversationsIds.add(element.data()["IDS"]);
-                  convNum++;
+                  conversationNum++;
                 }
               } else {
                 if (int.parse(element.data()["IDS"].toString().split(":")[1]) ==
                     id) {
-                  conversationslist.add(element.data()["IDS"]);
+                  conversationsList.add(element.data()["IDS"]);
                   messages.add(element.data()["Messages"].cast<String>());
                   companies.add(element.data()["MessagesW"].cast<int>());
                   lastMessage.add(element.data()["Dates"]
                       [element.data()["Dates"].length - 1] as Timestamp);
                   conversationsNames.add(element.data()["Names"]);
                   conversationsIds.add(element.data()["IDS"]);
-                  convNum++;
+                  conversationNum++;
                 }
               }
             }))
-        .then((value) => setState(() {
-              debugPrint(convNum.toString());
-
-              isCompanyView
-                  ? otherList = getUsersList()
-                  : otherList = getCompaniesList();
-            }));
+        .then((value) => setState(() {}));
 
     !isCompanyView
         ? db.collection('Users').where("").get().then(
@@ -133,32 +122,72 @@ class _MessagesPageState extends State<MessagesPage> {
           ).then(
             (value) => setState(() {}),
           );
+
+    isCompanyView
+        ? getUsersList().then((value) => otherList = value).then(
+              (value) => setState(() {}),
+            )
+        : getCompaniesList().then((value) => otherList = value).then(
+              (value) => setState(() {}),
+            );
+    debugPrint('List before: $otherList');
+    isCompanyView
+        ? getNameFromId(id, isCompanyView, true)
+            .then((value) => yourName = value)
+            .then(
+              (value) => setState(() {}),
+            )
+        : getNameFromId(id, isCompanyView, false)
+            .then((value) => yourName = value)
+            .then(
+              (value) => setState(() {}),
+            );
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    debugPrint(conversationslist.toString());
+    debugPrint(conversationsList.toString());
     // for (int h = 0; h < otherList.length; h++) {
     //   debugPrint('${getCompanyMatchList(otherList[h], id)}');
     // }
 
-    if (reload && index != -1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => ConversationPage(
-            names: isCompanyView
-                ? "${getNameFromId(id, true)}:${getNameFromId(otherList[index], false)}"
-                : "${getNameFromId(otherList[index], true)}:${getNameFromId(id, false)}",
-            messages: const ["Ceci est le début de votre conversation"],
-            sender: const [2],
-            isCompany: isCompanyView,
-          ),
-        ),
-      );
+    // if (reload && index != -1) {
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (BuildContext context) => ConversationPage(
+    //           names: isCompanyView
+    //               ? "${getNameFromId(id, true)}:${getNameFromId(otherList[index], false)}"
+    //               : "${getNameFromId(otherList[index], true)}:${getNameFromId(id, false)}",
+    //           messages: const ["Ceci est le début de votre conversation"],
+    //           sender: const [2],
+    //           isCompany: isCompanyView,
+    //         ),
+    //       ),
+    //     );
+    // }
+    if (otherList.isNotEmpty) {
+      if (otherNames.length != otherList.length) {
+        otherNames = List.filled(otherList.length, "");
+      }
+      for (int y = 0; y < otherList.length; y++) {
+        isCompanyView
+            ? getNameFromId(otherList[y], !isCompanyView, false).then((value) {
+                otherNames[y] = value;
+              }).then((value) => debugPrint('Other names: $otherNames')).then(
+                (value) => reload ? setState(() {reload = false;}) : null,
+              )
+            : getNameFromId(otherList[y], !isCompanyView, true).then((value) {
+                otherNames[y] = value;
+              }).then((value) => debugPrint('Other names: $otherNames')).then(
+                (value) => reload ? setState(() {reload = false;}) : null,
+              );
+      }
     }
+
+    debugPrint('Your name: $yourName');
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -214,7 +243,7 @@ class _MessagesPageState extends State<MessagesPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    for (int i = 0; i < convNum; i++)
+                    for (int i = 0; i < conversationNum; i++)
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -245,7 +274,8 @@ class _MessagesPageState extends State<MessagesPage> {
                         ),
                         child: Container(
                           margin: EdgeInsets.only(
-                              top: 10.0, bottom: i == convNum - 1 ? 10.0 : 0.0),
+                              top: 10.0,
+                              bottom: i == conversationNum - 1 ? 10.0 : 0.0),
                           width: width * 0.9,
                           height: 100,
                           decoration: BoxDecoration(
@@ -327,9 +357,14 @@ class _MessagesPageState extends State<MessagesPage> {
                                                   ? isCompanyView
                                                       ? "${conversationsNames[i].split(':')[1]}: "
                                                       : "vous: "
-                                                  : isCompanyView
-                                                      ? "vous: "
-                                                      : "${conversationsNames[i].split(':')[0]}: ") +
+                                                  : companies[i][companies[i]
+                                                                  .length -
+                                                              1] ==
+                                                          2
+                                                      ? ""
+                                                      : isCompanyView
+                                                          ? "vous: "
+                                                          : "${conversationsNames[i].split(':')[0]}: ") +
                                               (messages.isEmpty
                                                   ? ""
                                                   : messages[i]
@@ -356,7 +391,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           ),
                         ),
                       ),
-                    for (int h = 0; h < otherList.length; h++) // Container()
+                    for (int h = 0; h < otherList.length; h++)
                       if (matchListOther.contains(otherList[h]) &&
                           !conversationsIds.contains(isCompanyView
                               ? "$id:${otherList[h]}"
@@ -364,12 +399,48 @@ class _MessagesPageState extends State<MessagesPage> {
                         ElevatedButton(
                           onPressed: () {
                             isCompanyView
-                                ? createNewConversation("", id, otherList[h])
-                                : createNewConversation("", otherList[h], id);
-                            setState(() {
-                              reload = true;
-                              index = h;
-                            });
+                                ? createNewConversation(
+                                    '$yourName:${otherNames[h]}',
+                                    id,
+                                    otherList[h])
+                                : createNewConversation(
+                                    "${otherNames[h]}:$yourName",
+                                    otherList[h],
+                                    id);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        super.widget));
+                            conversationsNames.add(isCompanyView
+                                ? "$yourName:${otherNames[h]}"
+                                : "${otherNames[h]}:$yourName");
+                            conversationsIds.add(isCompanyView
+                                ? "$id:${otherList[h]}"
+                                : "${otherList[h]}:$id");
+                            conversationNum++;
+                            conversationsList.add(isCompanyView
+                                ? "$id:${otherList[h]}"
+                                : "${otherList[h]}:$id");
+                            messages.add(
+                                ["Ceci est le début de votre conversation"]);
+                            companies.add([2]);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    ConversationPage(
+                                  names: isCompanyView
+                                      ? "$yourName:${otherNames[h]}"
+                                      : "${otherNames[h]}:$yourName",
+                                  messages: const [
+                                    "Ceci est le début de votre conversation"
+                                  ],
+                                  sender: const [2],
+                                  isCompany: isCompanyView,
+                                ),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             splashFactory: NoSplash.splashFactory,
@@ -387,7 +458,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           child: Container(
                             margin: EdgeInsets.only(
                                 top: 10.0,
-                                bottom: h == convNum - 1 ? 10.0 : 0.0),
+                                bottom: h == conversationNum - 1 ? 10.0 : 0.0),
                             width: width * 0.9,
                             height: 100,
                             decoration: BoxDecoration(
@@ -446,9 +517,9 @@ class _MessagesPageState extends State<MessagesPage> {
                                         child: Container(
                                           margin:
                                               const EdgeInsets.only(top: 5.0),
-                                          child: const Text(
-                                            "Vous avez un match avec cette entreprise !",
-                                            style: TextStyle(
+                                          child: Text(
+                                            "Vous avez un match avec ${otherNames[h]} !",
+                                            style: const TextStyle(
                                                 color: Colors.black,
                                                 fontFamily: 'Shanti',
                                                 fontWeight: FontWeight.bold,
@@ -608,7 +679,7 @@ Future<bool> getCompanyMatchList(
 }
 
 // Return the list of all users
-List<int> getUsersList() {
+Future<List<int>> getUsersList() async {
   List<int> usersList = [];
   FirebaseFirestore db = FirebaseFirestore.instance;
   db.collection('Users').get().then(
@@ -624,7 +695,7 @@ List<int> getUsersList() {
 }
 
 // Return the list of all companies
-List<int> getCompaniesList() {
+Future<List<int>> getCompaniesList() async {
   List<int> companiesList = [];
   FirebaseFirestore db = FirebaseFirestore.instance;
   db.collection('Companies').get().then(
@@ -650,16 +721,26 @@ void createNewConversation(String names, int companyId, int candidateId) {
   });
 }
 
-String getNameFromId(int id, bool isCompany) {
+Future<String> getNameFromId(int id, bool isCompany, bool isName) async {
+  debugPrint('isCompany: $isCompany');
+  String name = "";
   FirebaseFirestore db = FirebaseFirestore.instance;
-  db.collection(isCompany ? "Companies" : "Users").where("").get().then(
+  String collection = isCompany ? "Companies" : "Users";
+  await db.collection(collection).get().then(
     (querySnapshot) {
       for (var result in querySnapshot.docs) {
+        debugPrint('ID: ${result.data()["ID"]} - $id - isName: $isName');
         if (result.data()["ID"] == id) {
-          return result.data()["Name"];
+          if (isName) {
+            debugPrint('Name: ${result.data()["Name"]}');
+            return result.data()["Name"];
+          } else {
+            debugPrint('Pseudonyme: ${result.data()["Pseudonyme"]}');
+            return result.data()["Pseudonyme"];
+          }
         }
       }
     },
-  );
-  return "";
+  ).then((value) => name = value);
+  return name;
 }
