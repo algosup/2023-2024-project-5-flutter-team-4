@@ -107,8 +107,6 @@ class _MessagesPageState extends State<MessagesPage> {
                 }
               }
             },
-          ).then(
-            (value) => setState(() {}),
           )
         : db.collection('Companies').where("").get().then(
             (querySnapshot) {
