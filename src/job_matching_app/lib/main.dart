@@ -289,7 +289,6 @@ class _RootPageState extends State<RootPage> {
           // Change the current page when a destination is selected
           onDestinationSelected: (int index) async {
             // Set the current page to the index
-            await Future.delayed(const Duration(milliseconds: 1000));
             setState(() {
               currentPage = index;
             });

@@ -89,13 +89,13 @@ class _MatchPageState extends State<MatchPage> {
     ];
 
     features = [
-      "AA",
-      "BB",
-      "CC",
-      "DD",
-      "EE",
-      "FF",
-      "GG",
+      "Motivation",
+      "Créativité",
+      "Imagin-\nation",
+      "Collaboration",
+      "Sang-froid",
+      "Travailleur",
+      "Optimisme",
     ];
 
     data = [
@@ -121,13 +121,13 @@ class _MatchPageState extends State<MatchPage> {
                     .then((querySnapshot) {
                   data.clear();
                   for (int i = 0; i < querySnapshot.docs.length; i++) {
-                      data.add([0, 0, 0, 0, 0, 0, 0]);
+                    data.add([0, 0, 0, 0, 0, 0, 0]);
                     if (querySnapshot.docs[i].data()['ID'] != -1 &&
                         !notMatched
                             .contains(querySnapshot.docs[i].data()['ID'])) {
                       idList.add(querySnapshot.docs[i].data()['ID']);
                       length = i + 1;
-                      names.add(querySnapshot.docs[i].data()['Name']);
+                      names.add(querySnapshot.docs[i].data()['Pseudonyme']);
                       for (int j = 0; j < 7; j++) {
                         data[i][j] = querySnapshot.docs[i].data()['Graph'][j];
                       }
@@ -174,7 +174,9 @@ class _MatchPageState extends State<MatchPage> {
     darkMode = Theme.of(context).brightness == Brightness.dark ? true : false;
     List<Container> cards = [];
 
-    for (int i = 0; i < length- matched.length; i++) {
+    debugPrint('length: $length - ${matched.length}');
+
+    for (int i = 0; i < length; i++) {
       cards.add(
         Container(
           margin:
@@ -243,8 +245,8 @@ class _MatchPageState extends State<MatchPage> {
                               borderRadius: BorderRadius.circular(
                                   100), // Border radius of the profile picture
                               child: isCompanyView
-                                  ? Image.asset(
-                                      "lib/assets/images/${imagesListCandidates[i%10]}.png")
+                                  ? Image.asset(getImageFromNickName(names[i]
+                                      .substring(0, names[i].length - 3)))
                                   : Image.asset(
                                       "lib/assets/images/logo.png") // ADD IMAGE
                               ),
@@ -533,9 +535,11 @@ class _MatchPageState extends State<MatchPage> {
                           matched.add(idList[previousIndex]);
                           setFirebaseData(
                               isCompanyView, id, 'Matched', matched);
+                          List<int> matchList = isCompanyView ? getMatchlistFromId(false, id): getMatchlistFromId(true, id);
+                          // !matchList.contains(id) ? null : 
                           lastMoves.add('right');
                         }
-                        if (length - cards.length-1 == 0) {
+                        if (length - cards.length - 1 == 0) {
                           await showDialog<void>(
                               context: context,
                               builder: (context) => AlertDialog(
@@ -591,10 +595,12 @@ class _MatchPageState extends State<MatchPage> {
                                                   onPressed: () {
                                                     notMatched.clear();
                                                     notMatched.add(-1);
-                                                    setFirebaseData(isCompanyView, id,
-                                                        'NotMatched', notMatched);
-                                                    setState(() {
-                                                    });
+                                                    setFirebaseData(
+                                                        isCompanyView,
+                                                        id,
+                                                        'NotMatched',
+                                                        notMatched);
+                                                    setState(() {});
                                                     Navigator.of(context).pop();
                                                   },
                                                 ),
@@ -806,6 +812,33 @@ Color getColor(int index) {
   }
 }
 
+String getImageFromNickName(String nickName) {
+  switch (nickName) {
+    case 'Giraffe' || 'giraffe':
+      return 'lib/assets/images/giraffe.png';
+    case 'Elephant' || 'Eléphant' || 'elephant' || 'eléphant':
+      return 'lib/assets/images/elephant.png';
+    case 'Gorille' || 'gorille' || 'Gorilla' || 'gorilla':
+      return 'lib/assets/images/gorilla.png';
+    case 'Lion' || 'lion':
+      return 'lib/assets/images/lion.png';
+    case 'Renard' || 'renard' || 'Fox' || 'fox':
+      return 'lib/assets/images/fox.png';
+    case 'Kangourou' || 'kangourou' || 'Kangaroo' || 'kangaroo':
+      return 'lib/assets/images/kangaroo.png';
+    case 'Loup' || 'loup' || 'Wolf' || 'wolf':
+      return 'lib/assets/images/wolf.png';
+    case 'Panda' || 'panda' || 'Panda Bear' || 'panda bear':
+      return 'lib/assets/images/panda.png';
+    case 'Zèbre' || 'Zebre' || 'zebre' || 'zèbre' || 'Zebra' || 'zebra':
+      return 'lib/assets/images/zebra.png';
+    case 'Koala' || 'koala' || 'Koala Bear' || 'koala bear':
+      return 'lib/assets/images/koala.png';
+    default:
+      return 'lib/assets/images/logo.png';
+  }
+}
+
 void setFirebaseData(bool isComapnyView, int id, String key, List<int> values) {
   debugPrint('setFirebaseData: id: $id, key: $key, value: $values');
   String docName = '';
@@ -823,4 +856,20 @@ void setFirebaseData(bool isComapnyView, int id, String key, List<int> values) {
       }),
     );
   }
+}
+
+
+List<int> getMatchlistFromId(bool isCompany, int id) {
+  List<int> matchList = [];
+  String collection;
+  isCompany ? collection = 'Companies' : collection = 'Users';
+  var db = FirebaseFirestore.instance;
+  if (collection != '') {
+    db.collection(collection).where('ID', isEqualTo: id).get().then(
+      (querySnapshot) {
+        matchList = querySnapshot.docs[0].data()['Matched'].cast<int>();
+      },
+    );
+  }
+  return matchList;
 }
