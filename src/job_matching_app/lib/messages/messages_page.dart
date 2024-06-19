@@ -130,7 +130,6 @@ class _MessagesPageState extends State<MessagesPage> {
         : getCompaniesList().then((value) => otherList = value).then(
               (value) => setState(() {}),
             );
-    debugPrint('List before: $otherList');
     isCompanyView
         ? getNameFromId(id, isCompanyView, true)
             .then((value) => yourName = value)
@@ -148,26 +147,8 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    debugPrint(conversationsList.toString());
-    // for (int h = 0; h < otherList.length; h++) {
-    //   debugPrint('${getCompanyMatchList(otherList[h], id)}');
-    // }
+    
 
-    // if (reload && index != -1) {
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (BuildContext context) => ConversationPage(
-    //           names: isCompanyView
-    //               ? "${getNameFromId(id, true)}:${getNameFromId(otherList[index], false)}"
-    //               : "${getNameFromId(otherList[index], true)}:${getNameFromId(id, false)}",
-    //           messages: const ["Ceci est le début de votre conversation"],
-    //           sender: const [2],
-    //           isCompany: isCompanyView,
-    //         ),
-    //       ),
-    //     );
-    // }
     if (otherList.isNotEmpty) {
       if (otherNames.length != otherList.length) {
         otherNames = List.filled(otherList.length, "");
@@ -176,18 +157,17 @@ class _MessagesPageState extends State<MessagesPage> {
         isCompanyView
             ? getNameFromId(otherList[y], !isCompanyView, false).then((value) {
                 otherNames[y] = value;
-              }).then((value) => debugPrint('Other names: $otherNames')).then(
+              }).then(
                 (value) => reload ? setState(() {reload = false;}) : null,
               )
             : getNameFromId(otherList[y], !isCompanyView, true).then((value) {
                 otherNames[y] = value;
-              }).then((value) => debugPrint('Other names: $otherNames')).then(
+              }).then(
                 (value) => reload ? setState(() {reload = false;}) : null,
               );
       }
     }
 
-    debugPrint('Your name: $yourName');
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -665,7 +645,6 @@ Future<bool> getCompanyMatchList(
     (querySnapshot) {
       for (var result in querySnapshot.docs) {
         if (result.data()["ID"] == companyId) {
-          debugPrint("${result.data()["Matched"]} $userId");
           matchList = result.data()["Matched"].cast<int>();
           if (matchList.contains(userId)) {
             isAMatch = true;
@@ -722,20 +701,16 @@ void createNewConversation(String names, int companyId, int candidateId) {
 }
 
 Future<String> getNameFromId(int id, bool isCompany, bool isName) async {
-  debugPrint('isCompany: $isCompany');
   String name = "";
   FirebaseFirestore db = FirebaseFirestore.instance;
   String collection = isCompany ? "Companies" : "Users";
   await db.collection(collection).get().then(
     (querySnapshot) {
       for (var result in querySnapshot.docs) {
-        debugPrint('ID: ${result.data()["ID"]} - $id - isName: $isName');
         if (result.data()["ID"] == id) {
           if (isName) {
-            debugPrint('Name: ${result.data()["Name"]}');
             return result.data()["Name"];
           } else {
-            debugPrint('Pseudonyme: ${result.data()["Pseudonyme"]}');
             return result.data()["Pseudonyme"];
           }
         }
