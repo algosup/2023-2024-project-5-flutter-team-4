@@ -94,8 +94,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   conversationNum++;
                 }
               }
-            }))
-        .then((value) => setState(() {}));
+            }));
 
     !isCompanyView
         ? db.collection('Users').where("").get().then(
@@ -117,8 +116,6 @@ class _MessagesPageState extends State<MessagesPage> {
                 }
               }
             },
-          ).then(
-            (value) => setState(() {}),
           );
 
     isCompanyView
@@ -135,10 +132,7 @@ class _MessagesPageState extends State<MessagesPage> {
               (value) => setState(() {}),
             )
         : getNameFromId(id, isCompanyView, false)
-            .then((value) => yourName = value)
-            .then(
-              (value) => setState(() {}),
-            );
+            .then((value) => yourName = value);
   }
 
   @override
