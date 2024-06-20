@@ -513,7 +513,7 @@ class _CandidateProfileSettingState
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailsTimeLinePage(id: id),
+                            builder: (context) => DetailsTimeLinePage(id: id, isUser: true),
                           ),
                         );
                       },

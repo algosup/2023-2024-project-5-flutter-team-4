@@ -217,7 +217,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            DetailsTimeLinePage(id: id),
+                            DetailsTimeLinePage(id: id, isUser: false),
                       ),
                     ),
                     child: ListView(

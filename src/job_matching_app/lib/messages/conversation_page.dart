@@ -38,13 +38,6 @@ class _ConversationPageState extends State<ConversationPage>
       required this.sender,
       required this.isCompany});
 
-  /// A gradiant for the background going from pink to purple
-  final LinearGradient backgroundGradient = const LinearGradient(
-    colors: <Color>[
-      Color.fromARGB(255, 215, 0, 123),
-      Color.fromARGB(255, 169, 38, 135),
-    ],
-  );
 
   /// A boolean to identify if the keyboard is opened or not
   bool _isKeyboardVisible = false;
@@ -89,15 +82,16 @@ class _ConversationPageState extends State<ConversationPage>
       //----------------- APPBAR -----------------
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: backgroundGradient),
+          color: Colors.white,
         ),
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.white,
+        foregroundColor: Colors.black,
         //------------- PARTICIPANT NAME -------------
         title: Text(
           isCompany ? names.split(":")[1] : names.split(":")[0],
         ),
         titleTextStyle: const TextStyle(
+          color: Colors.black,
           fontFamily: 'Shanti',
           fontSize: 24,
         ),
@@ -105,8 +99,8 @@ class _ConversationPageState extends State<ConversationPage>
       ),
       //----------------- MESSAGES -----------------
       body: Container(
-        decoration: BoxDecoration(
-          gradient: backgroundGradient,
+        decoration: const BoxDecoration(
+          color: Colors.white,
         ),
         child: SizedBox(
           child: Stack(
@@ -138,7 +132,7 @@ class _ConversationPageState extends State<ConversationPage>
                                     : 70.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: ListTile(
@@ -191,8 +185,8 @@ class _ConversationPageState extends State<ConversationPage>
                             focusNode: _focusNode,
                             decoration: InputDecoration(
                               hintText: 'Type a message...',
-                              hintStyle: TextStyle(
-                                color: Colors.grey.shade900,
+                              hintStyle: const TextStyle(
+                                color: Colors.black,
                                 fontFamily: 'Shanti',
                                 fontSize: 20,
                               ),
@@ -201,7 +195,7 @@ class _ConversationPageState extends State<ConversationPage>
                                   topLeft: Radius.circular(10),
                                 ),
                               ),
-                              fillColor: Colors.white,
+                              fillColor: Colors.grey.shade300,
                               filled: true,
                             ),
                           ),
@@ -212,8 +206,8 @@ class _ConversationPageState extends State<ConversationPage>
                       Container(
                         height: size.height * 0.08,
                         width: size.width * 0.2,
-                        decoration: const BoxDecoration(
-                          border: Border(
+                        decoration: BoxDecoration(
+                          border: const Border(
                             top: BorderSide(
                               color: Colors.black,
                               width: 1.0,
@@ -227,10 +221,10 @@ class _ConversationPageState extends State<ConversationPage>
                               width: 1.0,
                             ),
                           ),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(10),
                           ),
-                          color: Colors.white,
+                          color: Colors.grey.shade300,
                         ),
                         child: IconButton(
                             onPressed: () {
@@ -246,7 +240,7 @@ class _ConversationPageState extends State<ConversationPage>
                                 TextfieldController.clear();
                               });
                             },
-                            icon: const Icon(Icons.send_rounded)),
+                            icon: const Icon(Icons.send_rounded, color: Colors.black,)),
                       ),
                     ],
                   ),

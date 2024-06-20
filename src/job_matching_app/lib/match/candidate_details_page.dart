@@ -522,7 +522,7 @@ class _CandidateDetailsPageState extends State<CandidateDetailsPage> {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            DetailsTimeLinePage(id: id),
+                            DetailsTimeLinePage(id: id, isUser: true),
                       ),
                     ),
 

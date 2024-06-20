@@ -520,14 +520,15 @@ class _MessagesPageState extends State<MessagesPage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   backgroundColor: Colors.white,
-      //   child: const Icon(Icons.add_comment_rounded,
-      //       color: Colors.black, size: 30),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+          });
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.restart_alt_rounded,
+            color: Colors.black, size: 30),
+      ),
     );
   }
 }

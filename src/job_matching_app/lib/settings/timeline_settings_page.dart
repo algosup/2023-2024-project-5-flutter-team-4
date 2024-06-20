@@ -85,16 +85,10 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
       appBar: AppBar(
         forceMaterialTransparency: true,
         backgroundColor: Colors.transparent,
-        foregroundColor: Theme.of(context).colorScheme.tertiary,
+        foregroundColor: Colors.black,
       ),
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            Color.fromARGB(255, 169, 38, 135),
-            Color.fromARGB(255, 215, 0, 123),
-          ],
-        )),
+        color: Colors.white,
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
@@ -110,9 +104,9 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                       margin: const EdgeInsets.only(top: 30),
                       child: const Text(
                         textAlign: TextAlign.center,
-                        'You do not have a date sabved at the moment. Please add one by clicking the button below.',
+                        'Vous n\'avez pas encore ajouté de dates. Cliquez sur le bouton ci-dessous pour en ajouter une.',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontFamily: 'Shanti',
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -228,7 +222,7 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                         hintText: 'Enter a date',
                                       ),
                                       style: const TextStyle(
-                                          color: Colors.red,
+                                          color: Colors.black,
                                           fontFamily: 'Shanti',
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -257,7 +251,7 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                       hintText: 'Add a description of the date',
                                     ),
                                     style: const TextStyle(
-                                      color: Colors.blue,
+                                      color: Colors.black,
                                       fontFamily: 'Shanti',
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -273,16 +267,12 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                           style: ButtonStyle(
                                             backgroundColor:
                                                 MaterialStateProperty.all(
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary),
+                                                    Colors.black),
                                             shape: MaterialStateProperty.all<
                                                 CircleBorder>(
-                                              CircleBorder(
+                                              const CircleBorder(
                                                 side: BorderSide(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary,
+                                                  color: Colors.grey,
                                                 ),
                                               ),
                                             ),
@@ -302,7 +292,7 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                               }
                                             });
                                           },
-                                          icon: const Icon(Icons.add),
+                                          icon: const Icon(Icons.add, color: Colors.white),
                                         ),
                                       ),
                                       Container(
@@ -312,16 +302,12 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                           style: ButtonStyle(
                                             backgroundColor:
                                                 MaterialStateProperty.all(
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary),
+                                                    Colors.black),
                                             shape: MaterialStateProperty.all<
                                                 CircleBorder>(
-                                              CircleBorder(
+                                              const CircleBorder(
                                                 side: BorderSide(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary,
+                                                  color: Colors.grey,
                                                 ),
                                               ),
                                             ),
@@ -452,7 +438,7 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                                                           ),
                                                         ));
                                           },
-                                          icon: const Icon(Icons.edit),
+                                          icon: const Icon(Icons.edit, color: Colors.white),
                                         ),
                                       ),
                                     ],
@@ -465,38 +451,6 @@ class _TimelineSettingsPageState extends State<TimelineSettingsPage> {
                       ),
                   ],
                 ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor:
-            saved ? Theme.of(context).colorScheme.secondary : Colors.red,
-        onPressed: () {
-          db
-              .collection(collection)
-              .where('ID', isEqualTo: id)
-              .get()
-              .then(
-                (querySnapshot) {
-                  docName = querySnapshot.docs[0].id;
-                },
-              )
-              .then(
-                (value) => db.collection('Companies').doc(docName).update({
-                  "Dates": dates,
-                  "DatesDescription": datesDescription,
-                }),
-              )
-              .then(
-                (value) => setState(() {
-                  datesSaved = List.from(dates);
-                  datesDescriptionSaved = List.from(datesDescription);
-                  saved = true;
-                }),
-              );
-        },
-        child: const Icon(
-          Icons.save,
-          color: Colors.black,
         ),
       ),
     );
