@@ -15,7 +15,7 @@ class MessagesPage extends StatefulWidget {
   @override
   // ignore: no_logic_in_create_state
   State<MessagesPage> createState() =>
-      _MessagesPageState(id: id, isCompanyView: isCompanyView);
+      _MessagesPageState(id: id, isCompanyView: isCompanyView,);
 }
 
 class _MessagesPageState extends State<MessagesPage> {
@@ -490,7 +490,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                           margin:
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
-                                            "Vous avez un match avec ${otherNames[h]} !",
+                                            otherNames[h] != "" ? "Vous avez un match avec ${otherNames[h]} !" : "Vous avez un match avec cet utilisateur !",
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontFamily: 'Shanti',

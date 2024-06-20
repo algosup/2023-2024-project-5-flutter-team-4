@@ -4,6 +4,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:job_matching_app/main.dart';
+import 'package:job_matching_app/messages/messages_page.dart';
 import 'package:job_matching_app/settings/candidate_profile_settings_page.dart';
 import 'package:job_matching_app/settings/company_profile_settings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,6 +69,8 @@ class _MatchPageState extends State<MatchPage> {
   List<String> lastMoves = [];
 
   final _formKey = GlobalKey<FormState>();
+
+  final _formKeyMatch = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -535,8 +538,114 @@ class _MatchPageState extends State<MatchPage> {
                           matched.add(idList[previousIndex]);
                           setFirebaseData(
                               isCompanyView, id, 'Matched', matched);
-                          List<int> matchList = isCompanyView ? getMatchlistFromId(false, id): getMatchlistFromId(true, id);
-                          // !matchList.contains(id) ? null : 
+                          List<int> matchList = [];
+                          debugPrint('id: ${idList[previousIndex]}');
+                          isCompanyView
+                              ? await getMatchlistFromId(
+                                      false, idList[previousIndex])
+                                  .then((value) => matchList = value)
+                              : await getMatchlistFromId(
+                                      true, idList[previousIndex])
+                                  .then((value) => matchList = value);
+                          debugPrint(
+                              'matchList: $matchList - id: ${idList[previousIndex]} - matched: ${matchList.contains(idList[previousIndex])}');
+                          String names = "We Are Evolution:Giraffe269";
+                          !matchList.contains(idList[previousIndex])
+                              ? null
+                              : await showDialog<void>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        content: Stack(
+                                          clipBehavior: Clip.none,
+                                          children: <Widget>[
+                                            Form(
+                                              key: _formKey,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  const Padding(
+                                                    padding: EdgeInsets.all(8),
+                                                    child: Text(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      'Vous avez un match avec ce candidat !',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Shanti',
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8),
+                                                    child: ElevatedButton(
+                                                      child: const Text(
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        'Commencer une conversation',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily: 'Shanti',
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        createNewConversation(
+                                                          names,
+                                                          isCompanyView
+                                                              ? id
+                                                              : idList[
+                                                                  previousIndex],
+                                                          isCompanyView
+                                                              ? idList[
+                                                                  previousIndex]
+                                                              : id,
+                                                        );
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                MessagesPage(
+                                                              id: id,
+                                                              isCompanyView:
+                                                                  isCompanyView,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8),
+                                                    child: ElevatedButton(
+                                                      child: const Text(
+                                                        'Continuer à swiper',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily: 'Shanti',
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ));
                           lastMoves.add('right');
                         }
                         if (length - cards.length - 1 == 0) {
@@ -858,18 +967,32 @@ void setFirebaseData(bool isComapnyView, int id, String key, List<int> values) {
   }
 }
 
-
-List<int> getMatchlistFromId(bool isCompany, int id) {
+Future<List<int>> getMatchlistFromId(bool isCompany, int id) async {
   List<int> matchList = [];
   String collection;
   isCompany ? collection = 'Companies' : collection = 'Users';
   var db = FirebaseFirestore.instance;
   if (collection != '') {
-    db.collection(collection).where('ID', isEqualTo: id).get().then(
+    await db.collection(collection).where('ID', isEqualTo: id).get().then(
       (querySnapshot) {
-        matchList = querySnapshot.docs[0].data()['Matched'].cast<int>();
+        debugPrint(
+            'getMatchlistFromId: ${querySnapshot.docs[0].data()["Matched"]}');
+        return querySnapshot.docs[0].data()['Matched'].cast<int>();
       },
+    ).then(
+      (value) => matchList = value,
     );
   }
   return matchList;
+}
+
+void createNewConversation(String names, int companyId, int candidateId) {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  db.collection('Conversations').add({
+    'IDS': '$companyId:$candidateId',
+    'Messages': ["Ceci est le début de votre conversation"],
+    'MessagesW': [2],
+    'Dates': [Timestamp.now()],
+    'Names': names,
+  });
 }

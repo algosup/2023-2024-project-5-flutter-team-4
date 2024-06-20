@@ -126,7 +126,7 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
-    _setSharedPreferences('isCompanyView', true);
+    _setSharedPreferences('isCompanyView', false);
     getSharedPreferences('isCompanyView').then((value) {
       isCompanyView = value; 
     }).then((value) => setState(() {}));
@@ -142,11 +142,11 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       if (!isCompanyView) MatchPage(isCompanyView: isCompanyView, id: id) else const ChartPage(),
-      if (!isCompanyView) MessagesPage(id: id, isCompanyView: isCompanyView,) else MatchPage(isCompanyView: isCompanyView, id: id),
+      if (!isCompanyView) MessagesPage(id: id, isCompanyView: isCompanyView) else MatchPage(isCompanyView: isCompanyView, id: id),
       if (!isCompanyView)
         const CompanyProfileSettingsPage(isDetailsPage: true, id: id)
       else
-        MessagesPage(id: id, isCompanyView: isCompanyView,),
+        MessagesPage(id: id, isCompanyView: isCompanyView),
       if (!isCompanyView)
         const CandidateProfileSettingsPage(isDetailsPage: true, id: id)
       else
